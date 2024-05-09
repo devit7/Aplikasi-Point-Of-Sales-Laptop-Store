@@ -18,7 +18,7 @@ class UserController extends Controller
     {
         return response()->json([
             'message' => 'List User',
-            'data' => User::all()
+            'data' => User::paginate(10)
         ]);
     }
 
