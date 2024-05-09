@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\User\StoreRequest;
+use App\Http\Requests\User\UpdateRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -14,7 +16,10 @@ class UserController extends Controller
      */
     public function index()
     {
-        //
+        return response()->json([
+            'message' => 'List User',
+            'data' => User::all()
+        ]);
     }
 
     /**
@@ -33,17 +38,17 @@ class UserController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreRequest $request)
     {
         //return 'test';
-        $request -> validate([
-            'nama' => 'required',
-            'username' => 'required',
-            'password' => 'required',
-            'role' => 'required'
-        ]);
+        $validator = $request -> validated();
 
-        $user = User::create($request->all());
+        $user = User::create([
+            'nama' => $validator['nama'],
+            'username' => $validator['username'],
+            'password' => bcrypt($validator['password']),
+            'role' => $validator['role']
+        ]);
 
         return response()->json([
             'message' => 'User berhasil ditambahkan',
@@ -59,7 +64,10 @@ class UserController extends Controller
      */
     public function show(User $user)
     {
-        //
+        return response()->json([
+            'message' => 'Detail User',
+            'data' => $user
+        ]);
     }
 
     /**
@@ -80,9 +88,22 @@ class UserController extends Controller
      * @param  \App\Models\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, User $user)
+    public function update(UpdateRequest $request, User $user)
     {
-        //
+        //dd($request);
+        $validator = $request -> validated();
+
+        $user->update([
+            'nama' => $validator['nama'],
+            'username' => $validator['username'],
+            'password' => bcrypt($validator['password']),
+            'role' => $validator['role']
+        ]);
+
+        return response()->json([
+            'message' => 'User berhasil diupdate',
+            'data' => $user
+        ]);
     }
 
     /**
@@ -93,6 +114,10 @@ class UserController extends Controller
      */
     public function destroy(User $user)
     {
-        //
+        $user->delete();
+
+        return response()->json([
+            'message' => 'User berhasil dihapus'
+        ]);
     }
 }

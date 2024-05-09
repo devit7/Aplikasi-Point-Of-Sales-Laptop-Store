@@ -20,8 +20,13 @@ class TransaksiController extends Controller
      */
     public function index()
     {
-        return Transaksi::with(['user', 'toko', 'customer', 'payment', 'product'])->paginate(10);
+        $data = Transaksi::with(['user', 'toko', 'customer', 'payment', 'product'])->paginate(10);
+        return response()->json([
+            'message' => 'List Transaksi',
+            'data' => $data
+        ]);
     }
+
 
     /**
      * Show the form for creating a new resource.
@@ -103,7 +108,10 @@ class TransaksiController extends Controller
      */
     public function show(Transaksi $transaksi)
     {
-        //
+        return response()->json([
+            'message' => 'Detail Transaksi',
+            'data' => $transaksi->load(['user', 'toko', 'customer', 'payment', 'product'])
+        ]);
     }
 
     /**
