@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CustomersController;
 use App\Http\Controllers\PaymentsController;
 use App\Http\Controllers\TransaksiController;
@@ -22,6 +23,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+Route::post('/login', [AuthController::class, 'login'])->name('login');
 Route::resource('/users', UserController::class);
 Route::resource('/transaksi', TransaksiController::class);
 Route::resource('/customers', CustomersController::class);
