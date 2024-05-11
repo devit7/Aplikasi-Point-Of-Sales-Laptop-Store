@@ -19,12 +19,25 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
 
 Route::post('/login', [AuthController::class, 'login'])->name('login');
-Route::resource('/users', UserController::class);
-Route::resource('/transaksi', TransaksiController::class);
-Route::resource('/customers', CustomersController::class);
-Route::resource('/payments', PaymentsController::class);
+Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+
+Route::middleware('auth:sanctum')->group(function () {
+    
+    // jika role admin
+    Route::group(['middleware' => ['UserAkses:admin']], function () {
+        Route::apiResource('/users', UserController::class);
+        Route::apiResource('/customers', CustomersController::class);
+        Route::apiResource('/payments', PaymentsController::class);
+        Route::apiResource('/transaksi', TransaksiController::class);
+    });
+
+    // jika role kasir
+    Route::group(['middleware' => ['UserAkses:kasir']], function () {
+        //Route::apiResource('/customers', CustomersController::class);
+        Route::apiResource('/payments', PaymentsController::class);
+        Route::apiResource('/transaksi', TransaksiController::class);
+    });
+
+});

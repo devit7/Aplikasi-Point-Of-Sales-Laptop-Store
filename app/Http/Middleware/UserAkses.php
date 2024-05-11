@@ -19,6 +19,8 @@ class UserAkses
         if (auth()->user()->role == $role) {
             return $next($request);
         }
-        return redirect()->back();
+        return response()->json([
+            'message' => 'Anda tidak memiliki akses'
+        ]);
     }
 }
