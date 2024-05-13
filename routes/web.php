@@ -22,6 +22,10 @@ Route::get('/', function () {
     return view('kasir.RiwayatTransaksi');
 });
 
+Route ::get('/manage_user', function(){
+    return view('admin.manage_user');
+});
+
 Route::get('/management-customer', function(){
     return view('kasir.management-customer');
 });
