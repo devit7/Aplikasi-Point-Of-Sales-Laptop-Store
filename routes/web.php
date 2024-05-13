@@ -14,9 +14,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::get('admin.list_customers', function () {
+    return view('admin.list_customers');
+});
+
 Route::get('/', function () {
     return view('admin.manage_user');
 });
-
 
 Route::resource('/users', UserController::class);
