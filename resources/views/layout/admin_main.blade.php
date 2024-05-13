@@ -15,7 +15,7 @@
 <body class="bg-[#e9e9f0]">
     <div class="flex flex-row bg-[#131432]" >
         <x-admin_sidebar />
-        <main class="bg-[#1C1D42] w-full lg:ml-[280px]">
+        <main class="bg-[#1C1D42] w-full ml-[280px]">
             @yield('content')
         </main>
     </div>

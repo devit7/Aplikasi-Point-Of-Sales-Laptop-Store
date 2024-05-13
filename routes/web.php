@@ -25,5 +25,8 @@ Route::get('/history', function () {
     return view('kasir.RiwayatTransaksi');
 });
 
+Route::get('/template', function () {
+    return view('template');
+});
 
 Route::resource('/users', UserController::class);
