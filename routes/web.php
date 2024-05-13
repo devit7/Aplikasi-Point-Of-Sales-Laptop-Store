@@ -14,6 +14,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::get('admin.list_customers', function () {
+    return view('admin.list_customers');
+});
+
 Route::get('/', function () {
     return view('kasir.RiwayatTransaksi');
 });
@@ -24,6 +28,7 @@ Route::get('/login', function () {
 Route::get('/history', function () {
     return view('kasir.RiwayatTransaksi');
 });
+
 
 Route::get('/template', function () {
     return view('template');
