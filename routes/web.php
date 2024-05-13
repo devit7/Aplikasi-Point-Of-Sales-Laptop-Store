@@ -14,8 +14,20 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::get('admin.list_customers', function () {
+    return view('admin.list_customers');
+});
+
 Route::get('/', function () {
     return view('kasir.RiwayatTransaksi');
+});
+
+Route::get('/management-customer', function(){
+    return view('kasir.management-customer');
+});
+
+Route::get('/home-admin', function () {
+    return view('layout.kasir_main');
 });
 
 Route::get('/login', function () {
@@ -27,6 +39,10 @@ Route::get('/history', function () {
 
 Route::get('/admin', function(){
     return view('admin.index');
+});
+
+Route::get('/template', function () {
+    return view('template');
 });
 
 Route::resource('/users', UserController::class);
