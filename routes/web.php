@@ -15,7 +15,14 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('admin.manage_user');
+    return view('kasir.RiwayatTransaksi');
+});
+
+Route::get('/login', function () {
+    return view('auth.login');
+});
+Route::get('/history', function () {
+    return view('kasir.RiwayatTransaksi');
 });
 
 Route::get('/admin', function(){

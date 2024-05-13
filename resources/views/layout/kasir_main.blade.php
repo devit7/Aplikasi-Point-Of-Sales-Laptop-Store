@@ -15,7 +15,7 @@
 <body class="bg-[#e9e9f0]">
     <div class="flex flex-row bg-[#131432]" >
         <x-kasir_sidebar />
-        <main class="bg-[#131432]  lg:ml-[280px]">
+        <main class="bg-[#131432] w-full lg:ml-[280px] min-h-screen">
             @yield('content')
         </main>
     </div>
