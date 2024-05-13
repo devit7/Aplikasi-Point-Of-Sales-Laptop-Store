@@ -18,6 +18,14 @@ Route::get('/', function () {
     return view('kasir.RiwayatTransaksi');
 });
 
+Route::get('/user-management', function(){
+    return view('kasir.user-management');
+});
+
+Route::get('/home-admin', function () {
+    return view('layout.kasir_main');
+});
+
 Route::get('/login', function () {
     return view('auth.login');
 });
