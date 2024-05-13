@@ -1,102 +1,35 @@
 @extends('layout.admin_main')
 @section('title', 'manage user')
 @section('content')
-    <div class=" min-h-screen min-w-full text-white p-2 ">
-        <div>
-            
-        </div>
-        <ul role="list" class="divide-y divide-gray-100">
-            <li class="flex justify-between gap-x-6 py-5">
-              <div class="flex min-w-0 gap-x-4">
-                <img class="h-12 w-12 flex-none rounded-full bg-gray-50" src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" alt="">
-                <div class="min-w-0 flex-auto">
-                  <p class="text-sm font-semibold leading-6 text-gray-900">Leslie Alexander</p>
-                  <p class="mt-1 truncate text-xs leading-5 text-gray-500">leslie.alexander@example.com</p>
-                </div>
-              </div>
-              <div class="hidden shrink-0 sm:flex sm:flex-col sm:items-end">
-                <p class="text-sm leading-6 text-gray-900">Co-Founder / CEO</p>
-                <p class="mt-1 text-xs leading-5 text-gray-500">Last seen <time datetime="2023-01-23T13:23Z">3h ago</time></p>
-              </div>
-            </li>
-            <li class="flex justify-between gap-x-6 py-5">
-              <div class="flex min-w-0 gap-x-4">
-                <img class="h-12 w-12 flex-none rounded-full bg-gray-50" src="https://images.unsplash.com/photo-1519244703995-f4e0f30006d5?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" alt="">
-                <div class="min-w-0 flex-auto">
-                  <p class="text-sm font-semibold leading-6 text-gray-900">Michael Foster</p>
-                  <p class="mt-1 truncate text-xs leading-5 text-gray-500">michael.foster@example.com</p>
-                </div>
-              </div>
-              <div class="hidden shrink-0 sm:flex sm:flex-col sm:items-end">
-                <p class="text-sm leading-6 text-gray-900">Co-Founder / CTO</p>
-                <p class="mt-1 text-xs leading-5 text-gray-500">Last seen <time datetime="2023-01-23T13:23Z">3h ago</time></p>
-              </div>
-            </li>
-            <li class="flex justify-between gap-x-6 py-5">
-              <div class="flex min-w-0 gap-x-4">
-                <img class="h-12 w-12 flex-none rounded-full bg-gray-50" src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" alt="">
-                <div class="min-w-0 flex-auto">
-                  <p class="text-sm font-semibold leading-6 text-gray-900">Dries Vincent</p>
-                  <p class="mt-1 truncate text-xs leading-5 text-gray-500">dries.vincent@example.com</p>
-                </div>
-              </div>
-              <div class="hidden shrink-0 sm:flex sm:flex-col sm:items-end">
-                <p class="text-sm leading-6 text-gray-900">Business Relations</p>
-                <div class="mt-1 flex items-center gap-x-1.5">
-                  <div class="flex-none rounded-full bg-emerald-500/20 p-1">
-                    <div class="h-1.5 w-1.5 rounded-full bg-emerald-500"></div>
-                  </div>
-                  <p class="text-xs leading-5 text-gray-500">Online</p>
-                </div>
-              </div>
-            </li>
-            <li class="flex justify-between gap-x-6 py-5">
-              <div class="flex min-w-0 gap-x-4">
-                <img class="h-12 w-12 flex-none rounded-full bg-gray-50" src="https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" alt="">
-                <div class="min-w-0 flex-auto">
-                  <p class="text-sm font-semibold leading-6 text-gray-900">Lindsay Walton</p>
-                  <p class="mt-1 truncate text-xs leading-5 text-gray-500">lindsay.walton@example.com</p>
-                </div>
-              </div>
-              <div class="hidden shrink-0 sm:flex sm:flex-col sm:items-end">
-                <p class="text-sm leading-6 text-gray-900">Front-end Developer</p>
-                <p class="mt-1 text-xs leading-5 text-gray-500">Last seen <time datetime="2023-01-23T13:23Z">3h ago</time></p>
-              </div>
-            </li>
-            <li class="flex justify-between gap-x-6 py-5">
-              <div class="flex min-w-0 gap-x-4">
-                <img class="h-12 w-12 flex-none rounded-full bg-gray-50" src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" alt="">
-                <div class="min-w-0 flex-auto">
-                  <p class="text-sm font-semibold leading-6 text-gray-900">Courtney Henry</p>
-                  <p class="mt-1 truncate text-xs leading-5 text-gray-500">courtney.henry@example.com</p>
-                </div>
-              </div>
-              <div class="hidden shrink-0 sm:flex sm:flex-col sm:items-end">
-                <p class="text-sm leading-6 text-gray-900">Designer</p>
-                <p class="mt-1 text-xs leading-5 text-gray-500">Last seen <time datetime="2023-01-23T13:23Z">3h ago</time></p>
-              </div>
-            </li>
-            <li class="flex justify-between gap-x-6 py-5">
-              <div class="flex min-w-0 gap-x-4">
-                <img class="h-12 w-12 flex-none rounded-full bg-gray-50" src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" alt="">
-                <div class="min-w-0 flex-auto">
-                  <p class="text-sm font-semibold leading-6 text-gray-900">Tom Cook</p>
-                  <p class="mt-1 truncate text-xs leading-5 text-gray-500">tom.cook@example.com</p>
-                </div>
-              </div>
-              <div class="hidden shrink-0 sm:flex sm:flex-col sm:items-end">
-                <p class="text-sm leading-6 text-gray-900">Director of Product</p>
-                <div class="mt-1 flex items-center gap-x-1.5">
-                  <div class="flex-none rounded-full bg-emerald-500/20 p-1">
-                    <div class="h-1.5 w-1.5 rounded-full bg-emerald-500"></div>
-                  </div>
-                  <p class="text-xs leading-5 text-gray-500">Online</p>
-                </div>
-              </div>
-            </li>
-          </ul>
-
-    </div>
+<div class="text-gray-900 bg-gray-200">
+  <div class="p-4 flex">
+      <h1 class="text-3xl">
+          Users
+      </h1>
+  </div>
+  <div class="px-3 py-4 flex justify-center">
+      <table class="w-full text-md bg-white shadow-md rounded mb-4">
+          <tbody>
+              <tr class="border-b">
+                  <th class="text-left p-3 px-5">Name</th>
+                  <th class="text-center p-3 px-5">Role</th>
+                  <th class="text-left p-3 px-5">Created At</th>
+                  <th></th>
+              </tr>
+              <tr class="border-b hover:bg-orange-100 bg-gray-100">
+                  <td class="p-3 px-5"><input type="text" value="user.name" class="bg-transparent"></td>
+                  <td class="p-3 px-5">
+                      <select value="user.role" class="bg-transparent">
+                          <option value="user">user</option>
+                          <option value="admin">admin</option>
+                      </select>
+                  </td>
+                  <td class="p-3 px-5"><input type="text" value="2023-01-23" class="bg-transparent"></td>
+                  <td class="p-3 px-5 flex justify-end"><button type="button" class="mr-3 text-sm bg-blue-500 hover:bg-blue-700 text-white py-1 px-2 rounded focus:outline-none focus:shadow-outline">Save</button><button type="button" class="text-sm bg-red-500 hover:bg-red-700 text-white py-1 px-2 rounded focus:outline-none focus:shadow-outline">Delete</button></td>
+              </tr>
+              <!-- Additional rows with similar structure -->
+          </tbody>
+      </table>
+  </div>
+</div>
 @endsection
-
-
