@@ -18,5 +18,12 @@ Route::get('/', function () {
     return view('kasir.testing');
 });
 
+Route::get('/login', function () {
+    return view('auth.login');
+});
+Route::get('/history', function () {
+    return view('kasir.RiwayatTransaksi');
+});
+
 
 Route::resource('/users', UserController::class);
