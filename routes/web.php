@@ -29,4 +29,11 @@ Route::get('/history', function () {
     return view('kasir.RiwayatTransaksi');
 });
 
+<<<<<<< HEAD
+=======
+Route::get('/template', function () {
+    return view('template');
+});
+
+>>>>>>> 4c150d1bfd9b1fa95cca241e40641dc33bcac6dc
 Route::resource('/users', UserController::class);
