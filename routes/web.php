@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('admin.manage_user');
+    return view('kasir.RiwayatTransaksi');
 });
 
 Route::get('/login', function () {
