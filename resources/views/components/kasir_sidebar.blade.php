@@ -8,7 +8,7 @@
                 <p class="text-gray-400 text-sm font-bold  tracking-wider pb-4">
                     MAIN
                 </p>
-                <a href="home-admin" tabindex="0"
+                <a href="/dashboard-kasir" tabindex="0"
                     class="flex items-center w-full  px-6 py-3 rounded-lg text-start leading-tight transition-all hover:bg-[#aa5800] hover:bg-opacity-10 hover:text-[#e07946] outline-none
                     bg-[#aa5800] bg-opacity-10 text-[#e07946] ">
                     <div class="grid place-items-center mr-3">
