@@ -26,7 +26,7 @@ Route::prefix('admin')->group(function () {
 
 Route::prefix('admin')->group(function () {
     
-    
+
 });
 
 Route::get('/management-customer', function(){
@@ -54,3 +54,10 @@ Route::get('/template', function () {
     return view('template');
 });
 
+Route::get('/form', function () {
+    return view('form');
+});
+
+Route::get('/tables', function () {
+    return view('tables');
+});

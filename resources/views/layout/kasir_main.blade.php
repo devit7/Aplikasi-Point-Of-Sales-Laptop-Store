@@ -10,6 +10,7 @@
     <title>
         @yield('title')
     </title>
+    @stack('styles')
 </head>
 
 <body class="bg-[#e9e9f0]">
@@ -22,6 +23,7 @@
     {{-- <script src="bootstrap/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
     </script> --}}
+    @stack('scripts')
 </body>
 
 </html>
