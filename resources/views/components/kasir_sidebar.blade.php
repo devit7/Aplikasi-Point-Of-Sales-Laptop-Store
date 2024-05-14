@@ -42,9 +42,6 @@
                     </div>
                     Riwayat Transaksi
                 </div>
-                <div class="py-2 ">
-                    <hr class=" border-[#33356F]">
-                </div>
         </nav>
     </div>
 </section>
