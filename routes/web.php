@@ -47,3 +47,7 @@ Route::get('/template', function () {
 });
 
 Route::resource('/users', UserController::class);
+
+Route::get('/create_user', function(){
+    return view('admin.create_user');
+});

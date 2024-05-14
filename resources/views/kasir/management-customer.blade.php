@@ -56,7 +56,7 @@
                     <tbody class="text-[#6b6eb4] text-center">
                         <tr class="border-b-2 border-[#33356F]">
                             <td class="py-2">1</td>
-                            <td>Illiyyin Akbar Ariyanto</td>
+                            <td>pitiks</td>
                             <td>50</td>
                             <td>Male</td>
                             <td >
