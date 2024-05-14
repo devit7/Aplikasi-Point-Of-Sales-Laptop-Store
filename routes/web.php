@@ -24,6 +24,19 @@ Route::prefix('admin')->group(function () {
     });
 });
 
+Route::prefix('admin')->group(function () {
+    
+    
+});
+
+Route::get('/management-customer', function(){
+    return view('kasir.management-customer');
+});
+
+Route::get('/home-admin', function () {
+    return view('layout.kasir_main');
+});
+
 Route::get('/login', function () {
     return view('auth.login');
 });
@@ -33,6 +46,9 @@ Route::get('/history', function () {
     return view('kasir.RiwayatTransaksi');
 });
 
+Route::get('/admin', function(){
+    return view('admin.index');
+});
 
 Route::get('/template', function () {
     return view('template');
