@@ -3,7 +3,6 @@
 @section('content')
     <div class=" min-h-screen min-w-full text-white p-2 ">
         <div>
-            
         </div>
         <ul role="list" class="divide-y divide-gray-100">
             <li class="flex justify-between gap-x-6 py-5">

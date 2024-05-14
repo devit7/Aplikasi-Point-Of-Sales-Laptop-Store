@@ -1,10 +1,18 @@
 @extends('layout.kasir_main')
+@section('title', 'Customer List')
 @section('content')
-<div class=" p-6">
-	<div class="max-w-7xl mx-auto">
-		<div class="inline-block min-w-full py-2 align-middle">
-			<div class="overflow-hidden shadow ring-1 ring-black ring-opacity-5 md:rounded-lg">
-			<div class="bg-[#1C1D42] rounded-md  border border-[#33356F] min-h-[500px]">
+    <div class="w-full p-8 ">
+        <div class="mb-6">
+            <div class="flex flex-col ">
+                <p class="text-[#6b6eb4] text-lg font-semibold">
+                    Customer List
+                </p>
+                <p class="text-[#6b6eb4] ">
+                    A List of All of the Customers
+                </p>
+            </div>
+        </div>
+        <div class="bg-[#1C1D42] rounded-md  border border-[#33356F] min-h-[500px]">
             <div class="flex flex-row justify-between px-4 py-6">
                 <input type="text" class="w-[300px] bg-[#1C1D42] text-white border-2 border-[#33356F] p-2 rounded-md"
                     placeholder="Search">
@@ -17,7 +25,7 @@
                         </svg>
                     </button>
                     <div
-                        class="flex items-center  rounded-md flex-row gap-2 bg-[#1C1D42] text-[#6b6eb4] border-2 border-[#33356F] px-2">
+                        class="flex items-center  rounded-md flex-row gap-2 bg-[#1C1D42] text-[#6b6eb4] border-2 border-[#33356F] px-6">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                             stroke="currentColor" class="w-6 h-6">
                             <path stroke-linecap="round" stroke-linejoin="round"
@@ -27,9 +35,9 @@
                         <select name="" id="" class="bg-[#1C1D42] ">
 
                             <option value="">Sort by Date</option>
-                            <option value="">Semua</option>
-                            <option value="">Semua</option>
-                            <option value="">Semua</option>
+                            <option value="">Sort by Name</option>
+                            <option value="">Sort by Phone</option>
+                            <option value="">Sort by Email</option>
                         </select>
                     </div>
                 </div>
@@ -39,42 +47,29 @@
                     <thead class="bg-[#131432]  text-[#6b6eb4]">
                         <tr class="border-b-2 border-[#33356F]">
                             <th class="py-2 text-[#6b6eb4]">No</th>
-                            <th class="text-[#6b6eb4]">User</th>
-                            <th class="text-[#6b6eb4]">Toko</th>
-                            <th class="text-[#6b6eb4]">Customer</th>
-                            <th class="text-[#6b6eb4]">Payment</th>
-                            <th class="text-[#6b6eb4]">Product</th>
+                            <th class="text-[#6b6eb4]">Name</th>
+                            <th class="text-[#6b6eb4]">Email</th>
+                            <th class="text-[#6b6eb4]">Address</th>
+                            <th class="text-[#6b6eb4]">Phone Number</th>
                             <th class="text-[#6b6eb4]">Action</th>
                         </tr>
                     </thead>
                     <tbody class="text-[#6b6eb4] text-center">
                         <tr class="border-b-2 border-[#33356F]">
                             <td class="py-2">1</td>
-                            <td>Product 1</td>
-                            <td>Rp. 100.000</td>
-                            <td>10</td>
-                            <td >
-                                
+                            <td>Devit</td>
+                            <td>Devitgaming@telkomuniversity.com</td>
+                            <td>Ketintang, Surabaya, Indonesia</td>
+                            <td>+62293293842</td>
+                            <td>
+                                <a href="#" class="bg-[#002D4C] border px-2 border-[#2B4F69] rounded-md">
+                                    View Details
+                                </a>
                             </td>
-							<td></td>
-							<td>
-							<button class="bg-[#002D4C] border p-1 border-[#2B4F69] rounded-md">
-                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                        stroke-width="1.5" stroke="currentColor" class="w-6 h-6 text-green-600">
-                                        <path stroke-linecap="round" stroke-linejoin="round"
-                                            d="M2.036 12.322a1.012 1.012 0 0 1 0-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178Z" />
-                                        <path stroke-linecap="round" stroke-linejoin="round"
-                                            d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
-                                    </svg>
-                                </button>
-							</td>
                         </tr>
                     </tbody>
                 </table>
             </div>
         </div>
-			</div>
-		</div>
-	</div>
-</div>
+    </div>
 @endsection
