@@ -1,8 +1,18 @@
 @extends('layout.kasir_main')
 @section('title', 'Testing')
 @section('content')
-    <x-tables>
-        <div class="p-8 ">
+    <div class="p-8 ">
+        <div class="mb-6">
+            <div class="flex flex-col ">
+                <p class="text-[#6b6eb4] text-lg font-semibold">
+                    Add Product
+                </p>
+                <div class="text-[#6b6eb4] flex flex-row ">
+                    Manage your prduct
+                </div>
+            </div>
+        </div>
+        <x-tables>
             <div class="w-full mx-auto mt-2 bg-[#1C1D42] text-[#6b6eb4]  p-4 rounded-md">
                 <table class="w-full mt-2  " id="table">
                     <thead class="bg-[#131432]   ">
@@ -58,6 +68,6 @@
                     </tbody>
                 </table>
             </div>
-        </div>
-    </x-tables>
+        </x-tables>
+    </div>
 @endsection
