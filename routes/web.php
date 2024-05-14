@@ -14,16 +14,19 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('admin.list_customers', function () {
+Route::get('list_customers', function () {
     return view('admin.list_customers');
 });
 
-Route::get('/', function () {
-    return view('kasir.RiwayatTransaksi');
+Route::prefix('admin')->group(function () {
+    Route::get('/', function () {
+        return view('kasir.RiwayatTransaksi');
+    });
 });
 
-Route ::get('/manage_user', function(){
-    return view('admin.manage_user');
+Route::prefix('admin')->group(function () {
+
+
 });
 
 Route::get('/management-customer', function(){
@@ -37,17 +40,24 @@ Route::get('/home-admin', function () {
 Route::get('/login', function () {
     return view('auth.login');
 });
+
+
 Route::get('/history', function () {
     return view('kasir.RiwayatTransaksi');
 });
 
+Route::get('/admin', function(){
+    return view('admin.index');
+});
 
 Route::get('/template', function () {
     return view('template');
 });
 
-Route::resource('/users', UserController::class);
+Route::get('/form', function () {
+    return view('form');
+});
 
-Route::get('/create_user', function(){
-    return view('admin.create_user');
+Route::get('/tables', function () {
+    return view('tables');
 });

@@ -14,7 +14,7 @@
         </div>
         <div class="bg-[#1C1D42] rounded-md  border border-[#33356F] min-h-[500px]">
             <div class="flex flex-row justify-between px-4 py-6">
-                <input type="text" class="w-[300px] bg-[#1C1D42] text-white border-2 border-[#33356F] p-2 rounded-md"
+                <input type="text" class="w-[250px] bg-[#1C1D42] text-white border-2 border-[#33356F] py-1 px-4 rounded-md"
                     placeholder="Search">
                 <div class="flex flex-row gap-2">
                     <button class="bg-[#aa5800] text-white px-2  rounded-sm">

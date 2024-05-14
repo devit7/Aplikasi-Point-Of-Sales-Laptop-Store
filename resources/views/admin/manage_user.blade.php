@@ -1,15 +1,9 @@
 @extends('layout.admin_main')
 @section('title', 'Manage User')
 @section('content')
-<div class="w-full p-8">
-    <div class="mb-6">
-        <div class="flex flex-col">
-            <p class="text-[#6b6eb4] text-lg font-semibold">
-                User List
-            </p>
-            <p class="text-[#6b6eb4]">
-                Manage your users
-            </p>
+    <div class=" min-h-screen min-w-full text-white p-2 ">
+        <div>
+
         </div>
     </div>
     <div class="bg-[#1C1D42] rounded-md border border-[#33356F] min-h-[500px]">

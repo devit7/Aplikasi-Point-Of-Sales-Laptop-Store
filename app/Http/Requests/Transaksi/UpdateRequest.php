@@ -74,7 +74,7 @@ class UpdateRequest extends FormRequest
             'total_tiap_produk.*.required' => 'Data Total Tiap Produk Harus Diisi',
             'total_tiap_produk.*.numeric' => 'Data Total Tiap Produk Harus Berupa Angka',
             'total_semua.required' => 'Data Total Harus Diisi',
-            'total_semua.numeric' => 'Data Total Harus Berupa Angka'
+            'total_semua.numeric' => 'Data Total Harus Berupa Angka',
         ];
     }
 }
