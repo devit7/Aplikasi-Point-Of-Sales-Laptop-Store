@@ -14,12 +14,19 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('admin.list_customers', function () {
+Route::get('list_customers', function () {
     return view('admin.list_customers');
 });
 
-Route::get('/', function () {
-    return view('auth.login');
+Route::prefix('admin')->group(function () {
+    Route::get('/', function () {
+        return view('kasir.RiwayatTransaksi');
+    });
+});
+
+Route::prefix('admin')->group(function () {
+    
+
 });
 
 Route::get('/management-customer', function(){
@@ -33,7 +40,9 @@ Route::get('/home-admin', function () {
 Route::get('/login', function () {
     return view('auth.login');
 });
-Route::get('/RiwayatTransaksi', function () {
+
+
+Route::get('/history', function () {
     return view('kasir.RiwayatTransaksi');
 });
 
@@ -45,9 +54,10 @@ Route::get('/template', function () {
     return view('template');
 });
 
-Route::get('/modal', function () {
-    return view('kasir.ModalDetailTransaksi');
+Route::get('/form', function () {
+    return view('form');
 });
 
-Route::resource('/users', UserController::class);
-
+Route::get('/tables', function () {
+    return view('tables');
+});
