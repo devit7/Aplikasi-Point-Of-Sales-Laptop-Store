@@ -10,15 +10,20 @@
     <title>
         @yield('title')
     </title>
+    @stack('styles')
 </head>
 
 <body class="bg-[#e9e9f0]">
     <div class="flex flex-row bg-[#131432]" >
         <x-admin_sidebar />
-        <main class="bg-[#1C1D42] w-full ml-[280px]">
+        <main class="bg-[#131432] w-full ml-[280px] min-h-screen">
             @yield('content')
         </main>
     </div>
+    {{-- <script src="bootstrap/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
+    </script> --}}
+    @stack('scripts')
 </body>
 
 </html>
