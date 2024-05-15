@@ -1,7 +1,7 @@
-@extends('layout.kasir_main')
+@extends('layout.admin_main')
 @section('title', 'Customer List')
 @section('content')
-    <div class="w-full p-8 ">
+    <div class=" p-7 ">
         <div class="mb-6">
             <div class="flex flex-col ">
                 <p class="text-[#6b6eb4] text-lg font-semibold">
