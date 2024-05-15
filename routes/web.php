@@ -19,7 +19,7 @@ Route::get('admin.list_customers', function () {
 });
 
 Route::get('/', function () {
-    return view('kasir.RiwayatTransaksi');
+    return view('auth.login');
 });
 
 Route::get('/management-customer', function(){
@@ -33,7 +33,7 @@ Route::get('/home-admin', function () {
 Route::get('/login', function () {
     return view('auth.login');
 });
-Route::get('/history', function () {
+Route::get('/RiwayatTransaksi', function () {
     return view('kasir.RiwayatTransaksi');
 });
 
@@ -43,6 +43,10 @@ Route::get('/admin', function(){
 
 Route::get('/template', function () {
     return view('template');
+});
+
+Route::get('/modal', function () {
+    return view('kasir.ModalDetailTransaksi');
 });
 
 Route::resource('/users', UserController::class);
