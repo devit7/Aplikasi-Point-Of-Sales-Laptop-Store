@@ -19,5 +19,6 @@ class AuthAksesController extends Controller
         $response->getContent();
 
         dd($response->getContent());
+
     }
 }
