@@ -30,7 +30,7 @@ Route::prefix('admin')->group(function () {
 });
 
 Route::get('/management_customer', function(){
-    return view('kasir.management_customer');
+    return view('kasir.management-customer');
 });
 
 Route::get('/home-admin', function () {
