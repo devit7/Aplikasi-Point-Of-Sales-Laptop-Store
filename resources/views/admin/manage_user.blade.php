@@ -1,101 +1,81 @@
 @extends('layout.admin_main')
-@section('title', 'manage user')
+@section('title', 'Manage User')
 @section('content')
     <div class=" min-h-screen min-w-full text-white p-2 ">
         <div>
+
         </div>
-        <ul role="list" class="divide-y divide-gray-100">
-            <li class="flex justify-between gap-x-6 py-5">
-              <div class="flex min-w-0 gap-x-4">
-                <img class="h-12 w-12 flex-none rounded-full bg-gray-50" src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" alt="">
-                <div class="min-w-0 flex-auto">
-                  <p class="text-sm font-semibold leading-6 text-gray-900">Leslie Alexander</p>
-                  <p class="mt-1 truncate text-xs leading-5 text-gray-500">leslie.alexander@example.com</p>
-                </div>
-              </div>
-              <div class="hidden shrink-0 sm:flex sm:flex-col sm:items-end">
-                <p class="text-sm leading-6 text-gray-900">Co-Founder / CEO</p>
-                <p class="mt-1 text-xs leading-5 text-gray-500">Last seen <time datetime="2023-01-23T13:23Z">3h ago</time></p>
-              </div>
-            </li>
-            <li class="flex justify-between gap-x-6 py-5">
-              <div class="flex min-w-0 gap-x-4">
-                <img class="h-12 w-12 flex-none rounded-full bg-gray-50" src="https://images.unsplash.com/photo-1519244703995-f4e0f30006d5?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" alt="">
-                <div class="min-w-0 flex-auto">
-                  <p class="text-sm font-semibold leading-6 text-gray-900">Michael Foster</p>
-                  <p class="mt-1 truncate text-xs leading-5 text-gray-500">michael.foster@example.com</p>
-                </div>
-              </div>
-              <div class="hidden shrink-0 sm:flex sm:flex-col sm:items-end">
-                <p class="text-sm leading-6 text-gray-900">Co-Founder / CTO</p>
-                <p class="mt-1 text-xs leading-5 text-gray-500">Last seen <time datetime="2023-01-23T13:23Z">3h ago</time></p>
-              </div>
-            </li>
-            <li class="flex justify-between gap-x-6 py-5">
-              <div class="flex min-w-0 gap-x-4">
-                <img class="h-12 w-12 flex-none rounded-full bg-gray-50" src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" alt="">
-                <div class="min-w-0 flex-auto">
-                  <p class="text-sm font-semibold leading-6 text-gray-900">Dries Vincent</p>
-                  <p class="mt-1 truncate text-xs leading-5 text-gray-500">dries.vincent@example.com</p>
-                </div>
-              </div>
-              <div class="hidden shrink-0 sm:flex sm:flex-col sm:items-end">
-                <p class="text-sm leading-6 text-gray-900">Business Relations</p>
-                <div class="mt-1 flex items-center gap-x-1.5">
-                  <div class="flex-none rounded-full bg-emerald-500/20 p-1">
-                    <div class="h-1.5 w-1.5 rounded-full bg-emerald-500"></div>
-                  </div>
-                  <p class="text-xs leading-5 text-gray-500">Online</p>
-                </div>
-              </div>
-            </li>
-            <li class="flex justify-between gap-x-6 py-5">
-              <div class="flex min-w-0 gap-x-4">
-                <img class="h-12 w-12 flex-none rounded-full bg-gray-50" src="https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" alt="">
-                <div class="min-w-0 flex-auto">
-                  <p class="text-sm font-semibold leading-6 text-gray-900">Lindsay Walton</p>
-                  <p class="mt-1 truncate text-xs leading-5 text-gray-500">lindsay.walton@example.com</p>
-                </div>
-              </div>
-              <div class="hidden shrink-0 sm:flex sm:flex-col sm:items-end">
-                <p class="text-sm leading-6 text-gray-900">Front-end Developer</p>
-                <p class="mt-1 text-xs leading-5 text-gray-500">Last seen <time datetime="2023-01-23T13:23Z">3h ago</time></p>
-              </div>
-            </li>
-            <li class="flex justify-between gap-x-6 py-5">
-              <div class="flex min-w-0 gap-x-4">
-                <img class="h-12 w-12 flex-none rounded-full bg-gray-50" src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" alt="">
-                <div class="min-w-0 flex-auto">
-                  <p class="text-sm font-semibold leading-6 text-gray-900">Courtney Henry</p>
-                  <p class="mt-1 truncate text-xs leading-5 text-gray-500">courtney.henry@example.com</p>
-                </div>
-              </div>
-              <div class="hidden shrink-0 sm:flex sm:flex-col sm:items-end">
-                <p class="text-sm leading-6 text-gray-900">Designer</p>
-                <p class="mt-1 text-xs leading-5 text-gray-500">Last seen <time datetime="2023-01-23T13:23Z">3h ago</time></p>
-              </div>
-            </li>
-            <li class="flex justify-between gap-x-6 py-5">
-              <div class="flex min-w-0 gap-x-4">
-                <img class="h-12 w-12 flex-none rounded-full bg-gray-50" src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" alt="">
-                <div class="min-w-0 flex-auto">
-                  <p class="text-sm font-semibold leading-6 text-gray-900">Tom Cook</p>
-                  <p class="mt-1 truncate text-xs leading-5 text-gray-500">tom.cook@example.com</p>
-                </div>
-              </div>
-              <div class="hidden shrink-0 sm:flex sm:flex-col sm:items-end">
-                <p class="text-sm leading-6 text-gray-900">Director of Product</p>
-                <div class="mt-1 flex items-center gap-x-1.5">
-                  <div class="flex-none rounded-full bg-emerald-500/20 p-1">
-                    <div class="h-1.5 w-1.5 rounded-full bg-emerald-500"></div>
-                  </div>
-                  <p class="text-xs leading-5 text-gray-500">Online</p>
-                </div>
-              </div>
-            </li>
-          </ul>
-
     </div>
+    <div class="bg-[#1C1D42] rounded-md border border-[#33356F] min-h-[500px]">
+        <div class="flex justify-between items-center px-4 py-6">
+            <input type="text"
+                class="w-[300px] bg-[#1C1D42] text-white border-2 border-[#33356F] p-2 rounded-md"
+                placeholder="Search">
+            <div class="flex gap-2">
+                <button class="bg-[#4299e1] text-white px-4 py-2 rounded-md">Create New</button>
+                <div
+                    class="flex items-center rounded-md flex-row gap-2 bg-[#1C1D42] text-[#6b6eb4] border-2 border-[#33356F] px-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                        stroke="currentColor" class="w-6 h-6">
+                    </svg>
+
+                    <select name="" id="" class="bg-[#1C1D42] ">
+
+                        <option value="">Sort by Date</option>
+                        <option value="">Semua</option>
+                        <option value="">Semua</option>
+                        <option value="">Semua</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="border-t-2 border-[#33356F] p-4">
+            <table class="w-full mt-2 table-fixed">
+                <thead class="bg-[#131432] text-[#6b6eb4]">
+                    <tr class="border-b-2 border-[#33356F]">
+                        <th class="py-2 text-[#6b6eb4]">No</th>
+                        <th class="text-[#6b6eb4]">Name</th>
+                        <th class="text-[#6b6eb4]">Role</th>
+                        <th class="text-[#6b6eb4]">Created At</th>
+                        <th class="text-[#6b6eb4]">Action</th>
+                    </tr>
+                </thead>
+                <tbody class="text-[#6b6eb4] text-center">
+                    <tr class="border-b-2 border-[#33356F]">
+                        <td class="py-2">1</td>
+                        <td>John Doe</td>
+                        <td>Admin</td>
+                        <td>2024-05-13</td>
+                        <td>
+                            <button class="bg-[#002D4C] border p-1 border-[#2B4F69] rounded-md">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                    stroke-width="1.5" stroke="currentColor" class="w-6 h-6 text-green-600">
+                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                        d="M2.036 12.322a1.012 1.012 0 0 1 0-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178Z" />
+                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                        d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
+                                </svg>
+                            </button>
+                            <button class="bg-[#002D4C] border p-1 border-[#2B4F69] rounded-md">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                    stroke-width="1.5" stroke="currentColor" class="w-6 h-6 text-blue-600">
+                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                        d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L10.582 16.07a4.5 4.5 0 0 1-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 0 1 1.13-1.897l8.932-8.931Zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0 1 15.75 21H5.25A2.25 2.25 0 0 1 3 18.75V8.25A2.25 2.25 0 0 1 5.25 6H10" />
+                                </svg>
+
+                            </button>
+                            <button class="bg-[#002D4C] border p-1 border-[#2B4F69] rounded-md">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                    stroke-width="1.5" stroke="currentColor" class="w-6 h-6 text-red-600">
+                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                        d="m14.74 9-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 0 1-2.244 2.077H8.084a2.25 2.25 0 0 1-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 0 0-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 0 1 3.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 0 0-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 0 0-7.5 0" />
+                                </svg>
+                            </button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
 @endsection
-
-

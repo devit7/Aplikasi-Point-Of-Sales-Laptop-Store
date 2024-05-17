@@ -14,7 +14,7 @@
             <div class="w-72">
             <div class="relative h-10 w-full min-w-[200px]">
                 <input
-                class="peer h-full w-full rounded-[7px] border border-[#B3B7EE] bg-transparent px-3 py-2.5 font-sans text-sm 
+                class="peer h-full w-full rounded-[7px] text-[#B3B7EE] border border-[#B3B7EE] bg-transparent px-3 py-2.5 font-sans text-sm 
                 font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border 
                 placeholder-shown:border-[#B3B7EE] placeholder-shown:border-t-[#B3B7EE] focus:border-2 
                 focus:border-[#B3B7EE] focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
