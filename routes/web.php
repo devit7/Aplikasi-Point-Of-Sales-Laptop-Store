@@ -42,7 +42,7 @@ Route::get('/login', function () {
 });
 
 
-Route::get('/history', function () {
+Route::get('/RiwayatTransaksi', function () {
     return view('kasir.RiwayatTransaksi');
 });
 
