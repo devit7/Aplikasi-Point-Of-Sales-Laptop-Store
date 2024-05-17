@@ -1,84 +1,590 @@
 @extends('layout.kasir_main')
 @section('content')
-<div class="p-6">
-    <div class="flex items-center justify-center h-20 text-center border-b border-l border-[#33356F]">
-        <h1 class="m-0 p-0 text-[15px] font-semibold text-gray-500">Selasa, 12 May 2024 23.04</h1>
-        <button class="flex items-center justify-center bg-orange-500 rounded-sm">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 10.5V6a3.75 3.75 0 1 0-7.5 0v4.5m11.356-1.993 1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 0 1-1.12-1.243l1.264-12A1.125 1.125 0 0 1 5.513 7.5h12.974c.576 0 1.059.435 1.119 1.007ZM8.625 10.5a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm7.5 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Z" />
-            </svg>
-            <p>Checkout(18)</p>
-        </button>
-    </div>
-    <div class="mb-6">
-        <div class="flex flex-col">
-            <p class="text-lg font-semibold text-[#6b6eb4]">Products List</p>
-            <p class="p-0 text-[#6b6eb4]">A List of All of the Products</p>
-        </div>
-    </div>
-    <div class="max-w-7xl mx-auto">
-        <div class="inline-block min-w-full py-2 align-middle">
-            <div class="overflow-hidden shadow ring-1 ring-black ring-opacity-5 md:rounded-lg">
-                <div class="min-h-[500px] bg-[#1C1D42] rounded-md border border-[#33356F]">
-                    <div class="flex justify-between px-4 py-6">
-                        <input type="text" class="w-[300px] bg-[#1C1D42] text-white border-2 border-[#33356F] p-2 rounded-md" placeholder="Search">
-                        <div class="flex gap-2">
-                            <button class="bg-[#aa5800] text-white px-2 rounded-sm">
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 3c2.755 0 5.455.232 8.083.678.533.09.917.556.917 1.096v1.044a2.25 2.25 0 0 1-.659 1.591l-5.432 5.432a2.25 2.25 0 0 0-.659 1.591v2.927a2.25 2.25 0 0 1-1.244 2.013L9.75 21v-6.568a2.25 2.25 0 0 0-.659-1.591L3.659 7.409A2.25 2.25 0 0 1 3 5.818V4.774c0-.54.384-1.006.917-1.096A48.32 48.32 0 0 1 12 3Z" />
-                                </svg>
-                            </button>
-                            <div class="flex items-center gap-2 px-2 bg-[#1C1D42] text-[#6b6eb4] border-2 border-[#33356F] rounded-md">
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                                    <path stroke-linecap="round" stroke-linejoin="round" d="M6 13.5V3.75m0 9.75a1.5 1.5 0 0 1 0 3m0-3a1.5 1.5 0 0 0 0 3m0 3.75V16.5m12-3V3.75m0 9.75a1.5 1.5 0 0 1 0 3m0-3a1.5 1.5 0 0 0 0 3m0 3.75V16.5m-6-9V3.75m0 3.75a1.5 1.5 0 0 1 0 3m0-3a1.5 1.5 0 0 0 0 3m0 9.75V10.5" />
-                                </svg>
-                                <select name="" id="" class="bg-[#1C1D42] text-white">
-                                    <option value="">Sort by Date</option>
-                                    <option value="">Semua</option>
-                                    <option value="">Semua</option>
-                                    <option value="">Semua</option>
-                                </select>
-                            </div>
-                        </div>
+<div class="batas">
+            <div class=" w-[64%] fixed z-50 h-[80px] text-center pr-[2%] items-center flex justify-between border-b border-l border-[#33356F] bg-[#131432]">
+                    <div class="LeftTopBar flex gap-[10px] pl-[40px]">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+                        </svg>                      
+                        <p>Dashboard</p>
                     </div>
-                    <div class="p-4 border-t-2 border-[#33356F]">
-                        <div class="flex flex-col space-y-4">
-                            <div class="flex space-x-4">
-                                <div class="block bg-[#131432] rounded-tl-md rounded-br-md shadow-md p-4">
-                                    <div class="flex justify-center items-center h-60 mb-4">
-                                        <a href="#">
-                                            <img src="/foto/macc.png" class="transform scale-150">
-                                        </a>
-                                    </div>
-                                    <div class="text-center">
-                                        <h3 class="text-lg font-semibold">
-                                            <a href="#" class="text-white">MacBook Pro 5</a>
-                                        </h3>
-                                        <p class="text-sm text-gray-400">2.8GHz Processor 1TB Storage 16GB DDR</p>
-                                        <div class="flex justify-between items-center mt-4">
-                                            <button type="button" class="btn btn-primary flex items-center justify-center w-3/4">
-                                                <i class="fa fa-shopping-cart mr-2"></i>
-                                                <p>Add to cart</p>
-                                            </button>
-                                            <button class="flex items-center justify-center w-1/4 bg-[#002D4C] text-[#718695] rounded-full p-2">
-                                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                                                    <path stroke-linecap="round" stroke-linejoin="round" d="M2.036 12.322a1.012 1.012 0 0 1 0-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178Z" />
-                                                    <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
-                                                </svg>
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
-                                @for($j=1;$j<=5;$j++)
-                                @endfor
+                    
+                    <div class="Search ">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
+                        </svg>
+                        <input type="" name="" id="" placeholder="Search">
+                    </div>
+            </div>
+            <div class="content" >
+                <div class="Kategori mt-[100px]">
+                    @for($k=1;$k<=20;$k++)
+                    <button class="butKategori">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 18 9 11.25l4.306 4.306a11.95 11.95 0 0 1 5.814-5.518l2.74-1.22m0 0-5.94-2.281m5.94 2.28-2.28 5.941" />
+                        </svg>
+                        <p>Trending</p>                       
+                    </button>
+                    @endfor
+                    
+                </div>
+                <div class="product">
+                    <p>Products (18)</p>
+                    <div class="allImage">
+                        @for($i=1;$i<=20;$i++)
+                        <div class="dProduct">
+                            <div class="contPhoto">
+                                <img src="https://i.pinimg.com/564x/cf/ae/5d/cfae5d59e0de794e1523bf4b662eced0.jpg" alt="">
                             </div>
-                            @for($i=1;$i<=5;$i++)
-                            @endfor
+                            <div class="nonPhoto">
+                                <p class="nam">Macbook Pro 5 Oled</p>
+                                <p class="Spes">1 TB | Core i 7 | Blue-White</p>
+                                <div class="justGap">
+                                <p></p>
+                                <p class="harg">Rp. 27.000.000</p>
+                                </div>
+                            </div>
                         </div>
+                        @endfor
                     </div>
                 </div>
             </div>
+            <div class="tempStruct border-l border-[#33356F]">
+                <div class="TopStruct h-[80px] border-b border-[#33356F] bg-[inherit]">
+                    <p>Cart</p>
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" class="w-4 h-4">
+                        <path fill-rule="evenodd" d="M11.986 3H12a2 2 0 0 1 2 2v6a2 2 0 0 1-1.5 1.937V7A2.5 2.5 0 0 0 10 4.5H4.063A2 2 0 0 1 6 3h.014A2.25 2.25 0 0 1 8.25 1h1.5a2.25 2.25 0 0 1 2.236 2ZM10.5 4v-.75a.75.75 0 0 0-.75-.75h-1.5a.75.75 0 0 0-.75.75V4h3Z" clip-rule="evenodd" />
+                        <path fill-rule="evenodd" d="M2 7a1 1 0 0 1 1-1h7a1 1 0 0 1 1 1v7a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V7Zm6.585 1.08a.75.75 0 0 1 .336 1.005l-1.75 3.5a.75.75 0 0 1-1.16.234l-1.75-1.5a.75.75 0 0 1 .977-1.139l1.02.875 1.321-2.64a.75.75 0 0 1 1.006-.336Z" clip-rule="evenodd" />
+                    </svg>
+                </div>
+                
+                <div class="ProductStruct">
+                @for($j=1;$j<=20;$j++)
+                    <div class="cardProduct border-b border-[#33356F] pt-1">
+                        <div>
+                            <div class="classImgTemp">
+                                <img src="https://i.pinimg.com/564x/cf/ae/5d/cfae5d59e0de794e1523bf4b662eced0.jpg" alt="">
+                                
+                            </div>
+                            <div class="leftTemp">
+                                <p class="namTemp">Macbook Pro</p>
+                                <p class="jenisTemp">Blue</p>
+                                <div class="hargaQty">
+                                    <p>Rp. 27.000.000</p>
+                                    <div class="justGap">
+                                        <p></p>
+                                        <div class="PlusMinus">
+                                            <button>-</button>
+                                            <input type="text" name="" id="" value="4">
+                                            <button>+</button>
+                                        </div>
+                                    </div>
+                                    
+                                </div>
+                                
+                            </div>
+                        </div>
+                    </div>
+                @endfor
+                </div>
+                <div class="DetilStruct">
+                    <div class="Discount">
+                        <p>Discount</p>
+                        <div class="Rupiah" id="classRupiah" style="display:none;">
+                            <p>Rp. </p>
+                            <input type="text" id="forRupiah" >
+                        </div>
+                        <button onclick=toRupiah() id="addDisc">
+                            <p>+  Add</p>
+                        </button>
+                    </div>
+                    <div class="duit">
+                        <div class="duit2">
+                            <p>Tax</p>
+                            <div class="Rupiah">
+                                <p>Rp. </p>
+                                <p>2.700.000</p>
+                            </div>
+                            
+                        </div>
+                        <div class="duit2">
+                            <p>Total Amount</p>
+                            <div class="Rupiah">
+                                <p>Rp. </p>
+                                <p>27.000.000</p>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="butArea">
+                            <button class="clear">
+                                <p>Clear Basket</p>
+                            </button>
+                            <button class="pay">
+                                <p>Pay</p>
+                            </button>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
         </div>
-    </div>
-</div>
+        <script>
+            document.getElementById('classRupiah').style.display="none";
+            document.getElementById('forRupiah').addEventListener('input', function (e) {
+                // Ambil nilai input
+                let value = e.target.value;
+
+                // Hilangkan karakter selain angka
+                value = value.replace(/\D/g, '');
+
+                // Format nilai dengan titik sebagai pemisah ribuan
+                value = new Intl.NumberFormat('id-ID').format(value);
+
+                // Masukkan nilai yang sudah diformat kembali ke input
+                e.target.value = value;
+            });
+            function toRupiah(){
+                let but = document.getElementById('addDisc');
+                let inp = document.getElementById('classRupiah');
+                
+                inp.style.display="";
+                but.style.display="none";
+            }
+            
+        </script>
+        <style>
+        html::-webkit-scrollbar{
+            width: 0;
+            height: 0;
+        }
+        body{
+            margin: 0 0;
+            font-family: Arial, Helvetica, sans-serif;
+            /* overflow-x: hidden; */
+        }
+        p{
+            margin: 0 0;
+            padding: 0 0;
+        }
+        div{
+            margin: 0 0;
+            padding: 0 0;
+        }
+        .batas{
+            height: 100%;
+            display: flex;
+            flex-direction: row;
+            color: #93A2D2;
+            overflow: hidden;
+        }
+
+        .sidebar{
+            width: 3%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            position: fixed;
+        }
+        .content{
+            margin-left: 3%;
+            display: flex;
+            flex-direction: column;
+            padding: 5px 20px;
+            width: 71%;
+            height: fit-content;
+            align-items: center;
+            justify-content: center;
+            /* overflow-x: hidden; */
+            overflow: hidden;
+        }
+
+        
+        .content>*{
+
+        }
+        .topBar{
+            width: 95%;
+            height: 5%;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .topBar>div{
+            
+        }
+        .leftTopBar{
+            display: flex;
+            flex-direction: row;
+            gap: 10px;
+            width: fit-content;
+            align-items: center;
+            justify-content: center;
+            border: white 1px solid;
+        }
+        .leftTopBar>svg{
+            width: 18px;
+            height: 25px;
+        }
+        .leftTopBar>p{
+            font-weight: 550;
+        }
+        .Search{
+            width: 250px;
+            height: 70%;
+            display: flex;
+            flex-direction: row;
+            padding: 5px;
+            margin: 5px;
+            border-radius: 12px;
+            gap: 4px;
+            align-items: center;
+            justify-content: center;
+            background-color: inherit;
+            border: #93A2D2 1px solid;
+        }
+        .Search>*{
+
+        }
+        .Search>svg{
+            width: 10%;
+            padding: 0 0;
+            margin: 0 0;
+            color: #93A2D2;
+        }
+        .Search>input{
+            width: 80%;
+            height: 100%;
+            border: none;
+            font-size: 17px;
+            margin: 0 0;
+            padding: 0 0;
+            background-color: inherit;
+            color: #93A2D2 ;
+            
+        }
+        .Search>input:focus{
+            border: none;
+            outline: none;
+        }
+
+        .Kategori{
+            width: 100%;
+            height: 5%;
+            padding: 10px 3px;
+            display: flex;
+            flex-direction: row;
+            gap: 10px;
+            overflow-x: auto;
+        }
+        .Kategori::-webkit-scrollbar{
+            width: 0;
+            height: 0;
+        }
+        .butKategori{
+            margin-left: 20px;
+            width: fit-content;
+            height: 100%;
+            display: flex;
+            flex-direction: row;
+            padding: 10px;
+            border-radius: 15px;
+            border: none;
+            gap: 5px;
+        }
+        .butKategori:hover{
+            background-color: #93A2D2;
+            color:#0C0D1F;
+        }
+        .butKategori>svg{
+            width: 14px;
+        }
+        .product{
+            width: 100%;
+            height: 90%;
+            display: flex;
+            flex-direction: column;
+            background-color: inherit;
+        }
+        .product>p{
+            font-size: 20px;
+            font-weight: 600;
+            padding: 20px 20px;
+        }
+        .product>*{
+            padding: 20px;
+        }
+        .allImage{
+            display: flex;
+            flex-wrap: wrap;
+            flex-direction: row;
+            gap: 10px;
+            
+        }
+        .dProduct{
+            
+            width: 342px;
+            height: 250px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .justGap{
+            display: flex;
+            justify-content: space-between;
+        }
+        .contPhoto{
+            width: 100%;
+            height: 70%;
+            overflow: hidden;
+            border-radius: 10px;
+        }
+        .contPhoto>img{
+            width: 100%;
+            height: auto;
+            object-fit: cover;
+            object-position: center;
+        }
+        .nonPhoto{
+            width: 90%;
+            display: flex;
+            flex-direction: column;
+            gap: 0px;
+            padding: 20px;
+
+        }
+        
+        .nam,.harg{
+            font-size: 16px;
+        }
+        .Spes{
+            font-size: 12px;
+            padding-bottom: 10px;
+        }
+
+        .tempStruct{
+            padding: 10px 10px;
+            padding-top: 0 !important;
+            width: 23%;
+            height: 100vh;
+            /* border: white 1px solid; */
+            position: fixed;
+            z-index: 100;
+            right: 0px;
+            overflow-y: auto;
+            overflow: hidden;
+            background-color: #0C0D1F;
+            /* background-color: #131432; */
+        }
+        .TopStruct{
+            display: flex;
+            flex-direction: row;
+            gap: 6px;
+            width: 100%;
+            /* height: 80px; */
+            align-items: center;
+            justify-content: center;
+            /* font-size: 15px; */
+            
+        }
+        .TopStruct>svg{
+            width: 12px;
+            padding: 3px;
+            background-color: rgb(223, 54, 138);
+            border-radius: 10px;
+            color: white;
+        }
+        .ProductStruct{
+            padding-top: 8px;
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+            height: 640px;
+            overflow-y: auto;
+        }
+        .ProductStruct::-webkit-scrollbar{
+            width: 5px;
+            opacity: 30%;
+        }
+        .ProductStruct::-webkit-scrollbar-thumb{
+            
+            background-color: #93A2D2;
+            border:white;
+            height: 0;
+            border-radius: 20px;
+            opacity: 20%;
+        }
+        .cardProduct{
+            display: flex;
+            flex-direction: column;
+            height: 150px;
+            gap: 3px;
+        }
+        
+        .cardProduct>div{
+            display: flex;
+            flex-direction: row;
+            width: 100%;
+            height: 98%;
+        }
+        .cardProduct>div>.classImgTemp{
+            height: 98%;
+            width: 50%;
+            overflow: hidden;
+            border-radius: 5px;
+        }
+        .classImgTemp>img{
+            height: 100%;
+            width: 100%;
+            height: auto;
+            object-fit: cover;
+            object-position: center;
+        }
+        .leftTemp{
+            width: 50%;
+            display: flex;
+            flex-direction: column;
+            padding: 10px;
+            gap: 8px;
+        }
+        .leftTemp>*{
+            width: 100%;
+        }
+        .namTemp{
+            font-size: 15px;
+        }
+        .jenisTemp{
+            font-size: 12px;
+        }
+        .hargaQty{
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+            height: 70%;
+            justify-content: space-between;
+        }
+        .PlusMinus{
+            display: flex;
+            flex-direction: row;
+        }
+        .PlusMinus>button{
+            width: 20px;
+            height: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 6px;
+            border: none;
+            text-align: center;
+            font-size: 15px;
+            background-color: #131432;
+        }
+        .PlusMinus>button:hover{
+            background-color: rgba(52, 52, 52, 0.723);
+            color: white;
+        }
+        .PlusMinus>button:active{
+            background-color: rgba(72, 72, 72, 0.723);
+        }
+        .PlusMinus>input{
+            width: 30px;
+            height: 20;
+            border: none;
+            text-align: center;
+            background-color: inherit;
+            font-size: 12px;
+        }
+        .PlusMinus>input:focus{
+            border: none;
+            outline: none;
+        }
+        .cardProduct>hr{
+            padding: 0 0;
+            margin: 0 0;
+        }
+        .DetilStruct{
+            height: 100%;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            padding: 10px;
+            /* padding-right: 10px; */
+            gap:8px;
+            /* background-color: rgba(128, 128, 128, 0.236); */
+        }
+        .Discount{
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .Discount>button{
+            padding: 4px 20px;
+            border-radius: 5px;
+            background-color: rgba(111, 111, 111, 0.608);
+            border: none;
+            color: rgb(255, 255, 255);
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        .Discount>button:hover,.clear:hover{
+            background-color: rgb(40, 40, 40);
+        }
+        .Discount>button:active,.clear:active{
+            background-color: rgb(73, 73, 73);
+        }
+        .duit{
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+        .duit>.duit2{
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .Rupiah{
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+            width: 120px;
+        }
+        .Rupiah>input{
+            color: #93A2D2;
+            background-color: inherit;
+            outline: none;
+            border: none;
+            text-align: right;
+            width: 100%;
+            padding: 4px 0;
+
+        }
+        .butArea{
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+        }
+        .butArea>button{
+            width: 49%;
+            padding: 10px 40px;
+            color: white;
+            border-radius: 8px;
+            border: none;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        .clear{
+            background-color: rgba(111, 111, 111, 0.608);
+        }
+        .pay{
+            background-color: rgb(214, 57, 83);
+        }
+        .pay:hover{
+            background-color: rgb(164, 44, 64);
+        }
+        .pay:active{
+            background-color: rgb(169, 69, 86);
+        }
+    </style>
+
 @endsection
