@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Controllers\AksesController\CustomersAksesController;
+use App\Http\Controllers\AksesController\PaymentsAksesController;
+use App\Http\Controllers\AksesController\UserAksesController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -62,5 +65,11 @@ Route::get('/tables', function () {
 });
 
 Route::get('/dashboard-kasir',function(){
-    return view('kasir.dahsboard');
+    return view('kasir.dashboard');
 });
+
+
+//Api
+Route::get('/u', [UserAksesController::class, 'getAll']);
+Route::get('/pay', [PaymentsAksesController::class, 'getAll']);
+Route::get('/cus', [CustomersAksesController::class, 'getAll']);
