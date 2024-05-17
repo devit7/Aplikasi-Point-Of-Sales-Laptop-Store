@@ -23,11 +23,8 @@ Route::get('/', function () {
 });
 
 Route::prefix('admin')->group(function () {
-    Route::get('list_customers', function () {
+    Route::get('/list_customers', function () {
         return view('admin.list_customers');
-    });
-    Route::get('/home-admin', function () {
-        return view('layout.kasir_main');
     });
     Route::get('/admin', function(){
         return view('admin.index');
@@ -35,6 +32,9 @@ Route::prefix('admin')->group(function () {
     Route::get('/manage_supplier', function(){
         return view('admin.manage_supplier');
     });
+});
+Route::get('/home-admin', function () {
+    return view('layout.kasir_main');
 });
 
 Route::get('/management_customer', function(){
