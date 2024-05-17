@@ -62,5 +62,5 @@ Route::get('/tables', function () {
 });
 
 Route::get('/dashboard-kasir',function(){
-    return view('kasir.dahsboard');
+    return view('kasir.dashboard');
 });
