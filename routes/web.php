@@ -30,6 +30,7 @@ Route::prefix('admin')->group(function () {
         return view('admin.manage_supplier');
     });
 });
+
 Route::get('/home-admin', function () {
     return view('layout.kasir_main');
 });
