@@ -1,55 +1,58 @@
-@extends('layout.form_layout')
+@extends('layout.admin_main')
 @section('title', 'Manage User')
 @section('content')
-<section class="bg-[#1C1D42] text-white w-full h-full p-8">
-    <div class="lg:grid lg:min-h-screen lg:grid-cols-12">
-        <main class="flex items-center justify-center px-8 py-8 sm:px-12 lg:col-span-7 lg:px-16 lg:py-12 xl:col-span-6">
-                <form action="#" class="mt-8 grid grid-cols-6 gap-6">
-                    <div class="col-span-6 sm:col-span-3">
-                        <label for="FirstName" class="block text-sm font-medium">
-                            Name
-                        </label>
-                        <input type="text" id="FirstName" name="first_name" class="mt-1 w-full rounded-md border-gray-200 bg-white text-black text-sm shadow-sm" />
+<div class="w-full p-8 ">
+    <div class="mb-6">
+        <div class="flex flex-col ">
+            <p class="text-[#6b6eb4] text-lg font-semibold">
+                Add Product
+            </p>
+            <div class="text-[#6b6eb4] flex flex-row ">
+                Manage your prduct
+            </div>
+        </div>
+    </div>
+    <div class="bg-[#1C1D42] rounded-md  border border-[#33356F] min-h-[500px]">
+            <div class="py-8 px-4 mx-auto max-w-2xl lg:py-16">
+                <h2 class="mb-4 text-xl font-bold text-gray-900 dark:text-white">Add a new product</h2>
+                <form action="#">
+                    <div class="grid gap-4 sm:grid-cols-2 sm:gap-6">
+                        <div class="sm:col-span-2">
+                            <label for="name" class="block mb-2 text-sm font-medium  text-white">Product Name</label>
+                            <input type="text" name="name" id="name" class="bg-[#131432] border   text-sm rounded-lg  block w-full p-2.5  border-gray-600 placeholder-gray-400 text-white focus:ring-primary-500 focus:border-primary-500" placeholder="Type product name" required="">
+                        </div>
+                        <div class="w-full">
+                            <label for="brand" class="block mb-2 text-sm font-medium  text-white">Brand</label>
+                            <input type="text" name="brand" id="brand" class="bg-[#131432] border   text-sm rounded-lg  block w-full p-2.5  border-gray-600 placeholder-gray-400 text-white focus:ring-primary-500 focus:border-primary-500" placeholder="Product brand" required="">
+                        </div>
+                        <div class="w-full">
+                            <label for="price" class="block mb-2 text-sm font-medium  text-white">Price</label>
+                            <input type="number" name="price" id="price" class="bg-[#131432] border   text-sm rounded-lg  block w-full p-2.5  border-gray-600 placeholder-gray-400 text-white focus:ring-primary-500 focus:border-primary-500" placeholder="$2999" required="">
+                        </div>
+                        <div>
+                            <label for="category" class="block mb-2 text-sm font-medium  text-white">Category</label>
+                            <select id="category" class="bg-[#131432] border w-full p-2.5  text-sm rounded-lg border-gray-600 focus:ring-primary-500 focus:border-primary-500">
+                                <option selected="">Select category</option>
+                                <option value="TV">TV/Monitors</option>
+                                <option value="PC">PC</option>
+                                <option value="GA">Gaming/Console</option>
+                                <option value="PH">Phones</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label for="item-weight" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Item Weight (kg)</label>
+                            <input type="number" name="item-weight" id="item-weight" class=" border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 bg-[#131432] dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="12" required="">
+                        </div>
+                        <div class="sm:col-span-2">
+                            <label for="description" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Description</label>
+                            <textarea id="description" rows="8" class="block p-2.5 w-full text-sm text-gray-900  rounded-lg border border-gray-300 focus:ring-primary-500 focus:border-primary-500 bg-[#131432] dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Your description here"></textarea>
+                        </div>
                     </div>
-
-                    <div class="col-span-6 sm:col-span-3">
-                        <label for="LastName" class="block text-sm font-medium">
-                            Username
-                        </label>
-                        <input type="text" id="LastName" name="last_name" class="mt-1 w-full rounded-md border-gray-200 bg-white text-black text-sm shadow-sm" />
-                    </div>
-
-                    <div class="col-span-6">
-                        <label for="Role" class="block text-sm font-medium">
-                            Role
-                        </label>
-                        <select id="Role" name="role" class="mt-1 w-full rounded-md border-gray-200 bg-white text-black text-sm shadow-sm">
-                            <option value="kasir">Kasir</option>
-                            <option value="admin">Admin</option>
-                        </select>
-                    </div>
-
-                    <div class="col-span-6 sm:col-span-3">
-                        <label for="Password" class="block text-sm font-medium">
-                            Password
-                        </label>
-                        <input type="password" id="Password" name="password" class="mt-1 w-full rounded-md border-gray-200 bg-white text-black text-sm shadow-sm" />
-                    </div>
-
-                    <div class="col-span-6 sm:col-span-3">
-                        <label for="PasswordConfirmation" class="block text-sm font-medium">
-                            Password Confirmation
-                        </label>
-                        <input type="password" id="PasswordConfirmation" name="password_confirmation" class="mt-1 w-full rounded-md border-gray-200 bg-white text-black text-sm shadow-sm" />
-                    </div>
-
-                    <div class="col-span-6 sm:flex sm:items-center sm:gap-4">
-                        <button class="inline-block shrink-0 rounded-md border border-blue-600 bg-blue-600 px-12 py-3 text-sm font-medium transition hover:bg-transparent hover:text-blue-600 focus:outline-none focus:ring active:text-blue-500">
-                            Create an account
-                        </button>
-                    </div>
+                    <button type="submit" class="inline-flex items-center px-5 py-2.5 mt-4 sm:mt-6 text-sm font-medium text-center text-white bg-blue-700 rounded-lg focus:ring-4 focus:ring-primary-200 dark:focus:ring-primary-900 hover:bg-primary-800">
+                        Add product
+                    </button>
                 </form>
             </div>
-        </main>
     </div>
+</div>
 @endsection

@@ -19,14 +19,16 @@ Route::get('list_customers', function () {
 });
 
 Route::prefix('admin')->group(function () {
-    Route::get('/', function () {
-        return view('kasir.RiwayatTransaksi');
-    });
+
 });
 
 Route::prefix('admin')->group(function () {
 
 
+});
+
+Route::get('/create-user', function(){
+    return view('admin.create_user');
 });
 
 Route::get('/management-customer', function(){
