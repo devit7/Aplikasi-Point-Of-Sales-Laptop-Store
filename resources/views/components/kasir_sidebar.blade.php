@@ -21,7 +21,7 @@
                     Dashboard
                 </a>
                 </a>
-                <a href="/admin/product" tabindex="0"
+                <a href="/management_customer" tabindex="0"
                     class="flex items-center w-full  px-6 py-3 rounded-lg text-start leading-tight transition-all hover:bg-[#aa5800] hover:bg-opacity-10 hover:text-[#e07946] outline-none
                 ">
                     <div class="grid place-items-center mr-3">

@@ -29,8 +29,8 @@ Route::prefix('admin')->group(function () {
 
 });
 
-Route::get('/management-customer', function(){
-    return view('kasir.management-customer');
+Route::get('/management_customer', function(){
+    return view('kasir.management_customer');
 });
 
 Route::get('/home-admin', function () {
