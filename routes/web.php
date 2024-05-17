@@ -60,3 +60,7 @@ Route::get('/form', function () {
 Route::get('/tables', function () {
     return view('tables');
 });
+
+Route::get('/dashboard-kasir',function(){
+    return view('kasir.dahsboard');
+});
