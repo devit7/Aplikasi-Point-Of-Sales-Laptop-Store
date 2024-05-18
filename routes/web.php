@@ -18,34 +18,67 @@ use Illuminate\Support\Facades\Route;
 */
 
 
-Route::get('/', function () {
-    return view('kasir.RiwayatTransaksi');
-});
-
 Route::prefix('admin')->group(function () {
-    Route::get('/list_customers', function () {
-        return view('admin.list_customers');
-    });
-    Route::get('/manage_user',function(){
-        return view('admin.manage_user');
-    });
-    Route::get('/', function(){
+    // Dashboard
+    Route::get('/', function () {
         return view('admin.index');
     });
-    Route::get('/manage_supplier', function(){
-        return view('admin.manage_supplier');
+
+    // Setting
+    Route::get('/setting', function () {
+        return view('admin.setting');
     });
-    Route::get('/create_user', function(){
+
+    // Laporan
+    Route::get('/laporan', function () {
+        return view('admin.laporan.index');
+    });
+
+    // User
+    Route::get('/user', function () {
+        return view('admin.user.index');
+    });
+    Route::get('/create_user', function () {
         return view('admin.create_user');
     });
+
+    // Customer
+    Route::get('/customer', function () {
+        return view('admin.customer.index');
+    });
+
+    // Supplier
+    Route::get('/supplier', function () {
+        return view('admin.supplier.index');
+    });
+
+    // Product
+    Route::get('/product', function () {
+        return view('admin.product.index');
+    });
+
+    // Merk
+    Route::get('/merk', function () {
+        return view('admin.merk.index');
+    });
+
+    // Payment
+    Route::get('/payment', function () {
+        return view('admin.payment.index');
+    });
 });
 
-Route::get('/home-admin', function () {
-    return view('layout.kasir_main');
-});
 
-Route::get('/management_customer', function(){
-    return view('kasir.management-customer');
+Route::prefix('kasir')->group(function () {
+    Route::get('/', function () {
+        return view('kasir.dashboard');
+    });
+    Route::get('/transaksi', function () {
+        return view('kasir.RiwayatTransaksi');
+    });
+    Route::get('/customer', function () {
+        return view('kasir.management-customer');
+    });
 });
 
 
@@ -54,14 +87,8 @@ Route::get('/login', function () {
 });
 
 
-Route::get('/RiwayatTransaksi', function () {
-    return view('kasir.RiwayatTransaksi');
-});
 
 
-Route::get('/template', function () {
-    return view('template');
-});
 
 Route::get('/form', function () {
     return view('form');
@@ -71,9 +98,7 @@ Route::get('/tables', function () {
     return view('tables');
 });
 
-Route::get('/dashboard-kasir',function(){
-    return view('kasir.dashboard');
-});
+
 
 
 //Api
