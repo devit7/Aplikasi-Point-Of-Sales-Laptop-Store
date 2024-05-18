@@ -25,19 +25,19 @@
                 </button>
                 <ul id="dropdown-example" class="hidden py-2 space-y-2">
                     <li>
-                        <a href="#" class="flex items-center w-full px-6 py-3 rounded-lg text-start leading-tight transition-all hover:bg-[#aa5800] hover:bg-opacity-10 hover:text-[#e07946] outline-none pl-11">User</a>
+                        <a href="/admin/manage_user" class="flex items-center w-full px-6 py-3 rounded-lg text-start leading-tight transition-all hover:bg-[#aa5800] hover:bg-opacity-10 hover:text-[#e07946] outline-none pl-11">User</a>
                     </li>
                     <li>
-                        <a href="#" class="flex items-center w-full px-6 py-3 rounded-lg text-start leading-tight transition-all hover:bg-[#aa5800] hover:bg-opacity-10 hover:text-[#e07946] outline-none pl-11">Product</a>
+                        <a href="/admin/manage_product" class="flex items-center w-full px-6 py-3 rounded-lg text-start leading-tight transition-all hover:bg-[#aa5800] hover:bg-opacity-10 hover:text-[#e07946] outline-none pl-11">Product</a>
                     </li>
                     <li>
-                        <a href="/admin//manage_supplier" class="flex items-center w-full px-6 py-3 rounded-lg text-start leading-tight transition-all hover:bg-[#aa5800] hover:bg-opacity-10 hover:text-[#e07946] outline-none pl-11">Supplier</a>
+                        <a href="/admin/manage_supplier" class="flex items-center w-full px-6 py-3 rounded-lg text-start leading-tight transition-all hover:bg-[#aa5800] hover:bg-opacity-10 hover:text-[#e07946] outline-none pl-11">Supplier</a>
                     </li>
                     <li>
-                        <a href="#" class="flex items-center w-full px-6 py-3 rounded-lg text-start leading-tight transition-all hover:bg-[#aa5800] hover:bg-opacity-10 hover:text-[#e07946] outline-none pl-11">Merk</a>
+                        <a href="/admin/manage_merk" class="flex items-center w-full px-6 py-3 rounded-lg text-start leading-tight transition-all hover:bg-[#aa5800] hover:bg-opacity-10 hover:text-[#e07946] outline-none pl-11">Merk</a>
                     </li>
                     <li>
-                        <a href="#" class="flex items-center w-full px-6 py-3 rounded-lg text-start leading-tight transition-all hover:bg-[#aa5800] hover:bg-opacity-10 hover:text-[#e07946] outline-none pl-11">Payment</a>
+                        <a href="/admin/mmanage_payment" class="flex items-center w-full px-6 py-3 rounded-lg text-start leading-tight transition-all hover:bg-[#aa5800] hover:bg-opacity-10 hover:text-[#e07946] outline-none pl-11">Payment</a>
                     </li>
                 </ul>
         </div>
@@ -53,7 +53,6 @@
          Customers
         <div class="grid place-items-center ml-auto justify-self-end">
             <div class="relative grid items-center font-sans font-bold uppercase whitespace-nowrap select-none bg-[#aa5800] bg-opacity-10 text-[#e07946] py-1 px-2 text-xs rounded-full" style="opacity: 1;">
-                <span class="">14</span>
             </div>
         </div>
         </a>
