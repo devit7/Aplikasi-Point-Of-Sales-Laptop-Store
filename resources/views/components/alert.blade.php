@@ -9,13 +9,12 @@
     <!-- MODAL -->
     <div id="delete-modal" aria-hidden="true"
         class="hidden overflow-x-hidden overflow-y-auto fixed h-modal md:h-full top-4 left-0 right-0 md:inset-0 z-50 justify-center items-center">
-        <div class="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
+        <div class="flex w-[500px]  items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
             <!-- Modal panel -->
-            <div class="w-full inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full">
-            <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4"></div>
+            <div class="w-full inline-block align-bottom bg-[#1C1D42] rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full">
                 <!-- Modal content -->
             <div class="sm:flex sm:items-start p-5">
-              <div class="mx-auto flex-shrink-0 flex items-center justify-center h-12 w-12 rounded-full bg-red-100 sm:mx-0 sm:h-10 sm:w-10">
+              <div class="mx-auto flex-shrink-0 flex items-center justify-center w-12 h-12 rounded-full bg-red-100 sm:mx-0 sm:h-10 sm:w-10">
                 <!-- Heroicon name: outline/exclamation -->
                 <svg width="64px" height="64px" class="h-6 w-6 text-red-600" stroke="currentColor" fill="none" viewBox="0 0 24.00 24.00" xmlns="http://www.w3.org/2000/svg" stroke="#ef4444" stroke-width="0.45600000000000007">
                   <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
@@ -28,16 +27,14 @@
                 </svg>
               </div>
               <div class="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
-                <h3 class="text-lg leading-6 font-medium text-gray-900" id="modal-headline"> Delete Item </h3>
+                <h3 class="text-xl leading-6 font-semibold text-[#aa5800]" id="modal-headline"> Delete Item </h3>
                 <div class="mt-2">
-                  <p class="text-sm text-gray-500"> Apakah kamu yakin akan menghapus <span>{{$nama}}</span>?</p>
+                    <p class="text-sm text-[#6b6eb4]"> Are you sure you want to delete <span class="font-bold">{{ $nama }}</span>? This action cannot be undone. </p>
                 </div>
               </div>
             </div>
-
-                
                 <!-- Modal footer -->
-                <div class="flex justify-between items-center space-x-4 p-5 rounded-b">
+                <div class="flex justify-between items-center space-x-4 p-4 rounded-b">
                     <button data-modal-toggle="delete-modal" type="submit" class="py-2 px-4 text-sm font-medium  rounded-md border  focus:ring-4 focus:outline-none focus:ring-primary-300 focus:z-10 bg-green-700 text-green-200 border-green-500 hover:text-white hover:bg-green-600 focus:ring-green-600">
                         Cancel
                     </button>

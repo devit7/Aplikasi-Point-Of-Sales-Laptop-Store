@@ -24,7 +24,7 @@
                         <td>Rp. 100.000</td>
                         <td>10</td>
                         <td></td>
-                        <td>
+                        <td class="flex flex-row gap-3">
                         <x-modal-detail-transaksi/>
                         <x-alert/>
                         </td>
