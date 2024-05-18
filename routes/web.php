@@ -32,6 +32,9 @@ Route::prefix('admin')->group(function () {
     Route::get('/manage_supplier', function(){
         return view('admin.manage_supplier');
     });
+    Route::get('/manage_product', function(){
+        return view('admin.manage_product');
+    });
 });
 
 Route::get('/home-admin', function () {
