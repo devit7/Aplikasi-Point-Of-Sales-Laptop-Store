@@ -26,11 +26,17 @@ Route::prefix('admin')->group(function () {
     Route::get('/list_customers', function () {
         return view('admin.list_customers');
     });
+    Route::get('/manage_user',function(){
+        return view('admin.manage_user');
+    });
     Route::get('/admin', function(){
         return view('admin.index');
     });
     Route::get('/manage_supplier', function(){
         return view('admin.manage_supplier');
+    });
+    Route::get('/create_user', function(){
+        return view('admin.create_user');
     });
 });
 
