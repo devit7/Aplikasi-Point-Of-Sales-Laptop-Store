@@ -13,10 +13,11 @@
     @stack('styles')
 </head>
 
-<body class="bg-[#e9e9f0]">
-    <div class="flex flex-row bg-[#131432]" >
+<body class="bg-[#131432]">
+    <div class="flex flex-row bg-[#131432] h-screen">
         <x-admin_sidebar />
-        <main class="bg-[#131432] w-full ml-[280px] min-h-screen">
+
+        <main class="bg-[#131432] w-full min-h-screen max-h-screen overflow-y-auto">
             @yield('content')
         </main>
     </div>

@@ -1,11 +1,9 @@
 @extends('layout.admin_main')
 @section('title', 'Manage User')
 @section('content')
-    <div class=" min-h-screen min-w-full text-white p-2 ">
-        <div>
+<div class=" p-10">
 
-        </div>
-    </div>
+</div>
     <div class="bg-[#1C1D42] rounded-md border border-[#33356F] min-h-[500px]">
         <div class="flex justify-between items-center px-4 py-6">
             <input type="text"

@@ -1,4 +1,4 @@
-<section id="sidebar" class="fixed top-0 left-0 bottom-0 hidden lg:block border-r border-[#33356F] ">
+<section id="sidebar" class=" top-0 left-0 bottom-0 hidden lg:block border-r border-[#33356F] ">
     <div class="relative flex flex-col  bg-[#131432]   h-full w-full  ">
         <nav class="flex flex-col  w-[280px] font-sans text-base font-normal text-[#62748E]">
             <div class="h-[80px] text-center items-center flex justify-center border-b border-[#33356F]">
