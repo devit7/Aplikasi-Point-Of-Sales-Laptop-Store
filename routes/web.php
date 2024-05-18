@@ -25,7 +25,10 @@ Route::prefix('admin')->group(function () {
 });
 
 Route::prefix('admin')->group(function () {
-    
+
+    Route::get('/', function(){
+        return view('admin.index');
+    });
 
 });
 
@@ -44,10 +47,6 @@ Route::get('/login', function () {
 
 Route::get('/history', function () {
     return view('kasir.RiwayatTransaksi');
-});
-
-Route::get('/admin', function(){
-    return view('admin.index');
 });
 
 Route::get('/template', function () {
