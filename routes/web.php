@@ -86,9 +86,9 @@ Route::get('/login', function () {
     return view('auth.login');
 });
 
-
-
-
+Route::get('/modal-tran', function () {
+    return view('kasir.modal-tran');
+});
 
 Route::get('/form', function () {
     return view('form');

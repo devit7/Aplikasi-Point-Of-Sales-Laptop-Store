@@ -30,11 +30,14 @@
                         <thead class="bg-[#131432]  text-[#6b6eb4]">
                             <tr class="border-b-2 border-[#33356F]">
                                 <th class="py-2 text-[#6b6eb4]">No</th>
-                                <th class="text-[#6b6eb4]">Nama Supplier</th>
-                                <th class="text-[#6b6eb4]">No. HP</th>
-                                <th class="text-[#6b6eb4]">Nama Perusahaan</th>
-                                <th class="text-[#6b6eb4]">Alamat</th>
-                                <th class="text-[#6b6eb4]">Action</th>
+                                <th class="">Nama</th>
+                                <th class="">Stock</th>
+                                <th class="">Harga Jual</th>
+                                <th class="">Harga Asli</th>
+                                <th class="">Img</th>
+                                <th class="">Suplier</th>
+                                <th class="">Merk</th>
+                                <th class="">Action</th>
                             </tr>
                         </thead>
                         <tbody class="text-[#6b6eb4] text-center">
@@ -42,9 +45,14 @@
                                 <tr class="border-b-2 border-[#33356F]">
                                     <td class="py-2">1</td>
                                     <td>Product 1</td>
-                                    <td>Rp. 100.000</td>
                                     <td>10</td>
-                                    <td></td>
+                                    <td>Rp. 100.000</td>
+                                    <td>Rp. 100.000</td>
+                                    <td>
+                                        <img src="https://via.placeholder.com/150" alt="product" class="w-10 h-10">
+                                    </td>
+                                    <td>Supplier 1</td>
+                                    <td>Merk 1</td>
                                     <td>
                                         <button class="bg-[#002D4C] border p-1 border-[#2B4F69] rounded-md">
                                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
