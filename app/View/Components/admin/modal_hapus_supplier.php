@@ -14,6 +14,7 @@ class modal_hapus_supplier extends Component
     public function __construct()
     {
         //
+        
     }
 
     /**

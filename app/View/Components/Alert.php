@@ -11,9 +11,13 @@ class Alert extends Component
      *
      * @return void
      */
-    public function __construct()
+    public $id;
+    public $nama;
+    public function __construct($id='1',$nama='WOw')
     {
         //
+        $this->id = $id;
+        $this->nama = $nama;
     }
 
     /**

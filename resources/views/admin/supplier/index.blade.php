@@ -26,6 +26,7 @@
                         <td></td>
                         <td>
                         <x-modal-detail-transaksi/>
+                        <x-alert/>
                         </td>
                     </tr>
                 </tbody>

@@ -24,7 +24,7 @@
             </div>
             <!-- Main modal -->
             <div id="default-modal" aria-hidden="true"
-                class="flex overflow-x-hidden overflow-y-auto fixed h-modal md:h-full top-4 left-0 right-0 md:inset-0 z-50 justify-center items-center">
+                class="hidden overflow-x-hidden overflow-y-auto fixed h-modal md:h-full top-4 left-0 right-0 md:inset-0 z-50 justify-center items-center">
                 <div class="relative w-full max-w-2xl px-4 h-full md:h-auto">
                     <!-- Modal content -->
                     <div class="rounded-lg shadow relative bg-gray-800">
