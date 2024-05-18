@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Controllers\AksesController\CustomersAksesController;
+use App\Http\Controllers\AksesController\PaymentsAksesController;
+use App\Http\Controllers\AksesController\UserAksesController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -14,40 +17,47 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('list_customers', function () {
-    return view('admin.list_customers');
+
+Route::get('/', function () {
+    return view('kasir.RiwayatTransaksi');
 });
 
 Route::prefix('admin')->group(function () {
-    Route::get('/', function () {
-        return view('kasir.RiwayatTransaksi');
+    Route::get('/list_customers', function () {
+        return view('admin.list_customers');
     });
-});
-
-Route::prefix('admin')->group(function () {
-
+    Route::get('/manage_user',function(){
+        return view('admin.manage_user');
+    });
     Route::get('/', function(){
         return view('admin.index');
     });
-
-});
-
-Route::get('/management-customer', function(){
-    return view('kasir.management-customer');
+    Route::get('/manage_supplier', function(){
+        return view('admin.manage_supplier');
+    });
+    Route::get('/create_user', function(){
+        return view('admin.create_user');
+    });
 });
 
 Route::get('/home-admin', function () {
     return view('layout.kasir_main');
 });
 
+Route::get('/management_customer', function(){
+    return view('kasir.management-customer');
+});
+
+
 Route::get('/login', function () {
     return view('auth.login');
 });
 
 
-Route::get('/history', function () {
+Route::get('/RiwayatTransaksi', function () {
     return view('kasir.RiwayatTransaksi');
 });
+
 
 Route::get('/template', function () {
     return view('template');
@@ -60,3 +70,13 @@ Route::get('/form', function () {
 Route::get('/tables', function () {
     return view('tables');
 });
+
+Route::get('/dashboard-kasir',function(){
+    return view('kasir.dashboard');
+});
+
+
+//Api
+Route::get('/u', [UserAksesController::class, 'getAll']);
+Route::get('/pay', [PaymentsAksesController::class, 'getAll']);
+Route::get('/cus', [CustomersAksesController::class, 'getAll']);
