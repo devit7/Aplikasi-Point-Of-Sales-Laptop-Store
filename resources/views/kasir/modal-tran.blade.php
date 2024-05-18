@@ -27,7 +27,7 @@
                 class="hidden overflow-x-hidden overflow-y-auto fixed h-modal md:h-full top-4 left-0 right-0 md:inset-0 z-50 justify-center items-center">
                 <div class="relative w-full max-w-2xl px-4 h-full md:h-auto">
                     <!-- Modal content -->
-                    <div class="rounded-lg shadow relative bg-gray-800">
+                    <div class="rounded-md shadow relative bg-gray-800">
                         <!-- Modal header -->
                         <div class="flex items-start justify-between p-5  rounded-t ">
                             <h3 class="text-gray-900 text-xl lg:text-2xl font-semibold dark:text-white">
@@ -45,22 +45,61 @@
                             </button>
                         </div>
                         <!-- Modal body -->
-                        <div class="p-6 space-y-6 border-y border-gray-600">
-                            <div class="flex flex-row ">
-                                <div class="w-32 border">
-                                        tyui
+                        <div class="flex flex-col w-full p-6 gap-4  border-y border-gray-600 font-semibold">
+                            <p class="text-gray-400 text-sm">
+                                CUSTOMER
+                            </p>
+                            <div class="flex flex-col w-full gap-4 px-4">
+                                <div class="flex flex-row w-full items-center ">
+                                    <div class="w-40 text-blue-200 ">
+                                        Customer
+                                    </div>
+                                    <div class="w-full ">
+                                        <select name="payment_method" id="payment_method"
+                                            class="w-full text-right px-4 py-2 text-gray-700 bg-gray-200 rounded">
+                                            <option disabled selected>Choose Customer</option>
+                                            <option value="cash">Cash</option>
+                                            <option value="transfer">Transfer</option>
+                                        </select>
+                                    </div>
                                 </div>
-                                <div class="w-full border">
-                                    etrh
+                            </div>
+                            <p class="text-gray-400 text-sm">
+                                PAYMENT
+                            </p>
+                            <div class="flex flex-col w-full gap-4 px-4">
+                                <div class="flex flex-row w-full items-center ">
+                                    <div class="w-40 text-blue-200  ">
+                                        Total Belanja
+                                    </div>
+                                    <div class="w-full ">
+                                        <input type="text" name="total" id="total"
+                                            class="w-full text-right px-4 py-2  text-gray-700 bg-gray-300 rounded "
+                                            value="Rp. 100.000.00" disabled>
+                                    </div>
+                                </div>
+                                <div class="flex flex-row w-full items-center ">
+                                    <div class="w-40 text-blue-200 ">
+                                        Metode Pembayaran
+                                    </div>
+                                    <div class="w-full ">
+                                        <select name="payment_method" id="payment_method"
+                                            class="w-full text-right px-4 py-2 text-gray-700 bg-gray-200 rounded">
+                                            <option value="cash">Cash</option>
+                                            <option value="transfer">Transfer</option>
+                                        </select>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                         <!-- Modal footer -->
                         <div class="flex justify-between items-center space-x-4 p-5 rounded-b">
-                            <button data-modal-toggle="default-modal" type="button" class="py-2 px-4 text-sm rounded-md font-medium text-center text-white bg-red-600  hover:bg-red-700 focus:ring-4 focus:outline-none focus:ring-red-300 dark:bg-red-500 dark:hover:bg-red-600 dark:focus:ring-red-900">
+                            <button data-modal-toggle="default-modal" type="button"
+                                class="py-2 w-36 text-sm rounded-md font-medium text-center text-white focus:z-10 border  focus:ring-4 focus:outline-none border-red-400 focus:ring-red-300 bg-red-600 hover:bg-red-500 ">
                                 No, Cancel
                             </button>
-                            <button type="submit" class="py-2 px-4 text-sm font-medium  rounded-md border  focus:ring-4 focus:outline-none focus:ring-primary-300 focus:z-10 bg-green-700 text-green-200 border-green-500 hover:text-white hover:bg-green-600 focus:ring-green-600">
+                            <button type="submit"
+                                class="py-2 w-36 text-sm font-medium  rounded-md border  focus:ring-4 focus:outline-none focus:z-10 bg-green-700 text-green-200 border-green-500 hover:text-white hover:bg-green-600 focus:ring-green-600">
                                 Accept Transaction
                             </button>
                         </div>
@@ -69,7 +108,7 @@
             </div>
         </div>
         <div class="mt-10">
-            
+
         </div>
     </div>
 @endsection
