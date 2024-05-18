@@ -24,14 +24,14 @@
             </div>
             <!-- Main modal -->
             <div id="default-modal" aria-hidden="true"
-                class="hidden overflow-x-hidden overflow-y-auto fixed h-modal md:h-full top-4 left-0 right-0 md:inset-0 z-50 justify-center items-center">
+                class="flex overflow-x-hidden overflow-y-auto fixed h-modal md:h-full top-4 left-0 right-0 md:inset-0 z-50 justify-center items-center">
                 <div class="relative w-full max-w-2xl px-4 h-full md:h-auto">
                     <!-- Modal content -->
                     <div class="rounded-lg shadow relative bg-gray-800">
                         <!-- Modal header -->
                         <div class="flex items-start justify-between p-5  rounded-t ">
                             <h3 class="text-gray-900 text-xl lg:text-2xl font-semibold dark:text-white">
-                                Confirm
+                                Transaction Detail
                             </h3>
                             <button type="button"
                                 class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white"
@@ -46,25 +46,22 @@
                         </div>
                         <!-- Modal body -->
                         <div class="p-6 space-y-6 border-y border-gray-600">
-                            <p class="text-gray-500 text-base leading-relaxed dark:text-gray-400">
-                                With less than a month to go before the European Union enacts new consumer privacy laws for
-                                its citizens, companies around the world are updating their terms of service agreements to
-                                comply.
-                            </p>
-                            <p class="text-gray-500 text-base leading-relaxed dark:text-gray-400">
-                                The European Union’s General Data Protection Regulation (G.D.P.R.) goes into effect on May
-                                25 and is meant to ensure a common set of data rights in the European Union. It requires
-                                organizations to notify users as soon as possible of high-risk data breaches that could
-                                personally affect them.
-                            </p>
+                            <div class="flex flex-row ">
+                                <div class="w-32 border">
+                                        tyui
+                                </div>
+                                <div class="w-full border">
+                                    etrh
+                                </div>
+                            </div>
                         </div>
                         <!-- Modal footer -->
-                        <div class="flex justify-center items-center space-x-4 p-5 rounded-b">
-                            <button data-modal-toggle="default-modal" type="button" class="py-2 px-3 text-sm font-medium text-gray-500 bg-white rounded-lg border border-gray-200 hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-primary-300 hover:text-gray-900 focus:z-10 dark:bg-gray-700 dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-600">
-                                No, cancel
+                        <div class="flex justify-between items-center space-x-4 p-5 rounded-b">
+                            <button data-modal-toggle="default-modal" type="button" class="py-2 px-4 text-sm rounded-md font-medium text-center text-white bg-red-600  hover:bg-red-700 focus:ring-4 focus:outline-none focus:ring-red-300 dark:bg-red-500 dark:hover:bg-red-600 dark:focus:ring-red-900">
+                                No, Cancel
                             </button>
-                            <button type="submit" class="py-2 px-3 text-sm font-medium text-center text-white bg-red-600 rounded-lg hover:bg-red-700 focus:ring-4 focus:outline-none focus:ring-red-300 dark:bg-red-500 dark:hover:bg-red-600 dark:focus:ring-red-900">
-                                Yes, I'm sure
+                            <button type="submit" class="py-2 px-4 text-sm font-medium  rounded-md border  focus:ring-4 focus:outline-none focus:ring-primary-300 focus:z-10 bg-green-700 text-green-200 border-green-500 hover:text-white hover:bg-green-600 focus:ring-green-600">
+                                Accept Transaction
                             </button>
                         </div>
                     </div>
