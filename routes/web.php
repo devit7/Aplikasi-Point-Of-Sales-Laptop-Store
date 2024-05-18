@@ -38,8 +38,8 @@ Route::prefix('admin')->group(function () {
     Route::get('/user', function () {
         return view('admin.user.index');
     });
-    Route::get('/create_user', function () {
-        return view('admin.create_user');
+    Route::get('/user/create', function () {
+        return view('admin.user.create');
     });
 
     // Customer
