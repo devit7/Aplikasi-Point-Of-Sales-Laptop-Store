@@ -82,7 +82,7 @@ Route::prefix('kasir')->group(function () {
 });
 
 
-Route::get('/login', function () {
+Route::get('/', function () {
     return view('auth.login');
 });
 
