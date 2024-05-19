@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Controllers\AksesController\CustomersAksesController;
+use App\Http\Controllers\AksesController\PaymentsAksesController;
+use App\Http\Controllers\AksesController\UserAksesController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -14,44 +17,77 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('list_customers', function () {
-    return view('admin.list_customers');
-});
 
 Route::prefix('admin')->group(function () {
+    // Dashboard
     Route::get('/', function () {
-        return view('kasir.RiwayatTransaksi');
+        return view('admin.index');
+    });
+
+    // Setting
+    Route::get('/setting', function () {
+        return view('admin.setting');
+    });
+
+    // Laporan
+    Route::get('/laporan', function () {
+        return view('admin.laporan.index');
+    });
+
+    // User
+    Route::get('/user', function () {
+        return view('admin.user.index');
+    });
+    Route::get('/user/create', function () {
+        return view('admin.user.create');
+    });
+
+    // Customer
+    Route::get('/customer', function () {
+        return view('admin.customer.index');
+    });
+
+    // Supplier
+    Route::get('/supplier', function () {
+        return view('admin.supplier.index');
+    });
+
+    // Product
+    Route::get('/product', function () {
+        return view('admin.product.index');
+    });
+
+    // Merk
+    Route::get('/merk', function () {
+        return view('admin.merk.index');
+    });
+
+    // Payment
+    Route::get('/payment', function () {
+        return view('admin.payment.index');
     });
 });
 
-Route::prefix('admin')->group(function () {
 
-
+Route::prefix('kasir')->group(function () {
+    Route::get('/', function () {
+        return view('kasir.dashboard');
+    });
+    Route::get('/transaksi', function () {
+        return view('kasir.RiwayatTransaksi');
+    });
+    Route::get('/customer', function () {
+        return view('kasir.management-customer');
+    });
 });
 
-Route::get('/management-customer', function(){
-    return view('kasir.management-customer');
-});
 
-Route::get('/home-admin', function () {
-    return view('layout.kasir_main');
-});
-
-Route::get('/login', function () {
+Route::get('/', function () {
     return view('auth.login');
 });
 
-
-Route::get('/history', function () {
-    return view('kasir.RiwayatTransaksi');
-});
-
-Route::get('/admin', function(){
-    return view('admin.index');
-});
-
-Route::get('/template', function () {
-    return view('template');
+Route::get('/modal-tran', function () {
+    return view('kasir.modal-tran');
 });
 
 Route::get('/form', function () {
@@ -61,3 +97,11 @@ Route::get('/form', function () {
 Route::get('/tables', function () {
     return view('tables');
 });
+
+
+
+
+//Api
+Route::get('/u', [UserAksesController::class, 'getAll']);
+Route::get('/pay', [PaymentsAksesController::class, 'getAll']);
+Route::get('/cus', [CustomersAksesController::class, 'getAll']);

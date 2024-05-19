@@ -1,15 +1,26 @@
-@extends('layout.kasir_main')
+@extends('layout.admin_main')
 @section('title', 'List Customers')
 @section('content')
     <div class="p-8">
-        <div class="mb-6">
-            <div class="flex flex-col">
+        <div class="mb-6 flex items-end justify-between">
+            <div class="flex flex-col ">
                 <p class="text-[#6b6eb4] text-lg font-semibold">
-                    List Customers
+                    Manage Customer
                 </p>
-                <div class="text-[#6b6eb4] flex flex-row">
-                    Manage your customers
-                </div>
+                <p class="text-[#6b6eb4] ">
+                    A List of All of the Customers
+                </p>
+            </div>
+            <div class=" flex flex-row ">
+                <a href="#"
+                    class="flex flex-row  items-center gap-2  px-4 py-2 bg-[#FF9A37] text-white rounded-md hover:bg-[#FF9A37]">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                        stroke="currentColor" class="w-6 h-6">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M12 9v6m3-3H9m12 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+                    </svg>
+                    <span>Add New Customer</span>
+                </a>
             </div>
         </div>
         <x-tables>
@@ -66,4 +77,3 @@
         </x-tables>
     </div>
 @endsection
-
