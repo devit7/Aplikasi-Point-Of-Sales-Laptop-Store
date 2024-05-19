@@ -61,10 +61,23 @@ Route::prefix('admin')->group(function () {
     Route::get('/merk', function () {
         return view('admin.merk.index');
     });
+    Route::get('/merk/create', function () {
+        return view('admin.merk.create');
+    });
+    Route::get('/merk/update', function () {
+        return view('admin.merk.update');
+    });
+
 
     // Payment
     Route::get('/payment', function () {
         return view('admin.payment.index');
+    });
+    Route::get('/payment/create', function () {
+        return view('admin.payment.create');
+    });
+    Route::get('/payment/update', function () {
+        return view('admin.payment.update');
     });
 });
 
