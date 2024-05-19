@@ -66,6 +66,16 @@ Route::prefix('admin')->group(function () {
     Route::get('/payment', function () {
         return view('admin.payment.index');
     });
+
+    // Create product
+    Route::get('/product/create', function () {
+        return view('admin.product.create');
+    });
+    
+    // Edit product
+    Route::get('/product/update', function () {
+        return view('admin.product.update');
+    });
 });
 
 
