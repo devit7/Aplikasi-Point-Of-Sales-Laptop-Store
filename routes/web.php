@@ -61,3 +61,7 @@ Route::get('/form', function () {
 Route::get('/tables', function () {
     return view('tables');
 });
+
+Route::get('/pembayaran', function(){
+    return view('kasir.pembayaran');
+});
