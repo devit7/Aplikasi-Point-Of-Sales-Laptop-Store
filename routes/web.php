@@ -61,11 +61,19 @@ Route::prefix('admin')->group(function () {
     Route::get('/merk', function () {
         return view('admin.merk.index');
     });
+    Route::get('/merk/create', function () {
+        return view('admin.merk.create');
+    });
+    Route::get('/merk/update', function () {
+        return view('admin.merk.update');
+    });
+
 
     // Payment
     Route::get('/payment', function () {
         return view('admin.payment.index');
     });
+<<<<<<< HEAD
 
     // Create product
     Route::get('/product/create', function () {
@@ -75,6 +83,13 @@ Route::prefix('admin')->group(function () {
     // Edit product
     Route::get('/product/update', function () {
         return view('admin.product.update');
+=======
+    Route::get('/payment/create', function () {
+        return view('admin.payment.create');
+    });
+    Route::get('/payment/update', function () {
+        return view('admin.payment.update');
+>>>>>>> 98de37854cbdd4b3873972b406917705e6f97777
     });
 });
 
