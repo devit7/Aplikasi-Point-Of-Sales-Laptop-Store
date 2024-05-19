@@ -14,9 +14,10 @@
 </head>
 
 <body class="bg-[#131432]">
-    <div class="flex flex-row bg-[#131432] h-screen" >
-        <x-kasir_sidebar />
-        <main class="bg-[#131432] w-full max-h-screen min-h-screen   overflow-y-auto">
+    <div class="flex flex-row bg-[#131432] h-screen">
+        <x-mini_sidebar />
+
+        <main class="bg-[#131432] w-full min-h-screen max-h-screen overflow-y-auto">
             @yield('content')
         </main>
     </div>
