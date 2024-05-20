@@ -8,9 +8,10 @@
                 <p class="text-gray-400 text-sm font-bold  tracking-wider pb-4">
                     MAIN
                 </p>
-                <a href="/dashboard-kasir" tabindex="0"
+                <a href="/kasir" tabindex="0"
                     class="flex items-center w-full  px-6 py-3 rounded-lg text-start leading-tight transition-all hover:bg-[#aa5800] hover:bg-opacity-10 hover:text-[#e07946] outline-none
-                    bg-[#aa5800] bg-opacity-10 text-[#e07946] ">
+                    @if (request()->is('kasir')) bg-[#aa5800] bg-opacity-10 text-[#e07946] @endif
+                    ">
                     <div class="grid place-items-center mr-3">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                             stroke="currentColor" class="w-6 h-6">
@@ -21,8 +22,9 @@
                     Dashboard
                 </a>
                 </a>
-                <a href="/management_customer" tabindex="0"
+                <a href="/kasir/customer" tabindex="0"
                     class="flex items-center w-full  px-6 py-3 rounded-lg text-start leading-tight transition-all hover:bg-[#aa5800] hover:bg-opacity-10 hover:text-[#e07946] outline-none
+                    @if (request()->is('kasir/customer')) bg-[#aa5800] bg-opacity-10 text-[#e07946] @endif
                 ">
                     <div class="grid place-items-center mr-3">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
@@ -31,8 +33,10 @@
                     </div>
                     Management Customer
                 </a>
-                <a href="/RiwayatTransaksi" tabindex="0"
+                <a href="/kasir/transaksi" tabindex="0"
                     class="flex items-center w-full  px-6 py-3 rounded-lg text-start leading-tight transition-all hover:bg-[#aa5800] hover:bg-opacity-10 hover:text-[#e07946] outline-none
+                    @if (request()->is('kasir/transaksi')) bg-[#aa5800] bg-opacity-10 text-[#e07946] @endif
+
                 ">
                     <div class="grid place-items-center mr-3">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"

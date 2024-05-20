@@ -34,11 +34,13 @@ Route::prefix('admin')->group(function () {
     });
 
     // User
-    Route::get('/user', function () {
-        return view('admin.user.index');
-    });
-    Route::get('/create_user', function () {
-        return view('admin.create_user');
+    // Route::get('/user', function () {
+    //     return view('admin.user.index');
+    // })->name('user.index');
+
+    Route::get('/user', [UserAksesController::class, 'getAll'])->name('user.index');
+    Route::get('/user/create', function () {
+        return view('admin.user.create');
     });
 
     // Customer
@@ -50,6 +52,9 @@ Route::prefix('admin')->group(function () {
     Route::get('/supplier', function () {
         return view('admin.supplier.index');
     });
+    Route::get('/supplier/create', function () {
+        return view('admin.supplier.create');
+    });
 
     // Product
     Route::get('/product', function () {
@@ -60,10 +65,33 @@ Route::prefix('admin')->group(function () {
     Route::get('/merk', function () {
         return view('admin.merk.index');
     });
+    Route::get('/merk/create', function () {
+        return view('admin.merk.create');
+    });
+    Route::get('/merk/update', function () {
+        return view('admin.merk.update');
+    });
+
 
     // Payment
     Route::get('/payment', function () {
         return view('admin.payment.index');
+    });
+
+    // Create product
+    Route::get('/product/create', function () {
+        return view('admin.product.create');
+    });
+    
+    // Edit product
+    Route::get('/product/update', function () {
+        return view('admin.product.update');
+    });
+    Route::get('/payment/create', function () {
+        return view('admin.payment.create');
+    });
+    Route::get('/payment/update', function () {
+        return view('admin.payment.update');
     });
 });
 
@@ -81,13 +109,13 @@ Route::prefix('kasir')->group(function () {
 });
 
 
-Route::get('/login', function () {
+Route::get('/', function () {
     return view('auth.login');
 });
 
-
-
-
+Route::get('/modal-tran', function () {
+    return view('kasir.modal-tran');
+});
 
 Route::get('/form', function () {
     return view('form');
