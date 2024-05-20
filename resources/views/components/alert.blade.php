@@ -1,5 +1,5 @@
 <div>
-    <button data-modal-target="delete-modal" data-modal-toggle="delete-modal" class="bg-[#002D4C] border p-1 border-[#2B4F69] rounded-md">
+    <button data-modal-target="delete-modal{{ $id }}" data-modal-toggle="delete-modal{{ $id }}" class="bg-[#002D4C] border p-1 border-[#2B4F69] rounded-md">
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
             stroke-width="1.5" stroke="currentColor" class="w-6 h-6 text-red-600">
             <path stroke-linecap="round" stroke-linejoin="round"
@@ -7,7 +7,7 @@
         </svg>
     </button>
     <!-- MODAL -->
-    <div id="delete-modal" aria-hidden="true"
+    <div id="delete-modal{{ $id }}" aria-hidden="true"
         class="hidden overflow-x-hidden overflow-y-auto fixed h-modal md:h-full top-4 left-0 right-0 md:inset-0 z-50 justify-center items-center">
         <div class="flex w-[500px]  items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
             <!-- Modal panel -->
@@ -35,7 +35,7 @@
             </div>
                 <!-- Modal footer -->
                 <div class="flex justify-between items-center space-x-4 p-4 rounded-b">
-                    <button data-modal-toggle="delete-modal" type="submit" class="py-2 px-4 text-sm font-medium  rounded-md border  focus:ring-4 focus:outline-none focus:ring-primary-300 focus:z-10 bg-green-700 text-green-200 border-green-500 hover:text-white hover:bg-green-600 focus:ring-green-600">
+                    <button data-modal-toggle="delete-modal{{ $id }}" type="submit" class="py-2 px-4 text-sm font-medium  rounded-md border  focus:ring-4 focus:outline-none focus:ring-primary-300 focus:z-10 bg-green-700 text-green-200 border-green-500 hover:text-white hover:bg-green-600 focus:ring-green-600">
                         Cancel
                     </button>
                     <button  type="button" class="py-2 px-4 text-sm rounded-md font-medium text-center text-white bg-red-600  hover:bg-red-700 focus:ring-4 focus:outline-none focus:ring-red-300 dark:bg-red-500 dark:hover:bg-red-600 dark:focus:ring-red-900">

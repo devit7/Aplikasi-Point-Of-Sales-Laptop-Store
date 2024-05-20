@@ -18,7 +18,7 @@ class PaymentsController extends Controller
     {
         return response()->json([
             'message' => 'List Payments',
-            'data' => Payments::paginate(10)
+            'data' => Payments::all()
         ]);
     }
 

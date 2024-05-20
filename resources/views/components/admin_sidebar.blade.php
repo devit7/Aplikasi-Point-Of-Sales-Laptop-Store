@@ -40,7 +40,8 @@
                     </button>
                     <ul id="dropdown-example" class="hidden py-2 space-y-2">
                         <li>
-                            <a href="/admin/user"
+                            
+                            <a href="{{ route('user.index') }}"
                                 class="flex items-center w-full px-6 py-3 rounded-lg text-start leading-tight transition-all hover:bg-[#aa5800] hover:bg-opacity-10 hover:text-[#e07946] outline-none pl-11
                                 @if (request()->is('admin/user')) bg-[#aa5800] bg-opacity-10 text-[#e07946] @endif
                                 ">User</a>
