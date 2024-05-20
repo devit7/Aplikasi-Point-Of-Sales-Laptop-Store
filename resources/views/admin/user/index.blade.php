@@ -31,18 +31,24 @@
                             <tr class="border-b-2 border-[#33356F]">
                                 <th class="py-2 text-[#6b6eb4]">No</th>
                                 <th class="text-[#6b6eb4]">Name</th>
+                                <th class="text-[#6b6eb4]">Username</th>
                                 <th class="text-[#6b6eb4]">Role</th>
                                 <th class="text-[#6b6eb4]">Created At</th>
                                 <th class="text-[#6b6eb4]">Action</th>
                             </tr>
                         </thead>
                         <tbody class="text-[#6b6eb4]">
-                            @for ($i = 0; $i < 10; $i++)
+                            @forelse ($data['data']  as $item)
                                 <tr class="border-b-2 border-[#33356F] text-left">
-                                    <td class="py-2">{{ $i + 1 }}</td>
-                                    <td>John Doe</td>
-                                    <td>Admin</td>
-                                    <td>18-03-2004</td>
+                                    <td class="py-2">{{ $loop->index + 1 }}</td>
+                                    <td>{{ $item['nama'] }}</td>
+                                    <td>{{ $item['username'] }}</td>
+                                    <td>
+                                        <p class=" text-center  border rounded-full {{ $item['role'] == 'admin' ? ' border-green-400 bg-green-900 text-green-400' : ' border-blue-400 bg-blue-900 text-blue-300' }}">
+                                            {{ $item['role'] }}
+                                        </p>
+                                    </td>
+                                    <td>{{ \Carbon\Carbon::parse($item['created_at'])->format('Y-m-d H:i') }}</td>
                                     <td>
                                         <button class="bg-[#002D4C] border p-1 border-[#2B4F69] rounded-md">
                                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
@@ -69,7 +75,11 @@
                                         </button>
                                     </td>
                                 </tr>
-                            @endfor
+                            @empty
+                                <tr>
+                                    <td colspan="5" class="text-center">No data available</td>
+                                </tr>
+                            @endforelse
                         </tbody>
                     </table>
                 </div>
