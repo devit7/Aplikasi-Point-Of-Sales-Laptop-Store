@@ -3,15 +3,16 @@
 @section('content')
     <div class=" flex flex-col  gap-5 place-items-center min-h-screen min-w-full text-white p-2 pt-12">
 
-        <div class=" gap-10 flex flex-row ">
-            <div class="flex flex-col bg-[#1C1D42] max-w-sm rounded overflow-hidden shadow-lg border border-[#33356F]">
+        <div class=" gap-9 flex flex-row w-full px-5 ">
+
+            <div class="flex flex-col bg-[#1c1d42fc] w-full rounded overflow-hidden shadow-lg border border-[#33356F]">
                 <div class=" flex flex-row gap-5 items-center justify-center p-4">
-                    <div class=" flex flex-shrink-0 font-bold text-xl bg-[#193248] rounded-full p-1">
-                        <img class=" img-fluid size-10" src=" {{ asset('foto/dollar-logo.png') }} ">
+                    <div class=" flex flex-shrink-0 font-bold text-xl bg-[#25c72d3a] rounded-full p-1">
+                        <img class="  size-10" src=" {{ asset('foto/dollar-logo.png') }} ">
                     </div>
                     <div class="text-[#4E6196] text-base text-center w-full">
                         <p class=" text-white font-semibold">
-                            Rp.1000.000,00
+                            {{ "Rp" . number_format($totalProfit, 2, ",", ".") }}
                         </p>
                         <p class=" text-xs font-light">
                             Total Keuntungan
@@ -20,14 +21,14 @@
                 </div>
             </div>
 
-            <div class="flex flex-col bg-[#1C1D42] max-w-sm rounded overflow-hidden shadow-lg border border-[#33356F]">
+            <div class="flex flex-col bg-[#1C1D42] w-full max-w-sm rounded overflow-hidden shadow-lg border border-[#33356F]">
                 <div class=" flex flex-row min-w-60 gap-5 place-items-center p-4 ">
-                    <div class="flex flex-shrink-0 font-bold text-xl bg-[#193248] rounded-full p-1">
-                        <img class=" img-fluid size-10" src=" {{ asset('foto/dollar-logo.png') }} ">
+                    <div class="flex flex-shrink-0 font-bold text-xl bg-[#ffff0036] rounded-full p-1">
+                        <img class="  size-10" src=" {{ asset('foto/dollar-logo-yellow.png') }} ">
                     </div>
                     <div class="text-[#4E6196] text-base text-center w-full">
                         <p class=" text-white font-semibold">
-                            Rp.500.000,00
+                            {{ "Rp" . number_format($totalOriginalPrice, 2, ",", ".") }}
                         </p>
                         <p class=" text-xs font-light">
                             Total Harga Asli Terjual
@@ -36,14 +37,14 @@
                 </div>
             </div>
 
-            <div class="flex flex-col bg-[#1C1D42] max-w-sm rounded overflow-hidden shadow-lg border border-[#33356F]">
+            <div class="flex flex-col bg-[#1C1D42] w-full max-w-sm rounded overflow-hidden shadow-lg border border-[#33356F]">
                 <div class=" flex flex-row min-w-60 gap-5 items-center p-4 ">
-                    <div class="flex flex-shrink-0 font-bold text-xl bg-[#193248] rounded-full p-1">
-                        <img class=" img-fluid size-10" src=" {{ asset('foto/dollar-logo.png') }} ">
+                    <div class="flex flex-shrink-0 font-bold text-xl bg-[#1dae224c] rounded-full p-1">
+                        <img class="  size-10" src=" {{ asset('foto/sold-product.png') }} ">
                     </div>
                     <div class="text-[#4E6196] text-base text-center w-full">
                         <p class="text-white font-semibold">
-                            2000
+                            {{ $totalProductSold }}
                         </p>
                         <p class=" text-xs font-light">
                             Total Produk Terjual
@@ -52,14 +53,14 @@
                 </div>
             </div>
 
-            <div class="flex flex-col bg-[#1C1D42] max-w-sm rounded overflow-hidden shadow-lg border border-[#33356F]">
+            <div class="flex flex-col bg-[#1C1D42] w-full max-w-sm rounded overflow-hidden shadow-lg border border-[#33356F]">
                 <div class=" flex flex-row min-w-60 gap-5 items-center p-4">
-                    <div class="flex flex-shrink-0 font-bold text-xl bg-[#193248] rounded-full p-1">
-                        <img class=" img-fluid size-10" src=" {{ asset('foto/transaction.png') }} ">
+                    <div class="flex flex-shrink-0 font-bold text-xl bg-[#2b23bc3c] rounded-full p-1">
+                        <img class="  size-10" src=" {{ asset('foto/transaction.png') }} ">
                     </div>
                     <div class="text-[#4E6196] text-base text-center w-full">
                         <p class="text-white font-semibold">
-                            500
+                            {{ $totalTransaction }}
                         </p>
                         <p class=" text-xs font-light">
                             Total Transaksi
@@ -71,16 +72,16 @@
 
         </div>
 
-        <div class=" gap-10 flex flex-row ">
+        <div class=" gap-9 flex flex-row w-full px-5 ">
 
-            <div class="flex flex-col bg-[#1C1D42] max-w-sm rounded overflow-hidden shadow-lg border border-[#33356F]">
+            <div class="flex flex-col bg-[#1C1D42] w-full max-w-sm rounded overflow-hidden shadow-lg border border-[#33356F]">
                 <div class=" flex flex-row min-w-60 gap-5 items-center p-4">
                     <div class="flex flex-shrink-0 font-bold text-xl bg-[#b326ae48] rounded-full p-1">
-                        <img class=" img-fluid size-10" src=" {{ asset('foto/product.png') }} ">
+                        <img class=" size-10" src=" {{ asset('foto/product.png') }} ">
                     </div>
                     <div class="text-[#4E6196] text-base text-center w-full">
                         <p class="text-white font-semibold">
-                            50.000
+                            {{ $totalProduct }}
                         </p>
                         <p class=" text-xs font-light">
                             Total Produk
@@ -89,14 +90,14 @@
                 </div>
             </div>
 
-            <div class="flex flex-col bg-[#1C1D42] max-w-sm rounded overflow-hidden shadow-lg border border-[#33356F]">
+            <div class="flex flex-col bg-[#1C1D42] w-full max-w-sm rounded overflow-hidden shadow-lg border border-[#33356F]">
                 <div class=" flex flex-row min-w-60 gap-5 items-center p-4">
                     <div class="flex flex-shrink-0 font-bold text-xl bg-[#d5462d41] rounded-full p-1 overflow-clip">
-                        <img class=" img-fluid size-10" src=" {{ asset('foto/people.png') }} ">
+                        <img class=" size-10" src=" {{ asset('foto/people.png') }} ">
                     </div>
                     <div class="text-[#4E6196] text-base text-center w-full">
                         <p class="text-white font-semibold">
-                            398
+                            {{$totalCustomer}}
                         </p>
                         <p class=" text-xs font-light">
                             Total Kustomer
@@ -105,14 +106,14 @@
                 </div>
             </div>
 
-            <div class="flex flex-col bg-[#1C1D42] max-w-sm rounded overflow-hidden shadow-lg border border-[#33356F]">
+            <div class="flex flex-col bg-[#1C1D42] w-full max-w-sm rounded overflow-hidden shadow-lg border border-[#33356F]">
                 <div class=" flex flex-row min-w-60 gap-5 items-center p-4">
-                    <div class="flex flex-shrink-0 font-bold text-xl bg-[#dd262650] rounded-full p-1">
-                        <img class=" img-fluid size-10" src=" {{ asset('foto/cashier.png') }} ">
+                    <div class="flex flex-shrink-0 font-bold text-xl bg-[#db6e264e] rounded-full p-1 overflow-clip">
+                        <img class="  size-10" src=" {{ asset('foto/cashier.png') }} ">
                     </div>
                     <div class="text-[#4E6196] text-base text-center w-full">
                         <p class="text-white font-semibold">
-                            5
+                            {{$totalCashier}}
                         </p>
                         <p class=" text-xs font-light">
                             Total Kasir
@@ -121,14 +122,14 @@
                 </div>
             </div>
 
-            <div class="flex flex-col bg-[#1C1D42] max-w-sm rounded overflow-hidden shadow-lg border border-[#33356F]">
+            <div class="flex flex-col bg-[#1C1D42] w-full max-w-sm rounded overflow-hidden shadow-lg border border-[#33356F]">
                 <div class=" flex flex-row min-w-60 gap-5 items-center p-4">
-                    <div class="flex flex-shrink-0 font-bold text-xl bg-[#193248] rounded-full p-1">
-                        <img class=" img-fluid size-10" src=" {{ asset('foto/dollar-logo.png') }} ">
+                    <div class="flex flex-shrink-0 font-bold text-xl bg-[#66b8ff3e] rounded-full p-1 overflow-clip">
+                        <img class="  size-10" src=" {{ asset('foto/brand.png') }} ">
                     </div>
                     <div class="text-[#4E6196] text-base text-center w-full">
                         <p class="text-white font-semibold">
-                            25
+                            {{$totalMerk}}
                         </p>
                         <p class=" text-xs font-light">
                             Total Merk
@@ -139,17 +140,91 @@
 
         </div>
 
-        <div class=" gap-10 flex flex-row">
+        <div class=" gap-9 flex flex-row w-full px-5">
 
-            <div class="flex flex-col bg-[#1C1D42] w- rounded overflow-hidden shadow-lg border border-[#33356F]">
+            <div class="flex flex-col bg-[#1C1D42] w-full rounded overflow-hidden shadow-lg border border-[#33356F]">
                 <div class=" flex flex-row min-w-72 min-h-60 gap-5 items-center p-4">
-                    <div class="w-full font-bold text-xl text-center rounded-full p-1 container">
+                    <div id="container" class=" w-full font-bold bg-[#1C1D42] text-xl text-center p-1">
+                        <script src="https://code.highcharts.com/highcharts.js"></script>
+                        <script>
+                            document.addEventListener('DOMContentLoaded', function()
+                            {
+                                const dailyTransactionCounts = @json($dailyTransactionData);
+                                const daysInMonth = Object.keys(dailyTransactionCounts);
+                                const transactionCounts = Object.values(dailyTransactionCounts);
+                                const maxTransactionCount = Math.max(...transactionCounts);
+
+                                console.log("dailyTransactionCounts = " + dailyTransactionCounts);
+                                console.log("daysInMonth = " + daysInMonth);
+                                console.log("transactionCounts = " + transactionCounts);
+                                console.log("maxTransactionCount = " + maxTransactionCount);
+
+                                Highcharts.chart('container', {
+                                    chart: {
+                                        type: 'line',
+                                        backgroundColor: '#1C1D42',
+                                        color: 'white',
+                                        lineColor: 'white'
+                                    },
+                                    title: {
+                                        text: 'Grafik Transaksi Pada Bulan {{ Carbon\Carbon::now()->locale('id')->translatedFormat('F Y') }}',
+                                        style: {
+                                            color: '#FFFFFF' // Change font color to blue
+                                        }
+                                    },
+                                    xAxis: {
+                                        categories: daysInMonth,
+                                        labels:{
+                                            style:{
+                                                color: 'white'
+                                            }
+                                        },
+                                        title: {
+                                            text: 'Tanggal ke-',
+                                            style: {
+                                                color: 'white' // Change font color to blue
+                                            }
+                                        }
+                                    },
+                                    yAxis: {
+                                        min: 0,
+                                        max: maxTransactionCount + 10,
+                                        labels:{
+                                            style:{
+                                                color: 'white'
+                                            }
+                                        },
+                                        title: {
+                                            text: 'Jumlah Transaksi',
+                                            style: {
+                                                color: 'white' // Change font color to blue
+                                            }
+                                        }
+                                    },
+                                    legend: {
+                                        title: {
+                                            style: {
+                                                color: 'white'
+                                            }
+                                        },
+                                        itemStyle: {
+                                            color: 'white'
+                                        }
+                                    },
+                                    series: [{
+                                        name: 'Transaksi',
+                                        data: transactionCounts,
+                                        color: 'orange'
+                                    }]
+                                });
+                            });
+                        </script>
 
                     </div>
                 </div>
             </div>
 
-            <div class=" min-w-[30rem] max-w-md rounded overflow-hidden shadow-lg bg-[#1C1D42] border border-[#33356F] ">
+            <div class=" w-full max-w-xl rounded overflow-hidden shadow-lg bg-[#1C1D42] border border-[#33356F] ">
 
                 <div>
                     <div class="bg-[#FD9D3F] text-base text-black font-semibold text-center">

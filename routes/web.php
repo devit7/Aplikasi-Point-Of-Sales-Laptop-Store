@@ -3,6 +3,7 @@
 use App\Http\Controllers\AksesController\CustomersAksesController;
 use App\Http\Controllers\AksesController\PaymentsAksesController;
 use App\Http\Controllers\AksesController\UserAksesController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -20,9 +21,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::prefix('admin')->group(function () {
     // Dashboard
-    Route::get('/', function () {
-        return view('admin.index');
-    });
+    Route::get('/', [DashboardController::class, 'index']);
 
     // Setting
     Route::get('/setting', function () {
