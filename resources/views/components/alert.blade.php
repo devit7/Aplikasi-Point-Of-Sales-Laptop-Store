@@ -29,7 +29,7 @@
               <div class="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
                 <h3 class="text-xl leading-6 font-semibold text-[#aa5800]" id="modal-headline"> Delete Item </h3>
                 <div class="mt-2">
-                    <p class="text-sm text-[#6b6eb4]"> Are you sure you want to delete <span class="font-bold">{{ $nama }}</span>? This action cannot be undone. </p>
+                    <p class="text-sm text-white"> Are you sure you want to delete <span class="font-bold">{{ $nama }}</span>? This action cannot be undone. </p>
                 </div>
               </div>
             </div>
