@@ -38,7 +38,7 @@
                             </tr>
                         </thead>
                         <tbody class="text-[#6b6eb4]">
-                            @forelse ($data['data']  as $item)
+                            @forelse ($data  as $item)
                                 <tr class="border-b-2 border-[#33356F] text-left">
                                     <td class="py-2">{{ $loop->index + 1 }}</td>
                                     <td>{{ $item['nama'] }}</td>
