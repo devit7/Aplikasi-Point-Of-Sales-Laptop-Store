@@ -15,7 +15,7 @@
 
 <body class="bg-[#131432]">
     <div class="flex flex-row bg-[#131432] h-screen">
-        <x-admin_sidebar />
+        <x-mini_sidebar />
 
         <main class="bg-[#131432] w-full min-h-screen max-h-screen overflow-y-auto">
             @yield('content')

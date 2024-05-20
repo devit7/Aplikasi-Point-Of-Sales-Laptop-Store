@@ -23,21 +23,21 @@ use Illuminate\Support\Facades\Route;
 Route::post('/login', [AuthController::class, 'login'])->name('login');
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
+Route::apiResource('/users', UserController::class);
+Route::apiResource('/customers', CustomersController::class);
+Route::apiResource('/payments', PaymentsController::class);
 Route::middleware('auth:sanctum')->group(function () {
+    Route::apiResource('/transaksi', TransaksiController::class);
     
     // jika role admin
     Route::group(['middleware' => ['UserAkses:admin']], function () {
-        Route::apiResource('/users', UserController::class);
-        Route::apiResource('/customers', CustomersController::class);
-        Route::apiResource('/payments', PaymentsController::class);
-        Route::apiResource('/transaksi', TransaksiController::class);
     });
 
     // jika role kasir
     Route::group(['middleware' => ['UserAkses:kasir']], function () {
         //Route::apiResource('/customers', CustomersController::class);
-        Route::apiResource('/payments', PaymentsController::class);
-        Route::apiResource('/transaksi', TransaksiController::class);
+        //Route::apiResource('/payments', PaymentsController::class);
+        //Route::apiResource('/transaksi', TransaksiController::class);
     });
 
 });
