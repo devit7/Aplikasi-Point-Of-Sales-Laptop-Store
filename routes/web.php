@@ -36,7 +36,7 @@ Route::prefix('admin')->group(function () {
 
     // User
     // Route::get('/user', function () {
-    //     return view('admin.user.index');
+    //     return view('admin.user.index',);
     // })->name('user.index');
 
     Route::get('/user', [UserAksesController::class, 'getAll'])->name('user.index');

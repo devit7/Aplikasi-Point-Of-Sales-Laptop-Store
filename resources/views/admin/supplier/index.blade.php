@@ -26,7 +26,7 @@
                         <td></td>
                         <td class="flex flex-row gap-3">
                         <x-modal-detail-transaksi/>
-                        <x-alert/>
+                        <x-alert />
                         </td>
                     </tr>
                 </tbody>

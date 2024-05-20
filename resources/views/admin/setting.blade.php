@@ -13,7 +13,7 @@
                 </p>
             </div>
         </div>
-        <div class="mt-10 flex justify-between w-full mx-auto     rounded-md">
+        <div class="mt-10 flex gap-[200px] w-full mx-auto     rounded-md">
             <div class="w-[600px] flex flex-col gap-4">
                 <p class="rounded-md p-4 font-semibold bg-[#1C1D42] text-[#6b6eb4]">Setting</p>
                 <div class="rounded-md p-4 bg-[#1C1D42] text-[#6b6eb4]">
