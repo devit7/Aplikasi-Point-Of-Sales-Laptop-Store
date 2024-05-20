@@ -12,7 +12,7 @@
                     </div>
                     <div class="text-[#4E6196] text-base text-center w-full">
                         <p class=" text-white font-semibold">
-                            {{ "Rp" . number_format($totalProfit, 2, ",", ".") }}
+                            {{ 'Rp' . number_format($totalProfit, 2, ',', '.') }}
                         </p>
                         <p class=" text-xs font-light">
                             Total Keuntungan
@@ -21,14 +21,15 @@
                 </div>
             </div>
 
-            <div class="flex flex-col bg-[#1C1D42] w-full max-w-sm rounded overflow-hidden shadow-lg border border-[#33356F]">
+            <div
+                class="flex flex-col bg-[#1C1D42] w-full max-w-sm rounded overflow-hidden shadow-lg border border-[#33356F]">
                 <div class=" flex flex-row min-w-60 gap-5 place-items-center p-4 ">
                     <div class="flex flex-shrink-0 font-bold text-xl bg-[#ffff0036] rounded-full p-1">
                         <img class="  size-10" src=" {{ asset('foto/dollar-logo-yellow.png') }} ">
                     </div>
                     <div class="text-[#4E6196] text-base text-center w-full">
                         <p class=" text-white font-semibold">
-                            {{ "Rp" . number_format($totalOriginalPrice, 2, ",", ".") }}
+                            {{ 'Rp' . number_format($totalOriginalPrice, 2, ',', '.') }}
                         </p>
                         <p class=" text-xs font-light">
                             Total Harga Asli Terjual
@@ -37,7 +38,8 @@
                 </div>
             </div>
 
-            <div class="flex flex-col bg-[#1C1D42] w-full max-w-sm rounded overflow-hidden shadow-lg border border-[#33356F]">
+            <div
+                class="flex flex-col bg-[#1C1D42] w-full max-w-sm rounded overflow-hidden shadow-lg border border-[#33356F]">
                 <div class=" flex flex-row min-w-60 gap-5 items-center p-4 ">
                     <div class="flex flex-shrink-0 font-bold text-xl bg-[#1dae224c] rounded-full p-1">
                         <img class="  size-10" src=" {{ asset('foto/sold-product.png') }} ">
@@ -53,7 +55,8 @@
                 </div>
             </div>
 
-            <div class="flex flex-col bg-[#1C1D42] w-full max-w-sm rounded overflow-hidden shadow-lg border border-[#33356F]">
+            <div
+                class="flex flex-col bg-[#1C1D42] w-full max-w-sm rounded overflow-hidden shadow-lg border border-[#33356F]">
                 <div class=" flex flex-row min-w-60 gap-5 items-center p-4">
                     <div class="flex flex-shrink-0 font-bold text-xl bg-[#2b23bc3c] rounded-full p-1">
                         <img class="  size-10" src=" {{ asset('foto/transaction.png') }} ">
@@ -74,7 +77,8 @@
 
         <div class=" gap-9 flex flex-row w-full px-5 ">
 
-            <div class="flex flex-col bg-[#1C1D42] w-full max-w-sm rounded overflow-hidden shadow-lg border border-[#33356F]">
+            <div
+                class="flex flex-col bg-[#1C1D42] w-full max-w-sm rounded overflow-hidden shadow-lg border border-[#33356F]">
                 <div class=" flex flex-row min-w-60 gap-5 items-center p-4">
                     <div class="flex flex-shrink-0 font-bold text-xl bg-[#b326ae48] rounded-full p-1">
                         <img class=" size-10" src=" {{ asset('foto/product.png') }} ">
@@ -90,14 +94,15 @@
                 </div>
             </div>
 
-            <div class="flex flex-col bg-[#1C1D42] w-full max-w-sm rounded overflow-hidden shadow-lg border border-[#33356F]">
+            <div
+                class="flex flex-col bg-[#1C1D42] w-full max-w-sm rounded overflow-hidden shadow-lg border border-[#33356F]">
                 <div class=" flex flex-row min-w-60 gap-5 items-center p-4">
                     <div class="flex flex-shrink-0 font-bold text-xl bg-[#d5462d41] rounded-full p-1 overflow-clip">
                         <img class=" size-10" src=" {{ asset('foto/people.png') }} ">
                     </div>
                     <div class="text-[#4E6196] text-base text-center w-full">
                         <p class="text-white font-semibold">
-                            {{$totalCustomer}}
+                            {{ $totalCustomer }}
                         </p>
                         <p class=" text-xs font-light">
                             Total Kustomer
@@ -106,14 +111,15 @@
                 </div>
             </div>
 
-            <div class="flex flex-col bg-[#1C1D42] w-full max-w-sm rounded overflow-hidden shadow-lg border border-[#33356F]">
+            <div
+                class="flex flex-col bg-[#1C1D42] w-full max-w-sm rounded overflow-hidden shadow-lg border border-[#33356F]">
                 <div class=" flex flex-row min-w-60 gap-5 items-center p-4">
                     <div class="flex flex-shrink-0 font-bold text-xl bg-[#db6e264e] rounded-full p-1 overflow-clip">
                         <img class="  size-10" src=" {{ asset('foto/cashier.png') }} ">
                     </div>
                     <div class="text-[#4E6196] text-base text-center w-full">
                         <p class="text-white font-semibold">
-                            {{$totalCashier}}
+                            {{ $totalCashier }}
                         </p>
                         <p class=" text-xs font-light">
                             Total Kasir
@@ -122,14 +128,15 @@
                 </div>
             </div>
 
-            <div class="flex flex-col bg-[#1C1D42] w-full max-w-sm rounded overflow-hidden shadow-lg border border-[#33356F]">
+            <div
+                class="flex flex-col bg-[#1C1D42] w-full max-w-sm rounded overflow-hidden shadow-lg border border-[#33356F]">
                 <div class=" flex flex-row min-w-60 gap-5 items-center p-4">
                     <div class="flex flex-shrink-0 font-bold text-xl bg-[#66b8ff3e] rounded-full p-1 overflow-clip">
                         <img class="  size-10" src=" {{ asset('foto/brand.png') }} ">
                     </div>
                     <div class="text-[#4E6196] text-base text-center w-full">
                         <p class="text-white font-semibold">
-                            {{$totalMerk}}
+                            {{ $totalMerk }}
                         </p>
                         <p class=" text-xs font-light">
                             Total Merk
@@ -147,8 +154,7 @@
                     <div id="container" class=" w-full font-bold bg-[#1C1D42] text-xl text-center p-1">
                         <script src="https://code.highcharts.com/highcharts.js"></script>
                         <script>
-                            document.addEventListener('DOMContentLoaded', function()
-                            {
+                            document.addEventListener('DOMContentLoaded', function() {
                                 const dailyTransactionCounts = @json($dailyTransactionData);
                                 const daysInMonth = Object.keys(dailyTransactionCounts);
                                 const transactionCounts = Object.values(dailyTransactionCounts);
@@ -174,8 +180,8 @@
                                     },
                                     xAxis: {
                                         categories: daysInMonth,
-                                        labels:{
-                                            style:{
+                                        labels: {
+                                            style: {
                                                 color: 'white'
                                             }
                                         },
@@ -189,8 +195,8 @@
                                     yAxis: {
                                         min: 0,
                                         max: maxTransactionCount + 10,
-                                        labels:{
-                                            style:{
+                                        labels: {
+                                            style: {
                                                 color: 'white'
                                             }
                                         },
@@ -237,42 +243,21 @@
                     </div>
                 </div>
 
-                <div class="flex px-2 py-2 items-center justify-between ">
-                    <div class="w-5/12 flex">
-                        <img class="w-6 sm:w-10 mr-2 self-center" alt="away-logo"
-                            src="https://p2-ofp.static.pub/ShareResource/na/subseries/hero/lenovo-thinkpad-t14-gen3-amd-thunder-black.png">
-                        <div class="flex flex-col">
-                            <p class="text-sm font-bold">Thinkpad T14 Gen 3</p>
-                            <p class="hidden sm:block font-medium text-[#4E6196]">Lenovo</p>
-                        </div>
-                    </div>
-                    <p class="w-1/6 text-lg sm:text-xl font-bold text-right pr-6">123</p>
-                </div>
+                @foreach ($topProducts as $product)
 
-                <div class="flex px-2 py-2 items-center justify-between ">
-                    <div class="w-5/12 flex">
-                        <img class="w-6 sm:w-10 mr-2 self-center" alt="home-logo"
-                            src="https://dlcdnwebimgs.asus.com/gain/50E7C82B-1054-4678-926B-B9FC0EF4D75D/w717/h525/w273">
-                        <div class="flex flex-col">
-                            <p class="text-sm font-bold">ROG Strix G18</p>
-                            <p class="hidden sm:block font-medium text-[#4E6196]">Asus</p>
+                    <div class="flex px-2 py-2 items-center justify-between ">
+                        <div class="w-5/12 flex items-center">
+                            <img class="w-6 sm:w-10 mr-2 self-center" alt="away-logo"
+                                src="https://p2-ofp.static.pub/ShareResource/na/subseries/hero/lenovo-thinkpad-t14-gen3-amd-thunder-black.png">
+                            <div class="flex flex-col">
+                                <p class="text-sm font-bold"> {{$product->product_name}} </p>
+                                <p class="hidden sm:block font-medium text-[#4E6196]"> {{ $product->merk_name }} </p>
+                            </div>
                         </div>
+                        <p class="w-1/6 text-lg sm:text-xl font-bold text-right pr-6"> {{ $product->total_quantity_sold }} </p>
                     </div>
-                    <p class="w-1/6 text-lg sm:text-xl font-bold text-right pr-6">109</p>
-                </div>
 
-                <div class="flex px-2 py-2 items-center justify-between ">
-                    <div class="w-5/12 flex">
-                        <img class="w-6 sm:w-10 mr-2 self-center" alt="home-logo"
-                            src="https://dlcdnwebimgs.asus.com/gain/50E7C82B-1054-4678-926B-B9FC0EF4D75D/w717/h525/w273">
-                        <div class="flex flex-col">
-                            <p class="text-sm font-bold">Nitro 5</p>
-                            <p class="hidden sm:block font-medium text-[#4E6196]">Acer</p>
-                        </div>
-                    </div>
-                    <p class="w-1/6 text-lg sm:text-xl font-bold text-right pr-6">109</p>
-                </div>
-
+                    @endforeach
             </div>
 
         </div>

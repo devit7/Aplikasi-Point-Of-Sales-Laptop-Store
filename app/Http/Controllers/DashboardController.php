@@ -53,11 +53,22 @@ class DashboardController extends Controller
                 $totalProductSold += $product->pivot->quantity;
             }
         }
-        $totalTransaction = sizeof($transactions);
-        $totalProduct = Product::count();
-        $totalCustomer = Customers::count();
-        $totalCashier = User::where('role', 'kasir')->count();
-        $totalMerk = Merk::count();
+        $totalTransaction = sizeof($transactions) ?? 0;
+        $totalProduct = Product::count() ?? 0;
+        $totalCustomer = Customers::count() ?? 0;
+        $totalCashier = User::where('role', 'kasir')->count() ?? 0;
+        $totalMerk = Merk::count() ?? 0;
+
+        $topProducts = Transaksi::with('product')
+        ->select('product.id', 'product.product_name', 'product.img', 'merk.merk_name', DB::raw('SUM(detail_transaksi.quantity) as total_quantity_sold'))
+        ->join('detail_transaksi', 'transaksi.id', '=', 'detail_transaksi.transaksi_id')
+        ->join('product', 'detail_transaksi.product_id', '=', 'product.id')
+        ->join('merk', 'product.merk_id', '=', 'merk.id')
+        ->groupBy('product.id', 'product.product_name')
+        ->orderByDesc('total_quantity_sold')
+        ->limit(5)
+        ->get();
+        // dd($topProducts);
         // $topFiveProduct = Transaksi::with('product')
         // ->;
         // dd(User::where('role', 'kasir')->count());
@@ -67,6 +78,6 @@ class DashboardController extends Controller
         // dd($transactions);
 
         // dd($dailyTransactionCounts);
-        return view('admin.index', compact('dailyTransactionData', 'totalProfit', 'totalOriginalPrice', 'totalProductSold', 'totalTransaction', 'totalProduct', 'totalCustomer', 'totalCashier', 'totalMerk'));
+        return view('admin.index', compact('dailyTransactionData', 'totalProfit', 'totalOriginalPrice', 'totalProductSold', 'totalTransaction', 'totalProduct', 'totalCustomer', 'totalCashier', 'totalMerk', 'topProducts'));
     }
 }

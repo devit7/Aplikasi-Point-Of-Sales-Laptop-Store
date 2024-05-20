@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AksesController\CustomersAksesController;
 use App\Http\Controllers\AksesController\PaymentsAksesController;
+use App\Http\Controllers\AksesController\TransaksisAksesController;
 use App\Http\Controllers\AksesController\UserAksesController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\UserController;
@@ -82,7 +83,7 @@ Route::prefix('admin')->group(function () {
     Route::get('/product/create', function () {
         return view('admin.product.create');
     });
-    
+
     // Edit product
     Route::get('/product/update', function () {
         return view('admin.product.update');
@@ -93,6 +94,10 @@ Route::prefix('admin')->group(function () {
     Route::get('/payment/update', function () {
         return view('admin.payment.update');
     });
+
+    // Transaksi
+    Route::get('/transaksi', [TransaksisAksesController::class, 'getAll']);
+
 });
 
 
