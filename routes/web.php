@@ -53,6 +53,9 @@ Route::prefix('admin')->group(function () {
     Route::get('/supplier', function () {
         return view('admin.supplier.index');
     });
+    Route::get('/supplier/create', function () {
+        return view('admin.supplier.create');
+    });
 
     // Product
     Route::get('/product', function () {
