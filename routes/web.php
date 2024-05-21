@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AksesController\CustomersAksesController;
 use App\Http\Controllers\AksesController\PaymentsAksesController;
+use App\Http\Controllers\PaymentsController;
 use App\Http\Controllers\AksesController\UserAksesController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
@@ -35,11 +36,9 @@ Route::prefix('admin')->group(function () {
     });
 
     // User
-    // Route::get('/user', function () {
-    //     return view('admin.user.index');
-    // })->name('user.index');
-
-    Route::get('/user', [UserAksesController::class, 'getAll'])->name('user.index');
+    Route::get('/user', function () {
+        return view('admin.user.index');
+    });
     Route::get('/user/create', function () {
         return view('admin.user.create');
     });
@@ -52,9 +51,6 @@ Route::prefix('admin')->group(function () {
     // Supplier
     Route::get('/supplier', function () {
         return view('admin.supplier.index');
-    });
-    Route::get('/supplier/create', function () {
-        return view('admin.supplier.create');
     });
 
     // Product
@@ -77,23 +73,15 @@ Route::prefix('admin')->group(function () {
     // Payment
     Route::get('/payment', function () {
         return view('admin.payment.index');
-    });
+    })->name('payment.index');
 
-    // Create product
-    Route::get('/product/create', function () {
-        return view('admin.product.create');
-    });
-    
-    // Edit product
-    Route::get('/product/update', function () {
-        return view('admin.product.update');
-    });
     Route::get('/payment/create', function () {
         return view('admin.payment.create');
-    });
+    })->name('payment.create');
+
     Route::get('/payment/update', function () {
         return view('admin.payment.update');
-    });
+    })->name('payment.update');
 });
 
 
