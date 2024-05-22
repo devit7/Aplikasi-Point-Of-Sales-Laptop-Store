@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\AksesController;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Customer\StoreRequest;
+use App\Http\Requests\Customer\UpdateRequest;
 use Illuminate\Http\Request;
 
 class CustomersAksesController extends Controller
@@ -25,52 +27,56 @@ class CustomersAksesController extends Controller
         }
     }
 
-    public function getDetail($customer){
+    public function getDetail($customer)
+    {
         $request = Request::create('http://127.0.0.1:8000/api/customer' . $customer, 'GET');
         $response = app()->handle($request);
-        if($response->getStatusCode() == 200){
+        if ($response->getStatusCode() == 200) {
             return $response;
         } else {
             return view();
         }
     }
 
-    public function createData(Request $request){
+    public function createData(StoreRequest $request)
+    {
         $validator = $request->validated();
         $data = [
             'customer_name' => $validator['customer_name'],
-            'customer_email' => $validator['customer_email'],
-            'customer_phone' => $validator['customer_phone'],
-            'customer_address' => $validator['customer_address'],
+            'email' => $validator['email'],
+            'no_hp' => $validator['no_hp'],
+            'alamat' => $validator['alamat'],
         ];
         $request = Request::create('http://127.0.0.1:8000/api/customer', 'POST', $data);
         $response = app()->handle($request);
-        if ($response->getStatusCode() == 200){
+        if ($response->getStatusCode() == 200) {
             return $response;
         } else {
             return view();
         }
     }
 
-    public function updateData(Request $request, $customer){
+    public function updateData(UpdateRequest $request, $customer)
+    {
         $validator = $request->validated();
         $data = [
             'customer_name' => $validator['customer_name'],
-            'customer_email' => $validator['customer_email'],
-            'customer_phone' => $validator['customer_phone'],
-            'customer_address' => $validator['customer_address'],
+            'email' => $validator['email'],
+            'no_hp' => $validator['no_hp'],
+            'alamat' => $validator['alamat'],
         ];
-        $request = Request::create('http://127.0.0.1:8000/api/customer'.$customer, 'PUT', $data);
+        $request = Request::create('http://127.0.0.1:8000/api/customer' . $customer, 'PUT', $data);
         $response = app()->handle($request);
-        if ($response->getStatusCode() == 200){
+        if ($response->getStatusCode() == 200) {
             return $response;
         } else {
             return view();
         }
     }
 
-    public function deleteData($customer){
-        $request = Request::create('http://127.0.0.1:8000/api/customer'.$customer, 'DELETE');
+    public function deleteData($customer)
+    {
+        $request = Request::create('http://127.0.0.1:8000/api/customer' . $customer, 'DELETE');
         $response = app()->handle($request);
         if ($response->getStatusCode() == 200) {
             return $response;
