@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\Product\StoreRequest;
+use App\Http\Requests\Product\UpdateRequest;
 use App\Models\Product;
 use Illuminate\Http\Request;
 
@@ -14,17 +16,11 @@ class ProductController extends Controller
      */
     public function index()
     {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
+        return response()->json([
+            'message' => 'List Product',
+            'data' => Product::orderBy('product_name', 'asc')->get(),
+            'tabel_name' => (new Product)->getTable(),
+        ], 200);
     }
 
     /**
@@ -33,9 +29,24 @@ class ProductController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreRequest $request)
     {
-        //
+        $validated = $request->validated();
+
+        $product = Product::create([
+            'product_name' => $validated['product_name'],
+            'stock' => $validated['stock'],
+            'harga_jual' => $validated['harga_jual'],
+            'harga_asli' => $validated['harga_asli'],
+            'img' => $validated['img']->getClientOriginalName(),
+            'supplier_id' => $validated['supplier_id'],
+            'merk_id' => $validated['merk_id'],
+        ]);
+
+        return response()->json([
+            'message' => 'Product berhasil ditambahkan',
+            'data' => $product,
+        ], 201);
     }
 
     /**
@@ -46,18 +57,10 @@ class ProductController extends Controller
      */
     public function show(Product $product)
     {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Product  $product
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Product $product)
-    {
-        //
+        return response()->json([
+            'message' => 'Detail Product',
+            'data' => $product,
+        ], 200);
     }
 
     /**
@@ -67,9 +70,24 @@ class ProductController extends Controller
      * @param  \App\Models\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Product $product)
+    public function update(UpdateRequest $request, Product $product)
     {
-        //
+        $validated = $request->validated();
+
+        $product->update([
+            'product_name' => $validated['product_name'],
+            'stock' => $validated['stock'],
+            'harga_jual' => $validated['harga_jual'],
+            'harga_asli' => $validated['harga_asli'],
+            'img' => $validated['img'],
+            'supplier_id' => $validated['supplier_id'],
+            'merk_id' => $validated['merk_id'],
+        ]);
+
+        return response()->json([
+            'message' => 'Product berhasil diubah',
+            'data' => $product,
+        ], 200);
     }
 
     /**
@@ -80,6 +98,10 @@ class ProductController extends Controller
      */
     public function destroy(Product $product)
     {
-        //
+        $product->delete();
+
+        return response()->json([
+            'message' => 'Product berhasil dihapus',
+        ], 200);
     }
 }

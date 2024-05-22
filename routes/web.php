@@ -4,6 +4,7 @@ use App\Http\Controllers\AksesController\CustomersAksesController;
 use App\Http\Controllers\AksesController\PaymentsAksesController;
 use App\Http\Controllers\AksesController\TransaksisAksesController;
 use App\Http\Controllers\AksesController\UserAksesController;
+use App\Http\Controllers\AksesController\SupplierAksesController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
@@ -35,10 +36,6 @@ Route::prefix('admin')->group(function () {
     });
 
     // User
-    // Route::get('/user', function () {
-    //     return view('admin.user.index',);
-    // })->name('user.index');
-
     Route::get('/user', [UserAksesController::class, 'getAll'])->name('user.index');
     Route::get('/user/create', function () {
         return view('admin.user.create');
@@ -50,9 +47,7 @@ Route::prefix('admin')->group(function () {
     });
 
     // Supplier
-    Route::get('/supplier', function () {
-        return view('admin.supplier.index');
-    });
+    Route::get('/supplier', [SupplierAksesController::class, 'getAll'])->name('supplier.index');;
     Route::get('/supplier/create', function () {
         return view('admin.supplier.create');
     });
@@ -88,6 +83,7 @@ Route::prefix('admin')->group(function () {
     Route::get('/product/update', function () {
         return view('admin.product.update');
     });
+
     Route::get('/payment/create', function () {
         return view('admin.payment.create');
     });
@@ -97,9 +93,7 @@ Route::prefix('admin')->group(function () {
 
     // Transaksi
     Route::get('/transaksi', [TransaksisAksesController::class, 'getAll']);
-
 });
-
 
 Route::prefix('kasir')->group(function () {
     Route::get('/', function () {

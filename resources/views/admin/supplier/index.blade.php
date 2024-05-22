@@ -18,17 +18,23 @@
                     </tr>
                 </thead>
                 <tbody class="text-[#6b6eb4] text-center">
+                @forelse ($data as $supplier)
                     <tr class="border-b-2 border-[#33356F]">
-                        <td class="py-2">1</td>
-                        <td>Product 1</td>
-                        <td>Rp. 100.000</td>
-                        <td>10</td>
-                        <td></td>
+                    <td class="py-2">{{ $loop->index + 1 }}</td>
+                    <td>{{ $supplier['supplier_name'] }}</td>
+                    <td>{{ $supplier['no_hp'] }}</td>
+                    <td>{{ $supplier['nama_perusahaan'] }}</td>
+                    <td>{{ $supplier['alamat'] }}</td>
                         <td class="flex flex-row gap-3">
                         <x-modal-detail-transaksi/>
                         <x-alert />
                         </td>
                     </tr>
+                    @empty
+                        <tr>
+                            <td colspan="5" class="text-center">No data available</td>
+                        </tr>
+                    @endforelse
                 </tbody>
             </table>
             </div>

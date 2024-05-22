@@ -1,0 +1,65 @@
+<?php
+
+namespace App\Http\Requests\Product;
+
+use Illuminate\Foundation\Http\FormRequest;
+
+class StoreRequest extends FormRequest
+{
+    /**
+     * Determine if the user is authorized to make this request.
+     *
+     * @return bool
+     */
+    public function authorize()
+    {
+        return true;
+    }
+
+    /**
+     * Get the validation rules that apply to the request.
+     *
+     * @return array<string, mixed>
+     */
+    public function rules()
+    {
+        return [
+            // 'product_name' => 'required|string|unique:products,product_name',
+            'product_name' => 'required|string|unique:product,product_name',
+            'stock' => 'required|numeric|unsigned|min:1',
+            'harga_jual' => 'required|numeric|unsigned|min:1|not_in:0',
+            'harga_asli' => 'required|numeric|unsigned|min:1|not_in:0',
+            'img' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:10048',
+            'supplier_id' => 'required|exists:supplier,id',
+            'merk_id' => 'required|exists:merk,id',
+        ];
+    }
+
+    public function messages()
+    {
+        return [
+            'product_name.required' => 'Data Nama produk harus diisi',
+            'product_name.string' => 'Data Nama produk harus berupa string',
+            'product_name.unique' => 'Data Nama produk sudah ada',
+            'stock.required' => 'Data Stock harus diisi',
+            'stock.numeric' => 'Data Stock harus berupa angka',
+            'stock.unsigned' => 'Data Stock tidak boleh negatif',
+            'stock.min' => 'Data Stock minimal 1',
+            'harga_jual.required' => 'Data Harga jual harus diisi',
+            'harga_jual.numeric' => 'Data Harga jual harus berupa angka',
+            'harga_jual.unsigned' => 'Data Harga jual tidak boleh negatif',
+            'harga_jual.min' => 'Data Harga jual minimal 1',
+            'harga_asli.required' => 'Data Harga asli harus diisi',
+            'harga_asli.numeric' => 'Data Harga asli harus berupa angka',
+            'harga_asli.unsigned' => 'Data Harga asli tidak boleh negatif',
+            'harga_asli.min' => 'Data Harga asli minimal 1',
+            'img.image' => 'Data Gambar harus berupa gambar',
+            'img.mimes' => 'Data Gambar harus berupa jpeg,png,jpg,gif,svg',
+            'img.max' => 'Data Gambar maksimal 10 MB',
+            'supplier_id.required' => 'Data Supplier harus diisi',
+            'supplier_id.exists' => 'Data Supplier tidak ada',
+            'merk_id.required' => 'Data Merk harus diisi',
+            'merk_id.exists' => 'Data Merk tidak ada',
+        ];
+    }
+}
