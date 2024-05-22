@@ -73,23 +73,22 @@ Route::prefix('admin')->group(function () {
     Route::get('/payment', function () {
         return view('admin.payment.index');
     });
-<<<<<<< HEAD
 
     // Create product
     Route::get('/product/create', function () {
         return view('admin.product.create');
     });
-    
+
     // Edit product
     Route::get('/product/update', function () {
         return view('admin.product.update');
-=======
+    });
+
     Route::get('/payment/create', function () {
         return view('admin.payment.create');
     });
     Route::get('/payment/update', function () {
         return view('admin.payment.update');
->>>>>>> 98de37854cbdd4b3873972b406917705e6f97777
     });
 });
 
