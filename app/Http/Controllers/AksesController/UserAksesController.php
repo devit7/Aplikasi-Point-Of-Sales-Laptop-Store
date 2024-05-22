@@ -13,8 +13,13 @@ class UserAksesController extends Controller
         $request = Request::create('http://127.0.0.1:8000/api/users', 'GET');
         //$request->headers->set('Authorization', $token);
         $response = app()->handle($request); 
+        // merubah json ke array
+        $data = json_decode($response->getContent(),true);
         if($response->getStatusCode() == 200){
-            return $response;
+            //return dd($data['data']);
+            return view('admin.user.index', [
+                'data' => $data['data']
+                ]);
         }else{
             return response()->json([
                 'message' => 'Unauthorized'

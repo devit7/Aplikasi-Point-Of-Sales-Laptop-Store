@@ -18,7 +18,7 @@ class CustomersController extends Controller
     {
         return response()->json([
             'message' => 'List Customers',
-            'data' => Customers::paginate(10)
+            'data' => Customers::all()
         ]);
     }
 

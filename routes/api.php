@@ -30,10 +30,9 @@ Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 Route::apiResource('/users', UserController::class);
 Route::apiResource('/customers', CustomersController::class);
 Route::apiResource('/payments', PaymentsController::class);
+Route::apiResource('/transaksi', TransaksiController::class);
 
 Route::middleware('auth:sanctum')->group(function () {
-    Route::apiResource('/transaksi', TransaksiController::class);
-
     // jika role admin
     Route::group(['middleware' => ['UserAkses:admin']], function () {
     });
