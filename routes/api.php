@@ -27,10 +27,21 @@ use Illuminate\Support\Facades\Route;
 Route::post('/login', [AuthController::class, 'login'])->name('login');
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
-Route::apiResource('/users', UserController::class);
-Route::apiResource('/customers', CustomersController::class);
-Route::apiResource('/payments', PaymentsController::class);
-Route::apiResource('/transaksi', TransaksiController::class);
+Route::apiResources([
+    '/users',
+    UserController::class,
+    '/customers',
+    CustomersController::class,
+    '/payments',
+    PaymentsController::class,
+    '/transaksi',
+    TransaksiController::class,
+    '/toko' => TokoController::class,
+    '/suppliers' => SupplierController::class,
+    '/merk' => MerkController::class,
+    '/products' => ProductController::class,
+]);
+
 Route::middleware('auth:sanctum')->group(function () {
     // jika role admin
     Route::group(['middleware' => ['UserAkses:admin']], function () {
@@ -44,9 +55,3 @@ Route::middleware('auth:sanctum')->group(function () {
     });
 });
 
-Route::apiResources([
-    '/toko' => TokoController::class,
-    '/suppliers' => SupplierController::class,
-    '/merk' => MerkController::class,
-    '/products' => ProductController::class,
-]);
