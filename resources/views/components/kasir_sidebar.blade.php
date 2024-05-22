@@ -49,22 +49,7 @@
                         </div>
                         Riwayat Transaksi
                     </a>
-                    <p class="text-gray-400 mt-4 text-sm font-bold  tracking-wider pb-4">
-                        AUTH
-                    </p>
-                    <a href="/kasir/transaksi" tabindex="0"
-                        class="flex items-center w-full  px-6 py-3 rounded-lg text-start leading-tight transition-all hover:bg-[#aa5800] hover:bg-opacity-10 hover:text-[#e07946] outline-none
-                    @if (request()->is('kasir/transaksi')) bg-[#aa5800] bg-opacity-10 text-[#e07946] @endif
-                    ">
-                        <div class="grid place-items-center mr-3">
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                                <path stroke-linecap="round" stroke-linejoin="round"
-                                    d="M8.25 9V5.25A2.25 2.25 0 0 1 10.5 3h6a2.25 2.25 0 0 1 2.25 2.25v13.5A2.25 2.25 0 0 1 16.5 21h-6a2.25 2.25 0 0 1-2.25-2.25V15M12 9l3 3m0 0-3 3m3-3H2.25" />
-                            </svg>
-                        </div>
-                        Logout
-                    </a>
+                    
                 </div>
             </div>
             <div class=" ">

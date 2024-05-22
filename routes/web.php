@@ -50,9 +50,6 @@ Route::prefix('admin')->group(function () {
     Route::get('/supplier', function () {
         return view('admin.supplier.index');
     });
-    Route::get('/supplier/create', function () {
-        return view('admin.supplier.create');
-    });
 
     // Product
     Route::get('/product', function () {
@@ -71,11 +68,6 @@ Route::prefix('admin')->group(function () {
     });
 
 
-    // Payment//
-    Route::get('/payment', function () {
-        return view('admin.payment.index');
-    });
-
     // Create product
     Route::get('/product/create', function () {
         return view('admin.product.create');
@@ -88,12 +80,8 @@ Route::prefix('admin')->group(function () {
     Route::get('/payment/create', function () {
         return view('admin.payment.create');
     });
-    Route::get('/payment/update', function () {
-        return view('admin.payment.update');
-    });
+     // Payment//
 
-    // Transaksi
-    Route::get('/transaksi', [TransaksisAksesController::class, 'getAll']);
 });
 
 Route::prefix('kasir')->group(function () {

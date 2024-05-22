@@ -27,6 +27,9 @@ use Illuminate\Support\Facades\Route;
 Route::post('/login', [AuthController::class, 'login'])->name('login');
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
+Route::post('/login', [AuthController::class, 'login'])->name('login');
+Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+
 Route::apiResource('/users', UserController::class);
 Route::apiResource('/customers', CustomersController::class);
 Route::apiResource('/payments', PaymentsController::class);
