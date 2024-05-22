@@ -25,6 +25,9 @@
                                 <input type="text" name="payment_name" id="payment_name"
                                     class="bg-[#131432] border text-sm rounded-lg block w-full p-2.5 border-gray-600 placeholder-gray-400 text-gray-400 focus:ring-primary-500 focus:border-primary-500"
                                     placeholder="Ex: BCA" value="{{ $payment->payment_name }}" required>
+                                @error('payment_name')
+                                    <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+                                @enderror
                             </div>
                             <div class="sm:col-span-2">
                                 <div class="flex justify-between w-full gap-4 sm:gap-6">
