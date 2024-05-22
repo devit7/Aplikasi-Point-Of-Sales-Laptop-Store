@@ -78,8 +78,6 @@ Route::prefix('admin')->group(function () {
     Route::get('/payment', function () {
         return view('admin.payment.index');
     });
-<<<<<<< HEAD
-=======
 
     // Create product
     Route::get('/product/create', function () {
@@ -90,7 +88,6 @@ Route::prefix('admin')->group(function () {
     Route::get('/product/update', function () {
         return view('admin.product.update');
     });
->>>>>>> dca1f859bc79be5eaf6b810e62d8ba51a0c6b69f
     Route::get('/payment/create', function () {
         return view('admin.payment.create');
     });
