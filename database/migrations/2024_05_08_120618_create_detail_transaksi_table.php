@@ -4,8 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
-{
+return new class extends Migration {
     /**
      * Run the migrations.
      *
@@ -15,10 +14,10 @@ return new class extends Migration
     {
         Schema::create('detail_transaksi', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->integer('quantity');
-            $table->bigInteger('total');
-            $table->bigInteger('harga_jual');
-            $table->bigInteger('harga_asli');
+            $table->integer('quantity')->unsigned();
+            $table->bigInteger('total')->unsigned();
+            $table->bigInteger('harga_jual')->unsigned();
+            $table->bigInteger('harga_asli')->unsigned();
             $table->uuid('transaksi_id');
             $table->uuid('product_id');
             $table->timestamps();

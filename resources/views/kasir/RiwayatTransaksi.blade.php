@@ -5,10 +5,10 @@
         <div class="mb-6">
             <div class="flex flex-col ">
                 <p class="text-[#6b6eb4] text-lg font-semibold">
-                    Add Product
+                    List Transaksi
                 </p>
                 <div class="text-[#6b6eb4] flex flex-row ">
-                    Manage your prduct
+                    Show Transaksi List
                 </div>
             </div>
         </div>

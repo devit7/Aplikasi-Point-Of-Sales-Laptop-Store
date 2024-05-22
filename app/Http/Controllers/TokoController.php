@@ -72,7 +72,7 @@ class TokoController extends Controller
 
         $toko->update([
             'nama_toko' => $validated['nama_toko'],
-            'logo_toko' => $validated['logo_toko']->getClientOriginalName(),
+            'logo_toko' => $validated['logo_toko'],
             'alamat' => $validated['alamat'],
             'no_hp' => $validated['no_hp'],
         ]);

@@ -14,11 +14,11 @@ return new class extends Migration {
     {
         Schema::create('product', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->string('product_name');
-            $table->integer('stock');
-            $table->bigInteger('harga_jual');
-            $table->bigInteger('harga_asli');
-            $table->string('img');
+            $table->string('product_name')->unique();
+            $table->integer('stock')->unsigned();
+            $table->bigInteger('harga_jual')->unsigned();
+            $table->bigInteger('harga_asli')->unsigned();
+            $table->string('img')->nullable();
             $table->uuid('supplier_id');
             $table->uuid('merk_id');
             $table->timestamps();

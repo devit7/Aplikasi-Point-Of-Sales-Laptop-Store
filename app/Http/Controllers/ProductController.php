@@ -38,7 +38,7 @@ class ProductController extends Controller
             'stock' => $validated['stock'],
             'harga_jual' => $validated['harga_jual'],
             'harga_asli' => $validated['harga_asli'],
-            'img' => $validated['img'],
+            'img' => $validated['img']->getClientOriginalName(),
             'supplier_id' => $validated['supplier_id'],
             'merk_id' => $validated['merk_id'],
         ]);

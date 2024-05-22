@@ -26,11 +26,11 @@ class UpdateRequest extends FormRequest
         $productExist = $this->product ? $this->product->id : '';
 
         return [
-            'product_name' => 'required|string|unique:products,product_name,' . $productExist . ',id',
+            'product_name' => 'required|string|unique:product,product_name,' . $productExist . ',id',
             'stock' => 'required|numeric|unsigned|min:1',
             'harga_jual' => 'required|numeric|unsigned|min:1|not_in:0',
             'harga_asli' => 'required|numeric|unsigned|min:1|not_in:0',
-            'img' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:10048',
+            'img' => 'image|mimes:jpeg,png,jpg,gif,svg|max:10048|nullable|sometimes',
             'supplier_id' => 'required|exists:supplier,id',
             'merk_id' => 'required|exists:merk,id',
         ];

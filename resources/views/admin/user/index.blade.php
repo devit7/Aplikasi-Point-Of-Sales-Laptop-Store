@@ -50,7 +50,7 @@
                                     </td>
                                     <td>{{ \Carbon\Carbon::parse($item['created_at'])->format('Y-m-d H:i') }}</td>
                                     <td class="flex flex-row gap-2">
-                                        <button class="bg-[#002D4C] border p-1 border-[#2B4F69] rounded-md">
+                                        <a href="{{ route('user.detail', [ 'user' => $item['id'] ]) }}" type="button" class="bg-[#002D4C] border p-1 border-[#2B4F69] rounded-md">
                                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                                 stroke-width="1.5" stroke="currentColor" class="w-6 h-6 text-green-600">
                                                 <path stroke-linecap="round" stroke-linejoin="round"
@@ -58,7 +58,7 @@
                                                 <path stroke-linecap="round" stroke-linejoin="round"
                                                     d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
                                             </svg>
-                                        </button>
+                                        </a>
                                         <button class="bg-[#002D4C] border p-1 border-[#2B4F69] rounded-md">
                                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                                 stroke-width="1.5" stroke="currentColor" class="w-6 h-6 text-blue-600">

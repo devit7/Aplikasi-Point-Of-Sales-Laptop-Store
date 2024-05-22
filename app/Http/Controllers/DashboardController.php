@@ -64,7 +64,7 @@ class DashboardController extends Controller
         ->join('detail_transaksi', 'transaksi.id', '=', 'detail_transaksi.transaksi_id')
         ->join('product', 'detail_transaksi.product_id', '=', 'product.id')
         ->join('merk', 'product.merk_id', '=', 'merk.id')
-        ->groupBy('product.id', 'product.product_name')
+        ->groupBy('product.id', 'product.product_name', 'product.img', 'merk.merk_name')
         ->orderByDesc('total_quantity_sold')
         ->limit(5)
         ->get();

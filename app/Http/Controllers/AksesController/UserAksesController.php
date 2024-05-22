@@ -26,4 +26,22 @@ class UserAksesController extends Controller
             ], 401);
         }
     }
+
+    public function getDetail($user)
+    {
+        //tidak makek guzzle
+        //$token = 'Bearer 3|hsCLwqd8roBQ7zXXHG0WZghmrCe5RuIgGhhOl2Dxc73d7c89';
+        $request = Request::create('http://127.0.0.1:8000/api/users/' . $user, 'GET');
+        //$request->headers->set('Authorization', $token);
+        $response = app()->handle($request);
+        // merubah json ke array
+        $data = json_decode($response->getContent(),true);
+        if ($response->getStatusCode() == 200) {
+            return dd($data['data']);
+        } else {
+            return response()->json([
+                'message' => 'Unauthorized'
+            ], 401);
+        }
+    }
 }
