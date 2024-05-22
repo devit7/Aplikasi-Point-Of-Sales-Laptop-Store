@@ -35,11 +35,8 @@ Route::prefix('admin')->group(function () {
     });
 
     // User
-    // Route::get('/user', function () {
-    //     return view('admin.user.index',);
-    // })->name('user.index');
-
     Route::get('/user', [UserAksesController::class, 'getAll'])->name('user.index');
+    Route::get('/user/{user}', [UserAksesController::class, 'getDetail'])->name('user.detail');
     Route::get('/user/create', function () {
         return view('admin.user.create');
     });
@@ -97,9 +94,7 @@ Route::prefix('admin')->group(function () {
 
     // Transaksi
     Route::get('/transaksi', [TransaksisAksesController::class, 'getAll']);
-
 });
-
 
 Route::prefix('kasir')->group(function () {
     Route::get('/', function () {

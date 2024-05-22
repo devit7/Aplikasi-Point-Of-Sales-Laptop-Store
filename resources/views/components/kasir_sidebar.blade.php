@@ -1,9 +1,9 @@
-<section id="sidebar" class=" top-0 left-0 bottom-0 hidden lg:block border-r border-[#33356F] ">
-    <div class="relative flex flex-col  bg-[#131432]   h-full w-full  ">
-        <nav class="flex flex-col h-full pb-6 justify-between w-[280px] font-sans text-base font-normal text-[#62748E]">
-            <div class="flex flex-col  ">
+<section id="sidebar" class="top-0 left-0 bottom-0 hidden lg:block border-r border-[#33356F] ">
+    <div class="relative flex flex-col bg-[#131432] h-full w-full ">
+        <nav class="flex flex-col w-[280px] h-full justify-between font-sans text-base font-normal text-[#62748E]">
+            <div class="flex flex-col ">
                 <div class="h-[80px] text-center items-center flex justify-center border-b border-[#33356F]">
-                    <h1 class="font-semibold text-3xl text-gray-500">POS Kasir</h1>
+                    <h1 class="font-semibold text-3xl text-gray-500">POS</h1>
                 </div>
                 <div class="flex flex-col py-6 px-5 gap-1 font-semibold">
                     <p class="text-gray-400 text-sm font-bold  tracking-wider pb-4">
@@ -49,25 +49,57 @@
                         </div>
                         Riwayat Transaksi
                     </a>
+                    <p class="text-gray-400 mt-4 text-sm font-bold  tracking-wider pb-4">
+                        AUTH
+                    </p>
+                    <a href="/kasir/transaksi" tabindex="0"
+                        class="flex items-center w-full  px-6 py-3 rounded-lg text-start leading-tight transition-all hover:bg-[#aa5800] hover:bg-opacity-10 hover:text-[#e07946] outline-none
+                    @if (request()->is('kasir/transaksi')) bg-[#aa5800] bg-opacity-10 text-[#e07946] @endif
+                    ">
+                        <div class="grid place-items-center mr-3">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                <path stroke-linecap="round" stroke-linejoin="round"
+                                    d="M8.25 9V5.25A2.25 2.25 0 0 1 10.5 3h6a2.25 2.25 0 0 1 2.25 2.25v13.5A2.25 2.25 0 0 1 16.5 21h-6a2.25 2.25 0 0 1-2.25-2.25V15M12 9l3 3m0 0-3 3m3-3H2.25" />
+                            </svg>
+                        </div>
+                        Logout
+                    </a>
                 </div>
             </div>
-            <div class=" px-5">
-                <a href="#" tabindex="0"
-                    class="flex items-center px-3 w-full font-semibold border rounded-lg py-2 border-gray-500
+            <div class=" ">
+                <div class="flex flex-col  px-5 font-semibold mb-2 ">
+                    <div class="  items-center w-full  ">
+                        <a href="/kasir/transaksi" tabindex="0"
+                            class="flex items-center w-full  px-6 py-3 rounded-lg text-start leading-tight transition-all hover:bg-[#aa5800] hover:bg-opacity-10 hover:text-[#e07946] outline-none
+                @if (request()->is('kasir/transaksi')) bg-[#aa5800] bg-opacity-10 text-[#e07946] @endif
+                ">
+                            <div class="grid place-items-center mr-3">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                    stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                        d="M8.25 9V5.25A2.25 2.25 0 0 1 10.5 3h6a2.25 2.25 0 0 1 2.25 2.25v13.5A2.25 2.25 0 0 1 16.5 21h-6a2.25 2.25 0 0 1-2.25-2.25V15M12 9l3 3m0 0-3 3m3-3H2.25" />
+                                </svg>
+                            </div>
+                            Logout
+                        </a>
+                    </div>
+                </div>
+                <div tabindex="0"
+                    class="flex   bg-[#131542] border-[#33356F] items-center px-10 w-full font-semibold  py-3 
                     ">
                     <div class="grid place-items-center mr-3">
                         <img src="{{ asset('foto/user.png') }}" alt="" class=" rounded-full w-12">
-
                     </div>
                     <div class="flex flex-col items-center   ">
-                        <p class="text-gray-400 text-sm font-bold  tracking-wider mb-1 " >
+                        <p class="text-gray-400  font-bold  tracking-wider mb-1 ">
                             Devit Erlingga
                         </p>
                         <p class=" font-medium  text-sm uppercase px-4 bg-green-900 rounded-xl text-green-400">
                             kasir
                         </p>
                     </div>
-                </a>
+                </div>
             </div>
         </nav>
     </div>
