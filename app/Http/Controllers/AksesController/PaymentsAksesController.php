@@ -81,16 +81,12 @@ class PaymentsAksesController extends Controller
             ], 401);
         }
     }
-
-    public function deleteData($paymentId)
+    public function deleteData($id)
     {
-        
-        $request = Request::create('http://127.0.0.1:8000/api/payments/' . $paymentId, 'DELETE');
+        $request = Request::create('http://127.0.0.1:8000/api/payments/' . $id, 'DELETE');
         $response = app()->handle($request);
-        
         if ($response->getStatusCode() == 200) {
-            session()->flash('success', 'Payment berhasil dihapus');
-            return redirect()->route('payment.index');
+            return redirect()->route('payment.index')->with('success', 'Payment berhasil dihapus');
         } else {
             return response()->json([
                 'message' => 'Unauthorized'

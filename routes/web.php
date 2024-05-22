@@ -81,14 +81,18 @@ Route::prefix('admin')->group(function () {
     Route::get('/payment/create', function () {
         return view('admin.payment.create');
     })->name('payments.create');
+    
     Route::post('/payment', [PaymentsAksesController::class, 'createData'])->name('payment.store');
+    
     Route::get('/payment/{id}/edit', function($id) {
         $controller = new PaymentsAksesController();
         $response = $controller->getDetail($id);
         $payment = json_decode($response->getContent())->data;
         return view('admin.payment.update', compact('payment'));
     })->name('payment.edit');
+    
     Route::put('/payment/{id}', [PaymentsAksesController::class, 'updateData'])->name('payment.update');
+    
     Route::delete('/payment/{id}', [PaymentsAksesController::class, 'deleteData'])->name('payment.destroy');
 
     // Transaksi

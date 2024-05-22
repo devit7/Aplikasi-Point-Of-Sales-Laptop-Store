@@ -31,10 +31,6 @@ Route::apiResource('/users', UserController::class);
 Route::apiResource('/customers', CustomersController::class);
 Route::apiResource('/payments', PaymentsController::class);
 Route::apiResource('/transaksi', TransaksiController::class);
-<<<<<<< HEAD
-=======
-
->>>>>>> 3297e417ed1518b3784aadb0772c7656dab2cf9d
 Route::middleware('auth:sanctum')->group(function () {
     // jika role admin
     Route::group(['middleware' => ['UserAkses:admin']], function () {
