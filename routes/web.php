@@ -81,7 +81,7 @@ Route::prefix('admin')->group(function () {
     Route::get('/payment/create', function () {
         return view('admin.payment.create');
     });
-     // Payment//
+    // Payment//
 
 });
 
@@ -93,8 +93,23 @@ Route::prefix('kasir')->group(function () {
         return view('kasir.RiwayatTransaksi');
     });
     Route::get('/customer', function () {
-        return view('kasir.management-customer');
+        return view('kasir.management-customer.index');
     });
+
+    Route::get('/customer/create', function () {
+        return view('kasir.management-customer.create');
+    });
+
+    Route::get('/customer/update', function () {
+        return view('kasir.management-customer.update');
+    });
+
+
+    // Route::get('/customer', [CustomersAksesController::class, 'getAll'])->name('customer.index');
+    // Route::get('/customer/{customer}', [CustomersAksesController::class, 'getDetail'])->name('customer.detail');
+    // Route::get('/customer/create', function () {
+    //     return view('kasir.user.create');
+    // });
 });
 
 
