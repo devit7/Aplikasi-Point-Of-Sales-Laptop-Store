@@ -3,15 +3,15 @@
 namespace App\Http\Controllers\AksesController;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Payments\StoreRequest;
+use App\Http\Requests\Payments\UpdateRequest;
 use Illuminate\Http\Request;
 
 class PaymentsAksesController extends Controller
 {
     public function getAll()
     {
-        //$token= 'Bearer 3|hsCLwqd8roBQ7zXXHG0WZghmrCe5RuIgGhhOl2Dxc73d7c89';
         $request = Request::create('http://127.0.0.1:8000/api/payments', 'GET');
-        //$request->headers->set('Authorization', $token);
         $response = app()->handle($request);
         $data = json_decode($response->getContent(), true);
         if ($response->getStatusCode() == 200) {
@@ -29,8 +29,8 @@ class PaymentsAksesController extends Controller
     {
         //tidak makek guzzle
         //$token = 'Bearer 3|hsCLwqd8roBQ7zXXHG0WZghmrCe5RuIgGhhOl2Dxc73d7c89';
-        $request = Request::create('http://127.0.0.1:8000/api/payments' . $payment, 'GET');
         //$request->headers->set('Authorization', $token);
+        $request = Request::create('http://127.0.0.1:8000/api/payments/' . $payment, 'GET');
         $response = app()->handle($request);
         if ($response->getStatusCode() == 200) {
             return $response;
@@ -41,23 +41,20 @@ class PaymentsAksesController extends Controller
         }
     }
 
-    public function createData(Request $request)
+    public function createData(StoreRequest $request)
     {
-        //return 'createData';
-        //static data
-        $validator = $request->validated();
+        $validated = $request->validate();
+    
         $data = [
-            'payment_name' => $validator['payment_name'],
+            'payment_name' => $validated['payment_name'],
         ];
-        //dd($data);
-        //tidak makek guzzle
-        //$token= 'Bearer 3|hsCLwqd8roBQ7zXXHG0WZghmrCe5RuIgGhhOl2Dxc73d7c89';
+    
         $request = Request::create('http://127.0.0.1:8000/api/payments', 'POST', $data);
-        //$request->headers->set('Authorization', $token);
-        //dd($request);
         $response = app()->handle($request);
+        
         if ($response->getStatusCode() == 200) {
-            return $response;
+            session()->flash('success', 'Payment berhasil ditambahkan');
+            return redirect()->route('payment.index');
         } else {
             return response()->json([
                 'message' => 'Unauthorized'
@@ -65,22 +62,24 @@ class PaymentsAksesController extends Controller
         }
     }
 
-    public function updateData(Request $request, $payment)
+    public function updateData(UpdateRequest $request, $payment)
     {
-        //return 'updateData';
-        $validator = $request->validated();
+        $validated = $request->validate();
+    
         $data = [
-            'payment_name' => $validator['payment_name'],
+            'payment_name' => $validated['payment_name'],
         ];
         //dd($data);
         //tidak makek guzzle
-        $token = 'Bearer 3|hsCLwqd8roBQ7zXXHG0WZghmrCe5RuIgGhhOl2Dxc73d7c89';
-        $request = Request::create('http://127.0.0.1:8000/api/payments'.$payment, 'PUT', $data);
+        //$token = 'Bearer 3|hsCLwqd8roBQ7zXXHG0WZghmrCe5RuIgGhhOl2Dxc73d7c89';
+        $request = Request::create('http://127.0.0.1:8000/api/payments/'.$payment, 'PUT', $data);
         //$request->headers->set('Authorization', $token);
         //dd($request);
         $response = app()->handle($request);
+        
         if ($response->getStatusCode() == 200) {
-            return $response;
+            session()->flash('success', 'Payment berhasil di update');
+            return redirect()->route('payment.index');
         } else {
             return response()->json([
                 'message' => 'Unauthorized'
@@ -93,12 +92,12 @@ class PaymentsAksesController extends Controller
         //return 'deleteData';
         //tidak makek guzzle
         //$token= 'Bearer 3|hsCLwqd8roBQ7zXXHG0WZghmrCe5RuIgGhhOl2Dxc73d7c89';
-        $request = Request::create('http://127.0.0.1:8000/api/payments'.$payment, 'DELETE');
+        $request = Request::create('http://127.0.0.1:8000/api/payments/'.$payment, 'DELETE');
         //$request->headers->set('Authorization', $token);
         $response = app()->handle($request);
-        if($response->getStatusCode() == 200){
-            return $response;
-        }else{
+        if ($response->getStatusCode() == 200) {
+            return redirect()->route('payment.index')->with('success', 'Payment berhasil dihapus');
+        } else {
             return response()->json([
                 'message' => 'Unauthorized'
             ], 401);
