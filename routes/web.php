@@ -103,13 +103,6 @@ Route::prefix('kasir')->group(function () {
     Route::get('/customer/update', function () {
         return view('kasir.management-customer.update');
     });
-
-
-    // Route::get('/customer', [CustomersAksesController::class, 'getAll'])->name('customer.index');
-    // Route::get('/customer/{customer}', [CustomersAksesController::class, 'getDetail'])->name('customer.detail');
-    // Route::get('/customer/create', function () {
-    //     return view('kasir.user.create');
-    // });
 });
 
 
