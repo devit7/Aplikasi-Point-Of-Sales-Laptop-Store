@@ -78,25 +78,14 @@ Route::prefix('admin')->group(function () {
     });
 
      // Payment//
-    Route::get('/payment/create', function () {
-        return view('admin.payment.create');
-    })->name('payments.create');
-    
-    Route::post('/payment', [PaymentsAksesController::class, 'createData'])->name('payment.store');
-    
-    Route::get('/payment/{id}/edit', function($id) {
-        $controller = new PaymentsAksesController();
-        $response = $controller->getDetail($id);
-        $payment = json_decode($response->getContent())->data;
-        return view('admin.payment.update', compact('payment'));
-    })->name('payment.edit');
-    
-    Route::put('/payment/{id}', [PaymentsAksesController::class, 'updateData'])->name('payment.update');
-    
-    Route::delete('/payment/{id}', [PaymentsAksesController::class, 'deleteData'])->name('payment.destroy');
-
-    // Transaksi
-    Route::get('/transaksi', [TransaksisAksesController::class, 'getAll']);
+    Route::prefix('admin')->group(function () {
+        Route::get('/payment', [PaymentsAksesController::class, 'index'])->name('payment.index');
+        Route::get('/payment/create', [PaymentsAksesController::class, 'create'])->name('payment.create');
+        Route::post('/payment', [PaymentsAksesController::class, 'store'])->name('payment.store');
+        Route::get('/payment/{payment}/edit', [PaymentsAksesController::class, 'edit'])->name('payment.edit');
+        Route::put('/payment/{payment}', [PaymentsAksesController::class, 'update'])->name('payment.update');
+        Route::delete('/payment/{payment}', [PaymentsAksesController::class, 'destroy'])->name('payment.destroy');
+    });
 });
 
 Route::prefix('kasir')->group(function () {
