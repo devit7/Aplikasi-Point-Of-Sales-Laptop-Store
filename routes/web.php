@@ -37,7 +37,7 @@ Route::prefix('admin')->group(function () {
 
     // User
     Route::get('/user', [UserAksesController::class, 'getAll'])->name('user.index');
-    Route::get('/user/{user}', [UserAksesController::class, 'getDetail'])->name('user.detail');
+    Route::get('/user/show/{user}', [UserAksesController::class, 'getDetail'])->name('user.detail');
     Route::get('/user/create', function () {
         return view('admin.user.create');
     });
