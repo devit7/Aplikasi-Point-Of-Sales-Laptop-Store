@@ -52,11 +52,10 @@ class CustomersAksesController extends Controller
         ];
         $request = Request::create('http://127.0.0.1:8000/api/customers', 'POST', $data);
         $response = app()->handle($request);
-        $data = json_decode($response->getContet(), true);
+        $data = json_decode($response->getContent(), true); // Fixed typo here
         if ($response->getStatusCode() == 200) {
-            return view('kasir.management-customer.create', [
-                'data' => $data['data']
-            ]);
+            session()->flash('success', 'Customer berhasil ditambahkan');
+            return redirect()->route('management-customer.index');
         } else {
             return response()->json([
                 'message' => 'Unauthorized'
