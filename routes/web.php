@@ -101,6 +101,7 @@ Route::prefix('kasir')->group(function () {
     Route::get('/customer/create', function () {
         return view('kasir.management-customer.create');
     });
+    Route::post('/customer', [CustomersAksesController::class, 'createData'])->name('management-customer.store');
 });
 
 
