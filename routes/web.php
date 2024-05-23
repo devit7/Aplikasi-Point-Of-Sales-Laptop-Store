@@ -92,17 +92,25 @@ Route::prefix('kasir')->group(function () {
     Route::get('/transaksi', function () {
         return view('kasir.RiwayatTransaksi');
     });
-    Route::get('/customer', function () {
-        return view('kasir.management-customer.index');
-    });
 
+    Route::get('/customer', [CustomersAksesController::class, 'getAll'])->name('management-customer.index');
+    Route::get('/customer/{customer}', [CustomersAksesController::class, 'getDetail'])->name('management-customer.detail');
     Route::get('/customer/create', function () {
         return view('kasir.management-customer.create');
     });
 
-    Route::get('/customer/update', function () {
-        return view('kasir.management-customer.update');
-    });
+
+    // Route::get('/customer', function () {
+    //     return view('kasir.management-customer.index');
+    // });
+
+    // Route::get('/customer/create', function () {
+    //     return view('kasir.management-customer.create');
+    // });
+
+    // Route::get('/customer/update', function () {
+    //     return view('kasir.management-customer.update');
+    // });
 });
 
 
