@@ -24,7 +24,7 @@ class StoreRequest extends FormRequest
     public function rules()
     {
         return [
-            'payment_name' => 'required|string',
+            'payment_name' => 'required|string|unique:payments,payment_name',
         ];
     }
 
@@ -33,6 +33,7 @@ class StoreRequest extends FormRequest
         return [
             'payment_name.required' => 'Data Payment Name Harus Diisi',
             'payment_name.string' => 'Data Payment Name Harus Berupa String',
+            'payment_name.unique' => 'Data Payment Name Sudah Ada',
         ];
     }
 }

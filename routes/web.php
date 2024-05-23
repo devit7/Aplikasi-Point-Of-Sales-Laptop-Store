@@ -37,7 +37,7 @@ Route::prefix('admin')->group(function () {
 
     // User
     Route::get('/user', [UserAksesController::class, 'getAll'])->name('user.index');
-    Route::get('/user/{user}', [UserAksesController::class, 'getDetail'])->name('user.detail');
+    Route::get('/user/show/{user}', [UserAksesController::class, 'getDetail'])->name('user.detail');
     Route::get('/user/create', function () {
         return view('admin.user.create');
     });
@@ -87,6 +87,9 @@ Route::prefix('admin')->group(function () {
 
 Route::prefix('kasir')->group(function () {
     Route::get('/', function () {
+        return view('kasir.dh2');
+    });
+    Route::get('/2', function () {
         return view('kasir.dashboard');
     });
     Route::get('/transaksi', function () {
