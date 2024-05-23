@@ -27,19 +27,19 @@ class CustomersAksesController extends Controller
         }
     }
 
-    public function getDetail($customer)
-    {
-        $request = Request::create('http://127.0.0.1:8000/api/customers' . $customer, 'GET');
-        $response = app()->handle($request);
-        $data = json_decode($response->getContent(), true);
-        if ($response->getStatusCode() == 200) {
-            return dd($data['data']);
-        } else {
-            return response()->json([
-                'message' => 'Unauthorized'
-            ]);
-        }
-    }
+    // public function getDetail($customer)
+    // {
+    //     $request = Request::create('http://127.0.0.1:8000/api/customers/' . $customer, 'GET');
+    //     $response = app()->handle($request);
+    //     $data = json_decode($response->getContent(), true);
+    //     if ($response->getStatusCode() == 200) {
+    //         return dd($data['data']);
+    //     } else {
+    //         return response()->json([
+    //             'message' => 'Unauthorized'
+    //         ]);
+    //     }
+    // }
 
     public function createData(StoreRequest $request)
     {
@@ -50,12 +50,17 @@ class CustomersAksesController extends Controller
             'no_hp' => $validator['no_hp'],
             'alamat' => $validator['alamat'],
         ];
-        $request = Request::create('http://127.0.0.1:8000/api/customer', 'POST', $data);
+        $request = Request::create('http://127.0.0.1:8000/api/customers', 'POST', $data);
         $response = app()->handle($request);
+        $data = json_decode($response->getContet(), true);
         if ($response->getStatusCode() == 200) {
-            return $response;
+            return view('kasir.management-customer.create', [
+                'data' => $data['data']
+            ]);
         } else {
-            return view();
+            return response()->json([
+                'message' => 'Unauthorized'
+            ]);
         }
     }
 
@@ -68,7 +73,7 @@ class CustomersAksesController extends Controller
             'no_hp' => $validator['no_hp'],
             'alamat' => $validator['alamat'],
         ];
-        $request = Request::create('http://127.0.0.1:8000/api/customer' . $customer, 'PUT', $data);
+        $request = Request::create('http://127.0.0.1:8000/api/customers' . $customer, 'PUT', $data);
         $response = app()->handle($request);
         if ($response->getStatusCode() == 200) {
             return $response;
