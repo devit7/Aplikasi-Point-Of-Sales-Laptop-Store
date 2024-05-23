@@ -47,13 +47,17 @@ class PaymentsAksesController extends Controller
             'payment_name' => $request->input('payment_name'),
         ];
     
-        $apiRequest = Request::create('http://127.0.0.1:8000/api/payments', 'POST', $data);
-        $response = app()->handle($apiRequest);
-    
+        $request = Request::create('http://127.0.0.1:8000/api/payments', 'POST', $data);
+        $response = app()->handle($request);
+        $data = json_decode($response->getContent(), true);
         if ($response->getStatusCode() == 200) {
             session()->flash('success', 'Payment berhasil ditambahkan');
             return redirect()->route('payment.index');
-        } else {
+        } else if ($response->getStatusCode() == 422) {
+            $errorMessage = $data['message'];
+            session()->flash('error', $errorMessage);
+            return redirect()->route('payment.index');
+        } else{
             return response()->json([
                 'message' => 'Unauthorized'
             ], 401);
