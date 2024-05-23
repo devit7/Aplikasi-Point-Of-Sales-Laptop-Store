@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AksesController\CustomersAksesController;
 use App\Http\Controllers\AksesController\PaymentsAksesController;
+use App\Http\Controllers\AksesController\TokoAksesController;
 use App\Http\Controllers\AksesController\TransaksisAksesController;
 use App\Http\Controllers\AksesController\UserAksesController;
 use App\Http\Controllers\AksesController\SupplierAksesController;
@@ -26,9 +27,12 @@ Route::prefix('admin')->group(function () {
     Route::get('/', [DashboardController::class, 'index']);
 
     // Setting
-    Route::get('/setting', function () {
-        return view('admin.setting');
-    });
+    // Route::get('/setting', function () {
+    //     return view('admin.setting');
+    // });
+    Route::get('/setting', [TokoAksesController::class, 'getAll'])->name('admin.index');
+    // Route::post('/setting', [TokoAksesController::class, 'createData'])->name('admin.store');
+    Route::put('/setting/{toko}', [TokoAksesController::class, 'updateData'])->name('admin.update');
 
     // Laporan
     Route::get('/laporan', function () {
@@ -81,7 +85,7 @@ Route::prefix('admin')->group(function () {
     Route::get('/payment/create', function () {
         return view('admin.payment.create');
     });
-     // Payment//
+    // Payment//
 
 });
 
