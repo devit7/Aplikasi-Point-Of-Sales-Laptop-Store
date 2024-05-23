@@ -17,7 +17,7 @@ class CustomersAksesController extends Controller
         $response = app()->handle($request);
         $data = json_decode($response->getContent(), true);
         if ($response->getStatusCode() == 200) {
-            return view('admin.customer.index', [
+            return view('kasir.management-customer.index', [
                 'data' => $data['data']
             ]);
         } else {
@@ -29,12 +29,15 @@ class CustomersAksesController extends Controller
 
     public function getDetail($customer)
     {
-        $request = Request::create('http://127.0.0.1:8000/api/customer' . $customer, 'GET');
+        $request = Request::create('http://127.0.0.1:8000/api/customers' . $customer, 'GET');
         $response = app()->handle($request);
+        $data = json_decode($response->getContent(), true);
         if ($response->getStatusCode() == 200) {
-            return $response;
+            return dd($data['data']);
         } else {
-            return view();
+            return response()->json([
+                'message' => 'Unauthorized'
+            ]);
         }
     }
 
@@ -76,7 +79,7 @@ class CustomersAksesController extends Controller
 
     public function deleteData($customer)
     {
-        $request = Request::create('http://127.0.0.1:8000/api/customer' . $customer, 'DELETE');
+        $request = Request::create('http://127.0.0.1:8000/api/customers' . $customer, 'DELETE');
         $response = app()->handle($request);
         if ($response->getStatusCode() == 200) {
             return $response;
