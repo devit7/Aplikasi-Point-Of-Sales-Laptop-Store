@@ -16,11 +16,11 @@ class PaymentsAksesController extends Controller
         $data = json_decode($response->getContent(), true);
         if ($response->getStatusCode() == 200) {
             return view('admin.payment.index', [
-                'data' => $data['data']
+                'data' => $data['data'],
             ]);
         } else {
             return response()->json([
-                'message' => 'Unauthorized'
+                'message' => 'Unauthorized',
             ], 401);
         }
     }
@@ -36,14 +36,18 @@ class PaymentsAksesController extends Controller
             return $response;
         } else {
             return response()->json([
-                'message' => 'Unauthorized'
+                'message' => 'Unauthorized',
             ], 401);
         }
     }
 
     public function createData(StoreRequest $request)
     {
+<<<<<<< HEAD
         $validated = $request->validate();
+=======
+        $validated = $request->validated();
+>>>>>>> 82f3d792845e76ea25d3e83ec1f30ecd802ba2a5
 
         $data = [
             'payment_name' => $validated['payment_name'],
@@ -52,7 +56,7 @@ class PaymentsAksesController extends Controller
         $request = Request::create('http://127.0.0.1:8000/api/payments', 'POST', $data);
         $response = app()->handle($request);
         $data = json_decode($response->getContent(), true);
-        if ($response->getStatusCode() == 200) {
+        if ($response->getStatusCode() == 201) {
             session()->flash('success', 'Payment berhasil ditambahkan');
             return redirect()->route('payment.index');
         } else if ($response->getStatusCode() == 422) {
@@ -61,14 +65,18 @@ class PaymentsAksesController extends Controller
             return redirect()->route('payment.index');
         } else {
             return response()->json([
-                'message' => 'Unauthorized'
+                'message' => 'Unauthorized',
             ], 401);
         }
     }
 
     public function updateData(UpdateRequest $request, $payment)
     {
+<<<<<<< HEAD
         $validated = $request->validate();
+=======
+        $validated = $request->validated();
+>>>>>>> 82f3d792845e76ea25d3e83ec1f30ecd802ba2a5
 
         $data = [
             'payment_name' => $validated['payment_name'],
@@ -86,7 +94,7 @@ class PaymentsAksesController extends Controller
             return redirect()->route('payment.index');
         } else {
             return response()->json([
-                'message' => 'Unauthorized'
+                'message' => 'Unauthorized',
             ], 401);
         }
     }
@@ -103,7 +111,7 @@ class PaymentsAksesController extends Controller
             return redirect()->route('payment.index')->with('success', 'Payment berhasil dihapus');
         } else {
             return response()->json([
-                'message' => 'Unauthorized'
+                'message' => 'Unauthorized',
             ], 401);
         }
     }

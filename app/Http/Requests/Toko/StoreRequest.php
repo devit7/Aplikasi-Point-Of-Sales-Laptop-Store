@@ -25,7 +25,7 @@ class StoreRequest extends FormRequest
     {
         return [
             'nama_toko' => 'required|string|unique:toko,nama_toko',
-            'logo_toko' => 'image|mimes:jpeg,png,jpg,gif,svg|max:10048|nullable',
+            'logo_toko' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:10048',
             'alamat' => 'required|string',
             'no_hp' => 'required|numeric|digits:12|unique:toko,no_hp',
         ];

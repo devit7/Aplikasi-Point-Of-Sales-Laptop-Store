@@ -18,8 +18,8 @@ class CustomersController extends Controller
     {
         return response()->json([
             'message' => 'List Customers',
-            'data' => Customers::all()
-        ]);
+            'data' => Customers::all(),
+        ], 200);
     }
 
     /**
@@ -51,8 +51,8 @@ class CustomersController extends Controller
 
         return response()->json([
             'message' => 'Customers berhasil ditambahkan',
-            'data' => $customer
-        ]);
+            'data' => $customer,
+        ], 201);
     }
 
     /**
@@ -65,8 +65,8 @@ class CustomersController extends Controller
     {
         return response()->json([
             'message' => 'Detail Customers',
-            'data' => $customer
-        ]);
+            'data' => $customer,
+        ], 200);
     }
 
     /**
@@ -111,8 +111,8 @@ class CustomersController extends Controller
 
         return response()->json([
             'message' => 'Customers berhasil diubah',
-            'data' => $customer
-        ]);
+            'data' => $customer,
+        ], 200);
     }
 
     /**
@@ -126,7 +126,7 @@ class CustomersController extends Controller
         $customer->delete();
 
         return response()->json([
-            'message' => 'Customers berhasil dihapus'
-        ]);
+            'message' => 'Customers berhasil dihapus',
+        ], 200);
     }
 }
