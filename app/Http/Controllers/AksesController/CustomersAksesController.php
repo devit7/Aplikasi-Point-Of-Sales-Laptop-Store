@@ -65,28 +65,32 @@ class CustomersAksesController extends Controller
 
     public function updateData(UpdateRequest $request, $customer)
     {
-        $validator = $request->validated();
+        $request->validated();
         $data = [
-            'customer_name' => $validator['customer_name'],
-            'email' => $validator['email'],
-            'no_hp' => $validator['no_hp'],
-            'alamat' => $validator['alamat'],
+            'customer_name' => $request->input('customer_name'),
+            'email' => $request->input('email'),
+            'no_hp' => $request->input('no_hp'),
+            'alamat' => $request->input('alamat'),
         ];
-        $request = Request::create('http://127.0.0.1:8000/api/customers' . $customer, 'PUT', $data);
+        $request = Request::create('http://127.0.0.1:8000/api/customers/' . $customer, 'PUT', $data);
         $response = app()->handle($request);
         if ($response->getStatusCode() == 200) {
-            return $response;
+            session()->flash('success', 'Data customer berhasil di update');
+            return redirect()->route('management-customer.index');
         } else {
-            return view();
+            return response()->json([
+                'message' => 'Unauthorized'
+            ], 401);
         }
     }
 
+
     public function deleteData($customer)
     {
-        $request = Request::create('http://127.0.0.1:8000/api/customers' . $customer, 'DELETE');
+        $request = Request::create('http://127.0.0.1:8000/api/customers/' . $customer, 'DELETE');
         $response = app()->handle($request);
         if ($response->getStatusCode() == 200) {
-            return $response;
+            return redirect()->route('management-customer.index')->with('success', 'Data berhasil delete');
         } else {
             return view();
         }
