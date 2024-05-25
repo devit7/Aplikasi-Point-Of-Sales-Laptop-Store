@@ -43,11 +43,7 @@ class PaymentsAksesController extends Controller
 
     public function createData(StoreRequest $request)
     {
-<<<<<<< HEAD
         $validated = $request->validate();
-=======
-        $validated = $request->validated();
->>>>>>> 82f3d792845e76ea25d3e83ec1f30ecd802ba2a5
 
         $data = [
             'payment_name' => $validated['payment_name'],
@@ -72,11 +68,7 @@ class PaymentsAksesController extends Controller
 
     public function updateData(UpdateRequest $request, $payment)
     {
-<<<<<<< HEAD
-        $validated = $request->validate();
-=======
         $validated = $request->validated();
->>>>>>> 82f3d792845e76ea25d3e83ec1f30ecd802ba2a5
 
         $data = [
             'payment_name' => $validated['payment_name'],

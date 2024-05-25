@@ -44,7 +44,7 @@ Route::prefix('admin')->group(function () {
     Route::get('/user/show/{user}', [UserAksesController::class, 'getDetail'])->name('user.detail');
     Route::get('/user/create', function () {
         return view('admin.user.create');
-    });
+    })->name('user.store');
 
     // Customer
     Route::get('/customer', function () {
