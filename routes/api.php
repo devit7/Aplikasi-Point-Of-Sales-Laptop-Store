@@ -50,7 +50,7 @@ Route::middleware('auth:sanctum')->group(function () {
 
 Route::apiResources([
     '/toko' => TokoController::class,
-    '/suppliers' => SupplierController::class,
     '/merk' => MerkController::class,
     '/products' => ProductController::class,
 ]);
+Route::apiResource('/supplier', SupplierController::class);

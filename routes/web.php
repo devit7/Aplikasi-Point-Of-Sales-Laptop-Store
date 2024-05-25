@@ -48,9 +48,11 @@ Route::prefix('admin')->group(function () {
     });
 
     // Supplier
-    Route::get('/supplier', function () {
-        return view('admin.supplier.index');
-    });
+    Route::get('/supplier', [SupplierAksesController::class, 'getAll'])->name('supplier.index');
+    Route::get('/supplier/create', function () {
+        return view('admin.supplier.create');
+    })->name('suppler.create');
+    Route::post('/supplier/create', [SupplierAksesController::class, 'createData'])->name('supplier.store');
 
     // Product
     Route::get('/product', function () {

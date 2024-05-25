@@ -2,7 +2,7 @@
 @section('content')
     <div class=" p-3">
         <div class=" flex justify-end p-8">
-            <button class="px-3 md:px-4 py-1 md:py-2 bg-[#aa5800] text-white rounded-lg hover:bg-[#aa5800]"><i class="fa-solid fa-arrow-right-to-bracket"></i> Add User</button>
+            <a href="{{ route('suppler.create') }}" class="px-3 md:px-4 py-1 md:py-2 bg-[#aa5800] text-white rounded-lg hover:bg-[#aa5800]"><i class="fa-solid fa-arrow-right-to-bracket"></i> Add Supplier</a>
         </div>
         <x-tables>
             <div class="w-full mx-auto mt-2 bg-[#1C1D42] text-[#6b6eb4]  p-4 rounded-md">
@@ -26,7 +26,6 @@
                     <td>{{ $supplier['nama_perusahaan'] }}</td>
                     <td>{{ $supplier['alamat'] }}</td>
                         <td class="flex flex-row gap-3">
-                        <x-modal-detail-transaksi/>
                         <x-alert />
                         </td>
                     </tr>
