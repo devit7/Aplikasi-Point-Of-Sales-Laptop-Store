@@ -30,7 +30,7 @@
                 <div class="grid gap-4 sm:grid-cols-2 sm:gap-6">
                     <div class="sm:col-span-2">
                         <label for="customer_name" class="block mb-2 text-sm font-medium  text-white">Name Customer</label>
-                        <input type="text" name="customer_name" id="customer_name" class="bg-[#131432] border   text-sm rounded-lg  block w-full p-2.5  border-gray-600 placeholder-gray-400 text-white focus:ring-primary-500 focus:border-primary-500" placeholder="" required="">
+                        <input value="{{ $data['customer_name'] }}" type="text" name="customer_name" id="customer_name" class="bg-[#131432] border   text-sm rounded-lg  block w-full p-2.5  border-gray-600 placeholder-gray-400 text-white focus:ring-primary-500 focus:border-primary-500" placeholder="" required="">
                     </div>
                     <div class="w-full">
                         <label for="email" class="block mb-2 text-sm font-medium  text-white">Email</label>

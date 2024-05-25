@@ -102,12 +102,8 @@ Route::prefix('kasir')->group(function () {
     Route::get('/customer/create', function () {
         return view('kasir.management-customer.create');
     });
-    Route::get('/customer/update', function () {
-        return view('kasir.management-customer.update');
-    });
-
-    // Route for update form
-    // Route::get('/customer/{id}/edit', [CustomersAksesController::class, 'edit'])->name('management-customer.edit');
+    Route::get('/customer/edit/{customer}',[CustomersAksesController::class, 'getEdit'])->name('management-customer.edit'); 
+    Route::put('/customer/update/{customer}',[CustomersAksesController::class, 'updateData'])->name('management-customer.update'); 
     Route::post('/customer', [CustomersAksesController::class, 'createData'])->name('management-customer.store');
     Route::delete('/customer/{customer}', [CustomersAksesController::class, 'deleteData'])->name('management-customer.delete');
 });

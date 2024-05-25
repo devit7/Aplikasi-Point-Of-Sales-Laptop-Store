@@ -30,7 +30,7 @@ class UpdateRequest extends FormRequest
             'nama_toko' => 'string|unique:toko,nama_toko,' . $tokoExist . ',id',
             'logo_toko' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:10048',
             'alamat' => 'string',
-            'no_hp' => 'numeric|digits:12|unique:toko,no_hp,' . $tokoExist . ',id',
+            'no_hp' => 'numeric|digits:12|unsigned|unique:toko,no_hp,' . $tokoExist . ',id',
         ];
 
     }
@@ -50,6 +50,7 @@ class UpdateRequest extends FormRequest
             'no_hp.numeric' => 'Data No. HP harus berupa angka',
             'no_hp.digits' => 'Data No. HP harus 12 digit',
             'no_hp.unique' => 'Data No. HP sudah ada',
+            'no_hp.unsigned' => 'Data No. HP harus berupa angka positif',
         ];
     }
 }
