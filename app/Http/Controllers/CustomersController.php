@@ -90,8 +90,8 @@ class CustomersController extends Controller
         //     return redirect()->route('management-customer.index')->with('error', 'Unable to fetch customer details');
         // }
 
-        $customer = Customer::find($id);
-        return view('customer.edit', ['customer' => $customer]);
+        // $customer = Customer::find($id);
+        // return view('customer.edit', ['customer' => $customer]);
     }
 
     /**

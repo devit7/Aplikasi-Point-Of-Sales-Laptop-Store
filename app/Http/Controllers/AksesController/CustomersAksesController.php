@@ -40,6 +40,20 @@ class CustomersAksesController extends Controller
             ]);
         }
     }
+    
+    public function getEdit($customer)
+    {
+        $request = Request::create('http://127.0.0.1:8000/api/customers/' . $customer, 'GET');
+        $response = app()->handle($request);
+        $data = json_decode($response->getContent(), true);
+        if ($response->getStatusCode() == 200) {
+            return view('kasir.management-customer.update');
+        } else {
+            return response()->json([
+                'message' => 'Unauthorized'
+            ]);
+        }
+    }
 
     public function createData(StoreRequest $request)
     {
@@ -64,29 +78,29 @@ class CustomersAksesController extends Controller
     }
 
     
-    public function edit($id)
-    {
-        // Make a GET request to the API to fetch the customer data
-        $request = Request::create('http://127.0.0.1:8000/api/customers/' . $id, 'GET');
-        $response = app()->handle($request);
+    // public function edit($id)
+    // {
+    //     // Make a GET request to the API to fetch the customer data
+    //     $request = Request::create('http://127.0.0.1:8000/api/customers/' . $id, 'GET');
+    //     $response = app()->handle($request);
 
-        // Check if the request was successful
-        if ($response->getStatusCode() == 200) {
-            // Decode the response body
-            $customer = json_decode($response->getContent(), true);
+    //     // Check if the request was successful
+    //     if ($response->getStatusCode() == 200) {
+    //         // Decode the response body
+    //         $customer = json_decode($response->getContent(), true);
 
-            // Ensure the customer data includes the 'id' key
-            if (!isset($customer['id'])) {
-                $customer['id'] = $id;
-            }
+    //         // Ensure the customer data includes the 'id' key
+    //         if (!isset($customer['id'])) {
+    //             $customer['id'] = $id;
+    //         }
 
-            // Return the view with the form, passing the customer data
-            return view('kasir.management-customer.update', ['customer' => $customer]);
-        } else {
-            // Redirect to an error page (you need to create this view)
-            return redirect()->view('errors.api', ['message' => 'Error fetching customer data']);
-        }
-    }
+    //         // Return the view with the form, passing the customer data
+    //         return view('kasir.management-customer.update', ['customer' => $customer]);
+    //     } else {
+    //         // Redirect to an error page (you need to create this view)
+    //         return redirect()->view('errors.api', ['message' => 'Error fetching customer data']);
+    //     }
+    // }
 
     public function updateData(UpdateRequest $request, $customer)
     {
