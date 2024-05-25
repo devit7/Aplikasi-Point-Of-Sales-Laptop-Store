@@ -30,19 +30,19 @@
             <div class="grid gap-4 sm:grid-cols-2 sm:gap-6">
                 <div class="sm:col-span-2">
                     <label for="customer_name" class="block mb-2 text-sm font-medium  text-white">Name Customer</label>
-                    <input type="text" name="customer_name" id="customer_name" value="{{ old('customer_name', $customer['customer_name']) }}" class="bg-[#131432] border text-sm rounded-lg  block w-full p-2.5  border-gray-600 placeholder-gray-400 text-white focus:ring-primary-500 focus:border-primary-500" placeholder="" required="">
+                    <input type="text" name="customer_name" id="customer_name" value="{{ $customer['customer_name'] }}" class="bg-[#131432] border text-sm rounded-lg  block w-full p-2.5  border-gray-600 placeholder-gray-400 text-white focus:ring-primary-500 focus:border-primary-500" placeholder="" required="">
                 </div>
                 <div class="w-full">
                     <label for="email" class="block mb-2 text-sm font-medium  text-white">Email</label>
-                    <input type="text" name="email" id="email" value="{{ old('email', $customer['email']) }}" class="bg-[#131432] border text-sm rounded-lg  block w-full p-2.5  border-gray-600 placeholder-gray-400 text-white focus:ring-primary-500 focus:border-primary-500" placeholder="" required="">
+                    <input type="text" name="email" id="email" value="{{ $customer['email'] }}" class="bg-[#131432] border text-sm rounded-lg  block w-full p-2.5  border-gray-600 placeholder-gray-400 text-white focus:ring-primary-500 focus:border-primary-500" placeholder="" required="">
                 </div>
                 <div class="w-full">
                     <label for="no_hp" class="block mb-2 text-sm font-medium  text-white">Phone number</label>
-                    <input type="number" name="no_hp" id="no_hp" value="{{ old('no_hp', $customer['no_hp']) }}" class="bg-[#131432] border text-sm rounded-lg  block w-full p-2.5  border-gray-600 placeholder-gray-400 text-white focus:ring-primary-500 focus:border-primary-500" placeholder="" required="">
+                    <input type="number" name="no_hp" id="no_hp" value="{{ $customer['no_hp'] }}" class="bg-[#131432] border text-sm rounded-lg  block w-full p-2.5  border-gray-600 placeholder-gray-400 text-white focus:ring-primary-500 focus:border-primary-500" placeholder="" required="">
                 </div>
                 <div class="sm:col-span-2">
                     <label for="alamat" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Address</label>
-                    <textarea id="alamat" name="alamat" rows="8" class="block p-2.5 w-full text-sm text-gray-900 rounded-lg border border-gray-300 focus:ring-primary-500 focus:border-primary-500 bg-[#131432] dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="" value="{{ old('alamat', $customer['alamat']) }}"></textarea>
+                    <textarea id="alamat" name="alamat" rows="8" class="block p-2.5 w-full text-sm text-gray-900 rounded-lg border border-gray-300 focus:ring-primary-500 focus:border-primary-500 bg-[#131432] dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="">{{ $customer['alamat']}}</textarea>
                 </div>
             </div>
             <button type="submit" class="inline-flex items-center px-5 py-2.5 mt-4 sm:mt-6 text-sm font-medium text-center text-white bg-blue-700 rounded-lg focus:ring-4 focus:ring-primary-200 dark:focus:ring-primary-900 hover:bg-primary-800">

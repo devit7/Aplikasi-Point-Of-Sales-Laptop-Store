@@ -87,7 +87,6 @@ class CustomersAksesController extends Controller
             'no_hp' => $validator['no_hp'],
             'alamat' => $validator['alamat'],
         ];
-        dd($data);
         $request = Request::create('http://127.0.0.1:8000/api/customers/' . $customer, 'PUT', $data);
         $response = app()->handle($request);
         if ($response->getStatusCode() == 200) {
