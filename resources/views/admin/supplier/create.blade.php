@@ -12,8 +12,17 @@
                 </div>
             </div>
         </div>
-        <div class="bg-[#1C1D42] rounded-md  border border-[#33356F] min-h-[500px]">
-                <div class="py-8 px-4 mx-auto max-w-2xl lg:py-16">
+        <div class="bg-[#1C1D42] rounded-md  border border-[#33356F] h-fit w-[600px]">
+        @if ($errors->any())
+            <div class="bg-red-500 text-white p-4 rounded-md mb-4">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+            @endif
+                <div class="py-8 px-4 mx-auto max-w-xl ">
                     <h2 class="mb-4 text-xl font-bold text-gray-900 dark:text-white">Add a new supplier</h2>
                     <form action="{{ route('supplier.store') }}" method="POST">
                     @csrf

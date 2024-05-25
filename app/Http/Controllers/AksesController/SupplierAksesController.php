@@ -30,13 +30,12 @@ class SupplierAksesController extends Controller
         $data = [
             'supplier_name' => $validated['supplier_name'],
             'no_hp' => $validated['no_hp'],
-            'nama_perusahan' =>  $validated['nama_perusahaan'],
+            'nama_perusahaan' =>  $validated['nama_perusahaan'],
             'alamat'=> $validated['alamat']
         ];
     
         $request = Request::create('http://127.0.0.1:8000/api/supplier', 'POST', $data);
         $response = app()->handle($request);
-        
         if ($response->getStatusCode() == 200) {
             session()->flash('success', 'Supplier berhasil ditambahkan');
             return redirect()->route('supplier.index');

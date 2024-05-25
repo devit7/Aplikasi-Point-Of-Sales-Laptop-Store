@@ -66,6 +66,11 @@ class SupplierController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+    public function edit($id)
+    {
+        $supplier = Supplier::findOrFail($id);
+        return view('admin.supplier.update', compact('supplier'));
+    }
     public function update(UpdateRequest $request, Supplier $supplier)
     {
         $validated = $request->validated();

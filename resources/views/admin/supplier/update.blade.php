@@ -1,4 +1,4 @@
-@extends('layout.kasir_main')
+@extends('layout.admin_main')
 @section('title', 'Testing')
 @section('content')
     <div class="w-full p-8 ">
@@ -12,14 +12,14 @@
                 </div>
             </div>
         </div>
-        <div class="bg-[#1C1D42] rounded-md  border border-[#33356F] min-h-[500px]">
+        <div class="bg-[#1C1D42] rounded-md  border border-[#33356F] min-h-[500px] w-[600px]">
                 <div class="py-8 px-4 mx-auto max-w-2xl lg:py-16">
                     <h2 class="mb-4 text-xl font-bold text-gray-900 dark:text-white">Add a new supplier</h2>
                     <form action="#">
                         <div class="grid gap-4 sm:grid-cols-2 sm:gap-6">
                             <div class="sm:col-span-2">
                                 <label for="name" class="block mb-2 text-sm font-medium  text-white">Supplier Name</label>
-                                <input type="text" name="name" id="name" class="bg-[#131432] border   text-sm rounded-lg  block w-full p-2.5  border-gray-600 placeholder-gray-400 text-white focus:ring-primary-500 focus:border-primary-500" placeholder="Type Supplier name" required="">
+                                <input value="{{$supplier->supplier_name}}" type="text" name="name" id="name" class="bg-[#131432] border   text-sm rounded-lg  block w-full p-2.5  border-gray-600 placeholder-gray-400 text-white focus:ring-primary-500 focus:border-primary-500" placeholder="Type Supplier name" required="">
                             </div>
                             <div class="w-full">
                                 <label for="brand" class="block mb-2 text-sm font-medium  text-white">No. Hp</label>

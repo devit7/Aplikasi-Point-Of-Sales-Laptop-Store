@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AksesController\CustomersAksesController;
 use App\Http\Controllers\AksesController\PaymentsAksesController;
+use App\Http\Controllers\AksesController\TokoAksesController;
 use App\Http\Controllers\AksesController\TransaksisAksesController;
 use App\Http\Controllers\AksesController\UserAksesController;
 use App\Http\Controllers\AksesController\SupplierAksesController;
@@ -26,9 +27,12 @@ Route::prefix('admin')->group(function () {
     Route::get('/', [DashboardController::class, 'index']);
 
     // Setting
-    Route::get('/setting', function () {
-        return view('admin.setting');
-    });
+    // Route::get('/setting', function () {
+    //     return view('admin.setting');
+    // });
+    Route::get('/setting', [TokoAksesController::class, 'getAll'])->name('admin.index');
+    // Route::post('/setting', [TokoAksesController::class, 'createData'])->name('admin.store');
+    Route::put('/setting/{toko}', [TokoAksesController::class, 'updateData'])->name('admin.update');
 
     // Laporan
     Route::get('/laporan', function () {
@@ -37,10 +41,10 @@ Route::prefix('admin')->group(function () {
 
     // User
     Route::get('/user', [UserAksesController::class, 'getAll'])->name('user.index');
-    Route::get('/user/{user}', [UserAksesController::class, 'getDetail'])->name('user.detail');
+    Route::get('/user/show/{user}', [UserAksesController::class, 'getDetail'])->name('user.detail');
     Route::get('/user/create', function () {
         return view('admin.user.create');
-    });
+    })->name('user.store');
 
     // Customer
     Route::get('/customer', function () {
@@ -48,11 +52,23 @@ Route::prefix('admin')->group(function () {
     });
 
     // Supplier
+    // Route untuk menampilkan semua supplier
     Route::get('/supplier', [SupplierAksesController::class, 'getAll'])->name('supplier.index');
+    
+    // Route untuk menampilkan form create supplier
     Route::get('/supplier/create', function () {
         return view('admin.supplier.create');
-    })->name('suppler.create');
+    })->name('supplier.create');
+    
+    // Route untuk membuat supplier baru
     Route::post('/supplier/create', [SupplierAksesController::class, 'createData'])->name('supplier.store');
+    
+    // Route untuk menampilkan form edit supplier
+    Route::get('/supplier/edit/{id}', [SupplierAksesController::class, 'edit'])->name('supplier.edit');
+    
+    // Route untuk memperbarui data supplier
+    Route::put('/supplier/update/{id}', [SupplierAksesController::class, 'update'])->name('supplier.update');
+    
 
     // Product
     Route::get('/product', function () {
@@ -83,20 +99,34 @@ Route::prefix('admin')->group(function () {
     Route::get('/payment/create', function () {
         return view('admin.payment.create');
     });
-     // Payment//
+    // Payment//
 
 });
 
 Route::prefix('kasir')->group(function () {
     Route::get('/', function () {
+        return view('kasir.dh2');
+    });
+    Route::get('/2', function () {
         return view('kasir.dashboard');
     });
     Route::get('/transaksi', function () {
         return view('kasir.RiwayatTransaksi');
     });
-    Route::get('/customer', function () {
-        return view('kasir.management-customer');
+
+    Route::get('/customer', [CustomersAksesController::class, 'getAll'])->name('management-customer.index');
+    Route::get('/customer/show/{customer}', [CustomersAksesController::class, 'getDetail'])->name('management-customer.detail');
+    Route::get('/customer/create', function () {
+        return view('kasir.management-customer.create');
     });
+    Route::get('/customer/update', function () {
+        return view('kasir.management-customer.update');
+    });
+
+    // Route for update form
+    // Route::get('/customer/{id}/edit', [CustomersAksesController::class, 'edit'])->name('management-customer.edit');
+    Route::post('/customer', [CustomersAksesController::class, 'createData'])->name('management-customer.store');
+    Route::delete('/customer/{customer}', [CustomersAksesController::class, 'deleteData'])->name('management-customer.delete');
 });
 
 
