@@ -7,6 +7,8 @@ use App\Http\Requests\Customer\StoreRequest;
 use App\Http\Requests\Customer\UpdateRequest;
 use Illuminate\Http\Request;
 use App\Models\Customers;
+use GuzzleHttp\Client;
+use Illuminate\Support\Facades\Http;
 
 class CustomersAksesController extends Controller
 {
@@ -47,6 +49,7 @@ class CustomersAksesController extends Controller
         $data = json_decode($response->getContent(), true);
         if ($response->getStatusCode() == 200) {
             // Pass the $customer data to the view
+            //return dd($data['data']);
             return view('kasir.management-customer.update', ['customer' => $data['data']]);
         } else {
             return response()->json([
@@ -57,6 +60,7 @@ class CustomersAksesController extends Controller
 
     public function createData(StoreRequest $request)
     {
+        return 'masuk';
         $validator = $request->validated();
         $data = [
             'customer_name' => $validator['customer_name'],
@@ -87,8 +91,17 @@ class CustomersAksesController extends Controller
             'no_hp' => $validator['no_hp'],
             'alamat' => $validator['alamat'],
         ];
-        dd($data);
-        $request = Request::create('http://127.0.0.1:8000/api/customers/' . $customer, 'PUT', $data);
+        //dd($data);
+        $data = [
+            'customer_name' => $validator['customer_name'],
+            'email' => $validator['email'],
+            'no_hp' => $validator['no_hp'],
+            'alamat' => $validator['alamat'],
+        ];
+        //dd($data);
+        $api_url = 'http://127.0.0.1:8000/api/customers/' . $customer->id .'?' . http_build_query($data);
+
+        $request = Request::create($api_url, 'PUT');
         $response = app()->handle($request);
         if ($response->getStatusCode() == 200) {
             session()->flash('success', 'Data customer berhasil di update');
