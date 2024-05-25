@@ -91,17 +91,10 @@ class CustomersAksesController extends Controller
             'no_hp' => $validator['no_hp'],
             'alamat' => $validator['alamat'],
         ];
-        //dd($data);
-        $data = [
-            'customer_name' => $validator['customer_name'],
-            'email' => $validator['email'],
-            'no_hp' => $validator['no_hp'],
-            'alamat' => $validator['alamat'],
-        ];
-        //dd($data);
         $api_url = 'http://127.0.0.1:8000/api/customers/' . $customer->id .'?' . http_build_query($data);
 
         $request = Request::create($api_url, 'PUT');
+        //dd($request);
         $response = app()->handle($request);
         if ($response->getStatusCode() == 200) {
             session()->flash('success', 'Data customer berhasil di update');
