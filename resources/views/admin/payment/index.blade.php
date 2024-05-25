@@ -72,9 +72,9 @@
     <!-- Confirmation Modal -->
     <div id="confirmation-modal" class="hidden fixed inset-0 z-50 overflow-auto bg-black bg-opacity-50">
         <div class="flex items-center justify-center min-h-screen">
-            <div class="bg-white rounded-lg p-6">
+            <div class="bg-[#131432] rounded-lg p-6">
                 <div class="mb-4 text-center">
-                    <h1 class="text-lg font-semibold">Apakah anda ingin menghapus opsi Payment ini?</h1>
+                    <h1 class="text-white font-semibold">Apakah anda ingin menghapus opsi Payment ini?</h1>
                 </div>
                 <div class="flex justify-center">
                     <button onclick="deletePayment()" class="px-4 py-2 mr-2 bg-red-600 text-white rounded-md">Iya</button>
