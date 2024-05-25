@@ -2,8 +2,10 @@
 
 use App\Http\Controllers\AksesController\CustomersAksesController;
 use App\Http\Controllers\AksesController\PaymentsAksesController;
+use App\Http\Controllers\AksesController\TokoAksesController;
 use App\Http\Controllers\AksesController\TransaksisAksesController;
 use App\Http\Controllers\AksesController\UserAksesController;
+use App\Http\Controllers\AksesController\SupplierAksesController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
@@ -25,9 +27,12 @@ Route::prefix('admin')->group(function () {
     Route::get('/', [DashboardController::class, 'index']);
 
     // Setting
-    Route::get('/setting', function () {
-        return view('admin.setting');
-    });
+    // Route::get('/setting', function () {
+    //     return view('admin.setting');
+    // });
+    Route::get('/setting', [TokoAksesController::class, 'getAll'])->name('admin.index');
+    // Route::post('/setting', [TokoAksesController::class, 'createData'])->name('admin.store');
+    Route::put('/setting/{toko}', [TokoAksesController::class, 'updateData'])->name('admin.update');
 
     // Laporan
     Route::get('/laporan', function () {
@@ -35,14 +40,11 @@ Route::prefix('admin')->group(function () {
     });
 
     // User
-    // Route::get('/user', function () {
-    //     return view('admin.user.index',);
-    // })->name('user.index');
-
     Route::get('/user', [UserAksesController::class, 'getAll'])->name('user.index');
+    Route::get('/user/show/{user}', [UserAksesController::class, 'getDetail'])->name('user.detail');
     Route::get('/user/create', function () {
         return view('admin.user.create');
-    });
+    })->name('user.store');
 
     // Customer
     Route::get('/customer', function () {
@@ -52,9 +54,6 @@ Route::prefix('admin')->group(function () {
     // Supplier
     Route::get('/supplier', function () {
         return view('admin.supplier.index');
-    });
-    Route::get('/supplier/create', function () {
-        return view('admin.supplier.create');
     });
 
     // Product
@@ -74,11 +73,6 @@ Route::prefix('admin')->group(function () {
     });
 
 
-    // Payment
-    Route::get('/payment', function () {
-        return view('admin.payment.index');
-    });
-
     // Create product
     Route::get('/product/create', function () {
         return view('admin.product.create');
@@ -91,15 +85,9 @@ Route::prefix('admin')->group(function () {
     Route::get('/payment/create', function () {
         return view('admin.payment.create');
     });
-    Route::get('/payment/update', function () {
-        return view('admin.payment.update');
-    });
-
-    // Transaksi
-    Route::get('/transaksi', [TransaksisAksesController::class, 'getAll']);
+    // Payment//
 
 });
-
 
 Route::prefix('kasir')->group(function () {
     Route::get('/', function () {
@@ -108,9 +96,16 @@ Route::prefix('kasir')->group(function () {
     Route::get('/transaksi', function () {
         return view('kasir.RiwayatTransaksi');
     });
-    Route::get('/customer', function () {
-        return view('kasir.management-customer');
+
+    Route::get('/customer', [CustomersAksesController::class, 'getAll'])->name('management-customer.index');
+    Route::get('/customer/show/{customer}', [CustomersAksesController::class, 'getDetail'])->name('management-customer.detail');
+    Route::get('/customer/create', function () {
+        return view('kasir.management-customer.create');
     });
+    Route::get('/customer/edit/{customer}',[CustomersAksesController::class, 'getEdit'])->name('management-customer.edit'); 
+    Route::put('/customer/update/{customer}',[CustomersAksesController::class, 'updateData'])->name('management-customer.update'); 
+    Route::post('/customer', [CustomersAksesController::class, 'createData'])->name('management-customer.store');
+    Route::delete('/customer/{customer}', [CustomersAksesController::class, 'deleteData'])->name('management-customer.delete');
 });
 
 
@@ -129,8 +124,6 @@ Route::get('/form', function () {
 Route::get('/tables', function () {
     return view('tables');
 });
-
-
 
 
 //Api

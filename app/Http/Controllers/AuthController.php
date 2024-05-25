@@ -18,7 +18,6 @@ class AuthController extends Controller
             'username' => $validator['username'],
             'password' => $validator['password']
         ];
-        
         if (Auth::attempt($dataLogin)) {
             
             $user = User::where('username', $request->username)->firstOrFail();

@@ -15,6 +15,9 @@ class Payments extends Model
     protected $guarded = [
         'id'
     ];
+    protected $fillable = [
+        'payment_name'
+    ];
 
     public function transaksi()
     {

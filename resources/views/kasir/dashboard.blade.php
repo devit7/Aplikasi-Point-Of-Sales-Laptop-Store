@@ -1,590 +1,144 @@
 @extends('layout.kasir_main')
 @section('content')
-<div class="batas">
-            <div class=" w-[64%] fixed z-50 h-[80px] text-center pr-[2%] items-center flex justify-between border-b border-l border-[#33356F] bg-[#131432]">
-                    <div class="LeftTopBar flex gap-[10px] pl-[40px]">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
-                        </svg>                      
-                        <p>Dashboard</p>
-                    </div>
-                    
-                    <div class="Search ">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+<style>
+    #card-img:hover {
+        transform: scale(1.1);
+    }
+</style>
+    <div class=" text-[#93A2D2] flex flex-row w-full h-full  ">
+        <div class="flex flex-col w-full py-6 px-16 min-h-screen overflow-y-auto scrollbar-hide ">
+            <div class="flex flex-col ">
+                <div class="text-[#93A2D2] flex ">
+                    <button class=" h-12 w-12  rounded-l-lg flex items-center justify-center bg-[#1f2949]">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
                             <path stroke-linecap="round" stroke-linejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
-                        </svg>
-                        <input type="" name="" id="" placeholder="Search">
-                    </div>
-            </div>
-            <div class="content" >
-                <div class="Kategori mt-[100px]">
-                    @for($k=1;$k<=20;$k++)
-                    <button class="butKategori">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 18 9 11.25l4.306 4.306a11.95 11.95 0 0 1 5.814-5.518l2.74-1.22m0 0-5.94-2.281m5.94 2.28-2.28 5.941" />
-                        </svg>
-                        <p>Trending</p>                       
+                          </svg>                          
                     </button>
-                    @endfor
-                    
+                    <input type="text" placeholder="Search Product" class="w-full h-12 px-4 rounded-r-lg bg-[#151e3b]   focus:outline-none">
                 </div>
-                <div class="product">
-                    <p>Products (18)</p>
-                    <div class="allImage">
-                        @for($i=1;$i<=20;$i++)
-                        <div class="dProduct">
-                            <div class="contPhoto">
-                                <img src="https://i.pinimg.com/564x/cf/ae/5d/cfae5d59e0de794e1523bf4b662eced0.jpg" alt="">
-                            </div>
-                            <div class="nonPhoto">
-                                <p class="nam">Macbook Pro 5 Oled</p>
-                                <p class="Spes">1 TB | Core i 7 | Blue-White</p>
-                                <div class="justGap">
-                                <p></p>
-                                <p class="harg">Rp. 27.000.000</p>
-                                </div>
-                            </div>
-                        </div>
-                        @endfor
-                    </div>
+                <div class="flex flex-row py-4 mt-4 gap-4  text-lg font-semibold overflow-x-auto ">
+                    <a href="#" class="py-1 rounded-lg px-6 bg-[#aa5800] bg-opacity-10 text-[#e07946]">
+                        All
+                    </a>
+                    <a href="#" class=" py-1 bg-[#151e3b] rounded-lg px-6">
+                        Lenovo
+                    </a>
+                    <a href="#" class=" py-1 bg-[#151e3b] rounded-lg px-6">
+                        Acer
+                    </a>
+                    <a href="#" class=" py-1 bg-[#151e3b] rounded-lg px-6">
+                        Asus
+                    </a>
                 </div>
             </div>
-            <div class="tempStruct border-l border-[#33356F]">
-                <div class="TopStruct h-[80px] border-b border-[#33356F] bg-[inherit]">
-                    <p>Cart</p>
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" class="w-4 h-4">
-                        <path fill-rule="evenodd" d="M11.986 3H12a2 2 0 0 1 2 2v6a2 2 0 0 1-1.5 1.937V7A2.5 2.5 0 0 0 10 4.5H4.063A2 2 0 0 1 6 3h.014A2.25 2.25 0 0 1 8.25 1h1.5a2.25 2.25 0 0 1 2.236 2ZM10.5 4v-.75a.75.75 0 0 0-.75-.75h-1.5a.75.75 0 0 0-.75.75V4h3Z" clip-rule="evenodd" />
-                        <path fill-rule="evenodd" d="M2 7a1 1 0 0 1 1-1h7a1 1 0 0 1 1 1v7a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V7Zm6.585 1.08a.75.75 0 0 1 .336 1.005l-1.75 3.5a.75.75 0 0 1-1.16.234l-1.75-1.5a.75.75 0 0 1 .977-1.139l1.02.875 1.321-2.64a.75.75 0 0 1 1.006-.336Z" clip-rule="evenodd" />
-                    </svg>
+            <div class=" flex flex-col  mt-4">
+                <div class="flex flex-row justify-between text-[20px] font-bold  ">
+                    Products (12)
                 </div>
-                
-                <div class="ProductStruct">
-                @for($j=1;$j<=20;$j++)
-                    <div class="cardProduct border-b border-[#33356F] pt-1">
-                        <div>
-                            <div class="classImgTemp">
-                                <img src="https://i.pinimg.com/564x/cf/ae/5d/cfae5d59e0de794e1523bf4b662eced0.jpg" alt="">
-                                
-                            </div>
-                            <div class="leftTemp">
-                                <p class="namTemp">Macbook Pro</p>
-                                <p class="jenisTemp">Blue</p>
-                                <div class="hargaQty">
-                                    <p>Rp. 27.000.000</p>
-                                    <div class="justGap">
-                                        <p></p>
-                                        <div class="PlusMinus">
-                                            <button>-</button>
-                                            <input type="text" name="" id="" value="4">
-                                            <button>+</button>
+                <div class="flex flex-wrap gap-6 mt-8 justify-between">
+                    @for ($i = 0; $i < 10; $i++)
+                        <div class="w-[230px] max-h-[305px] bg-[#151e3b] rounded-lg hover:shadow-2xl  transition duration-300 ">
+                            <div class="flex flex-col p-3 text-[#93A2D2] justify-between h-full">
+                                <div class="relative  w-full h-full overflow-hidden max-h-[180px]">
+                                    <img id="card-img" src="{{ asset('/laptop/phf4ybjk8ttu92ftvkhjfq1zf5tb5a100535.avif') }}"
+                                        alt="" class="w-full h-full bg-gray-900 object-cover rounded-lg">
+                                    <div
+                                        class="absolute top-0 right-0  text-sm text-blue-800 bg-blue-300 rounded-bl-lg px-3 ">
+                                        lenovo
+                                    </div>
+                                </div>
+                                <div class="flex flex-col pt-3 justify-between gap-3 h-full">
+                                    <div class="flex flex-col justify-between h-full ">
+                                        <div class="flex flex-row justify-between text-lg font-semibold">
+                                            Lenovo Legion 7i (16'', Gen 9)
+                                        </div>
+                                        <div class="flex flex-row justify-between">
+                                            <div class=" font-bold text-[#e07946]">
+                                                Rp. 1.000.000,00
+                                            </div>
+                                            <div class="flex items-center gap-1">
+                                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                                    stroke-width="1.5" stroke="currentColor" class="size-4">
+                                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                                        d="m20.25 7.5-.625 10.632a2.25 2.25 0 0 1-2.247 2.118H6.622a2.25 2.25 0 0 1-2.247-2.118L3.75 7.5M10 11.25h4M3.375 7.5h17.25c.621 0 1.125-.504 1.125-1.125v-1.5c0-.621-.504-1.125-1.125-1.125H3.375c-.621 0-1.125.504-1.125 1.125v1.5c0 .621.504 1.125 1.125 1.125Z" />
+                                                </svg>
+                                                <span>10</span>
+                                            </div>
                                         </div>
                                     </div>
-                                    
+                                    <a href="#"
+                                        class="font-semibold rounded-md text-blue-300 bg-indigo-800 py-1 text-center hover:bg-blue-300 hover:text-indigo-800 transition duration-300">
+                                        Add to Chart
+                                    </a>
                                 </div>
-                                
                             </div>
                         </div>
-                    </div>
-                @endfor
-                </div>
-                <div class="DetilStruct">
-                    <div class="Discount">
-                        <p>Discount</p>
-                        <div class="Rupiah" id="classRupiah" style="display:none;">
-                            <p>Rp. </p>
-                            <input type="text" id="forRupiah" >
-                        </div>
-                        <button onclick=toRupiah() id="addDisc">
-                            <p>+  Add</p>
-                        </button>
-                    </div>
-                    <div class="duit">
-                        <div class="duit2">
-                            <p>Tax</p>
-                            <div class="Rupiah">
-                                <p>Rp. </p>
-                                <p>2.700.000</p>
-                            </div>
-                            
-                        </div>
-                        <div class="duit2">
-                            <p>Total Amount</p>
-                            <div class="Rupiah">
-                                <p>Rp. </p>
-                                <p>27.000.000</p>
-                            </div>
-                        </div>
-                        <hr>
-                        <div class="butArea">
-                            <button class="clear">
-                                <p>Clear Basket</p>
-                            </button>
-                            <button class="pay">
-                                <p>Pay</p>
-                            </button>
-                        </div>
-                    </div>
-                    
+                    @endfor
+
                 </div>
             </div>
         </div>
-        <script>
-            document.getElementById('classRupiah').style.display="none";
-            document.getElementById('forRupiah').addEventListener('input', function (e) {
-                // Ambil nilai input
-                let value = e.target.value;
-
-                // Hilangkan karakter selain angka
-                value = value.replace(/\D/g, '');
-
-                // Format nilai dengan titik sebagai pemisah ribuan
-                value = new Intl.NumberFormat('id-ID').format(value);
-
-                // Masukkan nilai yang sudah diformat kembali ke input
-                e.target.value = value;
-            });
-            function toRupiah(){
-                let but = document.getElementById('addDisc');
-                let inp = document.getElementById('classRupiah');
-                
-                inp.style.display="";
-                but.style.display="none";
-            }
-            
-        </script>
-        <style>
-        html::-webkit-scrollbar{
-            width: 0;
-            height: 0;
-        }
-        body{
-            margin: 0 0;
-            font-family: Arial, Helvetica, sans-serif;
-            /* overflow-x: hidden; */
-        }
-        p{
-            margin: 0 0;
-            padding: 0 0;
-        }
-        div{
-            margin: 0 0;
-            padding: 0 0;
-        }
-        .batas{
-            height: 100%;
-            display: flex;
-            flex-direction: row;
-            color: #93A2D2;
-            overflow: hidden;
-        }
-
-        .sidebar{
-            width: 3%;
-            height: 100%;
-            display: flex;
-            flex-direction: column;
-            position: fixed;
-        }
-        .content{
-            margin-left: 3%;
-            display: flex;
-            flex-direction: column;
-            padding: 5px 20px;
-            width: 71%;
-            height: fit-content;
-            align-items: center;
-            justify-content: center;
-            /* overflow-x: hidden; */
-            overflow: hidden;
-        }
-
-        
-        .content>*{
-
-        }
-        .topBar{
-            width: 95%;
-            height: 5%;
-            display: flex;
-            flex-direction: row;
-            justify-content: space-between;
-            align-items: center;
-        }
-        .topBar>div{
-            
-        }
-        .leftTopBar{
-            display: flex;
-            flex-direction: row;
-            gap: 10px;
-            width: fit-content;
-            align-items: center;
-            justify-content: center;
-            border: white 1px solid;
-        }
-        .leftTopBar>svg{
-            width: 18px;
-            height: 25px;
-        }
-        .leftTopBar>p{
-            font-weight: 550;
-        }
-        .Search{
-            width: 250px;
-            height: 70%;
-            display: flex;
-            flex-direction: row;
-            padding: 5px;
-            margin: 5px;
-            border-radius: 12px;
-            gap: 4px;
-            align-items: center;
-            justify-content: center;
-            background-color: inherit;
-            border: #93A2D2 1px solid;
-        }
-        .Search>*{
-
-        }
-        .Search>svg{
-            width: 10%;
-            padding: 0 0;
-            margin: 0 0;
-            color: #93A2D2;
-        }
-        .Search>input{
-            width: 80%;
-            height: 100%;
-            border: none;
-            font-size: 17px;
-            margin: 0 0;
-            padding: 0 0;
-            background-color: inherit;
-            color: #93A2D2 ;
-            
-        }
-        .Search>input:focus{
-            border: none;
-            outline: none;
-        }
-
-        .Kategori{
-            width: 100%;
-            height: 5%;
-            padding: 10px 3px;
-            display: flex;
-            flex-direction: row;
-            gap: 10px;
-            overflow-x: auto;
-        }
-        .Kategori::-webkit-scrollbar{
-            width: 0;
-            height: 0;
-        }
-        .butKategori{
-            margin-left: 20px;
-            width: fit-content;
-            height: 100%;
-            display: flex;
-            flex-direction: row;
-            padding: 10px;
-            border-radius: 15px;
-            border: none;
-            gap: 5px;
-        }
-        .butKategori:hover{
-            background-color: #93A2D2;
-            color:#0C0D1F;
-        }
-        .butKategori>svg{
-            width: 14px;
-        }
-        .product{
-            width: 100%;
-            height: 90%;
-            display: flex;
-            flex-direction: column;
-            background-color: inherit;
-        }
-        .product>p{
-            font-size: 20px;
-            font-weight: 600;
-            padding: 20px 20px;
-        }
-        .product>*{
-            padding: 20px;
-        }
-        .allImage{
-            display: flex;
-            flex-wrap: wrap;
-            flex-direction: row;
-            gap: 10px;
-            
-        }
-        .dProduct{
-            
-            width: 342px;
-            height: 250px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-        .justGap{
-            display: flex;
-            justify-content: space-between;
-        }
-        .contPhoto{
-            width: 100%;
-            height: 70%;
-            overflow: hidden;
-            border-radius: 10px;
-        }
-        .contPhoto>img{
-            width: 100%;
-            height: auto;
-            object-fit: cover;
-            object-position: center;
-        }
-        .nonPhoto{
-            width: 90%;
-            display: flex;
-            flex-direction: column;
-            gap: 0px;
-            padding: 20px;
-
-        }
-        
-        .nam,.harg{
-            font-size: 16px;
-        }
-        .Spes{
-            font-size: 12px;
-            padding-bottom: 10px;
-        }
-
-        .tempStruct{
-            padding: 10px 10px;
-            padding-top: 0 !important;
-            width: 23%;
-            height: 100vh;
-            /* border: white 1px solid; */
-            position: fixed;
-            z-index: 100;
-            right: 0px;
-            overflow-y: auto;
-            overflow: hidden;
-            background-color: #0C0D1F;
-            /* background-color: #131432; */
-        }
-        .TopStruct{
-            display: flex;
-            flex-direction: row;
-            gap: 6px;
-            width: 100%;
-            /* height: 80px; */
-            align-items: center;
-            justify-content: center;
-            /* font-size: 15px; */
-            
-        }
-        .TopStruct>svg{
-            width: 12px;
-            padding: 3px;
-            background-color: rgb(223, 54, 138);
-            border-radius: 10px;
-            color: white;
-        }
-        .ProductStruct{
-            padding-top: 8px;
-            display: flex;
-            flex-direction: column;
-            gap: 2px;
-            height: 640px;
-            overflow-y: auto;
-        }
-        .ProductStruct::-webkit-scrollbar{
-            width: 5px;
-            opacity: 30%;
-        }
-        .ProductStruct::-webkit-scrollbar-thumb{
-            
-            background-color: #93A2D2;
-            border:white;
-            height: 0;
-            border-radius: 20px;
-            opacity: 20%;
-        }
-        .cardProduct{
-            display: flex;
-            flex-direction: column;
-            height: 150px;
-            gap: 3px;
-        }
-        
-        .cardProduct>div{
-            display: flex;
-            flex-direction: row;
-            width: 100%;
-            height: 98%;
-        }
-        .cardProduct>div>.classImgTemp{
-            height: 98%;
-            width: 50%;
-            overflow: hidden;
-            border-radius: 5px;
-        }
-        .classImgTemp>img{
-            height: 100%;
-            width: 100%;
-            height: auto;
-            object-fit: cover;
-            object-position: center;
-        }
-        .leftTemp{
-            width: 50%;
-            display: flex;
-            flex-direction: column;
-            padding: 10px;
-            gap: 8px;
-        }
-        .leftTemp>*{
-            width: 100%;
-        }
-        .namTemp{
-            font-size: 15px;
-        }
-        .jenisTemp{
-            font-size: 12px;
-        }
-        .hargaQty{
-            display: flex;
-            flex-direction: column;
-            gap: 5px;
-            height: 70%;
-            justify-content: space-between;
-        }
-        .PlusMinus{
-            display: flex;
-            flex-direction: row;
-        }
-        .PlusMinus>button{
-            width: 20px;
-            height: 20px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 6px;
-            border: none;
-            text-align: center;
-            font-size: 15px;
-            background-color: #131432;
-        }
-        .PlusMinus>button:hover{
-            background-color: rgba(52, 52, 52, 0.723);
-            color: white;
-        }
-        .PlusMinus>button:active{
-            background-color: rgba(72, 72, 72, 0.723);
-        }
-        .PlusMinus>input{
-            width: 30px;
-            height: 20;
-            border: none;
-            text-align: center;
-            background-color: inherit;
-            font-size: 12px;
-        }
-        .PlusMinus>input:focus{
-            border: none;
-            outline: none;
-        }
-        .cardProduct>hr{
-            padding: 0 0;
-            margin: 0 0;
-        }
-        .DetilStruct{
-            height: 100%;
-            width: 100%;
-            display: flex;
-            flex-direction: column;
-            padding: 10px;
-            /* padding-right: 10px; */
-            gap:8px;
-            /* background-color: rgba(128, 128, 128, 0.236); */
-        }
-        .Discount{
-            display: flex;
-            flex-direction: row;
-            justify-content: space-between;
-            align-items: center;
-        }
-        .Discount>button{
-            padding: 4px 20px;
-            border-radius: 5px;
-            background-color: rgba(111, 111, 111, 0.608);
-            border: none;
-            color: rgb(255, 255, 255);
-            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
-        }
-        .Discount>button:hover,.clear:hover{
-            background-color: rgb(40, 40, 40);
-        }
-        .Discount>button:active,.clear:active{
-            background-color: rgb(73, 73, 73);
-        }
-        .duit{
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
-        }
-        .duit>.duit2{
-            display: flex;
-            flex-direction: row;
-            justify-content: space-between;
-            align-items: center;
-        }
-        .Rupiah{
-            display: flex;
-            flex-direction: row;
-            justify-content: space-between;
-            align-items: center;
-            width: 120px;
-        }
-        .Rupiah>input{
-            color: #93A2D2;
-            background-color: inherit;
-            outline: none;
-            border: none;
-            text-align: right;
-            width: 100%;
-            padding: 4px 0;
-
-        }
-        .butArea{
-            display: flex;
-            flex-direction: row;
-            justify-content: space-between;
-        }
-        .butArea>button{
-            width: 49%;
-            padding: 10px 40px;
-            color: white;
-            border-radius: 8px;
-            border: none;
-            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
-        }
-        .clear{
-            background-color: rgba(111, 111, 111, 0.608);
-        }
-        .pay{
-            background-color: rgb(214, 57, 83);
-        }
-        .pay:hover{
-            background-color: rgb(164, 44, 64);
-        }
-        .pay:active{
-            background-color: rgb(169, 69, 86);
-        }
-    </style>
-
+        <div class="flex flex-col min-h-screen w-[500px] border-l border-[#33356F] bg-[#0C0D1F] ">
+            <div class=" h-[100px] flex flex-row justify-center items-center gap-2 px-4">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                    stroke="currentColor" class="size-6">
+                    <path stroke-linecap="round" stroke-linejoin="round"
+                        d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 0 0-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 0 0-16.536-1.84M7.5 14.25 5.106 5.272M6 20.25a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Zm12.75 0a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Z" />
+                </svg>
+                <p class="text-[#93A2D2] text-[20px] font-bold text-center">
+                    Current Order
+                </p>
+            </div>
+            <div class="border-y border-[#33356F] h-full">
+                <div class="flex flex-col gap-2 p-2 overflow-y-auto scrollbar-hide">
+                    <div class="flex flex-row gap-2 justify-between p-2 items-center rounded-md border border-gray-600">
+                        <img src="{{ asset('/laptop/phf4ybjk8ttu92ftvkhjfq1zf5tb5a100535.avif') }}" alt=""
+                            class="w-20 h-20 rounded-md border border-gray-600">
+                        <div class="flex flex-col  w-full ">
+                            <p class="text-[#93A2D2] font-semibold">
+                                Lenovo Legion 7i (16'', Gen 9)
+                            </p>
+                            <div class="flex flex-row justify-between">
+                                <p class="text-[#e07946] font-semibold">
+                                    Rp. 1.000.000,00
+                                </p>
+                                <p class="text-[#93A2D2]">
+                                    2x
+                                </p>
+                            </div>
+                            <div class="flex flex-row justify-between">
+                                <p class="text-[#93A2D2]">
+                                    Total :
+                                </p>
+                                <p class="text-green-600 font-semibold">
+                                    Rp. 1.000.000,00
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="flex flex-col justify-between h-[300px] px-4 py-4">
+                <div class=" text-lg text-[#93A2D2]">
+                    <div class="flex flex-row justify-between border-b border-dashed py-2 border-gray-600 ">
+                        <p class="  ">
+                            Total Amount
+                        </p>
+                        <p class="  ">
+                            Rp. 1.000.000,00
+                        </p>
+                    </div>
+                </div>
+                <div class="flex flex-col gap-2 justify-between">
+                    <div
+                        class=" text-center rounded-md px-4 py-2 bg-green-700 text-white hover:bg-green-800 cursor-pointer">
+                        Place Order
+                    </div>
+                    <div class=" text-center rounded-md px-4 py-2 bg-gray-700 text-white hover:bg-gray-800 cursor-pointer">
+                        Clear Order
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 @endsection

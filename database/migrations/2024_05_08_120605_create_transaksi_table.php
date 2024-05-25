@@ -4,8 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
-{
+return new class extends Migration {
     /**
      * Run the migrations.
      *
@@ -17,7 +16,7 @@ return new class extends Migration
             $table->uuid('id')->primary();
             $table->string('invoice')->unique();
             $table->dateTime('order_date');
-            $table->bigInteger('total_semua');
+            $table->bigInteger('total_semua')->unsigned();
             $table->uuid('user_id');
             $table->uuid('customer_id');
             $table->uuid('payment_id');

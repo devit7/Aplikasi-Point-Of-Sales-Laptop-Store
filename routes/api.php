@@ -5,6 +5,10 @@ use App\Http\Controllers\CustomersController;
 use App\Http\Controllers\PaymentsController;
 use App\Http\Controllers\TransaksiController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\TokoController;
+use App\Http\Controllers\ProductController;
+use App\Http\Controllers\SupplierController;
+use App\Http\Controllers\MerkController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -27,12 +31,12 @@ Route::apiResource('/users', UserController::class);
 Route::apiResource('/customers', CustomersController::class);
 Route::apiResource('/payments', PaymentsController::class);
 Route::apiResource('/transaksi', TransaksiController::class);
-Route::middleware('auth:sanctum')->group(function () {
-<<<<<<< HEAD
+Route::apiResource('/toko', TokoController::class);
+Route::apiResource('/suppliers', SupplierController::class);
+Route::apiResource('/merk', MerkController::class);
+Route::apiResource('/products', ProductController::class);
 
-=======
-    
->>>>>>> 41ff8275a0830073b67b8b1602a9cf3e27c478b3
+Route::middleware('auth:sanctum')->group(function () {
     // jika role admin
     Route::group(['middleware' => ['UserAkses:admin']], function () {
     });
@@ -43,5 +47,4 @@ Route::middleware('auth:sanctum')->group(function () {
         //Route::apiResource('/payments', PaymentsController::class);
         //Route::apiResource('/transaksi', TransaksiController::class);
     });
-
 });
