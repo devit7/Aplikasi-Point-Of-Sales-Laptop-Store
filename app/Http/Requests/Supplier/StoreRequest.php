@@ -25,7 +25,7 @@ class StoreRequest extends FormRequest
     {
         return [
             'supplier_name' => 'required|string',
-            'no_hp' => 'required|numeric|digits:12|unique:supplier,no_hp',
+            'no_hp' => 'required|numeric|digits:12|unsigned|unique:supplier,no_hp',
             'nama_perusahaan' => 'required|string',
             'alamat' => 'required|string',
         ];
@@ -40,6 +40,7 @@ class StoreRequest extends FormRequest
             'no_hp.numeric' => 'Data Nomor HP harus berupa angka',
             'no_hp.digits' => 'Data Nomor HP harus 12 digit',
             'no_hp.unique' => 'Data Nomor HP sudah ada',
+            'no_hp.unsigned' => 'Data Nomor HP harus berupa angka positif',
             'nama_perusahaan.required' => 'Data Nama Perusahaan harus diisi',
             'nama_perusahaan.string' => 'Data Nama Perusahaan harus berupa string',
             'alamat.required' => 'Data Alamat harus diisi',

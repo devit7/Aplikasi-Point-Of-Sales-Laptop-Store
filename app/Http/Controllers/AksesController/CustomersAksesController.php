@@ -41,6 +41,22 @@ class CustomersAksesController extends Controller
         }
     }
 
+    public function getEdit($customer)
+    {
+        $request = Request::create('http://127.0.0.1:8000/api/customers/' . $customer, 'GET');
+        $response = app()->handle($request);
+        $data = json_decode($response->getContent(), true);
+        if ($response->getStatusCode() == 200) {
+            return view('kasir.management-customer.update', [
+                'data' => $data['data']
+            ]);
+        } else {
+            return response()->json([
+                'message' => 'Unauthorized'
+            ]);
+        }
+    }
+
     public function createData(StoreRequest $request)
     {
         $validator = $request->validated();
