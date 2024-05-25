@@ -23,8 +23,9 @@ class UpdateRequest extends FormRequest
      */
     public function rules()
     {
+        $paymentExist = $this->payment ? $this->payment->id : '';
         return [
-            'payment_name' => 'required|string',
+            'payment_name' => 'required|string|unique:payments,payment_name,'. $paymentExist . ',id',
         ];
     }
 
@@ -33,6 +34,7 @@ class UpdateRequest extends FormRequest
         return [
             'payment_name.required' => 'Data Payment Name Harus Diisi',
             'payment_name.string' => 'Data Payment Name Harus Berupa String',
+
         ];
     }
 }

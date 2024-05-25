@@ -18,8 +18,8 @@ class CustomersController extends Controller
     {
         return response()->json([
             'message' => 'List Customers',
-            'data' => Customers::all()
-        ]);
+            'data' => Customers::all(),
+        ], 200);
     }
 
     /**
@@ -51,8 +51,8 @@ class CustomersController extends Controller
 
         return response()->json([
             'message' => 'Customers berhasil ditambahkan',
-            'data' => $customer
-        ]);
+            'data' => $customer,
+        ], 201);
     }
 
     /**
@@ -65,8 +65,8 @@ class CustomersController extends Controller
     {
         return response()->json([
             'message' => 'Detail Customers',
-            'data' => $customer
-        ]);
+            'data' => $customer,
+        ], 200);
     }
 
     /**
@@ -75,9 +75,20 @@ class CustomersController extends Controller
      * @param  \App\Models\Customers  $customers
      * @return \Illuminate\Http\Response
      */
-    public function edit(Customers $customers)
+    public function edit(Customers $customers, $id)
     {
-        //
+        $response = $this->getDetail($id);
+        if ($response->getStatusCode() == 200) {
+            $responseContent = json_decode($response->getContent());
+            if (isset($responseContent->data)) {
+                $customer = $responseContent->data;
+                return view('kasir.management-customer.update', compact('customer'));
+            } else {
+                return redirect()->route('management-customer.index')->with('error', 'Unable to fetch customer details');
+            }
+        } else {
+            return redirect()->route('management-customer.index')->with('error', 'Unable to fetch customer details');
+        }
     }
 
     /**
@@ -100,8 +111,8 @@ class CustomersController extends Controller
 
         return response()->json([
             'message' => 'Customers berhasil diubah',
-            'data' => $customer
-        ]);
+            'data' => $customer,
+        ], 200);
     }
 
     /**
@@ -115,7 +126,7 @@ class CustomersController extends Controller
         $customer->delete();
 
         return response()->json([
-            'message' => 'Customers berhasil dihapus'
-        ]);
+            'message' => 'Customers berhasil dihapus',
+        ], 200);
     }
 }

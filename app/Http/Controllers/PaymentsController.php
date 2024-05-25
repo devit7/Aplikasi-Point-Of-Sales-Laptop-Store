@@ -18,7 +18,7 @@ class PaymentsController extends Controller
     {
         return response()->json([
             'message' => 'List Payments',
-            'data' => Payments::all()
+            'data' => Payments::all(),
         ]);
     }
 
@@ -48,8 +48,8 @@ class PaymentsController extends Controller
 
         return response()->json([
             'message' => 'Payment berhasil ditambahkan',
-            'data' => $payment
-        ]);
+            'data' => $payment,
+        ], 201);
     }
 
     /**
@@ -62,7 +62,7 @@ class PaymentsController extends Controller
     {
         return response()->json([
             'message' => 'Detail Payments',
-            'data' => $payment
+            'data' => $payment,
         ]);
     }
 
@@ -94,7 +94,7 @@ class PaymentsController extends Controller
 
         return response()->json([
             'message' => 'Payment berhasil diubah',
-            'data' => $payment
+            'data' => $payment,
         ]);
     }
 
@@ -109,7 +109,7 @@ class PaymentsController extends Controller
         $payment->delete();
 
         return response()->json([
-            'message' => 'Payment berhasil dihapus'
+            'message' => 'Payment berhasil dihapus',
         ]);
     }
 }
