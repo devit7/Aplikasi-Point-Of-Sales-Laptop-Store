@@ -91,9 +91,6 @@ Route::prefix('admin')->group(function () {
 
 Route::prefix('kasir')->group(function () {
     Route::get('/', function () {
-        return view('kasir.dh2');
-    });
-    Route::get('/2', function () {
         return view('kasir.dashboard');
     });
     Route::get('/transaksi', function () {
