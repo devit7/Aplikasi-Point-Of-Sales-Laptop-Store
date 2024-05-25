@@ -130,10 +130,7 @@
                     </div>
                 </div>
                 <div class="flex flex-col gap-2 justify-between">
-                    <div
-                        class=" text-center rounded-md px-4 py-2 bg-green-700 text-white hover:bg-green-800 cursor-pointer">
-                        Place Order
-                    </div>
+                    <x-modals_transaksi />
                     <div class=" text-center rounded-md px-4 py-2 bg-gray-700 text-white hover:bg-gray-800 cursor-pointer">
                         Clear Order
                     </div>
