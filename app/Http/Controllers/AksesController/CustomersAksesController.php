@@ -40,7 +40,7 @@ class CustomersAksesController extends Controller
             ]);
         }
     }
-    
+
     public function getEdit($customer)
     {
         $request = Request::create('http://127.0.0.1:8000/api/customers/' . $customer, 'GET');

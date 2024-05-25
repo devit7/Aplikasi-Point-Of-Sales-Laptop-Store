@@ -28,7 +28,7 @@ class UpdateRequest extends FormRequest
         return [
             'customer_name' => 'required|string',
             'email' => 'required|email|unique:customer,email,' . $custommerExist . ',id',
-            'no_hp' => 'required|string|unique:customer,no_hp,' . $custommerExist . ',id',
+            'no_hp' => 'required|string|unsigned|unique:customer,no_hp,' . $custommerExist . ',id',
             'alamat' => 'required|string',
         ];
     }
@@ -46,6 +46,7 @@ class UpdateRequest extends FormRequest
             'no_hp.unique' => 'Data No HP Sudah Ada',
             'alamat.required' => 'Data Alamat Harus Di Isi',
             'alamat.string' => 'Data Alamat Harus Berupa String',
+            'no_hp.unsigned' => 'Data No HP Harus Berupa Angka',
         ];
     }
 }
