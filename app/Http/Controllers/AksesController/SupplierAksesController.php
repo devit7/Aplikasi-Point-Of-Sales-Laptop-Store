@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\AksesController;
 
 use App\Http\Controllers\Controller;
+use App\Models\Supplier;
 use App\Http\Requests\Supplier\StoreRequest;
+use App\Http\Requests\Supplier\UpdateRequest;
 use Illuminate\Http\Request;
 
 class SupplierAksesController extends Controller
@@ -23,6 +25,21 @@ class SupplierAksesController extends Controller
             ], 401);
         }
     }
+    public function getEdit($supplier)
+    {
+        $request = Request::create('http://127.0.0.1:8000/api/supplier/' . $supplier, 'GET');
+        $response = app()->handle($request);
+        $data = json_decode($response->getContent(), true);
+        if ($response->getStatusCode() == 200) {
+            return view('admin.supplier.update', [
+                'data' => $data['data']
+            ]);
+        } else {
+            return response()->json([
+                'message' => 'Unauthorized'
+            ]);
+        }
+    }
     public function createData(StoreRequest $request)
     {
         $validated = $request->validated();
@@ -39,6 +56,28 @@ class SupplierAksesController extends Controller
         if ($response->getStatusCode() == 200) {
             session()->flash('success', 'Supplier berhasil ditambahkan');
             return redirect()->route('supplier.index');
+        } else {
+            return response()->json([
+                'message' => 'Unauthorized'
+            ], 401);
+        }
+    }
+
+    public function updateData(UpdateRequest $request,Supplier $supplier)
+    {
+        dd($request);
+        $validatedData = $request->validated();
+        $data = [
+            'supplier_name' => $validatedData['supplier_name'],
+            'no_hp' => $validatedData['no_hp'],
+            'nama_perusahaan' =>  $validatedData['nama_perusahaan'],
+            'alamat' => $validatedData['alamat']
+        ];
+        $requestApi = Request::create('http://127.0.0.1:8000/api/supplier/' . $supplier, 'PUT', $data);
+        $response = app()->handle($requestApi);
+        if ($response->getStatusCode() == 200) {
+            session()->flash('success', 'Data customer berhasil diupdate');
+            return redirect()->route('admin.supplier.index');
         } else {
             return response()->json([
                 'message' => 'Unauthorized'

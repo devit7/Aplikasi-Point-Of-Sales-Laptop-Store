@@ -54,20 +54,16 @@ Route::prefix('admin')->group(function () {
     // Supplier
     // Route untuk menampilkan semua supplier
     Route::get('/supplier', [SupplierAksesController::class, 'getAll'])->name('supplier.index');
-    
     // Route untuk menampilkan form create supplier
     Route::get('/supplier/create', function () {
         return view('admin.supplier.create');
     })->name('supplier.create');
-    
     // Route untuk membuat supplier baru
     Route::post('/supplier/create', [SupplierAksesController::class, 'createData'])->name('supplier.store');
-    
     // Route untuk menampilkan form edit supplier
-    Route::get('/supplier/edit/{id}', [SupplierAksesController::class, 'edit'])->name('supplier.edit');
-    
+    Route::get('/supplier/edit/{supplier}', [SupplierAksesController::class, 'getEdit'])->name('supplier.edit');
     // Route untuk memperbarui data supplier
-    Route::put('/supplier/update/{id}', [SupplierAksesController::class, 'update'])->name('supplier.update');
+    Route::put('/supplier/update/{supplier}', [SupplierAksesController::class, 'updateData'])->name('supplier.updateCoy');
     
 
     // Product
