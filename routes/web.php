@@ -4,6 +4,7 @@ use App\Http\Controllers\AksesController\CustomersAksesController;
 use App\Http\Controllers\AksesController\PaymentsAksesController;
 use App\Http\Controllers\AksesController\TransaksisAksesController;
 use App\Http\Controllers\AksesController\UserAksesController;
+use App\Http\Controllers\AksesController\LaporanController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
@@ -33,6 +34,9 @@ Route::prefix('admin')->group(function () {
     Route::get('/laporan', function () {
         return view('admin.laporan.index');
     });
+    // create pdf laporan
+    Route::get('/cetak_laporan', [LaporanController::class, 'index']);
+
 
     // User
     // Route::get('/user', function () {
@@ -78,8 +82,6 @@ Route::prefix('admin')->group(function () {
     Route::get('/payment', function () {
         return view('admin.payment.index');
     });
-<<<<<<< HEAD
-=======
 
     // Create product
     Route::get('/product/create', function () {
@@ -90,7 +92,6 @@ Route::prefix('admin')->group(function () {
     Route::get('/product/update', function () {
         return view('admin.product.update');
     });
->>>>>>> dca1f859bc79be5eaf6b810e62d8ba51a0c6b69f
     Route::get('/payment/create', function () {
         return view('admin.payment.create');
     });
