@@ -69,21 +69,21 @@ Route::prefix('admin')->group(function () {
         return view('admin.merk.update');
     });
 
-     // Payment
+    // Payment
     Route::get('/payment', [PaymentsAksesController::class, 'getAll'])->name('payment.index');
     // Route to show the form for creating a new payment
-    Route::get('/payment/create', function() {
+    Route::get('/payment/create', function () {
         return view('admin.payment.create');
     })->name('payments.create');
     // Route to store a new payment
     Route::post('/payment', [PaymentsAksesController::class, 'createData'])->name('payment.store');
     // Route to show the form for editing an existing payment
-    Route::get('/payment/{id}/edit', function($id) {
+    Route::get('/payment/{id}/edit', function ($id) {
         $controller = new PaymentsAksesController();
         $response = $controller->getDetail($id);
         if ($response->getStatusCode() == 200) {
             $responseContent = json_decode($response->getContent());
-            if (isset($responseContent->data)) {
+            if (isset ($responseContent->data)) {
                 $payment = $responseContent->data;
                 return view('admin.payment.update', compact('payment'));
             } else {
@@ -98,7 +98,7 @@ Route::prefix('admin')->group(function () {
     // Route to delete an existing payment
     Route::delete('/payment/{id}', [PaymentsAksesController::class, 'deleteData'])->name('payment.destroy');
 
-    
+
     // Create product
     Route::get('/product/create', function () {
         return view('admin.product.create');
@@ -110,6 +110,7 @@ Route::prefix('admin')->group(function () {
     Route::get('/payment/create', function () {
         return view('admin.payment.create');
     });
+});
 
 Route::prefix('kasir')->group(function () {
     Route::get('/', function () {
