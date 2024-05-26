@@ -77,18 +77,7 @@ class CustomersController extends Controller
      */
     public function edit(Customers $customers, $id)
     {
-        $response = $this->getDetail($id);
-        if ($response->getStatusCode() == 200) {
-            $responseContent = json_decode($response->getContent());
-            if (isset($responseContent->data)) {
-                $customer = $responseContent->data;
-                return view('kasir.management-customer.update', compact('customer'));
-            } else {
-                return redirect()->route('management-customer.index')->with('error', 'Unable to fetch customer details');
-            }
-        } else {
-            return redirect()->route('management-customer.index')->with('error', 'Unable to fetch customer details');
-        }
+        
     }
 
     /**

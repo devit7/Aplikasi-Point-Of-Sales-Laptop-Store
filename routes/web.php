@@ -27,9 +27,6 @@ Route::prefix('admin')->group(function () {
     Route::get('/', [DashboardController::class, 'index']);
 
     // Setting
-    // Route::get('/setting', function () {
-    //     return view('admin.setting');
-    // });
     Route::get('/setting', [TokoAksesController::class, 'getAll'])->name('admin.index');
     // Route::post('/setting', [TokoAksesController::class, 'createData'])->name('admin.store');
     Route::put('/setting/{toko}', [TokoAksesController::class, 'updateData'])->name('admin.update');
@@ -44,7 +41,7 @@ Route::prefix('admin')->group(function () {
     Route::get('/user/show/{user}', [UserAksesController::class, 'getDetail'])->name('user.detail');
     Route::get('/user/create', function () {
         return view('admin.user.create');
-    })->name('user.store');
+    });
 
     // Customer
     Route::get('/customer', function () {
@@ -102,8 +99,11 @@ Route::prefix('kasir')->group(function () {
     Route::get('/customer/create', function () {
         return view('kasir.management-customer.create');
     });
-    Route::get('/customer/edit/{customer}',[CustomersAksesController::class, 'getEdit'])->name('management-customer.edit'); 
-    Route::put('/customer/update/{customer}',[CustomersAksesController::class, 'updateData'])->name('management-customer.update'); 
+
+    Route::get('/customer/edit/{customer}', [CustomersAksesController::class, 'getEdit'])->name('management-customer.edit');
+    Route::put('/customer/update/{customer}', [CustomersAksesController::class, 'updateData'])->name('management-customer.update');
+    // Route for update form
+    // Route::get('/customer/{id}/edit', [CustomersAksesController::class, 'edit'])->name('management-customer.edit');
     Route::post('/customer', [CustomersAksesController::class, 'createData'])->name('management-customer.store');
     Route::delete('/customer/{customer}', [CustomersAksesController::class, 'deleteData'])->name('management-customer.delete');
 });
