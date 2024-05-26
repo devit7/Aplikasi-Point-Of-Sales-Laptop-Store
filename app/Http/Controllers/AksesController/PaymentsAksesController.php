@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers\AksesController;
 
+use Illuminate\Validation\Rule;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Payments\StoreRequest;
 use App\Http\Requests\Payments\UpdateRequest;
 use Illuminate\Http\Request;
-use Illuminate\Validation\Rule;
 
 class PaymentsAksesController extends Controller
 {
@@ -41,17 +41,17 @@ class PaymentsAksesController extends Controller
 
     public function createData(StoreRequest $request)
     {
-        $data = $request->validated();
+        $validate = $request->validate();
+    
+        $data = [
+            'payment_name' => $request->input('payment_name'),
+        ];
     
         $apiRequest = Request::create('http://127.0.0.1:8000/api/payments', 'POST', $data);
         $response = app()->handle($apiRequest);
-        $responseData = json_decode($response->getContent(), true);
+    
         if ($response->getStatusCode() == 200) {
             session()->flash('success', 'Payment berhasil ditambahkan');
-            return redirect()->route('payment.index');
-        } else if ($response->getStatusCode() == 422) {
-            $errorMessage = $responseData['message'];
-            session()->flash('error', $errorMessage);
             return redirect()->route('payment.index');
         } else {
             return response()->json([
@@ -60,9 +60,23 @@ class PaymentsAksesController extends Controller
         }
     }
     
-    public function updateData(UpdateRequest $request, $payment)
+
+    public function updateData(Request $request, $payment)
     {
-        $data = $request->validated();
+        $request->validate([
+            'payment_name' => [
+                'required',
+                'string',
+                'max:255',
+                Rule::unique('payments')->ignore($payment),
+            ],
+        ], [
+            'payment_name.unique' => 'Nama Payment sudah ada',
+        ]);
+    
+        $data = [
+            'payment_name' => $request->input('payment_name'),
+        ];
     
         $apiRequest = Request::create('http://127.0.0.1:8000/api/payments/' . $payment, 'PUT', $data);
         $response = app()->handle($apiRequest);
@@ -76,10 +90,11 @@ class PaymentsAksesController extends Controller
             ], 401);
         }
     }
+    
 
     public function deleteData($payment)
     {
-        $request = Request::create('http://127.0.0.1:8000/api/payments/' . $payment, 'DELETE');
+        $request = Request::create('http://127.0.0.1:8000/api/payments/'.$payment, 'DELETE');
         $response = app()->handle($request);
         if ($response->getStatusCode() == 200) {
             return redirect()->route('payment.index')->with('success', 'Payment berhasil dihapus');

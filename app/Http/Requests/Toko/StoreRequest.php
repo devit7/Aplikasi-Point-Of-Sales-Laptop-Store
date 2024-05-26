@@ -25,9 +25,9 @@ class StoreRequest extends FormRequest
     {
         return [
             'nama_toko' => 'required|string|unique:toko,nama_toko',
-            'logo_toko' => 'image|mimes:jpeg,png,jpg,gif,svg|max:10048|nullable',
+            'logo_toko' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:10048',
             'alamat' => 'required|string',
-            'no_hp' => 'required|numeric|digits:12|unique:toko,no_hp',
+            'no_hp' => 'required|numeric|unsigned|digits:12|unique:toko,no_hp',
         ];
     }
 
@@ -45,6 +45,7 @@ class StoreRequest extends FormRequest
             'no_hp.required' => 'Data No. HP harus diisi',
             'no_hp.numeric' => 'Data No. HP harus berupa angka',
             'no_hp.digits' => 'Data No. HP harus 12 digit',
+            'no_hp.unsigned' => 'Data No. HP harus berupa angka positif',
         ];
     }
 }

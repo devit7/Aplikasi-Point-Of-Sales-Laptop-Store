@@ -23,8 +23,8 @@ class TransaksiController extends Controller
         $data = Transaksi::with(['user', 'toko', 'customer', 'payment', 'product']);
         return response()->json([
             'message' => 'List Transaksi',
-            'data' => $data
-        ]);
+            'data' => $data,
+        ], 200);
     }
 
 
@@ -59,7 +59,7 @@ class TransaksiController extends Controller
                 'order_date' => now(),
                 'total_semua' => $validated['total_semua'],
                 'customer_id' => $validated['customer_id'],
-                'payment_id' => $validated['payment_id']
+                'payment_id' => $validated['payment_id'],
             ]);
 
             foreach ($validated['product_id'] as $key => $value) {
@@ -70,8 +70,8 @@ class TransaksiController extends Controller
                         'quantity' => $validated['quantity'][$key],
                         'harga_jual' => $validated['harga_jual'][$key],
                         'harga_asli' => $validated['harga_asli'][$key],
-                        'total' => $validated['total_tiap_produk'][$key]
-                    ]
+                        'total' => $validated['total_tiap_produk'][$key],
+                    ],
                 );
             }
 
@@ -87,15 +87,15 @@ class TransaksiController extends Controller
 
             return response()->json([
                 'message' => 'Transaksi Berhasil',
-                'data' => $transaksi
-            ]);
+                'data' => $transaksi,
+            ], 201);
 
         } catch (\Exception $e) {
 
             DB::rollBack();
 
             return response()->json([
-                'message' => $e->getMessage()
+                'message' => $e->getMessage(),
             ], 500);
         }
     }
@@ -110,8 +110,8 @@ class TransaksiController extends Controller
     {
         return response()->json([
             'message' => 'Detail Transaksi',
-            'data' => $transaksi->load(['user', 'toko', 'customer', 'payment', 'product'])
-        ]);
+            'data' => $transaksi->load(['user', 'toko', 'customer', 'payment', 'product']),
+        ], 200);
     }
 
     /**
@@ -148,18 +148,19 @@ class TransaksiController extends Controller
                 'order_date' => now(),
                 'total_semua' => $validated['total_semua'],
                 'customer_id' => $validated['customer_id'],
-                'payment_id' => $validated['payment_id']
+                'payment_id' => $validated['payment_id'],
             ]);
 
             foreach ($validated['product_id'] as $key => $value) {
-                $transaksi->product()->updateExistingPivot($value,
+                $transaksi->product()->updateExistingPivot(
+                    $value,
                     [
                         'id' => Str::uuid(),
                         'quantity' => $validated['quantity'][$key],
                         'harga_jual' => $validated['harga_jual'][$key],
                         'harga_asli' => $validated['harga_asli'][$key],
-                        'total' => $validated['total_tiap_produk'][$key]
-                    ]
+                        'total' => $validated['total_tiap_produk'][$key],
+                    ],
                 );
             }
 
@@ -175,7 +176,7 @@ class TransaksiController extends Controller
                     $StockAfter = $StockBefore + ($value->pivot->quantity - $validated['quantity'][$key]);
                 }
                 $product->update([
-                    'stock' => $StockAfter
+                    'stock' => $StockAfter,
                 ]);
             }
 
@@ -184,14 +185,14 @@ class TransaksiController extends Controller
             return response()->json([
                 'message' => 'Update Transaksi Berhasil',
                 'data' => $transaksi->fresh() //fresh() untuk mengambil data terbaru
-            ]);
+            ], 200);
 
         } catch (\Exception $e) {
 
             DB::rollBack();
             return dd($e);
             return response()->json([
-                'message' => $e->getMessage()
+                'message' => $e->getMessage(),
             ], 500);
         }
     }
@@ -204,11 +205,11 @@ class TransaksiController extends Controller
      */
     public function destroy(Transaksi $transaksi)
     {
-            $transaksi->delete();
+        $transaksi->delete();
 
-            return response()->json([
-                'message' => 'Transaksi Berhasil Dihapus'
-            ]);
-        
+        return response()->json([
+            'message' => 'Transaksi Berhasil Dihapus',
+        ], 200);
+
     }
 }

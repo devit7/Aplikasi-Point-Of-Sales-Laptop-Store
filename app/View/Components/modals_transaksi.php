@@ -4,20 +4,16 @@ namespace App\View\Components;
 
 use Illuminate\View\Component;
 
-class Alert extends Component
+class modals_transaksi extends Component
 {
     /**
      * Create a new component instance.
      *
      * @return void
      */
-    public $id;
-    public $nama;
-    public function __construct($id = null, $nama = null)
+    public function __construct()
     {
         //
-        $this->id = $id;
-        $this->nama = $nama;
     }
 
     /**
@@ -27,6 +23,6 @@ class Alert extends Component
      */
     public function render()
     {
-        return view('components.alert');
+        return view('components.modals_transaksi');
     }
 }

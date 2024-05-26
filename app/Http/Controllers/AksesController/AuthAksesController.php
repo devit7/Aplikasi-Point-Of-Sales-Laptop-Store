@@ -13,12 +13,11 @@ class AuthAksesController extends Controller
             'username' => $request->username,
             'password' => $request->password
         ]);
-        
+
         $response = app()->handle($request);
 
         $response->getContent();
 
         dd($response->getContent());
-
     }
 }
