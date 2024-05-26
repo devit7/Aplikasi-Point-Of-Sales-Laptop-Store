@@ -39,18 +39,20 @@
                                 <th class="text-left">Action</th>
                             </tr>
                         </thead>
+
                         <tbody class="text-[#6b6eb4] text-center">
                             @php $i=1 @endphp
-                            @foreach ($customers as $c)
+
+                            @foreach ($laporan as $item)
                                 <tr class="border-b-2 border-[#33356F]">
-                                    <td class="py-2">{{$i++}}</td>
-                                    <td class="text-left">{{$c->nama}}</td>
-                                    <td class="text-left">{{$c->invoice}}</td>
-                                    <td class="text-left">{{$c->kasir}}</td>
-                                    <td class="text-left">{{$c->order_date}}</td>
-                                    <td class="text-left">{{$c->payment}}</td>
-                                    <td class="text-right">{{$c->total}}</td>
-                                    <td class="text-left">{{$c->create_at}}</td>
+                                    <td class="py-2">{{ $i++ }}</td>
+                                    <td class="text-left">{{ $item->nama }}</td>
+                                    <td class="text-left">{{ $item->invoice }}</td>
+                                    <td class="text-left">{{ $item->kasir }}</td>
+                                    <td class="text-left">{{ $item->order_date }}</td>
+                                    <td class="text-left">{{ $item->payment }}</td>
+                                    <td class="text-right">{{ $item->total }}</td>
+                                    <td class="text-left">{{ $item->create_at }}</td>
                                     <td class="text-left">
                                         <a href="">
                                             <button class="bg-[#002D4C] border p-1 border-[#2B4F69] rounded-md">
@@ -83,7 +85,7 @@
                                         </a>
                                     </td>
                                 </tr>
-                            @endfor
+                            @endforeach
                         </tbody>
                     </table>
                 </div>
