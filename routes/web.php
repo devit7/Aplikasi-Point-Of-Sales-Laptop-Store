@@ -36,6 +36,7 @@ Route::prefix('admin')->group(function () {
     Route::get('/laporan', function () {
         return view('admin.laporan.index');
     });
+
     // create pdf laporan
     Route::get('/cetak_laporan', [LaporanController::class, 'cetak']);
 

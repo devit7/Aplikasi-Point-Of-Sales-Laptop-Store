@@ -1,7 +1,6 @@
 <?php
 
 use Illuminate\Support\Facades\Facade;
-use Barryvdh\DomPDF\Facade as PDF;
 
 
 return [
@@ -183,7 +182,7 @@ return [
         Illuminate\Translation\TranslationServiceProvider::class,
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
-        
+
 
         /*
          * Package Service Providers...
@@ -215,10 +214,7 @@ return [
     'aliases' => [
 
         // Other aliases...
-    
-        'PDF' => Barryvdh\DomPDF\Facade\PDF::class,
-    
-    ],
-    
 
+        'PDF' => Barryvdh\DomPDF\Facade\Pdf::class,
+    ],
 ];

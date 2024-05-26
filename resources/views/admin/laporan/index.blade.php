@@ -12,10 +12,12 @@
                 </p>
             </div>
             <div class="flex flex-row gap-2">
-                <a href="#" onclick="exportToExcel()" class="flex items-center gap-2 px-4 py-2 bg-[#FF9A37] text-white rounded-md hover:bg-[#FF9A37]">
+                <a href="#" onclick="exportToExcel()"
+                    class="flex items-center gap-2 px-4 py-2 bg-[#FF9A37] text-white rounded-md hover:bg-[#FF9A37]">
                     Export to Excel
                 </a>
-                <a href="#" class="flex items-center gap-2 px-4 py-2 bg-[#FF9A37] text-white rounded-md hover:bg-[#FF9A37]">
+                <a href="#"
+                    class="flex items-center gap-2 px-4 py-2 bg-[#FF9A37] text-white rounded-md hover:bg-[#FF9A37]">
                     Export to PDF
                 </a>
             </div>
@@ -38,16 +40,17 @@
                             </tr>
                         </thead>
                         <tbody class="text-[#6b6eb4] text-center">
-                            @for ($i = 0; $i < 5; $i++)
+                            @php $i=1 @endphp
+                            @foreach ($customers as $c)
                                 <tr class="border-b-2 border-[#33356F]">
-                                    <td class="py-2">1</td>
-                                    <td class="text-left">Customer 1</td>
-                                    <td class="text-left">INV001</td>
-                                    <td class="text-left">Kasir 1</td>
-                                    <td class="text-left">2024-05-20</td>
-                                    <td class="text-left">Credit Card</td>
-                                    <td class="text-right">Rp. 100.000</td>
-                                    <td class="text-left">2024-05-20</td>
+                                    <td class="py-2">{{$i++}}</td>
+                                    <td class="text-left">{{$c->nama}}</td>
+                                    <td class="text-left">{{$c->invoice}}</td>
+                                    <td class="text-left">{{$c->kasir}}</td>
+                                    <td class="text-left">{{$c->order_date}}</td>
+                                    <td class="text-left">{{$c->payment}}</td>
+                                    <td class="text-right">{{$c->total}}</td>
+                                    <td class="text-left">{{$c->create_at}}</td>
                                     <td class="text-left">
                                         <a href="">
                                             <button class="bg-[#002D4C] border p-1 border-[#2B4F69] rounded-md">
@@ -90,10 +93,10 @@
 
     <script>
         function exportToExcel() {
-    const table = document.getElementById("table");
-    const rows = table.querySelectorAll("tr");
+            const table = document.getElementById("table");
+            const rows = table.querySelectorAll("tr");
 
-    let kotak = '';
+            let kotak = '';
             kotak += '\n\t<ss:Borders>'
             kotak += '\n\t<ss:Border ss:Position="Top" ss:LineStyle="Continuous" ss:Weight="1"/>'
             kotak += '\n\t<ss:Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="1"/>'
@@ -102,79 +105,78 @@
             kotak += '\n\t</ss:Borders>'
 
 
-    let xml = '<?xml version ="1.0"?>\n<ss:Workbook xmlns:ss="urn:schemas-microsoft-com:office:spreadsheet">';
-        xml += '\n<ss:Styles>'
+            let xml = '<?xml version="1.0"?>\n<ss:Workbook xmlns:ss="urn:schemas-microsoft-com:office:spreadsheet">';
+            xml += '\n<ss:Styles>'
+            xml += '\n<ss:Style ss:ID="boldKotak">'
+            xml += '\n\t<ss:Font ss:Bold="1" ss:Color="#FFFFFF"/>'
+            xml += '\n\t<ss:Interior ss:Color="#0E2841" ss:Pattern="Solid"/>'
 
-            xml +='\n<ss:Style ss:ID="boldKotak">'
-                xml +='\n\t<ss:Font ss:Bold="1" ss:Color="#FFFFFF"/>'
-                xml += '\n\t<ss:Interior ss:Color="#0E2841" ss:Pattern="Solid"/>'
-
-                xml+= kotak;
-            xml +='\n</ss:Style>'
+            xml += kotak;
+            xml += '\n</ss:Style>'
             xml += '\n\t<ss:Style ss:ID="Kotak">'
-                xml += kotak;
+            xml += kotak;
             xml += '\n\t</ss:Style>'
             xml += '\n\t<ss:Style ss:ID="KotakRupiah">'
-                xml+='<ss:NumberFormat ss:Format="Rp #,##0"/>'
-                xml += kotak;
+            xml += '<ss:NumberFormat ss:Format="Rp #,##0"/>'
+            xml += kotak;
             xml += '\n\t</ss:Style>'
 
-        xml+='\n</ss:Styles>';
-        // console.log(xml);
-        xml += '\n<ss:Worksheet ss:Name="Laporan Admin">\n<ss:Table>\n';
-        xml += '<ss:Column ss:AutoFitWidth="1"/>'      
-        for (let i = 0; i < rows.length; i++) {
-        const kolom = rows[i].querySelectorAll("td, th");
-        xml += "<ss:Row>\n";
-        
-            for (let j = 0; j < kolom.length-1; j++) {
-                let masuk = kolom[j].innerText;
-                let tipe = 'String';
-                let style = ' ss:StyleID="Kotak"';
-                if(i!=0 && (j == 6 || j==0)){
+            xml += '\n</ss:Styles>';
+            // console.log(xml);
+            xml += '\n<ss:Worksheet ss:Name="Laporan Admin">\n<ss:Table>\n';
+            xml += '<ss:Column ss:AutoFitWidth="1"/>'
+            for (let i = 0; i < rows.length; i++) {
+                const kolom = rows[i].querySelectorAll("td, th");
+                xml += "<ss:Row>\n";
 
-                // let style = ' ss:StyleID="Kotak"'
-                // console.log("i = "+i+" j "+j+" "+(i!=0 && (j == 6 || j==0)))
+                for (let j = 0; j < kolom.length - 1; j++) {
+                    let masuk = kolom[j].innerText;
+                    let tipe = 'String';
+                    let style = ' ss:StyleID="Kotak"';
+                    if (i != 0 && (j == 6 || j == 0)) {
 
-                    masuk = parseInt(kolom[j].innerText.replace(/[^\d]/g, ''), 10);
-                    tipe = 'Number';
-                    if(j==6){
-                        style = ' ss:StyleID="KotakRupiah"'
+                        // let style = ' ss:StyleID="Kotak"'
+                        // console.log("i = "+i+" j "+j+" "+(i!=0 && (j == 6 || j==0)))
 
+                        masuk = parseInt(kolom[j].innerText.replace(/[^\d]/g, ''), 10);
+                        tipe = 'Number';
+                        if (j == 6) {
+                            style = ' ss:StyleID="KotakRupiah"'
+
+                        }
                     }
+                    if (i == 0) {
+                        style = ' ss:StyleID="boldKotak"';
+                    }
+                    // console.log(masuk, "tipe : ",typeof(masuk))
+                    xml += '<ss:Cell' + style + '><ss:Data ss:Type="' + tipe + '">' + masuk + '</ss:Data></ss:Cell>\n';
                 }
-                if(i==0){
-                    style = ' ss:StyleID="boldKotak"';
-                }
-                // console.log(masuk, "tipe : ",typeof(masuk))
-                xml += '<ss:Cell'+style+'><ss:Data ss:Type="'+tipe+'">' + masuk + '</ss:Data></ss:Cell>\n';
+
+                xml += "</ss:Row>\n";
+            }
+
+            xml += "</ss:Table>\n</ss:Worksheet>\n</ss:Workbook>\n";
+            console.log(xml, "\n\n");
+
+
+            // Download file Excel
+            downloadExcel(xml, "table.xls");
         }
 
-        xml += "</ss:Row>\n";
-    }
+        function downloadExcel(xml, filename) {
+            let blob = new Blob([xml], {
+                type: "application/vnd.ms-excel"
+            });
+            let link = document.createElement("a");
 
-    xml += "</ss:Table>\n</ss:Worksheet>\n</ss:Workbook>\n";
-    console.log(xml,"\n\n");
+            link.href = window.URL.createObjectURL(blob);
+            link.download = filename;
 
+            // Simulasikan klik untuk men-download file
+            link.click();
 
-    // Download file Excel
-    downloadExcel(xml, "table.xls");
-}
-
-function downloadExcel(xml, filename) {
-    let blob = new Blob([xml], {type: "application/vnd.ms-excel"});
-    let link = document.createElement("a");
-
-    link.href = window.URL.createObjectURL(blob);
-    link.download = filename;
-
-    // Simulasikan klik untuk men-download file
-    link.click();
-
-    // Bebaskan sumber daya yang digunakan
-    window.URL.revokeObjectURL(link.href);
-}
-
-
+            // Bebaskan sumber daya yang digunakan
+            window.URL.revokeObjectURL(link.href);
+        }
     </script>
 @endsection
