@@ -20,12 +20,13 @@
                 <span class="font-medium">{{ session('success') }}</span>
             </div>
         @endif
+
         <div class="mt-10 flex gap-[20px] lg:gap-[150px] md:gap-[50px]  w-full mx-auto     rounded-md">
             <div class="w-[600px] flex flex-col gap-4">
                 <p class="rounded-md p-4 font-semibold bg-[#1C1D42] text-[#6b6eb4]">Setting</p>
                 <div class="rounded-md p-4 bg-[#1C1D42] text-[#6b6eb4]">
-                    <form action="{{ url('admin/setting/' . $data['data'][0]['id']) }}" method="POST"
-                        enctype="multipart/form-data">
+                    <form enctype="multipart/form-data" action="{{ url('admin/setting/' . $toko[0]['id']) }}"
+                        method="POST">
                         @csrf
                         @method('PUT')
                         <div class="grid gap-4 sm:grid-cols-2 sm:gap-6">
@@ -34,15 +35,20 @@
                                     Toko</label>
                                 <input type="text" name="nama_toko" id="name_toko"
                                     class="bg-[#131432] border text-sm rounded-lg block w-full p-2.5  border-gray-600 placeholder-gray-400 text-gray-400 focus:ring-primary-500 focus:border-primary-500"
-                                    placeholder="Ex : Wibu Jaya Bersama" required
-                                    value="{{ $data['data'][0]['nama_toko'] }}">
+                                    placeholder="Ex : Wibu Jaya Bersama" required value="{{ $toko[0]['nama_toko'] }}">
+                                @error('nama_toko')
+                                    <small class="text-red-500 text-xs mt-1">{{ $message }}</small>
+                                @enderror
                             </div>
                             <div class="sm:col-span-2">
                                 <label for="no_hp" class="block mb-2 text-sm font-medium text-gray-400">Nomor
                                     HP</label>
                                 <input type="tel" name="no_hp" id="no_hp"
                                     class="bg-[#131432] border text-sm rounded-lg block w-full p-2.5 border-gray-600 placeholder-gray-400 text-gray-400 focus:ring-primary-500 focus:border-primary-500"
-                                    placeholder="EX : 0821*" required value="{{ $data['data'][0]['no_hp'] }}">
+                                    placeholder="EX : 0821*" required value="{{ $toko[0]['no_hp'] }}">
+                                @error('no_hp')
+                                    <small class="text-red-500 text-xs mt-1">{{ $message }}</small>
+                                @enderror
                             </div>
 
                             <div class="sm:col-span-2">
@@ -50,12 +56,14 @@
                                     class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400">Alamat</label>
                                 <textarea id="alamat" rows="1" name="alamat"
                                     class="block p-2.5 w-full text-sm text-gray-900 rounded-lg border border-gray-300 focus:ring-primary-500 focus:border-primary-500 bg-[#131432] dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-400 dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                                    placeholder="EX : Jalan Jalan">{{ $data['data'][0]['alamat'] }}</textarea>
+                                    placeholder="EX : Jalan Jalan" required>{{ $toko[0]['alamat'] }}</textarea>
+                                @error('alamat')
+                                    <small class="text-red-500 text-xs mt-1">{{ $message }}</small>
+                                @enderror
                             </div>
                             <div class="sm:col-span-2">
                                 <div class="relative border border-gray-400 border-dashed rounded-lg p-6" id="dropzone">
                                     {{-- value input type hidden ini akan di ambil jika tidak menambahkan file image --}}
-                                    <input type="hidden" name="old_logo_toko" value="{{ $data['data'][0]['logo_toko'] }}">
                                     <input type="file" id="logo_toko" name="logo_toko"
                                         class="absolute inset-0 w-full h-full opacity-0 z-50" />
 
@@ -79,6 +87,7 @@
                                     <img src="" class="mt-4 mx-auto max-h-40 hidden" id="preview">
                                 </div>
                             </div>
+                            <input type="hidden" name="old_logo_toko" value="{{ $toko[0]['logo_toko'] }}">
                         </div>
                         <div class="flex justify-between w-full gap-4 sm:gap-6">
                             {{-- <button type="submit"

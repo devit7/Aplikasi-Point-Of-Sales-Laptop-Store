@@ -27,9 +27,6 @@ Route::prefix('admin')->group(function () {
     Route::get('/', [DashboardController::class, 'index']);
 
     // Setting
-    // Route::get('/setting', function () {
-    //     return view('admin.setting');
-    // });
     Route::get('/setting', [TokoAksesController::class, 'getAll'])->name('admin.index');
     // Route::post('/setting', [TokoAksesController::class, 'createData'])->name('admin.store');
     Route::put('/setting/{toko}', [TokoAksesController::class, 'updateData'])->name('admin.update');
