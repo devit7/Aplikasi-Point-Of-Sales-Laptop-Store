@@ -13,47 +13,73 @@
                 </p>
             </div>
         </div>
-        <div class="mt-10 flex gap-[200px] w-full mx-auto     rounded-md">
+
+        @if (session()->has('success'))
+            <div class="p-4 mb-4 text-sm text-green-700 bg-green-100 rounded-lg dark:bg-green-200 dark:text-green-800"
+                role="alert">
+                <span class="font-medium">{{ session('success') }}</span>
+            </div>
+        @endif
+
+        <div class="mt-10 flex gap-[20px] lg:gap-[150px] md:gap-[50px]  w-full mx-auto     rounded-md">
             <div class="w-[600px] flex flex-col gap-4">
                 <p class="rounded-md p-4 font-semibold bg-[#1C1D42] text-[#6b6eb4]">Setting</p>
                 <div class="rounded-md p-4 bg-[#1C1D42] text-[#6b6eb4]">
-                    <form action="#">
+                    <form enctype="multipart/form-data" action="{{ url('admin/setting/' . $toko[0]['id']) }}"
+                        method="POST">
+                        @csrf
+                        @method('PUT')
                         <div class="grid gap-4 sm:grid-cols-2 sm:gap-6">
                             <div class="sm:col-span-2">
-                                <label for="name" class="block mb-2 text-sm font-medium  text-gray-400">Nama
+                                <label for="nama_toko" class="block mb-2 text-sm font-medium  text-gray-400">Nama
                                     Toko</label>
-                                <input type="text" name="name" id="name"
-                                    class="bg-[#131432] border   text-sm rounded-lg  block w-full p-2.5  border-gray-600 placeholder-gray-400 text-gray-400 focus:ring-primary-500 focus:border-primary-500"
-                                    placeholder="Ex : Wibu Jaya Bersama" required="">
+                                <input type="text" name="nama_toko" id="nama_toko"
+                                    class="bg-[#131432] border text-sm rounded-lg block w-full p-2.5  border-gray-600 placeholder-gray-400 text-gray-400 focus:ring-primary-500 focus:border-primary-500"
+                                    placeholder="Ex : Wibu Jaya Bersama" value="{{ $toko[0]['nama_toko'] }}" required>
+                                @error('nama_toko')
+                                    <p id="outlined_error_help" class="mt-2 text-xs text-red-600">
+                                        {{ $message }}</p>
+                                @enderror
                             </div>
                             <div class="sm:col-span-2">
-                                <label for="nama_toko" class="block mb-2 text-sm font-medium  text-gray-400">Nomor
-                                    Hp</label>
-                                <input type="text" name="nama_toko" id="nama_toko"
-                                    class="bg-[#131432] border   text-sm rounded-lg  block w-full p-2.5  border-gray-600 placeholder-gray-400 text-gray-400 focus:ring-primary-500 focus:border-primary-500"
-                                    placeholder="EX : 0821*" required="">
+                                <label for="no_hp" class="block mb-2 text-sm font-medium text-gray-400">Nomor
+                                    HP</label>
+                                <input type="tel" name="no_hp" id="no_hp"
+                                    class="bg-[#131432] border text-sm rounded-lg block w-full p-2.5 border-gray-600 placeholder-gray-400 text-gray-400 focus:ring-primary-500 focus:border-primary-500"
+                                    placeholder="EX : 0821*" value="{{ $toko[0]['no_hp'] }}" required>
+                                @error('no_hp')
+                                    <p id="outlined_error_help" class="mt-2 text-xs text-red-600">
+                                        {{ $message }}</p>
+                                @enderror
                             </div>
 
                             <div class="sm:col-span-2">
-                                <label for="description"
-                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400">ALamat</label>
-                                <textarea id="description" rows="1"
-                                    class="block p-2.5 w-full text-sm text-gray-900  rounded-lg border border-gray-300 focus:ring-primary-500 focus:border-primary-500 bg-[#131432] dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-400 dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                                    placeholder="EX : Jalan Jalan"></textarea>
+                                <label for="alamat"
+                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400">Alamat</label>
+                                <textarea id="alamat" rows="1" name="alamat"
+                                    class="block p-2.5 w-full text-sm text-gray-900 rounded-lg border border-gray-300 focus:ring-primary-500 focus:border-primary-500 bg-[#131432] dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-400 dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                                    placeholder="EX : Jalan Jalan" required>{{ $toko[0]['alamat'] }}</textarea>
+                                @error('alamat')
+                                    <p id="outlined_error_help" class="mt-2 text-xs text-red-600">
+                                        {{ $message }}</p>
+                                @enderror
                             </div>
                             <div class="sm:col-span-2">
-                                <div class=" relative border border-gray-400 border-dashed rounded-lg p-6" id="dropzone">
-                                    <input type="file" class="absolute inset-0 w-full h-full opacity-0 z-50" />
+                                <div class="relative border border-gray-400 border-dashed rounded-lg p-6" id="dropzone">
+                                    {{-- value input type hidden ini akan di ambil jika tidak menambahkan file image --}}
+                                    <input type="file" id="logo_toko" name="logo_toko"
+                                        class="absolute inset-0 w-full h-full opacity-0 z-50" />
+
                                     <div class="text-center">
                                         <img class="mx-auto h-12 w-12"
                                             src="https://www.svgrepo.com/show/357902/image-upload.svg" alt="">
 
                                         <h3 class="mt-2 text-sm font-medium text-gray-900">
-                                            <label for="file-upload" class="relative cursor-pointer text-gray-400">
+                                            <label for="logo_toko" class="relative cursor-pointer text-gray-400">
                                                 <span>Drag and drop</span>
                                                 <span class="text-indigo-600"> or browse</span>
                                                 <span>to upload</span>
-                                                <input id="file-upload" name="file-upload" type="file" class="sr-only">
+                                                {{-- <input id="logo_toko" name="logo_toko" type="file" class="sr-only"> --}}
                                             </label>
                                         </h3>
                                         <p class="mt-1 text-xs text-gray-500">
@@ -64,9 +90,10 @@
                                     <img src="" class="mt-4 mx-auto max-h-40 hidden" id="preview">
                                 </div>
                             </div>
+                            <input type="hidden" name="old_logo_toko" value="{{ $toko[0]['logo_toko'] }}">
                         </div>
                         <div class="flex justify-between w-full gap-4 sm:gap-6">
-                            <button type="submit"
+                            <button type="submit" id="button-reset"
                                 class="inline-flex items-center px-5 py-2.5 mt-4 sm:mt-6 text-sm font-medium text-center text-white bg-blue-700 rounded-md focus:ring-4 focus:ring-primary-200 dark:focus:ring-primary-900 hover:bg-primary-800">
                                 Reset
                             </button>
@@ -135,41 +162,52 @@
     </div>
 @endsection
 @push('scripts')
-<script>
-    var dropzone = document.getElementById('dropzone');
+    <script>
+        var dropzone = document.getElementById('dropzone');
 
-    dropzone.addEventListener('dragover', e => {
-        e.preventDefault();
-        dropzone.classList.add('border-indigo-600');
-    });
+        dropzone.addEventListener('dragover', e => {
+            e.preventDefault();
+            dropzone.classList.add('border-indigo-600');
+        });
 
-    dropzone.addEventListener('dragleave', e => {
-        e.preventDefault();
-        dropzone.classList.remove('border-indigo-600');
-    });
+        dropzone.addEventListener('dragleave', e => {
+            e.preventDefault();
+            dropzone.classList.remove('border-indigo-600');
+        });
 
-    dropzone.addEventListener('drop', e => {
-        e.preventDefault();
-        dropzone.classList.remove('border-indigo-600');
-        var file = e.dataTransfer.files[0];
-        displayPreview(file);
-    });
+        dropzone.addEventListener('drop', e => {
+            e.preventDefault();
+            dropzone.classList.remove('border-indigo-600');
+            var file = e.dataTransfer.files[0];
+            displayPreview(file);
+        });
 
-    var input = document.getElementById('file-upload');
+        var input = document.getElementById('logo_toko');
 
-    input.addEventListener('change', e => {
-        var file = e.target.files[0];
-        displayPreview(file);
-    });
+        input.addEventListener('change', e => {
+            e.preventDefault();
+            var file = e.target.files[0];
+            displayPreview(file);
+        });
 
-    function displayPreview(file) {
-        var reader = new FileReader();
-        reader.readAsDataURL(file);
-        reader.onload = () => {
-            var preview = document.getElementById('preview');
-            preview.src = reader.result;
-            preview.classList.remove('hidden');
-        };
-    }
-</script>
+        function displayPreview(file) {
+            var reader = new FileReader();
+            reader.readAsDataURL(file);
+            reader.onload = () => {
+                var preview = document.getElementById('preview');
+                preview.src = reader.result;
+                preview.classList.remove('hidden');
+            };
+        }
+
+        //untuk mengkosongkan value input form
+        document.getElementById('button-reset').addEventListener('click', (e) => {
+            e.preventDefault();
+            document.getElementById('nama_toko').value = '';
+            document.getElementById('no_hp').value = '';
+            document.getElementById('alamat').value = '';
+            document.getElementById('preview').classList.add('hidden');
+            document.getElementById('logo_toko').value = '';
+        });
+    </script>
 @endpush

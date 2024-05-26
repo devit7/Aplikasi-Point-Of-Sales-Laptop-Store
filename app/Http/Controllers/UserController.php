@@ -18,8 +18,8 @@ class UserController extends Controller
     {
         return response()->json([
             'message' => 'List User',
-            'data' => User::all()
-        ]);
+            'data' => User::all(),
+        ], 200);
     }
 
     /**
@@ -41,19 +41,19 @@ class UserController extends Controller
     public function store(StoreRequest $request)
     {
         //return 'test';
-        $validator = $request -> validated();
+        $validator = $request->validated();
 
         $user = User::create([
             'nama' => $validator['nama'],
             'username' => $validator['username'],
             'password' => bcrypt($validator['password']),
-            'role' => $validator['role']
+            'role' => $validator['role'],
         ]);
 
         return response()->json([
             'message' => 'User berhasil ditambahkan',
-            'data' => $user
-        ]);
+            'data' => $user,
+        ], 201);
     }
 
     /**
@@ -66,8 +66,8 @@ class UserController extends Controller
     {
         return response()->json([
             'message' => 'Detail User',
-            'data' => $user
-        ]);
+            'data' => $user,
+        ], 200);
     }
 
     /**
@@ -91,19 +91,19 @@ class UserController extends Controller
     public function update(UpdateRequest $request, User $user)
     {
         //dd($request);
-        $validator = $request -> validated();
+        $validator = $request->validated();
 
         $user->update([
             'nama' => $validator['nama'],
             'username' => $validator['username'],
             'password' => bcrypt($validator['password']),
-            'role' => $validator['role']
+            'role' => $validator['role'],
         ]);
 
         return response()->json([
             'message' => 'User berhasil diupdate',
-            'data' => $user
-        ]);
+            'data' => $user,
+        ], 200);
     }
 
     /**
@@ -117,7 +117,7 @@ class UserController extends Controller
         $user->delete();
 
         return response()->json([
-            'message' => 'User berhasil dihapus'
-        ]);
+            'message' => 'User berhasil dihapus',
+        ], 200);
     }
 }

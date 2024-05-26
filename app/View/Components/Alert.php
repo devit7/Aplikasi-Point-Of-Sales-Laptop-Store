@@ -13,7 +13,7 @@ class Alert extends Component
      */
     public $id;
     public $nama;
-    public function __construct($id=null,$nama=null)
+    public function __construct($id = null, $nama = null)
     {
         //
         $this->id = $id;

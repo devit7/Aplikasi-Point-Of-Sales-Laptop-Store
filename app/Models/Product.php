@@ -10,10 +10,10 @@ class Product extends Model
 {
     use HasFactory, HasUuids;
 
-    protected $table = 'product';
+    protected $table = 'product';   
 
     protected $guarded = [
-        'id'
+        'id',
     ];
 
     public function supplier()
