@@ -244,20 +244,19 @@
                 </div>
 
                 @foreach ($topProducts as $product)
-
                     <div class="flex px-2 py-2 items-center justify-between ">
                         <div class="w-5/12 flex items-center">
                             <img class="w-6 sm:w-10 mr-2 self-center" alt="away-logo"
                                 src="https://p2-ofp.static.pub/ShareResource/na/subseries/hero/lenovo-thinkpad-t14-gen3-amd-thunder-black.png">
                             <div class="flex flex-col">
-                                <p class="text-sm font-bold"> {{$product->product_name}} </p>
+                                <p class="text-sm font-bold"> {{ $product->product_name }} </p>
                                 <p class="hidden sm:block font-medium text-[#4E6196]"> {{ $product->merk_name }} </p>
                             </div>
                         </div>
-                        <p class="w-1/6 text-lg sm:text-xl font-bold text-right pr-6"> {{ $product->total_quantity_sold }} </p>
+                        <p class="w-1/6 text-lg sm:text-xl font-bold text-right pr-6"> {{ $product->total_quantity_sold }}
+                        </p>
                     </div>
-
-                    @endforeach
+                @endforeach
             </div>
 
         </div>

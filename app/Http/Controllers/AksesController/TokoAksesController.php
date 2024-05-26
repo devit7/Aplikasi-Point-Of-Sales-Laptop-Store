@@ -4,6 +4,7 @@ namespace App\Http\Controllers\AksesController;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Toko;
 use App\Http\Requests\Toko\StoreRequest;
 use App\Http\Requests\Toko\UpdateRequest;
 
@@ -46,8 +47,9 @@ class TokoAksesController extends Controller
         $request = Request::create('http://127.0.0.1:8000/api/toko', 'GET');
         $response = app()->handle($request);
         $data = json_decode($response->getContent(), true);
+        // dd("getAll Toko", $data['data']);
         if ($response->getStatusCode() == 200) {
-            return view('admin.setting', compact('data'));
+            return view('admin.setting', ['toko' => $data['data']]);
         } else {
             return response()->json([
                 'message' => 'Unauthorized',
@@ -55,42 +57,44 @@ class TokoAksesController extends Controller
         }
     }
 
-    public function updateData(UpdateRequest $request, $toko)
+    public function updateData(UpdateRequest $request, Toko $toko)
     {
-        // dd($request->all(), $toko);
+        // dd($request->hasFile('logo_toko'), $toko);
         $validated = $request->validated();
+        // dd("validated", $validated);
 
         $logo_toko_name = $request->input('old_logo_toko');
         if ($request->hasFile('logo_toko')) {
             $logo_toko = $request->file('logo_toko');
-            $logo_toko_name = $logo_toko->getClientOriginalName();
+            $logo_toko_name = 'logo' . '.' . $logo_toko->getClientOriginalExtension();
             $logo_toko->storePubliclyAs('logos', $logo_toko_name, 'public');
         }
+        // $logo_toko_name = null;
+        // if ($request->hasFile('logo_toko')) {
+        //     $logo_toko = $request->file('logo_toko');
+        //     $logo_toko_name = time() . '.' . $logo_toko->getClientOriginalExtension();
+        //     $logo_toko->storePubliclyAs('logos', $logo_toko_name, 'public');
+        // }
 
         $data = [
             'nama_toko' => $validated['nama_toko'],
-            'no_hp' => $validated['no_hp'],
-            'alamat' => $validated['alamat'],
             'logo_toko' => $logo_toko_name,
+            'alamat' => $validated['alamat'],
+            'no_hp' => $validated['no_hp'],
         ];
+        // dd("data", $data);
 
-        // $token = 'Bearer 3|hsCLwqd8roBQ7zXXHG0WZghmrCe5RuIgGhhOl2Dxc73d7c89';
-        // $request->headers->set('Authorization', $token);
-
-        $request->headers->set('Content-Type', 'application/json');
-        $request->headers->set('Accept', 'application/json');
-        $request = Request::create('http://127.0.0.1:8000/api/toko/' . $toko, 'PUT', $data);
-        // dd("request", $request);
+        $api_url = 'http://127.0.0.1:8000/api/toko/' . $toko->id . '?' . http_build_query($data);
+        // dd("api_url", $api_url);
+        $request = Request::create($api_url, 'PUT');
+        // dd("request", $request);    
 
         $response = app()->handle($request);
         // dd("response", $response);
 
-        $data = json_decode($response->getContent(), true);
-        // dd("data", $data);
-
         if ($response->getStatusCode() == 200) {
             session()->flash('success', 'Toko berhasil di update');
-            return redirect()->route('admin.setting');
+            return redirect()->route('admin.index');
         } else {
             return response()->json([
                 'message' => 'Unauthorized',

@@ -7,7 +7,6 @@ use App\Http\Requests\Customer\StoreRequest;
 use App\Http\Requests\Customer\UpdateRequest;
 use Illuminate\Http\Request;
 use App\Models\Customers;
-use GuzzleHttp\Client;
 use Illuminate\Support\Facades\Http;
 
 class CustomersAksesController extends Controller
