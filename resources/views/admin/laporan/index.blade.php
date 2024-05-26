@@ -40,16 +40,17 @@
                             </tr>
                         </thead>
                         <tbody class="text-[#6b6eb4] text-center">
-                            @for ($i = 0; $i < 5; $i++)
+                            @php $i=1 @endphp
+                            @foreach ($customers as $c)
                                 <tr class="border-b-2 border-[#33356F]">
-                                    <td class="py-2">1</td>
-                                    <td class="text-left">Customer 1</td>
-                                    <td class="text-left">INV001</td>
-                                    <td class="text-left">Kasir 1</td>
-                                    <td class="text-left">2024-05-20</td>
-                                    <td class="text-left">Credit Card</td>
-                                    <td class="text-right">Rp. 100.000</td>
-                                    <td class="text-left">2024-05-20</td>
+                                    <td class="py-2">{{$i++}}</td>
+                                    <td class="text-left">{{$c->nama}}</td>
+                                    <td class="text-left">{{$c->invoice}}</td>
+                                    <td class="text-left">{{$c->kasir}}</td>
+                                    <td class="text-left">{{$c->order_date}}</td>
+                                    <td class="text-left">{{$c->payment}}</td>
+                                    <td class="text-right">{{$c->total}}</td>
+                                    <td class="text-left">{{$c->create_at}}</td>
                                     <td class="text-left">
                                         <a href="">
                                             <button class="bg-[#002D4C] border p-1 border-[#2B4F69] rounded-md">
