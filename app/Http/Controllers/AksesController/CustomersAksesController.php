@@ -57,7 +57,7 @@ class CustomersAksesController extends Controller
         }
     }
 
-    public function createData(StoreRequest $request)
+    public function createData(StoreRequest $request, Customers $customer)
     {
         $validator = $request->validated();
         $data = [
@@ -66,7 +66,8 @@ class CustomersAksesController extends Controller
             'no_hp' => $validator['no_hp'],
             'alamat' => $validator['alamat'],
         ];
-        $request = Request::create('http://127.0.0.1:8000/api/customers/', 'POST', $data);
+        $api_url = 'http://127.0.0.1:8000/api/customers/' . $customer . '?' . http_build_query($data);
+        $request = Request::create($api_url, 'POST');
         $response = app()->handle($request);
         $data = json_decode($response->getContent(), true);
         if ($response->getStatusCode() == 200) {
