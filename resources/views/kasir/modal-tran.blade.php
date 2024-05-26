@@ -27,7 +27,7 @@
                 class="hidden overflow-x-hidden overflow-y-auto fixed h-modal md:h-full top-4 left-0 right-0 md:inset-0 z-50 justify-center items-center">
                 <div class="relative w-full max-w-2xl px-4 h-full md:h-auto">
                     <!-- Modal content -->
-                    <div class="rounded-md shadow relative bg-gray-800">
+                    <div class="rounded-md shadow relative bg-[#1C1D42]">
                         <!-- Modal header -->
                         <div class="flex items-start justify-between p-5  rounded-t ">
                             <h3 class="text-gray-900 text-xl lg:text-2xl font-semibold dark:text-white">
@@ -45,7 +45,7 @@
                             </button>
                         </div>
                         <!-- Modal body -->
-                        <div class="flex flex-col w-full p-6 gap-4  border-y border-gray-600 font-semibold">
+                        <div class="flex flex-col w-full p-6 gap-4  border-y border-[#33356F] font-semibold">
                             <p class="text-gray-400 text-sm">
                                 CUSTOMER
                             </p>
@@ -56,7 +56,7 @@
                                     </div>
                                     <div class="w-full ">
                                         <select name="payment_method" id="payment_method"
-                                            class="w-full text-right px-4 py-2 text-gray-700 bg-gray-200 rounded">
+                                            class="w-full text-right px-4 py-2 text-gray-400 bg-[#131432] border border-gray-600 rounded">
                                             <option disabled selected>Choose Customer</option>
                                             <option value="cash">Cash</option>
                                             <option value="transfer">Transfer</option>
@@ -74,7 +74,7 @@
                                     </div>
                                     <div class="w-full ">
                                         <input type="text" name="total" id="total"
-                                            class="w-full text-right px-4 py-2  text-gray-700 bg-gray-300 rounded "
+                                            class="w-full text-right px-4 py-2  text-gray-400 bg-[#131432] border border-gray-600 rounded "
                                             value="Rp. 100.000.00" disabled>
                                     </div>
                                 </div>
@@ -83,11 +83,15 @@
                                         Metode Pembayaran
                                     </div>
                                     <div class="w-full ">
-                                        <select name="payment_method" id="payment_method"
-                                            class="w-full text-right px-4 py-2 text-gray-700 bg-gray-200 rounded">
-                                            <option value="cash">Cash</option>
-                                            <option value="transfer">Transfer</option>
-                                        </select>
+                                        <button class="text-right px-4 py-2 text-gray-400 bg-[#131432] border border-gray-600 rounded  ">
+                                            OVO
+                                        </button>
+                                        <button class="text-right px-4 py-2 text-gray-400 bg-[#131432] border border-gray-600 rounded">
+                                            DANA
+                                        </button>
+                                        <button class="text-right px-4 py-2 text-gray-400 bg-[#131432] border border-gray-600 rounded">
+                                            GOPAY
+                                        </button>
                                     </div>
                                 </div>
                             </div>
