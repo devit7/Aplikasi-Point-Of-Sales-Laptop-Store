@@ -216,7 +216,7 @@ return [
 
         // Other aliases...
     
-        'PDF' => Barryvdh\DomPDF\Facade::class,
+        'PDF' => Barryvdh\DomPDF\Facade\PDF::class,
     
     ],
     

@@ -5,6 +5,7 @@ use App\Http\Controllers\AksesController\PaymentsAksesController;
 use App\Http\Controllers\AksesController\TokoAksesController;
 use App\Http\Controllers\AksesController\TransaksisAksesController;
 use App\Http\Controllers\AksesController\UserAksesController;
+use App\Http\Controllers\AksesController\LaporanController;
 use App\Http\Controllers\AksesController\SupplierAksesController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\UserController;

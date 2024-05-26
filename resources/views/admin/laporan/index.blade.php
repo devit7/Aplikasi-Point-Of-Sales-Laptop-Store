@@ -102,7 +102,7 @@
             kotak += '\n\t</ss:Borders>'
 
 
-    let xml = '<?xml version="1.0"?>\n<ss:Workbook xmlns:ss="urn:schemas-microsoft-com:office:spreadsheet">';
+    let xml = '<?xml version ="1.0"?>\n<ss:Workbook xmlns:ss="urn:schemas-microsoft-com:office:spreadsheet">';
         xml += '\n<ss:Styles>'
 
             xml +='\n<ss:Style ss:ID="boldKotak">'
