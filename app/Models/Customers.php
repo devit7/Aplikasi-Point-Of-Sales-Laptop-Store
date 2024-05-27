@@ -20,5 +20,5 @@ class Customers extends Model
     {
         return $this->hasMany(Transaksi::class, 'customer_id', 'id');
     }
-
+    
 }

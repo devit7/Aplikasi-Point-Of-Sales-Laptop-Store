@@ -22,6 +22,8 @@ class DashboardController extends Controller
             ->groupBy('day')
             ->pluck('count', 'day');
 
+        // dd("transactionData", $transactionData);
+
         $daysInMonth = cal_days_in_month(CAL_GREGORIAN, date('m'), date('Y'));
         $dailyTransactionData = [];
         for ($i = 1; $i <= $daysInMonth; $i++) {
@@ -30,7 +32,6 @@ class DashboardController extends Controller
 
         // calculate profit
         $transactions = Transaksi::with('product')->get();
-
         // dd($transactions);
 
         $totalProfit = 0;
@@ -60,15 +61,15 @@ class DashboardController extends Controller
         $totalMerk = Merk::count() ?? 0;
 
         $topProducts = Transaksi::with('product')
-        ->select('product.id', 'product.product_name', 'product.img', 'merk.merk_name', DB::raw('SUM(detail_transaksi.quantity) as total_quantity_sold'))
-        ->join('detail_transaksi', 'transaksi.id', '=', 'detail_transaksi.transaksi_id')
-        ->join('product', 'detail_transaksi.product_id', '=', 'product.id')
-        ->join('merk', 'product.merk_id', '=', 'merk.id')
-        ->groupBy('product.id', 'product.product_name', 'product.img', 'merk.merk_name')
-        ->orderByDesc('total_quantity_sold')
-        ->limit(5)
-        ->get();
-        // dd($topProducts);
+            ->select('product.id', 'product.product_name', 'product.img', 'merk.merk_name', DB::raw('SUM(detail_transaksi.quantity) as total_quantity_sold'))
+            ->join('detail_transaksi', 'transaksi.id', '=', 'detail_transaksi.transaksi_id')
+            ->join('product', 'detail_transaksi.product_id', '=', 'product.id')
+            ->join('merk', 'product.merk_id', '=', 'merk.id')
+            ->groupBy('product.id', 'product.product_name', 'product.img', 'merk.merk_name')
+            ->orderByDesc('total_quantity_sold')
+            ->limit(5)
+            ->get();
+        // dd("top products", $topProducts);
         // $topFiveProduct = Transaksi::with('product')
         // ->;
         // dd(User::where('role', 'kasir')->count());

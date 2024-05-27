@@ -10,18 +10,23 @@ use Illuminate\Http\Request;
 
 class SupplierAksesController extends Controller
 {
+<<<<<<< HEAD
     public function getAll(){
         $request = Request::create('http://127.0.0.1:8000/api/supplier', 'GET');
+=======
+    public function getAll()
+    {
+        $request = Request::create('http://127.0.0.1:8000/api/suppliers', 'GET');
+>>>>>>> b0d6f8cb92e08c747b1690a6d16f367221ee1730
         $response = app()->handle($request);
         $data = json_decode($response->getContent(), true);
-        
         if ($response->getStatusCode() == 200) {
             return view('admin.supplier.index', [
-                'data' => $data['data']
+                'data' => $data['data'],
             ]);
         } else {
             return response()->json([
-                'message' => 'Unauthorized'
+                'message' => 'Unauthorized',
             ], 401);
         }
     }
