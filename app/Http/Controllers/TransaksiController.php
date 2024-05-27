@@ -20,10 +20,10 @@ class TransaksiController extends Controller
      */
     public function index()
     {
-        $data = Transaksi::with(['user', 'toko', 'customer', 'payment', 'product']);
+        $data = Transaksi::with(['user', 'toko', 'customer', 'payment', 'product'])->get();
         return response()->json([
             'message' => 'List Transaksi',
-            'data' => $data,
+            'data' => $data
         ], 200);
     }
 
