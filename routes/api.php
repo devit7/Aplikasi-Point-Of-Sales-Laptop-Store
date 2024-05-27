@@ -32,7 +32,7 @@ Route::apiResource('/customers', CustomersController::class);
 Route::apiResource('/payments', PaymentsController::class);
 Route::apiResource('/transaksi', TransaksiController::class);
 Route::apiResource('/toko', TokoController::class);
-Route::apiResource('/supplier', SupplierController::class);
+Route::apiResource('/suppliers', SupplierController::class);
 Route::apiResource('/merk', MerkController::class);
 Route::apiResource('/products', ProductController::class);
 

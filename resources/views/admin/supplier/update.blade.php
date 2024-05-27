@@ -5,7 +5,7 @@
         <div class="mb-6">
             <div class="flex flex-col ">
                 <p class="text-[#6b6eb4] text-lg font-semibold">
-                    Add Supplier
+                    Update Supplier
                 </p>
                 <div class="text-[#6b6eb4] flex flex-row ">
                     Manage your supplier
@@ -13,9 +13,18 @@
             </div>
         </div>
         <div class="bg-[#1C1D42] rounded-md  border border-[#33356F] min-h-[500px] w-[600px]">
+        @if ($errors->any())
+            <div class="bg-red-500 text-white p-4 rounded-md mb-4">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+            @endif
                 <div class="py-8 px-4 mx-auto max-w-2xl lg:py-16">
-                    <h2 class="mb-4 text-xl font-bold text-gray-900 dark:text-white">Add a new supplier</h2>
-                    <form action="{{ route('supplier.updateCoy', $data['supplier_name']) }}" method="POST">
+                    <h2 class="mb-4 text-xl font-bold text-gray-900 dark:text-white">Update supplier</h2>
+                    <form action="{{ route('supplier.updateCoy', $data['id']) }}" method="POST">
                     @method('PUT')
                         @csrf
                         <div class="grid gap-4 sm:grid-cols-2 sm:gap-6">
@@ -29,7 +38,7 @@
                             </div>
                             <div class="w-full">
                                 <label for="price" class="block mb-2 text-sm font-medium  text-white">Nama Perusahaan</label>
-                                <input value="{{$data['nama_perusahaan']}}" type="text" name="nama_perusahaan id="price" class="bg-[#131432] border   text-sm rounded-lg  block w-full p-2.5  border-gray-600 placeholder-gray-400 text-white focus:ring-primary-500 focus:border-primary-500" placeholder="Pt. Wibu Jaya Bersama" required="">
+                                <input value="{{$data['nama_perusahaan']}}" type="text" name="nama_perusahaan" id="price" class="bg-[#131432] border   text-sm rounded-lg  block w-full p-2.5  border-gray-600 placeholder-gray-400 text-white focus:ring-primary-500 focus:border-primary-500" placeholder="Pt. Wibu Jaya Bersama" required="">
                             </div>
                             <div class="sm:col-span-2">
                                 <label for="description" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Alamat</label>

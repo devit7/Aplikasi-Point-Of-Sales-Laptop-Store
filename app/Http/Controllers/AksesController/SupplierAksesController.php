@@ -10,14 +10,9 @@ use Illuminate\Http\Request;
 
 class SupplierAksesController extends Controller
 {
-<<<<<<< HEAD
-    public function getAll(){
-        $request = Request::create('http://127.0.0.1:8000/api/supplier', 'GET');
-=======
     public function getAll()
     {
         $request = Request::create('http://127.0.0.1:8000/api/suppliers', 'GET');
->>>>>>> b0d6f8cb92e08c747b1690a6d16f367221ee1730
         $response = app()->handle($request);
         $data = json_decode($response->getContent(), true);
         if ($response->getStatusCode() == 200) {
@@ -32,7 +27,7 @@ class SupplierAksesController extends Controller
     }
     public function getEdit($supplier)
     {
-        $request = Request::create('http://127.0.0.1:8000/api/supplier/' . $supplier, 'GET');
+        $request = Request::create('http://127.0.0.1:8000/api/suppliers/' . $supplier, 'GET');
         $response = app()->handle($request);
         $data = json_decode($response->getContent(), true);
         if ($response->getStatusCode() == 200) {
@@ -56,7 +51,7 @@ class SupplierAksesController extends Controller
             'alamat'=> $validated['alamat']
         ];
     
-        $request = Request::create('http://127.0.0.1:8000/api/supplier', 'POST', $data);
+        $request = Request::create('http://127.0.0.1:8000/api/suppliers', 'POST', $data);
         $response = app()->handle($request);
         if ($response->getStatusCode() == 200) {
             session()->flash('success', 'Supplier berhasil ditambahkan');
@@ -70,7 +65,6 @@ class SupplierAksesController extends Controller
 
     public function updateData(UpdateRequest $request,Supplier $supplier)
     {
-        dd($request);
         $validatedData = $request->validated();
         $data = [
             'supplier_name' => $validatedData['supplier_name'],
@@ -78,11 +72,13 @@ class SupplierAksesController extends Controller
             'nama_perusahaan' =>  $validatedData['nama_perusahaan'],
             'alamat' => $validatedData['alamat']
         ];
-        $requestApi = Request::create('http://127.0.0.1:8000/api/supplier/' . $supplier, 'PUT', $data);
-        $response = app()->handle($requestApi);
+        $api_url = 'http://127.0.0.1:8000/api/suppliers/' . $supplier->id .'?' . http_build_query($data);
+        $request = Request::create($api_url, 'PUT');
+        //dd($request);
+        $response = app()->handle($request);
         if ($response->getStatusCode() == 200) {
-            session()->flash('success', 'Data customer berhasil diupdate');
-            return redirect()->route('admin.supplier.index');
+            session()->flash('success', 'Data supplier berhasil di update');
+            return redirect()->route('supplier.index');
         } else {
             return response()->json([
                 'message' => 'Unauthorized'
@@ -92,7 +88,7 @@ class SupplierAksesController extends Controller
 
     public function deleteData($supplier)
     {
-        $request = Request::create('http://127.0.0.1:8000/api/supplier/' . $supplier, 'DELETE');
+        $request = Request::create('http://127.0.0.1:8000/api/suppliers/' . $supplier, 'DELETE');
         $response = app()->handle($request);
         if ($response->getStatusCode() == 200) {
             return redirect()->route('supplier.index')->with('success', 'Data berhasil delete');
@@ -103,3 +99,4 @@ class SupplierAksesController extends Controller
         }
     }
 }
+
