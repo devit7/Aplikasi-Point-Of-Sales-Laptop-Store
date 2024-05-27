@@ -39,21 +39,21 @@
                                 <th class="text-left">Action</th>
                             </tr>
                         </thead>
-
                         <tbody class="text-[#6b6eb4] text-center">
                             @php $i=1 @endphp
 
-                            @foreach ($laporan as $item)
+                            @foreach ($data as $item)
                                 <tr class="border-b-2 border-[#33356F]">
                                     <td class="py-2">{{ $i++ }}</td>
-                                    <td class="text-left">{{ $item->nama }}</td>
-                                    <td class="text-left">{{ $item->invoice }}</td>
-                                    <td class="text-left">{{ $item->kasir }}</td>
-                                    <td class="text-left">{{ $item->order_date }}</td>
-                                    <td class="text-left">{{ $item->payment }}</td>
-                                    <td class="text-right">{{ $item->total }}</td>
-                                    <td class="text-left">{{ $item->create_at }}</td>
+                                    <td class="text-left">{{ $item['customer']['customer_name'] }}</td>
+                                    <td class="text-left">{{ $item['invoice'] }}</td>
+                                    <td class="text-left">{{ $item['user']['nama'] }}</td>
+                                    <td class="text-left">{{ $item['order_date'] }}</td>
+                                    <td class="text-left">{{ $item['payment']['payment_name'] }}</td>
+                                    <td class="text-right">{{ $item['total_semua'] }}</td>
                                     <td class="text-left">
+                                        {{ \Carbon\Carbon::parse($item['created_at'])->format('Y-m-d H:i') }}</td>
+                                    <td class="text-left flex">
                                         <a href="">
                                             <button class="bg-[#002D4C] border p-1 border-[#2B4F69] rounded-md">
                                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
