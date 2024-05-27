@@ -40,11 +40,17 @@ Route::prefix('admin')->group(function () {
 
 
     // User
+    //Menampilkan semua data user
     Route::get('/user', [UserAksesController::class, 'getAll'])->name('user.index');
+    //Menampilkan detail user
     Route::get('/user/show/{user}', [UserAksesController::class, 'getDetail'])->name('user.detail');
+    //Menampilkan form create user
     Route::get('/user/create', function () {
         return view('admin.user.create');
-    });
+    })->name('user.create');
+    //Membuat user baru
+    Route::post('/user/create', [UserAksesController::class, 'createData'])->name('user.store');
+
 
     // Customer
     Route::get('/customer', function () {
@@ -73,6 +79,7 @@ Route::prefix('admin')->group(function () {
     });
 
     // Merk
+
     Route::get('/merk', function () {
         return view('admin.merk.index');
     });
@@ -129,6 +136,9 @@ Route::prefix('admin')->group(function () {
 Route::prefix('kasir')->group(function () {
     Route::get('/', function () {
         return view('kasir.dashboard');
+    });
+    Route::get('/2', function () {
+        return view('kasir.dashboard-old');
     });
     Route::get('/transaksi', function () {
         return view('kasir.RiwayatTransaksi');
