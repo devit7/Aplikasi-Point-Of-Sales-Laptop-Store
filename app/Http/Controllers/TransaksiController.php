@@ -23,7 +23,7 @@ class TransaksiController extends Controller
 
         return response()->json([
             'message' => 'List Transaksi',
-            'data' => $data,
+            'data' => $data
         ], 200);
     }
 

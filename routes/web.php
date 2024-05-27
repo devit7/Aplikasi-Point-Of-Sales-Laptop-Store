@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AksesController\CustomersAksesController;
 use App\Http\Controllers\AksesController\PaymentsAksesController;
+use App\Http\Controllers\AksesController\RiwayatTransaksiContoller;
 use App\Http\Controllers\AksesController\TokoAksesController;
 use App\Http\Controllers\AksesController\TransaksisAksesController;
 use App\Http\Controllers\AksesController\UserAksesController;
@@ -48,9 +49,20 @@ Route::prefix('admin')->group(function () {
     });
 
     // Supplier
-    Route::get('/supplier', function () {
-        return view('admin.supplier.index');
-    });
+    // Route untuk menampilkan semua supplier
+    Route::get('/supplier', [SupplierAksesController::class, 'getAll'])->name('supplier.index');
+    // Route untuk menampilkan form create supplier
+    Route::get('/supplier/create', function () {
+        return view('admin.supplier.create');
+    })->name('supplier.create');
+    // Route untuk membuat supplier baru
+    Route::post('/supplier/create', [SupplierAksesController::class, 'createData'])->name('supplier.store');
+    // Route untuk menampilkan form edit supplier
+    Route::get('/supplier/edit/{supplier}', [SupplierAksesController::class, 'getEdit'])->name('supplier.edit');
+    // Route untuk memperbarui data supplier
+    Route::put('/supplier/update/{supplier}', [SupplierAksesController::class, 'updateData'])->name('supplier.updateCoy');
+    Route::delete('/supplier/{supplier}',[SupplierAksesController::class, 'deleteData'])->name('supplier.delete');
+    
 
     // Product
     Route::get('/product', function () {
@@ -115,9 +127,8 @@ Route::prefix('kasir')->group(function () {
     Route::get('/', function () {
         return view('kasir.dashboard');
     });
-    Route::get('/transaksi', function () {
-        return view('kasir.RiwayatTransaksi');
-    });
+    Route::get('/riwayat', [RiwayatTransaksiContoller::class, 'getAll'])->name('Riwayat.index');
+
 
     Route::get('/customer', [CustomersAksesController::class, 'getAll'])->name('management-customer.index');
     Route::get('/customer/show/{customer}', [CustomersAksesController::class, 'getDetail'])->name('management-customer.detail');
