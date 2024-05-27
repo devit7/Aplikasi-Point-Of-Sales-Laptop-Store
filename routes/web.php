@@ -33,9 +33,7 @@ Route::prefix('admin')->group(function () {
     Route::put('/setting/{toko}', [TokoAksesController::class, 'updateData'])->name('admin.update');
 
     // Laporan
-    Route::get('/laporan', function () {
-        return view('admin.laporan.index');
-    });
+    Route::get('/laporan', [LaporanController::class, 'index']);
 
     // create pdf laporan
     Route::get('/cetak_laporan', [LaporanController::class, 'cetak']);
