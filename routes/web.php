@@ -35,10 +35,6 @@ Route::prefix('admin')->group(function () {
     // Laporan
     Route::get('/laporan', [LaporanController::class, 'index']);
 
-    // create pdf laporan
-    Route::get('/customer_pdf', [LaporanController::class, 'cetak']);
-
-
     // User
     Route::get('/user', [UserAksesController::class, 'getAll'])->name('user.index');
     Route::get('/user/show/{user}', [UserAksesController::class, 'getDetail'])->name('user.detail');

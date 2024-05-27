@@ -19,14 +19,7 @@ class TransaksiController extends Controller
      */
     public function index()
     {
-        //code ini mengembalikan data [] kosong;
-        // $data = Transaksi::with(['user', 'toko', 'customer', 'payment', 'product']);
-
         $data = Transaksi::with(['user', 'toko', 'customer', 'payment', 'product'])->get();
-
-        // foreach ($data as $item) {
-        //     dd("item", $item->product());
-        // }
 
         return response()->json([
             'message' => 'List Transaksi',
