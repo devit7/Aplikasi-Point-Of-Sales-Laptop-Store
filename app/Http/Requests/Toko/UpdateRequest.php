@@ -23,17 +23,19 @@ class UpdateRequest extends FormRequest
      */
     public function rules()
     {
-        // $tokoExist = $this->toko ? $this->toko->id : '';
-        $tokoExist = $this->toko ? $this->toko : '';
+        $tokoExist = $this->toko ? $this->toko->id : '';
 
         return [
             'nama_toko' => 'string|unique:toko,nama_toko,' . $tokoExist . ',id',
-            'logo_toko' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:10048',
-            'alamat' => 'string',
+            'logo_toko' => 'nullable|max:10048',
+            'old_logo_toko' => 'nullable|max:10048',
+            'alamat' => 'string|required',
             'no_hp' => 'numeric|digits:12|unsigned|unique:toko,no_hp,' . $tokoExist . ',id',
         ];
 
     }
+    // 'logo_toko.image' => 'Data Logo Toko harus berupa file gambar',
+    // 'logo_toko.mimes' => 'Data Logo Toko harus berupa file gambar',
 
     public function messages()
     {
@@ -41,8 +43,6 @@ class UpdateRequest extends FormRequest
             'nama_toko.required' => 'Data Nama Toko harus diisi',
             'nama_toko.string' => 'Data Nama Toko harus berupa string',
             'nama_toko.unique' => 'Data Nama Toko sudah ada',
-            'logo_toko.image' => 'Data Logo Toko harus berupa file gambar',
-            'logo_toko.mimes' => 'Data Logo Toko harus berupa file gambar',
             'logo_toko.max' => 'Data Logo Toko maksimal 10 MB',
             'alamat.required' => 'Data Alamat harus diisi',
             'alamat.string' => 'Data Alamat harus berupa string',

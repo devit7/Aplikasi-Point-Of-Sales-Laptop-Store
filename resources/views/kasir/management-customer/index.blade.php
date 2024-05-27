@@ -56,7 +56,7 @@
                                             </svg>
                                         </button>
                                     </a>
-                                    <x-alert id="{{ $item['id'] }}" nama="{{  $item['customer_name'] }}" />
+                                    <x-modal_hapus_supplier id="{{ $item['id'] }}" nama="{{  $item['customer_name'] }}" />
                                 </td>
                             </tr>
                         @empty

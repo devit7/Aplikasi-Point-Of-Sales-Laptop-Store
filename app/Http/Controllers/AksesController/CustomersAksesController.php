@@ -7,7 +7,6 @@ use App\Http\Requests\Customer\StoreRequest;
 use App\Http\Requests\Customer\UpdateRequest;
 use Illuminate\Http\Request;
 use App\Models\Customers;
-use GuzzleHttp\Client;
 use Illuminate\Support\Facades\Http;
 
 class CustomersAksesController extends Controller
@@ -60,7 +59,6 @@ class CustomersAksesController extends Controller
 
     public function createData(StoreRequest $request)
     {
-        return 'masuk';
         $validator = $request->validated();
         $data = [
             'customer_name' => $validator['customer_name'],
@@ -68,16 +66,14 @@ class CustomersAksesController extends Controller
             'no_hp' => $validator['no_hp'],
             'alamat' => $validator['alamat'],
         ];
-        $request = Request::create('http://127.0.0.1:8000/api/customers', 'POST', $data);
+        $request = Request::create('http://127.0.0.1:8000/api/customers/', 'POST', $data);
         $response = app()->handle($request);
         $data = json_decode($response->getContent(), true);
-        if ($response->getStatusCode() == 200) {
+        if ($response->getStatusCode() == 202) {
             session()->flash('success', 'Customer berhasil ditambahkan');
             return redirect()->route('kasir.management-customer.index');
         } else {
-            return response()->json([
-                'message' => 'Unauthorized'
-            ]);
+            return dd($response);
         }
     }
 

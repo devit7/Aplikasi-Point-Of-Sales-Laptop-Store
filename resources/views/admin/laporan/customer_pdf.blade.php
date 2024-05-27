@@ -16,11 +16,10 @@
                     class="flex items-center gap-2 px-4 py-2 bg-[#FF9A37] text-white rounded-md hover:bg-[#FF9A37]">
                     Export to Excel
                 </a>
-                <!-- <a href="#"
+                <a href="#"
                     class="flex items-center gap-2 px-4 py-2 bg-[#FF9A37] text-white rounded-md hover:bg-[#FF9A37]">
                     Export to PDF
-                </a> -->
-                <a href="{{url('admin/customer_pdf')}}" class="flex items-center gap-2 px-4 py-2 bg-[#FF9A37] text-white rounded-md hover:bg-[#FF9A37]" target="_blank">export To PDF</a>
+                </a>
             </div>
         </div>
         <div class="mt-10">
@@ -44,6 +43,7 @@
                             @php $i=1 @endphp
 
                             @foreach ($data as $item)
+                            
                                 <tr class="border-b-2 border-[#33356F]">
                                     <td class="py-2">{{ $i++ }}</td>
                                     <td class="text-left">{{ $item['customer']['customer_name'] }}</td>
