@@ -20,6 +20,7 @@ class LaporanController extends Controller
         // dd("response", $response);
 
         $data = json_decode($response->getContent(), true);
+        // dd("data", $data['data']);
 
         // foreach ($data['data'] as $item) {
         //     dd("data json decode", $item);
