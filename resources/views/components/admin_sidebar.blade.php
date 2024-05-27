@@ -1,50 +1,5 @@
 <section id="sidebar" class="top-0 left-0 bottom-0 hidden lg:block border-r border-[#33356F] ">
     <div class="relative flex flex-col bg-[#131432] h-full w-full ">
-<<<<<<< HEAD
-        <nav class="flex flex-col w-[280px] font-sans text-base font-normal text-[#62748E]">
-            <div class="h-[80px] text-center items-center flex justify-center border-b border-[#33356F]">
-                <h1 class="font-semibold text-3xl text-gray-500">POS Admin</h1>
-            </div>
-            <div class="flex flex-col py-6 px-5 gap-1 font-semibold">
-                <p class="text-gray-400 text-sm font-bold  tracking-wider pb-4">
-                    MAIN
-                </p>
-                <a href="/admin" tabindex="0"
-                    class="flex items-center w-full px-6 py-3 rounded-lg text-start leading-tight transition-all hover:bg-[#aa5800] hover:bg-opacity-10 hover:text-[#e07946] outline-none
-                    @if (request()->is('admin')) bg-[#aa5800] bg-opacity-10 text-[#e07946] @endif
-                    ">
-                    <div class="grid place-items-center mr-3">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewbox="0 0 24 24" stroke-width="1.5"
-                            stroke="currentColor" class="w-6 h-6">
-                            <path stroke-linecap="round" stroke-linejoin="round"
-                                d="M3.75 6A2.25 2.25 0 0 1 6 3.75h2.25A2.25 2.25 0 0 1 10.5 6v2.25a2.25 2.25 0 0 1-2.25 2.25H6a2.25 2.25 0 0 1-2.25-2.25V6ZM3.75 15.75A2.25 2.25 0 0 1 6 13.5h2.25a2.25 2.25 0 0 1 2.25 2.25V18a2.25 2.25 0 0 1-2.25 2.25H6A2.25 2.25 0 0 1 3.75 18v-2.25ZM13.5 6a2.25 2.25 0 0 1 2.25-2.25H18A2.25 2.25 0 0 1 20.25 6v2.25A2.25 2.25 0 0 1 18 10.5h-2.25a2.25 2.25 0 0 1-2.25-2.25V6ZM13.5 15.75a2.25 2.25 0 0 1 2.25-2.25H18a2.25 2.25 0 0 1 2.25 2.25V18A2.25 2.25 0 0 1 18 20.25h-2.25A2.25 2.25 0 0 1 13.5 18v-2.25Z" />
-                        </svg>
-                    </div>
-                    Dashboard
-                </a>
-                <div class="flex flex-col gap-0 font-semibold ">
-                    <button type="button"
-                        class="flex items-center py-3 px-6 w-full text-start outline-none rounded-lg leading-tight transition-all hover:bg-[#aa5800] hover:bg-opacity-10 hover:text-[#e07946]"
-                        aria-controls="dropdown-example" data-collapse-toggle="dropdown-example">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewbox="0 0 24 24" stroke-width="1.5"
-                            stroke="currentColor" class="w-6 h-6">
-                            <path stroke-linecap="round" stroke-linejoin="round"
-                                d="m20.25 7.5-.625 10.632a2.25 2.25 0 0 1-2.247 2.118H6.622a2.25 2.25 0 0 1-2.247-2.118L3.75 7.5M10 11.25h4M3.375 7.5h17.25c.621 0 1.125-.504 1.125-1.125v-1.5c0-.621-.504-1.125-1.125-1.125H3.375c-.621 0-1.125.504-1.125 1.125v1.5c0 .621.504 1.125 1.125 1.125Z" />
-                        </svg>
-                        <span class="flex-1 ml-3 text-left whitespace-nowrap" sidebar-toggle-item>Management</span>
-                        <svg sidebar-toggle-item class="w-6 h-6" fill="currentColor" viewbox="0 0 20 20"
-                            xmlns="http://www.w3.org/2000/svg">
-                            <path fill-rule="evenodd"
-                                d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
-                                clip-rule="evenodd"></path>
-                        </svg>
-                    </button>
-                    <ul id="dropdown-example" class="hidden py-2 space-y-2">
-                        <li>
-
-                            <a href="{{ route('user.index') }}"
-                                class="flex items-center w-full px-6 py-3 rounded-lg text-start leading-tight transition-all hover:bg-[#aa5800] hover:bg-opacity-10 hover:text-[#e07946] outline-none pl-11
-=======
         <nav class="flex flex-col w-[280px] h-full justify-between  font-sans text-base font-normal text-[#62748E]">
             <div class="flex flex-col ">
                 <div class="h-[80px] text-center items-center flex justify-center border-b border-[#33356F]">
@@ -55,7 +10,7 @@
                         MAIN
                     </p>
                     <a href="/admin" tabindex="0"
-                        class="flex items-center w-full px-6 py-3 rounded-lg text-start leading-tight transition-all hover:bg-[#aa5800] hover:bg-opacity-10 hover:text-[#e07946] outline-none  
+                        class="flex items-center w-full px-6 py-3 rounded-lg text-start leading-tight transition-all hover:bg-[#aa5800] hover:bg-opacity-10 hover:text-[#e07946] outline-none
                     @if (request()->is('admin')) bg-[#aa5800] bg-opacity-10 text-[#e07946] @endif
                     ">
                         <div class="grid place-items-center mr-3">
@@ -89,7 +44,6 @@
 
                                 <a href="{{ route('user.index') }}"
                                     class="flex items-center w-full px-6 py-3 rounded-lg text-start leading-tight transition-all hover:bg-[#aa5800] hover:bg-opacity-10 hover:text-[#e07946] outline-none pl-11
->>>>>>> 0757bd946da1e49a1f05582cae463b924887827c
                                 @if (request()->is('admin/user')) bg-[#aa5800] bg-opacity-10 text-[#e07946] @endif
                                 ">User</a>
                             </li>
@@ -167,7 +121,7 @@
                 </div>
             </div>
             <div tabindex="0"
-                class="flex  border-t bg-[#131542] border-[#33356F] items-center px-10 w-full font-semibold  py-3 
+                class="flex  border-t bg-[#131542] border-[#33356F] items-center px-10 w-full font-semibold  py-3
             ">
                 <div class="grid place-items-center mr-3">
                     <img src="{{ asset('foto/user.png') }}" alt="" class=" rounded-full w-12">
