@@ -61,6 +61,7 @@ Route::prefix('admin')->group(function () {
     Route::get('/supplier/edit/{supplier}', [SupplierAksesController::class, 'getEdit'])->name('supplier.edit');
     // Route untuk memperbarui data supplier
     Route::put('/supplier/update/{supplier}', [SupplierAksesController::class, 'updateData'])->name('supplier.updateCoy');
+    Route::delete('/supplier/{supplier}',[SupplierAksesController::class, 'deleteData'])->name('supplier.delete');
     
 
     // Product

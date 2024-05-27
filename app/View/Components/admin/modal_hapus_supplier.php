@@ -11,10 +11,11 @@ class modal_hapus_supplier extends Component
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($id = null, $nama = null)
     {
         //
-        
+        $this->id = $id;
+        $this->nama = $nama;
     }
 
     /**

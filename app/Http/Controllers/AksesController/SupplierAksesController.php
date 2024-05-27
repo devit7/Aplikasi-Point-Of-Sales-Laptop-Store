@@ -84,4 +84,17 @@ class SupplierAksesController extends Controller
             ], 401);
         }
     }
+
+    public function deleteData($supplier)
+    {
+        $request = Request::create('http://127.0.0.1:8000/api/supplier/' . $supplier, 'DELETE');
+        $response = app()->handle($request);
+        if ($response->getStatusCode() == 200) {
+            return redirect()->route('supplier.index')->with('success', 'Data berhasil delete');
+        } else {
+            return response()->json([
+                'message' => 'Unauthorized'
+            ]);
+        }
+    }
 }
