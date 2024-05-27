@@ -6,7 +6,6 @@ use App\Http\Requests\Transaksi\StoreRequest;
 use App\Http\Requests\Transaksi\UpdateRequest;
 use App\Models\Product;
 use App\Models\Transaksi;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\DB;
@@ -20,22 +19,12 @@ class TransaksiController extends Controller
      */
     public function index()
     {
-        $data = Transaksi::with(['user', 'toko', 'customer', 'payment', 'product']);
+        $data = Transaksi::with(['user', 'toko', 'customer', 'payment', 'product'])->get();
+
         return response()->json([
             'message' => 'List Transaksi',
-            'data' => $data,
+            'data' => $data
         ], 200);
-    }
-
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
     }
 
     /**
@@ -115,17 +104,6 @@ class TransaksiController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Transaksi  $transaksi
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Transaksi $transaksi)
-    {
-        //
-    }
-
-    /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -190,7 +168,7 @@ class TransaksiController extends Controller
         } catch (\Exception $e) {
 
             DB::rollBack();
-            return dd($e);
+            // return dd($e);
             return response()->json([
                 'message' => $e->getMessage(),
             ], 500);
