@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AksesController\CustomersAksesController;
 use App\Http\Controllers\AksesController\PaymentsAksesController;
+use App\Http\Controllers\AksesController\RiwayatTransaksiContoller;
 use App\Http\Controllers\AksesController\TokoAksesController;
 use App\Http\Controllers\AksesController\TransaksisAksesController;
 use App\Http\Controllers\AksesController\UserAksesController;
@@ -130,9 +131,8 @@ Route::prefix('kasir')->group(function () {
     Route::get('/', function () {
         return view('kasir.dashboard');
     });
-    Route::get('/transaksi', function () {
-        return view('kasir.RiwayatTransaksi');
-    });
+    Route::get('/riwayat', [RiwayatTransaksiContoller::class, 'getAll'])->name('Riwayat.index');
+
 
     Route::get('/customer', [CustomersAksesController::class, 'getAll'])->name('management-customer.index');
     Route::get('/customer/show/{customer}', [CustomersAksesController::class, 'getDetail'])->name('management-customer.detail');
