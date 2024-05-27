@@ -80,39 +80,14 @@ Route::prefix('admin')->group(function () {
 
     // Payment
     Route::get('/payment', [PaymentsAksesController::class, 'getAll'])->name('payment.index');
-    // Route to show the form for creating a new payment
-    Route::get('/payment/create', function () {
     Route::get('/payment/create', function () {
         return view('admin.payment.create');
     })->name('payment.create');
-
     Route::get('/payment/edit/{payment}', [PaymentsAksesController::class, 'getEdit'])->name('payment.edit');
     Route::put('/payment/update/{payment}', [PaymentsAksesController::class, 'updateData'])->name('payment.update');
     Route::post('/payment', [PaymentsAksesController::class, 'createData'])->name('payment.store');
-    // Route to show the form for editing an existing payment
-    Route::get('/payment/{id}/edit', function ($id) {
-        $controller = new PaymentsAksesController();
-        $response = $controller->getDetail($id);
-        if ($response->getStatusCode() == 200) {
-            $responseContent = json_decode($response->getContent());
-            if (isset ($responseContent->data)) {
-                $payment = $responseContent->data;
-                return view('admin.payment.update', compact('payment'));
-            } else {
-                return redirect()->route('payment.index')->with('error', 'Invalid response structure.');
-            }
-        } else {
-            return redirect()->route('payment.index')->with('error', 'Unable to fetch payment details.');
-        }
-    })->name('payment.edit');
-    // Route to update an existing payment
-    Route::put('/payment/{id}', [PaymentsAksesController::class, 'updateData'])->name('payment.update');
-    // Route to delete an existing payment
-    Route::delete('/payment/{id}', [PaymentsAksesController::class, 'deleteData'])->name('payment.destroy');
-
-
     Route::delete('/payment/{payment}', [PaymentsAksesController::class, 'deleteData'])->name('payment.destroy');
-
+    
     // Create product
     Route::get('/product/create', function () {
         return view('admin.product.create');
@@ -124,9 +99,6 @@ Route::prefix('admin')->group(function () {
     Route::get('/payment/create', function () {
         return view('admin.payment.create');
     });
-});
-    });
-
 });
 
 Route::prefix('kasir')->group(function () {
