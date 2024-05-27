@@ -33,11 +33,12 @@
                             <div class="sm:col-span-2">
                                 <label for="nama_toko" class="block mb-2 text-sm font-medium  text-gray-400">Nama
                                     Toko</label>
-                                <input type="text" name="nama_toko" id="name_toko"
+                                <input type="text" name="nama_toko" id="nama_toko"
                                     class="bg-[#131432] border text-sm rounded-lg block w-full p-2.5  border-gray-600 placeholder-gray-400 text-gray-400 focus:ring-primary-500 focus:border-primary-500"
-                                    placeholder="Ex : Wibu Jaya Bersama" required value="{{ $toko[0]['nama_toko'] }}">
+                                    placeholder="Ex : Wibu Jaya Bersama" value="{{ $toko[0]['nama_toko'] }}" required>
                                 @error('nama_toko')
-                                    <small class="text-red-500 text-xs mt-1">{{ $message }}</small>
+                                    <p id="outlined_error_help" class="mt-2 text-xs text-red-600">
+                                        {{ $message }}</p>
                                 @enderror
                             </div>
                             <div class="sm:col-span-2">
@@ -45,9 +46,10 @@
                                     HP</label>
                                 <input type="tel" name="no_hp" id="no_hp"
                                     class="bg-[#131432] border text-sm rounded-lg block w-full p-2.5 border-gray-600 placeholder-gray-400 text-gray-400 focus:ring-primary-500 focus:border-primary-500"
-                                    placeholder="EX : 0821*" required value="{{ $toko[0]['no_hp'] }}">
+                                    placeholder="EX : 0821*" value="{{ $toko[0]['no_hp'] }}" required>
                                 @error('no_hp')
-                                    <small class="text-red-500 text-xs mt-1">{{ $message }}</small>
+                                    <p id="outlined_error_help" class="mt-2 text-xs text-red-600">
+                                        {{ $message }}</p>
                                 @enderror
                             </div>
 
@@ -58,7 +60,8 @@
                                     class="block p-2.5 w-full text-sm text-gray-900 rounded-lg border border-gray-300 focus:ring-primary-500 focus:border-primary-500 bg-[#131432] dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-400 dark:focus:ring-primary-500 dark:focus:border-primary-500"
                                     placeholder="EX : Jalan Jalan" required>{{ $toko[0]['alamat'] }}</textarea>
                                 @error('alamat')
-                                    <small class="text-red-500 text-xs mt-1">{{ $message }}</small>
+                                    <p id="outlined_error_help" class="mt-2 text-xs text-red-600">
+                                        {{ $message }}</p>
                                 @enderror
                             </div>
                             <div class="sm:col-span-2">
@@ -90,10 +93,10 @@
                             <input type="hidden" name="old_logo_toko" value="{{ $toko[0]['logo_toko'] }}">
                         </div>
                         <div class="flex justify-between w-full gap-4 sm:gap-6">
-                            {{-- <button type="submit"
+                            <button type="submit" id="button-reset"
                                 class="inline-flex items-center px-5 py-2.5 mt-4 sm:mt-6 text-sm font-medium text-center text-white bg-blue-700 rounded-md focus:ring-4 focus:ring-primary-200 dark:focus:ring-primary-900 hover:bg-primary-800">
                                 Reset
-                            </button> --}}
+                            </button>
                             <button type="submit"
                                 class="inline-flex items-center px-5 py-2.5 mt-4 sm:mt-6 text-sm font-medium text-center text-white bg-green-700 rounded-md focus:ring-4 focus:ring-primary-200 dark:focus:ring-primary-900 hover:bg-primary-800">
                                 Update
@@ -196,5 +199,15 @@
                 preview.classList.remove('hidden');
             };
         }
+
+        //untuk mengkosongkan value input form
+        document.getElementById('button-reset').addEventListener('click', (e) => {
+            e.preventDefault();
+            document.getElementById('nama_toko').value = '';
+            document.getElementById('no_hp').value = '';
+            document.getElementById('alamat').value = '';
+            document.getElementById('preview').classList.add('hidden');
+            document.getElementById('logo_toko').value = '';
+        });
     </script>
 @endpush
