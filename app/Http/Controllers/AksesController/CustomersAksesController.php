@@ -57,7 +57,7 @@ class CustomersAksesController extends Controller
         }
     }
 
-    public function createData(StoreRequest $request, Customers $customer)
+    public function createData(StoreRequest $request)
     {
         $validator = $request->validated();
         $data = [
@@ -66,17 +66,14 @@ class CustomersAksesController extends Controller
             'no_hp' => $validator['no_hp'],
             'alamat' => $validator['alamat'],
         ];
-        $api_url = 'http://127.0.0.1:8000/api/customers/' . $customer . '?' . http_build_query($data);
-        $request = Request::create($api_url, 'POST');
+        $request = Request::create('http://127.0.0.1:8000/api/customers/', 'POST', $data);
         $response = app()->handle($request);
         $data = json_decode($response->getContent(), true);
-        if ($response->getStatusCode() == 200) {
+        if ($response->getStatusCode() == 202) {
             session()->flash('success', 'Customer berhasil ditambahkan');
             return redirect()->route('kasir.management-customer.index');
         } else {
-            return response()->json([
-                'message' => 'Unauthorized'
-            ]);
+            return dd($response);
         }
     }
 
