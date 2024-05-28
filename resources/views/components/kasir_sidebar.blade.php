@@ -3,7 +3,7 @@
         <nav class="flex flex-col w-[280px] h-full justify-between font-sans text-base font-normal text-[#62748E]">
             <div class="flex flex-col ">
                 <div class="h-[80px] text-center items-center flex justify-center border-b border-[#33356F]">
-                    <h1 class="font-semibold text-3xl text-gray-500">POS</h1>
+                    <h1 class="font-semibold text-3xl text-gray-500">POS Kasir</h1>
                 </div>
                 <div class="flex flex-col py-6 px-5 gap-1 font-semibold">
                     <p class="text-gray-400 text-sm font-bold  tracking-wider pb-4">

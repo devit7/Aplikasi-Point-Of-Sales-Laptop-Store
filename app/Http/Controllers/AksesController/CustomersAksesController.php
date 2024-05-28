@@ -73,7 +73,7 @@ class CustomersAksesController extends Controller
         $data = json_decode($response->getContent(), true);
         if ($response->getStatusCode() == 202) {
             session()->flash('success', 'Customer berhasil ditambahkan');
-            return redirect()->route('kasir.management-customer.index');
+            return redirect()->route('admin.merk.index');
         } else {
             return dd($response);
         }
