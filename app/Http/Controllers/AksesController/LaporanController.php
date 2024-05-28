@@ -53,7 +53,7 @@ class LaporanController extends Controller
         $data = json_decode($response->getContent(), true);
         // dd("cetak", $data);
 
-        $pdf = PDF::loadView('admin/laporan/customer_pdf', ['data' => $data['data']]);
+        $pdf = PDF::loadView('admin/laporan/index', ['data' => $data['data']]);
         return $pdf->download('customer-pdf');
         // return $pdf->stream();
     }
