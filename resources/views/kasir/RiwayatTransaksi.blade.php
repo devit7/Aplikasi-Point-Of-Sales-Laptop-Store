@@ -37,7 +37,7 @@
                         <td>{{ $riwayat['payment']['payment_name']}}</td>
                         <td>{{$product['product_name']}}</td>
                         <td>
-                        <x-modal-detail-transaksi/>
+                        <x-modal-detail/>
                         </td>
                     </tr>
                     @endforeach

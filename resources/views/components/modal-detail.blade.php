@@ -45,5 +45,5 @@
         </div>
     </div>
     
-    <script src="https://unpkg.com/flowbite@1.4.4/dist/flowbite.js"></script>
+    <script src="/js/flowbite.js"></script>
 </div>

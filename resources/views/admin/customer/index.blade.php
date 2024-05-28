@@ -1,4 +1,4 @@
-@extends('layout.kasir_main')
+@extends('layout.admin_main')
 @section('title', 'Management Customer')
 @section('content')
 <div class="p-7">
