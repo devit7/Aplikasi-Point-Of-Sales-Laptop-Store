@@ -16,7 +16,7 @@
         <div class="w-[600px] flex flex-col gap-4">
             <p class="rounded-md p-4 font-semibold bg-[#1C1D42] text-[#6b6eb4]">Payment Settings</p>
             <div class="rounded-md p-4 bg-[#1C1D42] text-[#6b6eb4]">
-                <form action="{{ route('payment.update', $payment->id) }}" method="POST">
+                <form action="{{ route('payment.update', $payment['id']) }}" method="POST">
                     @csrf
                     @method('PUT')
                     <div class="grid gap-4 sm:grid-cols-2 sm:gap-6">
@@ -24,7 +24,7 @@
                             <label for="payment_name" class="block mb-2 text-sm font-medium text-gray-400">Payment Name</label>
                             <input type="text" name="payment_name" id="payment_name"
                                 class="bg-[#131432] border text-sm rounded-lg block w-full p-2.5 border-gray-600 placeholder-gray-400 text-gray-400 focus:ring-primary-500 focus:border-primary-500"
-                                placeholder="Ex: BCA" value="{{ old('payment_name', $payment->payment_name) }}" required>
+                                placeholder="Ex: BCA" value="{{ $payment['payment_name'] }}" required>
                             @if ($errors->has('payment_name'))
                                 <p class="text-red-500 text-xs mt-2">{{ $errors->first('payment_name') }}</p>
                             @endif
