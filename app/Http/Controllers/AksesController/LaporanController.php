@@ -4,7 +4,6 @@ namespace App\Http\Controllers\AksesController;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\Customers;
 use \PDF;
 
 class LaporanController extends Controller
@@ -21,10 +20,6 @@ class LaporanController extends Controller
 
         $data = json_decode($response->getContent(), true);
         // dd("data", $data['data']);
-
-        // foreach ($data['data'] as $item) {
-        //     dd("data json decode", $item);
-        // }
 
         if ($response->getStatusCode() == 200) {
             return view('admin.laporan.index', [
@@ -56,5 +51,7 @@ class LaporanController extends Controller
         $pdf = PDF::loadView('admin/laporan/index', ['data' => $data['data']]);
         return $pdf->download('customer-pdf');
         // return $pdf->stream();
+
+
     }
 }
