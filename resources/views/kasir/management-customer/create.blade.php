@@ -1,55 +1,71 @@
 @extends('layout.kasir_main')
 @section('title', 'Add customer')
 @section('content')
-<div class="w-full p-8 ">
-    <div class="mb-6">
-        <div class="flex flex-col ">
-            <p class="text-[#6b6eb4] text-lg font-semibold">
-                Add Customer
-            </p>
-            <div class="text-[#6b6eb4] flex flex-row ">
-                Create your customer
+    <div class=" p-7 ">
+        <div class="mb-6 flex items-end justify-between">
+            <div class="flex flex-col ">
+                <p class="text-[#6b6eb4] text-lg font-semibold">
+                    Add Customer
+                </p>
+                <p class="text-[#6b6eb4] ">
+                    Create your data customer
+                </p>
             </div>
         </div>
-    </div>
-    <div class="bg-[#1C1D42] rounded-md  border border-[#33356F] min-h-[500px]">
-        <div class="py-8 px-4 mx-auto max-w-2xl lg:py-16">
-            @if ($errors->any())
-            <div class="bg-red-500 text-white p-4 rounded-md mb-4">
-                <ul>
-                    @foreach ($errors->all() as $error)
-                    <li>{{ $error }}</li>
-                    @endforeach
-                </ul>
-            </div>
-            @endif
-            <h2 class="mb-4 text-xl font-bold text-gray-900 dark:text-white">Add a new customer</h2>
-            <form action="{{ route('management-customer.store') }}" method="POST">
-                @csrf
-                <div class="grid gap-4 sm:grid-cols-2 sm:gap-6">
-                    <div class="sm:col-span-2">
-                        <label for="customer_name" class="block mb-2 text-sm font-medium  text-white">Name Customer</label>
-                        <input type="text" name="customer_name" id="customer_name" class="bg-[#131432] border   text-sm rounded-lg  block w-full p-2.5  border-gray-600 placeholder-gray-400 text-white focus:ring-primary-500 focus:border-primary-500" placeholder="Enter customer name" required="">
+        <div class="mt-10 flex justify-between w-full mx-auto rounded-md">
+            <div class="w-[600px] flex flex-col gap-4">
+                @if ($errors->any())
+                    <div class="bg-red-500 text-white p-4 rounded-md mb-4">
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
                     </div>
-                    <div class="w-full">
-                        <label for="email" class="block mb-2 text-sm font-medium  text-white">Email</label>
-                        <input type="text" name="email" id="email" class="bg-[#131432] border   text-sm rounded-lg  block w-full p-2.5  border-gray-600 placeholder-gray-400 text-white focus:ring-primary-500 focus:border-primary-500" placeholder="Enter your email" required="">
-                    </div>
-                    <div class="w-full">
-                        <label for="no_hp" class="block mb-2 text-sm font-medium  text-white">Phone number</label>
-                        <input type="number" name="no_hp" id="no_hp" class="bg-[#131432] border   text-sm rounded-lg  block w-full p-2.5  border-gray-600 placeholder-gray-400 text-white focus:ring-primary-500 focus:border-primary-500" placeholder="Enter your number" required="">
-                    </div>
-                    <div class="sm:col-span-2">
-                        <label for="alamat" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Address</label>
-                        <textarea id="alamat" name="alamat" rows="8" class="block p-2.5 w-full text-sm text-gray-900  rounded-lg border border-gray-300 focus:ring-primary-500 focus:border-primary-500 bg-[#131432] dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Enter your address"></textarea>
-                    </div>
+                @endif
+                <p class="rounded-md p-4 font-semibold bg-[#1C1D42] text-[#6b6eb4]">Create Customer</p>
+                <div class="rounded-md p-4 bg-[#1C1D42] text-[#6b6eb4]">
+                    <form action="{{ route('management-customer.store') }}" method="POST">
+                        <div class="grid gap-4 sm:grid-cols-2 sm:gap-6">
+                            <div class="sm:col-span-2">
+                                <label for="name" class="block mb-2 text-sm font-medium  text-gray-400">Customer name</label>
+                                <input type="text" name="customer_name" id="customer_name" "
+                                    class="bg-[#131432] border text-sm rounded-lg  block w-full p-2.5  border-gray-600 placeholder-gray-400 text-gray-400 focus:ring-primary-500 focus:border-primary-500"
+                                    placeholder="Enter data customer" required="">
+                            </div>
+                            <div class="sm:col-span-2">
+                                <label for="nama_toko" class="block mb-2 text-sm font-medium  text-gray-400">Email</label>
+                                <input type="text" name="email" id="email"
+                                    class="bg-[#131432] border   text-sm rounded-lg  block w-full p-2.5  border-gray-600 placeholder-gray-400 text-gray-400 focus:ring-primary-500 focus:border-primary-500"
+                                    placeholder="Enter email customer" required="">
+                            </div>
+                            <div class="sm:col-span-2">
+                                <label for="nama_toko" class="block mb-2 text-sm font-medium  text-gray-400">Phone Number</label>
+                                <input type="text" name="no_hp" id="no_hp"
+                                    class="bg-[#131432] border   text-sm rounded-lg  block w-full p-2.5  border-gray-600 placeholder-gray-400 text-gray-400 focus:ring-primary-500 focus:border-primary-500"
+                                    placeholder="Enter phone number customer" required="">
+                            </div>
+                            <div class="sm:col-span-2">
+                                <label for="nama_toko" class="block mb-2 text-sm font-medium  text-gray-400">Address</label>
+                                <input type="text" id="alamat" name="alamat"
+                                    class="bg-[#131432] border   text-sm rounded-lg  block w-full p-2.5  border-gray-600 placeholder-gray-400 text-gray-400 focus:ring-primary-500 focus:border-primary-500"
+                                    placeholder="Enter a address customer" required="">
+                            </div>
+                        </div>
+                        <div class="flex justify-between w-full gap-4 sm:gap-6">
+                            <button type="reset"
+                                class="inline-flex items-center px-5 py-2.5 mt-4 sm:mt-6 text-sm font-medium text-center text-white bg-blue-700 rounded-md focus:ring-4 focus:ring-primary-200 dark:focus:ring-primary-900 hover:bg-primary-800">
+                                Reset
+                            </button>
+                            <a href="{{ route('management-customer.index') }}" class="inline-flex items-center px-5 py-2.5 mt-4 sm:mt-6 text-sm font-medium text-center text-white bg-blue-700 rounded-md focus:ring-4 focus:ring-primary-200 dark:focus:ring-primary-900 hover:bg-primary-800">Back to Customer List</a>
+                            <button type="submit"
+                                class="inline-flex items-center px-5 py-2.5 mt-4 sm:mt-6 text-sm font-medium text-center text-white bg-green-700 rounded-md focus:ring-4 focus:ring-primary-200 dark:focus:ring-primary-900 hover:bg-primary-800">
+                                Create
+                            </button>
+                        </div>
+                    </form>
                 </div>
-                <button type="submit" class="inline-flex items-center px-5 py-2.5 mt-4 sm:mt-6 text-sm font-medium text-center text-white bg-blue-700 rounded-lg focus:ring-4 focus:ring-primary-200 dark:focus:ring-primary-900 hover:bg-primary-800">
-                    Add product
-                </button>
-                <a href="{{ route('management-customer.index') }}" class="bg-gray-500 text-white px-4 py-2 rounded-md hover:bg-gray-600">Back to Customer List</a>
-            </form>
+            </div>
         </div>
     </div>
-</div>
 @endsection

@@ -16,10 +16,9 @@
                     class="flex items-center gap-2 px-4 py-2 bg-[#FF9A37] text-white rounded-md hover:bg-[#FF9A37]">
                     Export to Excel
                 </a>
-                <a href="#"
-                    class="flex items-center gap-2 px-4 py-2 bg-[#FF9A37] text-white rounded-md hover:bg-[#FF9A37]">
-                    Export to PDF
-                </a>
+                <a href="#" onclick="exportToPDF()"
+                    class="flex items-center gap-2 px-4 py-2 bg-[#FF9A37] text-white rounded-md hover:bg-[#FF9A37]">Export
+                    To PDF</a>
             </div>
         </div>
         <div class="mt-10">
@@ -39,21 +38,21 @@
                                 <th class="text-left">Action</th>
                             </tr>
                         </thead>
-
                         <tbody class="text-[#6b6eb4] text-center">
                             @php $i=1 @endphp
 
-                            @foreach ($laporan as $item)
+                            @foreach ($data as $item)
                                 <tr class="border-b-2 border-[#33356F]">
                                     <td class="py-2">{{ $i++ }}</td>
-                                    <td class="text-left">{{ $item->nama }}</td>
-                                    <td class="text-left">{{ $item->invoice }}</td>
-                                    <td class="text-left">{{ $item->kasir }}</td>
-                                    <td class="text-left">{{ $item->order_date }}</td>
-                                    <td class="text-left">{{ $item->payment }}</td>
-                                    <td class="text-right">{{ $item->total }}</td>
-                                    <td class="text-left">{{ $item->create_at }}</td>
+                                    <td class="text-left">{{ $item['customer']['customer_name'] }}</td>
+                                    <td class="text-left">{{ $item['invoice'] }}</td>
+                                    <td class="text-left">{{ $item['user']['nama'] }}</td>
+                                    <td class="text-left">{{ $item['order_date'] }}</td>
+                                    <td class="text-left">{{ $item['payment']['payment_name'] }}</td>
+                                    <td class="text-right">{{ $item['total_semua'] }}</td>
                                     <td class="text-left">
+                                        {{ \Carbon\Carbon::parse($item['created_at'])->format('Y-m-d H:i') }}</td>
+                                    <td class="text-left flex">
                                         <a href="">
                                             <button class="bg-[#002D4C] border p-1 border-[#2B4F69] rounded-md">
                                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
@@ -92,6 +91,12 @@
             </x-tables>
         </div>
     </div>
+
+    @push('scripts')
+        {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script> --}}
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.21/jspdf.plugin.autotable.min.js"></script>
+    @endpush
 
     <script>
         function exportToExcel() {
@@ -180,5 +185,59 @@
             // Bebaskan sumber daya yang digunakan
             window.URL.revokeObjectURL(link.href);
         }
+
+        function exportToPDF() {
+    const { jsPDF } = window.jspdf;
+    const doc = new jsPDF();
+
+    // Get table headers
+    const table = document.getElementById("table");
+    const headers = [];
+    table.querySelectorAll("th").forEach((header, index) => {
+        if (index !== table.querySelectorAll("th").length - 1) {
+            headers.push(header.innerText);
+        }
+    });
+
+    // Get table rows
+    const rows = [];
+    table.querySelectorAll("tbody tr").forEach(row => {
+        const rowData = [];
+        row.querySelectorAll("td").forEach((cell, index) => {
+            if (index !== row.querySelectorAll("td").length - 1) {
+                rowData.push(cell.innerText);
+            }
+        });
+        rows.push(rowData);
+    });
+
+    // Use autoTable to generate the table
+    doc.autoTable({
+        head: [headers],
+        body: rows,
+        headStyles: {
+            fillColor: '#131432', // Background color for header
+            textColor: '#ffffff', // Text color for header
+            lineColor: '#000000', // Border color for header
+            lineWidth: 0.1 // Border width for header
+        },
+        styles: {
+            fillColor: [255, 255, 255], // Background color for rows
+            textColor: '#000000', // Text color
+            lineColor: '#000000', // Border color
+            lineWidth: 0.1 // Border width 
+        },
+        tableLineColor: '#33356F', // Overall table border color
+        tableLineWidth: 0.1 // Overall table border width
+    });
+
+    // Save the PDF
+    doc.save("report.pdf");
+
+    // Log current date and time
+    let tanggalSekarang = new Date();
+    console.log(tanggalSekarang);
+}
+
     </script>
 @endsection

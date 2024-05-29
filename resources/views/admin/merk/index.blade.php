@@ -12,7 +12,7 @@
                 </p>
             </div>
             <div class=" flex flex-row ">
-                <a href="/admin/user/create"
+                <a href="/admin/merk/create"
                     class="flex flex-row  items-center gap-2  px-4 py-2 bg-[#FF9A37] text-white rounded-md hover:bg-[#FF9A37]">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                         stroke="currentColor" class="w-6 h-6">

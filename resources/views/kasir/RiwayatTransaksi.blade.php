@@ -27,19 +27,26 @@
                     </tr>
                 </thead>
                 <tbody class="text-[#6b6eb4] text-center">
+                    @forelse ($data as $riwayat)
+                    @foreach ($riwayat['product'] as $product)
                     <tr class="border-b-2 border-[#33356F]">
-                        <td class="py-2">1</td>
-                        <td>Product 1</td>
-                        <td>Rp. 100.000</td>
-                        <td>10</td>
-                        <td >
-                            
-                        </td>
-                        <td></td>
+                        <td class="py-2">{{ $loop->index + 1 }}</td>
+                        <td>{{$riwayat['user']['nama']}}</td>
+                        <td>{{ $riwayat['toko']['nama_toko'] }}</td>
+                        <td>{{ $riwayat['customer']['customer_name']}}</td>
+                        <td>{{ $riwayat['payment']['payment_name']}}</td>
+                        <td>{{$product['product_name']}}</td>
                         <td>
-                        <x-modal-detail-transaksi/>
+                        <x-modal-detail/>
                         </td>
                     </tr>
+                    @endforeach
+                        
+                    @empty
+                        <tr>
+                            <td>No Data Found</td>
+                        </tr>
+                    @endforelse
                 </tbody>
             </table>
             </div>

@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 class ProductAksesController extends Controller
 {
     public function getAll(){
-        $request = Request::create('http://127.0.0.1:8000/api/products', 'GET');
+        $request = Request::create('http://127.0.0.1:8000/api/product', 'GET');
         $response = app()->handle($request);
         // merubah json ke array
         $data = json_decode($response->getContent(),true);
