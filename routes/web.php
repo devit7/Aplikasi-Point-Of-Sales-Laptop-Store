@@ -6,6 +6,7 @@ use App\Http\Controllers\AksesController\TokoAksesController;
 use App\Http\Controllers\AksesController\TransaksisAksesController;
 use App\Http\Controllers\AksesController\UserAksesController;
 use App\Http\Controllers\AksesController\LaporanController;
+use App\Http\Controllers\AksesController\ProductAksesController;
 use App\Http\Controllers\AksesController\SupplierAksesController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\UserController;
@@ -57,10 +58,12 @@ Route::prefix('admin')->group(function () {
     });
 
     // Product
-    Route::get('/product', function () {
-        return view('admin.product.index');
-    });
+    Route::get('/product', [ProductAksesController::class, 'getAll'])->name('admin.product.index');
 
+    Route::post('/product', [ProductAksesController::class, 'createData'])->name('admin.product.store');
+    Route::get('/product/create', function () {
+        return view('admin.product.create');
+    })->name('admin.product.create');
     // Merk
     Route::get('/merk', function () {
         return view('admin.merk.index');
