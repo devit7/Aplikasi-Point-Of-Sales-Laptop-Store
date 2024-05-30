@@ -4,7 +4,7 @@ namespace App\View\Components;
 
 use Illuminate\View\Component;
 
-class ModalDetailTransaksi extends Component
+class modal_detail extends Component
 {
     /**
      * Create a new component instance.
@@ -23,6 +23,6 @@ class ModalDetailTransaksi extends Component
      */
     public function render()
     {
-        return view('components.modal-detail-transaksi');
+        return view('components.modal_detail');
     }
 }
