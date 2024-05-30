@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AksesController\CustomersAksesController;
+use App\Http\Controllers\AksesController\MerkAksesController;
 use App\Http\Controllers\AksesController\PaymentsAksesController;
 use App\Http\Controllers\AksesController\RiwayatTransaksiContoller;
 use App\Http\Controllers\AksesController\TokoAksesController;
@@ -52,7 +53,7 @@ Route::prefix('admin')->group(function () {
 
     // Customer
     Route::get('/customer', [CustomersAksesController::class, 'getAll'])->name('admin.customers')->defaults('viewType', 'admin');
-    
+
     // Supplier
     // Route untuk menampilkan semua supplier
     Route::get('/supplier', [SupplierAksesController::class, 'getAll'])->name('supplier.index');
@@ -66,8 +67,8 @@ Route::prefix('admin')->group(function () {
     Route::get('/supplier/edit/{supplier}', [SupplierAksesController::class, 'getEdit'])->name('supplier.edit');
     // Route untuk memperbarui data supplier
     Route::put('/supplier/update/{supplier}', [SupplierAksesController::class, 'updateData'])->name('supplier.updateCoy');
-    Route::delete('/supplier/{supplier}',[SupplierAksesController::class, 'deleteData'])->name('supplier.delete');
-    
+    Route::delete('/supplier/{supplier}', [SupplierAksesController::class, 'deleteData'])->name('supplier.delete');
+
 
     // Product
     Route::get('/product', [ProductAksesController::class, 'getAll'])->name('admin.product.index');
@@ -76,11 +77,10 @@ Route::prefix('admin')->group(function () {
     Route::get('/product/create', function () {
         return view('admin.product.create');
     })->name('admin.product.create');
-    // Merk
 
-    Route::get('/merk', function () {
-        return view('admin.merk.index');
-    });
+    // Merk
+    Route::get('/merk', [MerkAksesController::class, 'getAll'])->name('merk.index');
+
     Route::get('/merk/create', function () {
         return view('admin.merk.create');
     });
@@ -97,7 +97,7 @@ Route::prefix('admin')->group(function () {
     Route::put('/payment/update/{payment}', [PaymentsAksesController::class, 'updateData'])->name('payment.update');
     Route::post('/payment', [PaymentsAksesController::class, 'createData'])->name('payment.store');
     Route::delete('/payment/{payment}', [PaymentsAksesController::class, 'deleteData'])->name('payment.destroy');
-    
+
     // Create product
     Route::get('/product/create', function () {
         return view('admin.product.create');
@@ -137,7 +137,7 @@ Route::prefix('kasir')->group(function () {
     // Route::get('/customer/{id}/edit', [CustomersAksesController::class, 'edit'])->name('management-customer.edit');
     Route::post('/customer', [CustomersAksesController::class, 'createData'])->name('management-customer.store');
     Route::delete('/customer/{customer}', [CustomersAksesController::class, 'deleteData'])->name('management-customer.delete');
-    });
+});
 
 Route::get('/', function () {
     return view('auth.login');

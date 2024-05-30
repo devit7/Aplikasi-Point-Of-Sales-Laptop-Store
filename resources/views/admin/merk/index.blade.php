@@ -34,26 +34,11 @@
                                 <th class="text-[#6b6eb4]">Action</th>
                             </tr>
                         </thead>
-                        <tbody class="text-[#6b6eb4]">
-                            @php
-                                $laptops = [
-                                    ['brand' => 'Apple', 'model' => 'MacBook Pro', 'price' => '$2399'],
-                                    ['brand' => 'Dell', 'model' => 'XPS 13', 'price' => '$999'],
-                                    ['brand' => 'HP', 'model' => 'Spectre x360', 'price' => '$1199'],
-                                    ['brand' => 'Lenovo', 'model' => 'ThinkPad X1 Carbon', 'price' => '$1399'],
-                                    ['brand' => 'Asus', 'model' => 'ZenBook 13', 'price' => '$899'],
-                                    ['brand' => 'Microsoft', 'model' => 'Surface Laptop 4', 'price' => '$1299'],
-                                    ['brand' => 'Acer', 'model' => 'Swift 3', 'price' => '$649'],
-                                    ['brand' => 'Razer', 'model' => 'Blade 15', 'price' => '$1699'],
-                                    ['brand' => 'MSI', 'model' => 'GS66 Stealth', 'price' => '$1799'],
-                                    ['brand' => 'Samsung', 'model' => 'Galaxy Book Pro', 'price' => '$1099']
-                                ];
-                            @endphp
-
-                            @foreach ($laptops as $index => $laptop)
+                        <tbody class="text-[#6b6eb4]">  
+                            @foreach ($data as $index => $value)
                                 <tr class="border-b-2 border-[#33356F] text-left">
                                     <td class="py-2">{{ $index + 1 }}</td>
-                                    <td>{{ $laptop['brand'] }}</td>
+                                    <td>{{ $value['merk_name'] }}</td>
                                     <td>
                                         <button class="bg-[#002D4C] border p-1 border-[#2B4F69] rounded-md">
                                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
