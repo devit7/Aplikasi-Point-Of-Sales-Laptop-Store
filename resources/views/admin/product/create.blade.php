@@ -18,7 +18,6 @@
                 <div class="rounded-md p-4 bg-[#1C1D42] text-[#6b6eb4]">
                     <form action="{{ route('admin.product.store') }}" method="post">
                         @csrf
-                        {{ route('admin.product.store') }}
                         <div class="grid gap-4 sm:grid-cols-2 sm:gap-6">
                             <div class="sm:col-span-2">
                                 <label for="name" class="block mb-2 text-sm font-medium  text-gray-400">Nama</label>
@@ -88,7 +87,7 @@
                                     </svg>
                                 </button>
                                 <div id="dropdown-menu-supplier"
-                                    class=" dropdown-menu px-4 py-2 mt-2 rounded-md shadow-lg col bg-[#131432] ring-black ring-opacity-5 p-1 space-y-1">
+                                    class=" hidden dropdown-menu px-4 py-2 mt-2 rounded-md shadow-lg col bg-[#131432] ring-black ring-opacity-5 p-1 space-y-1">
                                     <!-- Search input -->
                                     <input
                                         class="search-input w-full px-2 bg-[#131432] text-gray-400 border rounded-md  border-gray-300 focus:outline-none"
@@ -236,10 +235,7 @@
         document.querySelectorAll('.dropdown-button').forEach(button => {
             const dropdownMenu = button.nextElementSibling;
             button.addEventListener('click', () => {
-
-                // button.style.border = '2px solid red';
-                // alert("dropdown button ditekan");
-                toggleDropdown(dropdownMenu);
+                    toggleDropdown(dropdownMenu);
             });
         });
 
@@ -259,7 +255,5 @@
                 });
             });
         });
-
-
     </script>
 @endpush

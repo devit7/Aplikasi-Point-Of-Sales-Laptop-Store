@@ -20,6 +20,7 @@ class SupplierAksesController extends Controller
                 'data' => $data['data'],
             ]);
         } else {
+
             return response()->json([
                 'message' => 'Unauthorized',
             ], 401);
@@ -43,17 +44,18 @@ class SupplierAksesController extends Controller
     public function createData(StoreRequest $request)
     {
         $validated = $request->validated();
-    
+
         $data = [
             'supplier_name' => $validated['supplier_name'],
             'no_hp' => $validated['no_hp'],
             'nama_perusahaan' =>  $validated['nama_perusahaan'],
             'alamat'=> $validated['alamat']
         ];
-    
+
         $request = Request::create('http://127.0.0.1:8000/api/suppliers', 'POST', $data);
         $response = app()->handle($request);
-        if ($response->getStatusCode() == 200) {
+        // dd($response);
+        if ($response->getStatusCode() == 201) {
             session()->flash('success', 'Supplier berhasil ditambahkan');
             return redirect()->route('supplier.index');
         } else {
