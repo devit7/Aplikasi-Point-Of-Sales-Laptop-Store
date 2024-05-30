@@ -36,6 +36,7 @@
                         <td>{{ $riwayat['customer']['customer_name']}}</td>
                         <td>{{ $riwayat['payment']['payment_name']}}</td>
                         <td>{{$product['product_name']}}</td>
+<<<<<<< HEAD
                         <td class="flex flex-row gap-2">
                         <a href="{{ route('Riwayat.detail', [ 'transaksi' => $riwayat['id'] ]) }}" type="button" class="bg-[#002D4C] border p-1 border-[#2B4F69] rounded-md">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 text-green-600">
@@ -43,6 +44,10 @@
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
                             </svg>
                         </a>
+=======
+                        <td>
+                        <x-modal-detail/>
+>>>>>>> 7af649f5a76356c618e1fe61dc8eb01076bae5fa
                         </td>
                     </tr>
                     @endforeach
