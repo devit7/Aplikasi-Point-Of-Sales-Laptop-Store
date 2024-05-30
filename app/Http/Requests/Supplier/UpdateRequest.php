@@ -27,7 +27,7 @@ class UpdateRequest extends FormRequest
 
         return [
             'supplier_name' => 'required|string',
-            'no_hp' => 'required|numeric|digits:12|unsigned|unique:supplier,no_hp,' . $supplierExist . ',id',
+            'no_hp' => 'required|numeric|digits_between:10,13|unsigned|unique:supplier,no_hp,' . $supplierExist . ',id',
             'nama_perusahaan' => 'required|string',
             'alamat' => 'required|string',
         ];
@@ -40,7 +40,7 @@ class UpdateRequest extends FormRequest
             'supplier_name.string' => 'Data Nama Supplier harus berupa string',
             'no_hp.required' => 'Data Nomor HP harus diisi',
             'no_hp.numeric' => 'Data Nomor HP harus berupa angka',
-            'no_hp.digits' => 'Data Nomor HP harus 12 digit',
+            'no_hp.digits_between' => 'Data Nomor HP harus diantara 10 sampai 13 digit',
             'no_hp.unique' => 'Data Nomor HP sudah ada',
             'no_hp.unsigned' => 'Data Nomor HP harus berupa angka positif',
             'nama_perusahaan.required' => 'Data Nama Perusahaan harus diisi',

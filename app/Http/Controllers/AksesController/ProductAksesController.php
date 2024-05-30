@@ -28,7 +28,6 @@ class ProductAksesController extends Controller
     }
 
     public function createData(StoreRequest $request){
-        // dd("createData jalan");
         $validator = $request->validated();
         $data = [
             'product_name' => $validator['product_name'],
@@ -41,17 +40,14 @@ class ProductAksesController extends Controller
         ];
         $request = Request::create('http://127.0.0.1:8000/api/products', 'POST', $data);
         $response = app()->handle($request);
-        // dd($response);
         $data = json_decode($response->getContent(), true);
         if($response->getStatusCode() == 201){
-            // dd($data);
             return view('admin.product.create', [
                 'data' => $data['data']
                 ]);
         }else{
             return response()->json([
                 'message' => 'Unauthorized',
-                'error_code' => $response->getStatusCode()
             ], 401);
         }
     }
