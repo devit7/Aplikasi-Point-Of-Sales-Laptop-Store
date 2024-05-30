@@ -36,9 +36,8 @@
                         <td>{{ $riwayat['customer']['customer_name']}}</td>
                         <td>{{ $riwayat['payment']['payment_name']}}</td>
                         <td>{{$product['product_name']}}</td>
-                        <td>
-                        <x-modal-detail/>
-                        </td>
+                        <td class="flex flex-row gap-2">
+                        <x-modal_detail/>
                     </tr>
                     @endforeach
 
