@@ -132,6 +132,7 @@ Route::prefix('kasir')->group(function () {
         return view('kasir.dashboard');
     });
     Route::get('/riwayat', [RiwayatTransaksiContoller::class, 'getAll'])->name('Riwayat.index');
+    Route::get('/riwayat/{transaksi}', [RiwayatTransaksiContoller::class, 'getDetail'])->name('Riwayat.detail');
 
 
     Route::get('/customer', [CustomersAksesController::class, 'getAll'])->name('management-customer.index');

@@ -24,4 +24,17 @@ class RiwayatTransaksiContoller extends Controller
             ], 401);
         }
     }
+    public function getDetail($transaksi)
+    {
+        $request = Request::create('http://127.0.0.1:8000/api/transiksi/' . $transaksi, 'GET');
+        $response = app()->handle($request);
+        $data = json_decode($response->getContent(), true);
+        if ($response->getStatusCode() == 200) {
+            return dd($data['data']);
+        } else {
+            return response()->json([
+                'message' => 'Unauthorized'
+            ]);
+        }
+    }
 }
