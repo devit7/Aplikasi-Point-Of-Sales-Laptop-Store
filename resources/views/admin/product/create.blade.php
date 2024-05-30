@@ -72,8 +72,11 @@
                                     <img src="" class="mt-4 mx-auto max-h-40 hidden" id="preview">
                                 </div>
                             </div>
+
+                            {{-- Input Supplier --}}
                             <div class="sm:col-span-2">
-                                <label for="dropdown-button-supplier" class="block mb-2 text-sm font-medium  text-gray-400">Supplier</label>
+                                <label for="dropdown-button-supplier"
+                                    class="block mb-2 text-sm font-medium  text-gray-400">Supplier</label>
                                 <button type="button" id="dropdown-button-supplier"
                                     class="flex dropdown-button justify-start bg-[#131432] border text-sm rounded-lg  w-full p-2.5  border-gray-600 placeholder-gray-400 text-gray-400 focus:ring-primary-500 focus:border-primary-500">
                                     <span class="">Choose Supplier</span>
@@ -84,51 +87,64 @@
                                             clip-rule="evenodd" />
                                     </svg>
                                 </button>
-                                <div id="dropdown-menu"
-                                    class="hidden right-0 px-4 py-2 mt-2 rounded-md shadow-lg col bg-[#131432] ring-black ring-opacity-5 p-1 space-y-1">
+                                <div id="dropdown-menu-supplier"
+                                    class=" dropdown-menu px-4 py-2 mt-2 rounded-md shadow-lg col bg-[#131432] ring-black ring-opacity-5 p-1 space-y-1">
                                     <!-- Search input -->
-                                    <input id="search-input"
-                                        class="w-full px-2 bg-[#131432] text-gray-400 border rounded-md  border-gray-300 focus:outline-none"
+                                    <input
+                                        class="search-input w-full px-2 bg-[#131432] text-gray-400 border rounded-md  border-gray-300 focus:outline-none"
                                         type="text" placeholder="Search Supplier" autocomplete="off">
-                                    <!-- Dropdown content goes here -->
+                                    {{-- list dropdown --}}
                                     <a href="#"
-                                        class="flex row text-white hover:bg-[#6b6eb4] active:bg-blue-100 cursor-pointer rounded-md">Supplier Sanubari</a>
+                                        class="dropdown-item flex row text-white hover:bg-[#6b6eb4] active:bg-blue-100 cursor-pointer rounded-md"
+                                        data-value="Supplier Sanubari">Supplier Sanubari</a>
                                     <a href="#"
-                                        class="flex row text-white hover:bg-[#6b6eb4] active:bg-blue-100 cursor-pointer rounded-md">Supplier Indo Jaya</a>
+                                        class="dropdown-item flex row text-white hover:bg-[#6b6eb4] active:bg-blue-100 cursor-pointer rounded-md"
+                                        data-value="Supplier Indo Jaya">Supplier Indo Jaya</a>
                                     <a href="#"
-                                        class="flex row text-white hover:bg-[#6b6eb4] active:bg-blue-100 cursor-pointer rounded-md">Supplier Maju Jaya</a>
+                                        class="dropdown-item flex row text-white hover:bg-[#6b6eb4] active:bg-blue-100 cursor-pointer rounded-md"
+                                        data-value="Supplier Jaya">Supplier Jaya</a>
                                     <a href="#"
-                                        class="flex row text-white hover:bg-[#6b6eb4] active:bg-blue-100 cursor-pointer rounded-md">Supplier Sumber Makmur</a>
+                                        class="dropdown-item flex row text-white hover:bg-[#6b6eb4] active:bg-blue-100 cursor-pointer rounded-md"
+                                        data-value="Supplier Sumber Makmur">Supplier Sumber Makmur</a>
                                 </div>
+                                <input type="hidden" name="supplier" id="supplier-input" value="">
                             </div>
-                            <div class="sm:col-span-2">
-                                <label for="dropdown-button-merk" class="block mb-2 text-sm font-medium  text-gray-400">Merk</label>
+
+                            {{-- Input Merk --}}
+                            <div class="sm:col-span-2 dropdown-group">
+                                <label for="dropdown-button-merk"
+                                    class="block mb-2 text-sm font-medium  text-gray-400">Merk</label>
                                 <button type="button" id="dropdown-button-merk"
                                     class="flex dropdown-button justify-start bg-[#131432] border text-sm rounded-lg  w-full p-2.5  border-gray-600 placeholder-gray-400 text-gray-400 focus:ring-primary-500 focus:border-primary-500">
                                     <span class="">Choose Merk</span>
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 ml-2 -mr-1" viewBox="0 0 20 20"
-                                        fill="currentColor" aria-hidden="true">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 ml-2 -mr-1"
+                                        viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
                                         <path fill-rule="evenodd"
                                             d="M6.293 9.293a1 1 0 011.414 0L10 11.586l2.293-2.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z"
                                             clip-rule="evenodd" />
                                     </svg>
                                 </button>
-                                <div id="dropdown-menu"
-                                    class="hidden right-0 px-4 py-2 mt-2 rounded-md shadow-lg col bg-[#131432] ring-black ring-opacity-5 p-1 space-y-1">
-                                    <!-- Search input -->
-                                    <input id="search-input"
-                                        class="w-full px-2 bg-[#131432] text-gray-400 border rounded-md  border-gray-300 focus:outline-none"
-                                        type="text" placeholder="Search Supplier" autocomplete="off">
-                                    <!-- Dropdown content goes here -->
+                                <div id="dropdown-menu-merk"
+                                    class="hidden dropdown-menu px-4 py-2 mt-2 rounded-md shadow-lg col bg-[#131432] ring-black">
+                                    {{-- Input Search --}}
+                                    <input
+                                        class="search-input w-full px-2 bg-[#131432] text-gray-400 border rounded-md  border-gray-300 focus:outline-none"
+                                        type="text" placeholder="Search Merk" autocomplete="off">
+                                    {{-- List Dropdown --}}
                                     <a href="#"
-                                        class="flex row text-white hover:bg-[#6b6eb4] active:bg-blue-100 cursor-pointer rounded-md">Supplier Sanubari</a>
+                                        class="dropdown-item flex row text-white hover:bg-[#6b6eb4] active:bg-blue-100 cursor-pointer rounded-md"
+                                        data-value="Supplier Sanubari">Supplier Sanubari</a>
                                     <a href="#"
-                                        class="flex row text-white hover:bg-[#6b6eb4] active:bg-blue-100 cursor-pointer rounded-md">Supplier Indo Jaya</a>
+                                        class="dropdown-item flex row text-white hover:bg-[#6b6eb4] active:bg-blue-100 cursor-pointer rounded-md"
+                                        data-value="Supplier Indo Jaya">Supplier Indo Jaya</a>
                                     <a href="#"
-                                        class="flex row text-white hover:bg-[#6b6eb4] active:bg-blue-100 cursor-pointer rounded-md">Supplier Maju Jaya</a>
+                                        class="dropdown-item flex row text-white hover:bg-[#6b6eb4] active:bg-blue-100 cursor-pointer rounded-md"
+                                        data-value="Supplier Jaya">Supplier Jaya</a>
                                     <a href="#"
-                                        class="flex row text-white hover:bg-[#6b6eb4] active:bg-blue-100 cursor-pointer rounded-md">Supplier Sumber Makmur</a>
+                                        class="dropdown-item flex row text-white hover:bg-[#6b6eb4] active:bg-blue-100 cursor-pointer rounded-md"
+                                        data-value="Supplier Sumber Makmur">Supplier Sumber Makmur</a>
                                 </div>
+                                <input type="hidden" name="merk" id="merk-input" value="">
                             </div>
                             <div class="sm:col-span-2">
                                 <label for="merk_id" class="block mb-2 text-sm font-medium  text-gray-400">Merk</label>
@@ -203,48 +219,47 @@
             document.getElementById('logo_toko').value = '';
         });
     </script>
-        <script>
-            // Function to toggle the dropdown state
-            function toggleDropdown(dropdownMenu) {
-                const isOpen = !dropdownMenu.classList.contains('hidden');
-                document.querySelectorAll('.dropdown-menu').forEach(menu => {
-                    if (menu !== dropdownMenu) menu.classList.add('hidden');
-                });
-                dropdownMenu.classList.toggle('hidden', isOpen);
-            }
+    <script>
+        // Function to toggle the dropdown state
+        function toggleDropdown(dropdownMenu) {
+            // alert("toggle dropdown jalan" + dropdownMenu);
+            const isOpen = !dropdownMenu.classList.contains('hidden');
+            document.querySelectorAll('.dropdown-menu').forEach(menu => {
+                if (menu !== dropdownMenu) menu.classList.add('hidden');
+            });
+            dropdownMenu.classList.toggle('hidden', isOpen);
 
-            // Attach event listeners to each dropdown button
-            document.querySelectorAll('.dropdown-button').forEach(button => {
-                const dropdownMenu = button.nextElementSibling;
-                button.addEventListener('click', () => {
-                    toggleDropdown(dropdownMenu);
+            // dropdownMenu.style.border = '2px solid red';
+        }
+
+        // Attach event listeners to each dropdown button
+        document.querySelectorAll('.dropdown-button').forEach(button => {
+            const dropdownMenu = button.nextElementSibling;
+            button.addEventListener('click', () => {
+
+                // button.style.border = '2px solid red';
+                // alert("dropdown button ditekan");
+                toggleDropdown(dropdownMenu);
+            });
+        });
+
+        // Add event listener to filter items based on input
+        document.querySelectorAll('.search-input').forEach(input => {
+            input.addEventListener('input', (e) => {
+                const searchTerm = e.target.value.toLowerCase();
+                const items = e.target.closest('.dropdown-menu').querySelectorAll('a');
+
+                items.forEach((item) => {
+                    const text = item.textContent.toLowerCase();
+                    if (text.includes(searchTerm)) {
+                        item.style.display = 'block';
+                    } else {
+                        item.style.display = 'none';
+                    }
                 });
             });
+        });
 
-            // Add event listener to filter items based on input
-            document.querySelectorAll('.search-input').forEach(input => {
-                input.addEventListener('input', (e) => {
-                    const searchTerm = e.target.value.toLowerCase();
-                    const items = e.target.closest('.dropdown-menu').querySelectorAll('a');
 
-                    items.forEach((item) => {
-                        const text = item.textContent.toLowerCase();
-                        if (text.includes(searchTerm)) {
-                            item.style.display = 'block';
-                        } else {
-                            item.style.display = 'none';
-                        }
-                    });
-                });
-            });
-
-            // Close dropdown if clicked outside
-            document.addEventListener('click', (e) => {
-                if (!e.target.closest('.group')) {
-                    document.querySelectorAll('.dropdown-menu').forEach(menu => {
-                        menu.classList.add('hidden');
-                    });
-                }
-            });
-        </script>
+    </script>
 @endpush

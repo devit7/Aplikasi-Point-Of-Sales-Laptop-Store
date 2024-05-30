@@ -225,7 +225,7 @@
             fillColor: [255, 255, 255], // Background color for rows
             textColor: '#000000', // Text color
             lineColor: '#000000', // Border color
-            lineWidth: 0.1 // Border width 
+            lineWidth: 0.1 // Border width
         },
         tableLineColor: '#33356F', // Overall table border color
         tableLineWidth: 0.1 // Overall table border width
