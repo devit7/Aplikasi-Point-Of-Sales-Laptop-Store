@@ -163,12 +163,12 @@ Route::get('/tables', function () {
 Route::get('/u', [UserAksesController::class, 'getAll']);
 Route::get('/pay', [PaymentsAksesController::class, 'getAll']);
 Route::get('/cus', [CustomersAksesController::class, 'getAll']);
-<<<<<<< HEAD
+// <<<<<<< HEAD
 Route::get('/adm-prod',[ProductController::class,'productAdmin']);
 Route::get('/adm-prod-new',[ProductController::class,'productAdminNew']);
 Route::post('/adm-prod-new',[ProductController::class,'productAdminMakeNew']);
 Route::get('/adm-prod-Update/{idProduk}',[ProductController::class,'productAdminUpdate']);
 Route::put('/adm-prod-Updates/{idProduk}',[ProductController::class,'productAdminMakeUpdate']);
-=======
->>>>>>> e671a8a58f372ea62cd66443fdf0e69e7dd331ac
+// =======
+// >>>>>>> e671a8a58f372ea62cd66443fdf0e69e7dd331ac
 
