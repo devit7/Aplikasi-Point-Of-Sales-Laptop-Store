@@ -8,6 +8,7 @@ use App\Http\Controllers\AksesController\UserAksesController;
 use App\Http\Controllers\AksesController\LaporanController;
 use App\Http\Controllers\AksesController\SupplierAksesController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\ProductController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -71,6 +72,8 @@ Route::prefix('admin')->group(function () {
     Route::get('/product', function () {
         return view('admin.product.index');
     });
+
+    
 
     // Merk
     Route::get('/merk', function () {
@@ -170,3 +173,9 @@ Route::get('/tables', function () {
 Route::get('/u', [UserAksesController::class, 'getAll']);
 Route::get('/pay', [PaymentsAksesController::class, 'getAll']);
 Route::get('/cus', [CustomersAksesController::class, 'getAll']);
+Route::get('/adm-prod',[ProductController::class,'productAdmin']);
+Route::get('/adm-prod-new',[ProductController::class,'productAdminNew']);
+Route::post('/adm-prod-new',[ProductController::class,'productAdminMakeNew']);
+Route::get('/adm-prod-Update/{idProduk}',[ProductController::class,'productAdminUpdate']);
+Route::put('/adm-prod-Updates/{idProduk}',[ProductController::class,'productAdminMakeUpdate']);
+

@@ -16,30 +16,38 @@
             <div class="w-[600px] flex flex-col gap-4">
                 <p class="rounded-md p-4 font-semibold bg-[#1C1D42] text-[#6b6eb4]">Create a Product</p>
                 <div class="rounded-md p-4 bg-[#1C1D42] text-[#6b6eb4]">
-                    <form action="#">
+                    <form action="/adm-prod-new" id="formCreate" method="post" enctype="multipart/form-data">
+                        @csrf
                         <div class="grid gap-4 sm:grid-cols-2 sm:gap-6">
                             <div class="sm:col-span-2">
                                 <label for="name" class="block mb-2 text-sm font-medium  text-gray-400">Nama</label>
-                                <input type="text" name="name" id="name"
+                                <input type="text" name="namaProduk" id="name"
                                     class="bg-[#131432] border text-sm rounded-lg  block w-full p-2.5  border-gray-600 placeholder-gray-400 text-gray-400 focus:ring-primary-500 focus:border-primary-500"
                                     placeholder="Ex : Wibu Jaya Bersama" required="">
                             </div>
                             <div class="sm:col-span-2">
                                 <label for="nama_toko" class="block mb-2 text-sm font-medium  text-gray-400">Harga Jual</label>
-                                <input type="text" name="nama_toko" id="nama_toko"
+                                <input type="number" name="hargaJual" id="nama_toko"
                                     class="bg-[#131432] border   text-sm rounded-lg  block w-full p-2.5  border-gray-600 placeholder-gray-400 text-gray-400 focus:ring-primary-500 focus:border-primary-500"
                                     placeholder="EX : 0821*" required="">
                             </div>
                             <div class="sm:col-span-2">
                                 <label for="description"
                                     class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400">Harga Asli</label>
-                                <textarea id="description" rows="1"
-                                    class="block p-2.5 w-full text-sm text-gray-900  rounded-lg border border-gray-300 focus:ring-primary-500 focus:border-primary-500 bg-[#131432] dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-400 dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                                    placeholder="EX : Jalan Jalan"></textarea>
+                                    <input type="number" name="hargaAsli" id="hargaasli"
+                                        class="bg-[#131432] border   text-sm rounded-lg  block w-full p-2.5  border-gray-600 placeholder-gray-400 text-gray-400 focus:ring-primary-500 focus:border-primary-500"
+                                        placeholder="EX : 0821*" required="">
+                            </div>
+                            <div class="sm:col-span-2">
+                                <label for="description"
+                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400">Stock</label>
+                                    <input type="number" name="stok" id="nama_toko"
+                                        class="bg-[#131432] border   text-sm rounded-lg  block w-full p-2.5  border-gray-600 placeholder-gray-400 text-gray-400 focus:ring-primary-500 focus:border-primary-500"
+                                        placeholder="EX : 0821*" required="">
                             </div>
                             <div class="sm:col-span-2">
                                 <div class=" relative border border-gray-400 border-dashed rounded-lg p-6" id="dropzone">
-                                    <input type="file" class="absolute inset-0 w-full h-full opacity-0 z-50" />
+                                    <input type="file" name="fileUpload" type="file" accept=".jpg,.jpeg,.png" class="absolute inset-0 w-full h-full opacity-0 z-50" />
                                     <div class="text-center">
                                         <img class="mx-auto h-12 w-12"
                                             src="https://www.svgrepo.com/show/357902/image-upload.svg" alt="">
@@ -49,7 +57,6 @@
                                                 <span>Drag and drop</span>
                                                 <span class="text-indigo-600"> or browse</span>
                                                 <span>to upload</span>
-                                                <input id="file-upload" name="file-upload" type="file" class="sr-only">
                                             </label>
                                         </h3>
                                         <p class="mt-1 text-xs text-gray-500">
@@ -60,19 +67,29 @@
                                     <img src="" class="mt-4 mx-auto max-h-40 hidden" id="preview">
                                 </div>
                             </div>
+                            
                             <div class="sm:col-span-2">
                                 <label for="description"
                                     class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400">Suplier</label>
-                                <textarea id="description" rows="1"
-                                    class="block p-2.5 w-full text-sm text-gray-900  rounded-lg border border-gray-300 focus:ring-primary-500 focus:border-primary-500 bg-[#131432] dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-400 dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                                    placeholder="EX : Jalan Jalan"></textarea>
+                                    <select name="supplier" id="" class="bg-[#131432] border   text-sm rounded-lg  block w-full p-2.5  border-gray-600 placeholder-gray-400 text-gray-400 focus:ring-primary-500 focus:border-primary-500">
+                                        @unlees(count($Supp)>0)
+                                            @foreach($Supp as $sup)
+                                                <option value="{{$sup->id}}">{{$sup->supplier_name}}</option>
+                                            @endforeach 
+                                        @endunlees
+                                    </select>
                             </div>
                             <div class="sm:col-span-2">
                                 <label for="description"
                                     class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400">Merk</label>
-                                <textarea id="description" rows="1"
-                                    class="block p-2.5 w-full text-sm text-gray-900  rounded-lg border border-gray-300 focus:ring-primary-500 focus:border-primary-500 bg-[#131432] dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-400 dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                                    placeholder="EX : Jalan Jalan"></textarea>
+                                    <select name="merk" id=""
+                                        class="bg-[#131432] border   text-sm rounded-lg  block w-full p-2.5  border-gray-600 placeholder-gray-400 text-gray-400 focus:ring-primary-500 focus:border-primary-500">
+                                        @unlees(count($merks)>0)
+                                            @foreach($merks as $merk)
+                                                <option value="{{$merk->id}}">{{$merk->merk_name}}</option>
+                                            @endforeach 
+                                        @endunlees
+                                    </select>
                             </div>
                             
                         </div>
@@ -93,7 +110,17 @@
     </div>
 @endsection
 @push('scripts')
+    <style>
+        #file-upload{
+            /* position: fixed;
+            top:-20%;
+            left: -20%; */
+        }
+    </style>
     <script>
+        function saveForm(event){
+            let form = document.getElementById();
+        }
         var dropzone = document.getElementById('dropzone');
 
         dropzone.addEventListener('dragover', e => {
