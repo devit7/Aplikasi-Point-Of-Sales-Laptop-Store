@@ -109,10 +109,10 @@
                 <p class="rounded-md p-4 font-semibold bg-[#1C1D42] text-[#6b6eb4]">Preview Struk</p>
                 <div class="flex flex-col rounded-md p-6 bg-white border border-gray-400">
                     <div class="text-center">
-                        <img src="https://via.placeholder.com/150" alt="product" class="w-10 h-10 mx-auto">
-                        <p class="text-lg font-semibold">Wibu Jaya Bersama</p>
-                        <p class="text-sm">Alamat lengkap toko</p>
-                        <p class="text-sm">Tlp 082-1*</p>
+                        <img src="{{ $toko[0]['logo_toko'] }}" alt="product" class="w-10 h-10 mx-auto">
+                        <p class="text-lg font-semibold">{{ $toko[0]['nama_toko'] }}</p>
+                        <p class="text-sm">{{ $toko[0]['alamat'] }}</p>
+                        <p class="text-sm">{{ $toko[0]['no_hp'] }}</p>
                     </div>
                     <div class="flex flex-col pb-2  mt-4 border-b-2 border-dashed border-gray-400 ">
                         <div class="flex flex-row justify-between  ">
@@ -154,7 +154,7 @@
                     </div>
                     <div class="text-center font-semibold mt-10">
                         <p>Terima Kasih</p>
-                        <p class=" font-medium">Terus Laris Bersama Wibu Jaya Bersama</p>
+                        <p class=" font-medium">Terus Laris Bersama {{ $toko[0]['nama_toko'] }}</p>
                     </div>
                 </div>
             </div>

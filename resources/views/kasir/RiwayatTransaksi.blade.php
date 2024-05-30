@@ -13,20 +13,20 @@
             </div>
         </div>
         <x-tables>
-            <div class="w-full mx-auto mt-2 bg-[#1C1D42] text-[#6b6eb4]  p-4 rounded-md">
+            <div class="w-full mx-auto mt-2 bg-[#1C1D42] text-white  p-4 rounded-md">
             <table class="w-full mt-2  " id="table">
-                <thead class="bg-[#131432]  text-[#6b6eb4]">
-                    <tr class="border-b-2 border-[#33356F]">
-                        <th class="py-2 text-[#6b6eb4]">No</th>
-                        <th class="text-[#6b6eb4]">User</th>
-                        <th class="text-[#6b6eb4]">Toko</th>
-                        <th class="text-[#6b6eb4]">Customer</th>
-                        <th class="text-[#6b6eb4]">Payment</th>
-                        <th class="text-[#6b6eb4]">Product</th>
-                        <th class="text-[#6b6eb4]">Action</th>
+                <thead class="bg-[#131432]  text-white">
+                    <tr class="border-b-2 border-white">
+                        <th class="py-2 text-white">No</th>
+                        <th class="text-white">User</th>
+                        <th class="text-white">Toko</th>
+                        <th class="text-white">Customer</th>
+                        <th class="text-white">Payment</th>
+                        <th class="text-white">Product</th>
+                        <th class="text-white">Action</th>
                     </tr>
                 </thead>
-                <tbody class="text-[#6b6eb4] text-center">
+                <tbody class="text-white text-center">
                     @forelse ($data as $riwayat)
                     @foreach ($riwayat['product'] as $product)
                     <tr class="border-b-2 border-[#33356F]">
@@ -36,9 +36,8 @@
                         <td>{{ $riwayat['customer']['customer_name']}}</td>
                         <td>{{ $riwayat['payment']['payment_name']}}</td>
                         <td>{{$product['product_name']}}</td>
-                        <td>
-                        <x-modal-detail/>
-                        </td>
+                        <td class="flex flex-row gap-2">
+                        <x-modal_detail/>
                     </tr>
                     @endforeach
                         

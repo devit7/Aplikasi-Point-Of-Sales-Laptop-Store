@@ -45,5 +45,6 @@
         </div>
     </div>
     
-    <script src="/js/flowbite.js"></script>
+    
+    <script src="https://cdn.jsdelivr.net/npm/flowbite@1.6.0/dist/flowbite.min.js"></script>
 </div>
