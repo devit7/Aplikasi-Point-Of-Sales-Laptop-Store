@@ -23,7 +23,7 @@
                 </a>
             </div>
         </div>
-        <div class="mt-10">
+        <x-tables>
             <div class="w-full mx-auto bg-[#1C1D42] text-[#6b6eb4] p-4 rounded-md">
                 <table class="w-full mt-2" id="table">
                     <thead class="bg-[#131432] text-[#6b6eb4]">
@@ -35,7 +35,7 @@
                     </thead>
                     <tbody class="text-[#6b6eb4] text-left">
                     @foreach ($data as $index => $merk)
-                        <tr class="border-b border-[#33356F]">
+                        <tr class="border-b-2 border-[#33356F]">
                             <td class="py-2 px-4">{{ $index + 1 }}</td>
                             <td class="px-4">{{ $merk['merk_name'] }}</td>
                             <td class="px-4 flex items-center gap-2">
@@ -66,6 +66,7 @@
                     </tbody>
                 </table>
             </div>
+            </x-tables>
         </div>
     </div>
 
