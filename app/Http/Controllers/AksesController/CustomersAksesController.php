@@ -71,7 +71,7 @@ class CustomersAksesController extends Controller
         $request = Request::create('http://127.0.0.1:8000/api/customers/', 'POST', $data);
         $response = app()->handle($request);
         $data = json_decode($response->getContent(), true);
-        if ($response->getStatusCode() == 202) {
+        if ($response->getStatusCode() == 201) {
             session()->flash('success', 'Customer berhasil ditambahkan');
             return redirect()->route('admin.merk.index');
         } else {
