@@ -5,11 +5,11 @@
         <div class="mb-6 flex items-end justify-between">
             <div class="flex flex-col">
                 <p class="text-[#6b6eb4] text-lg font-semibold">
-                    Manage merk
+                    Manage Merk
                 </p>
                 <p class="text-[#6b6eb4]">
                     List Semua Merk yang Terdaftar
-                </p>
+                </p>    
             </div>
             <div class="flex flex-row">
                 <a href=/admin/merk/create
