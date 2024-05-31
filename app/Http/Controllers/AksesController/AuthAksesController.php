@@ -18,6 +18,12 @@ class AuthAksesController extends Controller
 
         $response->getContent();
 
+        //Add Auth Token to Session
+        $response = json_decode($response->getContent());
+        session(['token' => $response->token]);
+
+        return response()->json($response);
+
         dd($response->getContent());
     }
 }

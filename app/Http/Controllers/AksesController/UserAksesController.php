@@ -5,6 +5,7 @@ namespace App\Http\Controllers\AksesController;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\User\StoreRequest;
 use App\Http\Requests\User\UpdateRequest;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class UserAksesController extends Controller
@@ -71,7 +72,7 @@ class UserAksesController extends Controller
         }
     }
 
-    public function updateData(UpdateRequest $request, $user)
+    public function updateData(UpdateRequest $request, User $user)
     {
         $request->validated();
         $data = [

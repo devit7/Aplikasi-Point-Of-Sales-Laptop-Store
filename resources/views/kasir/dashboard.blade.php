@@ -1,4 +1,5 @@
 @extends('layout.kasir_main')
+@section('title', 'Dashboard')
 @section('content')
 <style>
     #card-img:hover {
