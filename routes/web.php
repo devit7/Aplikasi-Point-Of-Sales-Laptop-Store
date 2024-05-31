@@ -86,14 +86,14 @@ Route::prefix('admin')->group(function () {
     
 
     // Merk
-    Route::get('/merk', [MerkAksesController::class, 'getAll'])->name('merk.index');
-
+    Route::get('/merk', [merkAksesController::class, 'getAll'])->name('merk.index');
     Route::get('/merk/create', function () {
         return view('admin.merk.create');
-    });
-    Route::get('/merk/update', function () {
-        return view('admin.merk.update');
-    });
+    })->name('merk.create');
+    Route::get('/merk/edit/{merk}', [merkAksesController::class, 'getEdit'])->name('merk.edit');
+    Route::put('/merk/update/{merk}', [merkAksesController::class, 'updateData'])->name('merk.update');
+    Route::post('/merk', [merkAksesController::class, 'createData'])->name('merk.store');
+    Route::delete('/merk/{merk}', [merkAksesController::class, 'deleteData'])->name('merk.destroy');
 
     // Payment
     Route::get('/payment', [PaymentsAksesController::class, 'getAll'])->name('payment.index');
