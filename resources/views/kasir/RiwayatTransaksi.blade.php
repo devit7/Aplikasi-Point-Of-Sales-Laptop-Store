@@ -13,20 +13,20 @@
             </div>
         </div>
         <x-tables>
-            <div class="w-full mx-auto mt-2 bg-[#1C1D42] text-white  p-4 rounded-md">
+            <div class="w-full mx-auto mt-2 bg-[#1C1D42] text-[#6b6eb4]  p-4 rounded-md">
             <table class="w-full mt-2  " id="table">
-                <thead class="bg-[#131432]  text-white">
-                    <tr class="border-b-2 border-white">
-                        <th class="py-2 text-white">No</th>
-                        <th class="text-white">User</th>
-                        <th class="text-white">Toko</th>
-                        <th class="text-white">Customer</th>
-                        <th class="text-white">Payment</th>
-                        <th class="text-white">Product</th>
-                        <th class="text-white">Action</th>
+                <thead class="bg-[#131432]  text-[#6b6eb4]">
+                    <tr class="border-b-2 border-[#6b6eb4]">
+                        <th class="py-2 ">No</th>
+                        <th class="">User</th>
+                        <th class="">Toko</th>
+                        <th class="">Customer</th>
+                        <th class="">Payment</th>
+                        <th class="">Product</th>
+                        <th class="">Action</th>
                     </tr>
                 </thead>
-                <tbody class="text-white text-center">
+                <tbody class="text-[#6b6eb4] text-center">
                     @forelse ($data as $riwayat)
                     @foreach ($riwayat['product'] as $product)
                     <tr class="border-b-2 border-[#33356F]">
