@@ -97,4 +97,9 @@ class SupplierController extends Controller
             'message' => 'Supplier berhasil dihapus',
         ], 200);
     }
+
+    public function getSupplier(){
+        $back = Supplier::all();
+        return $back;
+    }
 }

@@ -3,7 +3,7 @@
         <nav class="flex flex-col w-[280px] h-full justify-between font-sans text-base font-normal text-[#62748E]">
             <div class="flex flex-col ">
                 <div class="h-[80px] text-center items-center flex justify-center border-b border-[#33356F]">
-                    <h1 class="font-semibold text-3xl text-gray-500">POS</h1>
+                    <h1 class="font-semibold text-3xl text-gray-500">POS Kasir</h1>
                 </div>
                 <div class="flex flex-col py-6 px-5 gap-1 font-semibold">
                     <p class="text-gray-400 text-sm font-bold  tracking-wider pb-4">
@@ -25,8 +25,9 @@
                     </a>
                     <a href="/kasir/customer" tabindex="0"
                         class="flex items-center w-full  px-6 py-3 rounded-lg text-start leading-tight transition-all hover:bg-[#aa5800] hover:bg-opacity-10 hover:text-[#e07946] outline-none
-                    @if (request()->is('kasir/customer')) bg-[#aa5800] bg-opacity-10 text-[#e07946] @endif
+                    @if (request()->is('api/customers')) bg-[#aa5800] bg-opacity-10 text-[#e07946] @endif
                     ">
+                    
                         <div class="grid place-items-center mr-3">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                 stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
@@ -38,7 +39,7 @@
                     </a>
                     <a href="/kasir/riwayat" tabindex="0"
                         class="flex items-center w-full  px-6 py-3 rounded-lg text-start leading-tight transition-all hover:bg-[#aa5800] hover:bg-opacity-10 hover:text-[#e07946] outline-none
-                    @if (request()->is('kasir/riwayat')) bg-[#aa5800] bg-opacity-10 text-[#e07946] @endif
+                    @if (request()->is('api/transaksi')) bg-[#aa5800] bg-opacity-10 text-[#e07946] @endif
                     ">
                         <div class="grid place-items-center mr-3">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"

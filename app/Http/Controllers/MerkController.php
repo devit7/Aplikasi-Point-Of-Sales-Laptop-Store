@@ -91,4 +91,8 @@ class MerkController extends Controller
             'message' => 'Merk berhasil dihapus',
         ], 200);
     }
+
+    public function getMerk(){
+        return Merk::all();
+    }
 }
