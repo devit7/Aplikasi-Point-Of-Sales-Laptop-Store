@@ -16,7 +16,7 @@
             <div class="w-full mx-auto mt-2 bg-[#1C1D42] text-[#6b6eb4]  p-4 rounded-md">
             <table class="w-full mt-2  " id="table">
                 <thead class="bg-[#131432]  text-[#6b6eb4]">
-                    <tr class="border-b-2 border-[#6b6eb4]">
+                    <tr class="border-b-2 border-[#33356F]">
                         <th class="py-2 ">No</th>
                         <th class="">User</th>
                         <th class="">Toko</th>
