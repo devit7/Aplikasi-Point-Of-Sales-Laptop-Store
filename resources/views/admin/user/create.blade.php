@@ -12,11 +12,20 @@
                 </p>
             </div>
         </div>
+        @if ($errors->any())
+            <div class="bg-red-500 text-white p-4 rounded-md mb-4">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
         <div class="mt-10 flex justify-between w-full mx-auto     rounded-md">
             <div class="w-[600px] flex flex-col gap-4">
                 <p class="rounded-md p-4 font-semibold bg-[#1C1D42] text-[#6b6eb4]">Create User</p>
                 <div class="rounded-md p-4 bg-[#1C1D42] text-[#6b6eb4]">
-                    <form action="#">
+                    <form action="{{ route('user.store') }}" method="POST">
                         <div class="grid gap-4 sm:grid-cols-2 sm:gap-6">
                             <div class="sm:col-span-2">
                                 <label for="name" class="block mb-2 text-sm font-medium  text-gray-400">Name</label>

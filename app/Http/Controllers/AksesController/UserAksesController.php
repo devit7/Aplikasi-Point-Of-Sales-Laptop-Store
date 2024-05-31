@@ -47,6 +47,21 @@ class UserAksesController extends Controller
             ], 401);
         }
     }
+    public function getEdit($user)
+    {
+        $request = Request::create('http://127.0.0.1:8000/api/users/' . $user, 'GET');
+        $response = app()->handle($request);
+        $data = json_decode($response->getContent(), true);
+        if ($response->getStatusCode() == 200) {
+            return view('admin.user.update', [
+                'data' => $data['data']
+            ]);
+        } else {
+            return response()->json([
+                'message' => 'Unauthorized'
+            ]);
+        }
+    }
     
     public function createData(StoreRequest $request)
     {
@@ -60,11 +75,9 @@ class UserAksesController extends Controller
         $request = Request::create('http://127.0.0.1:8000/api/users', 'POST', $data);
         $response = app()->handle($request);
         $data = json_decode($response->getContent(), true); // Fixed typo here
-        if($response->getStatusCode() == 200){
-            //return dd($data['data']);
-            return view('admin.user.create', [
-                'data' => $data['data']
-                ]);
+        if ($response->getStatusCode() == 201) {
+            session()->flash('success', 'User berhasil ditambahkan');
+            return redirect()->route('user.index');
         }else{
             return response()->json([
                 'message' => 'Unauthorized'
@@ -99,7 +112,7 @@ class UserAksesController extends Controller
         $response = app()->handle($request);
         if($response->getStatusCode() == 200){
             //return dd($data['data']);
-            return view('admin.user.index')->with('sucsess', 'user berhasil delete');
+            return view('user.index')->with('sucsess', 'user berhasil delete');
         }else{
             return response()->json([
                 'message' => 'Unauthorized'

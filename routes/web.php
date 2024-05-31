@@ -50,6 +50,10 @@ Route::prefix('admin')->group(function () {
     })->name('user.create');
     //Membuat user baru
     Route::post('/user/create', [UserAksesController::class, 'createData'])->name('user.store');
+    Route::get('/user/edit/{user}', [UserAksesController::class, 'getEdit'])->name('user.edit');
+    Route::put('/user/edit{user}', [UserAksesController::class, 'updateData'])->name('user.update');
+    Route::delete('/supplier/{supplier}', [UserAksesController::class, 'deleteData'])->name('user.delete');
+
 
 
     // Customer
