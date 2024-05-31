@@ -35,7 +35,7 @@
                     </thead>
                     <tbody class="text-[#6b6eb4] text-left">
                     @foreach ($data as $index => $payment)
-                        <tr class="border-b border-[#33356F]">
+                        <tr class="border-b-2 border-[#33356F]">
                             <td class="py-2 px-4">{{ $index + 1 }}</td>
                             <td class="px-4">{{ $payment['payment_name'] }}</td>
                             <td class="px-4 flex items-center gap-2">

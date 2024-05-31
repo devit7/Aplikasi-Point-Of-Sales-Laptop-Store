@@ -25,7 +25,7 @@
                     </a>
                     <a href="/kasir/customer" tabindex="0"
                         class="flex items-center w-full  px-6 py-3 rounded-lg text-start leading-tight transition-all hover:bg-[#aa5800] hover:bg-opacity-10 hover:text-[#e07946] outline-none
-                    @if (request()->is('api/customers')) bg-[#aa5800] bg-opacity-10 text-[#e07946] @endif
+                    @if (request()->is('api/customers') || request()->is('kasir/customer/*')) bg-[#aa5800] bg-opacity-10 text-[#e07946] @endif
                     ">
                     
                         <div class="grid place-items-center mr-3">
