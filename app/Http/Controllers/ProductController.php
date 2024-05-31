@@ -7,8 +7,11 @@ use App\Http\Requests\Product\UpdateRequest;
 use App\Models\Product;
 use App\Http\Controllers\AksesController\SupplierController;
 use App\Http\Controllers\MerkController;
+use App\Http\Controllers\AksesController\merkAksesController as aksesMerk;
+use App\Http\Controllers\AksesController\SupplierAksesController as AksesSup;
 use App\Http\Controllers\SupplierController as supKon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 use DateTime;
 
 class ProductController extends Controller
@@ -126,7 +129,7 @@ class ProductController extends Controller
         return view('admin.product.create',['Supp'=>$sup,'merks'=>$merk]);
     }
     public function productAdminMakeNew(Request $req){
-        // dd($req->all(),$req->file('fileUpload'),$req->hargaAsli);
+        // dd($req->all(),$req->file('fileUpload'));
         
         $val = $req->validate([
             'namaProduk'=>'required',
@@ -136,9 +139,10 @@ class ProductController extends Controller
             'supplier'=>'required',
             'merk'=>'required',
         ]);
+        // dd($val);
 
-
-        $val['foto']='';
+        // dd('masuk');
+        // $val['foto']='';
         if($req->hasFile('fileUpload')){
             // dd($req->file('fileUpload')->extension());
             $file = $req->file('fileUpload');
@@ -149,6 +153,7 @@ class ProductController extends Controller
         }else{
             $val['foto']='null';
         }
+
         $p = new Product();
         $p->product_name = $val['namaProduk'];
         $p->stock = $val['stok'];
@@ -157,6 +162,22 @@ class ProductController extends Controller
         $p->img = $val['foto'];
         $p->supplier_id = $val['supplier'];
         $p->merk_id = $val['merk'];
+
+        if($req->merk=='0'){
+            
+            //input Merk baru
+            $aksesMerk = new aksesMerk();
+            
+            $idMerk=$aksesMerk->makeMerk($req->newMerk);
+            $p->merk_id=$idMerk;
+        }
+        if($req->supplier=='0'){
+            $aksesSupp = new AksesSup();
+            $idSup=$aksesSupp->makeNewSup($req->namaSupli,$req->noSUp,$req->companySup,$req->alamatSup);
+            $p->supplier_id = $idSup;
+
+        }
+        
         if($p->save()){
             return redirect('/adm-prod');
         }
@@ -209,6 +230,21 @@ class ProductController extends Controller
             $p->img = $req->fotoLama;
         }
 
+        
+        if($req->merk=='0'){
+            
+            //input Merk baru
+            $aksesMerk = new aksesMerk();
+            
+            $idMerk=$aksesMerk->makeMerk($req->newMerk);
+            $p->merk_id=$idMerk;
+        }
+        if($req->supplier=='0'){
+            $aksesSupp = new AksesSup();
+            $idSup=$aksesSupp->makeNewSup($req->namaSupli,$req->noSUp,$req->companySup,$req->alamatSup);
+            $p->supplier_id = $idSup;
+
+        }
         
         if($p->save()){
             return redirect('/adm-prod');

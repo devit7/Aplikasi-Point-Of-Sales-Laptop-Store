@@ -106,4 +106,11 @@ class merkAksesController extends Controller
             ]);
         }
     }
+
+    public function makeMerk($merk){
+        $merks = new Merk();
+        $merks->merk_name = $merk;
+        $merks->save();
+        return($merks->id);
+    }
 }
