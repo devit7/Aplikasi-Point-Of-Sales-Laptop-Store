@@ -76,7 +76,7 @@ Route::prefix('admin')->group(function () {
 
 
     // Product
-    Route::get('/product', [ProductAksesController::class, 'getAll'])->name('admin.product.index');
+    Route::get('/product', [ProductController::class,'productAdmin']);
 
     Route::post('/product', [ProductAksesController::class, 'createData'])->name('admin.product.store');
     Route::get('/product/create', function () {

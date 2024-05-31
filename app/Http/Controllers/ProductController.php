@@ -179,7 +179,7 @@ class ProductController extends Controller
         }
         
         if($p->save()){
-            return redirect('/adm-prod');
+            return redirect('/admin/product');
         }
         // dd($p->id);
 
@@ -247,7 +247,7 @@ class ProductController extends Controller
         }
         
         if($p->save()){
-            return redirect('/adm-prod');
+            return redirect('/admin/product');
         }
 
 
