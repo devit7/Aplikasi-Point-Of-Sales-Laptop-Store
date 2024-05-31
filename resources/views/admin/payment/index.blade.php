@@ -23,7 +23,7 @@
                 </a>
             </div>
         </div>
-        <div class="mt-10">
+        <x-tables>
             <div class="w-full mx-auto bg-[#1C1D42] text-[#6b6eb4] p-4 rounded-md">
                 <table class="w-full mt-2" id="table">
                     <thead class="bg-[#131432] text-[#6b6eb4]">
@@ -66,6 +66,7 @@
                     </tbody>
                 </table>
             </div>
+            </x-tables>
         </div>
     </div>
 
