@@ -11,6 +11,7 @@ use App\Http\Controllers\AksesController\LaporanController;
 use App\Http\Controllers\AksesController\ProductAksesController;
 use App\Http\Controllers\AksesController\SupplierAksesController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\ProductController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -49,6 +50,10 @@ Route::prefix('admin')->group(function () {
     })->name('user.create');
     //Membuat user baru
     Route::post('/user/create', [UserAksesController::class, 'createData'])->name('user.store');
+    Route::get('/user/edit/{user}', [UserAksesController::class, 'getEdit'])->name('user.edit');
+    Route::put('/user/edit{user}', [UserAksesController::class, 'updateData'])->name('user.update');
+    Route::delete('/supplier/{user}', [UserAksesController::class, 'deleteData'])->name('user.delete');
+
 
 
     // Customer
@@ -78,15 +83,17 @@ Route::prefix('admin')->group(function () {
         return view('admin.product.create');
     })->name('admin.product.create');
 
-    // Merk
-    Route::get('/merk', [MerkAksesController::class, 'getAll'])->name('merk.index');
+    
 
+    // Merk
+    Route::get('/merk', [merkAksesController::class, 'getAll'])->name('merk.index');
     Route::get('/merk/create', function () {
         return view('admin.merk.create');
-    });
-    Route::get('/merk/update', function () {
-        return view('admin.merk.update');
-    });
+    })->name('merk.create');
+    Route::get('/merk/edit/{merk}', [merkAksesController::class, 'getEdit'])->name('merk.edit');
+    Route::put('/merk/update/{merk}', [merkAksesController::class, 'updateData'])->name('merk.update');
+    Route::post('/merk', [merkAksesController::class, 'createData'])->name('merk.store');
+    Route::delete('/merk/{merk}', [merkAksesController::class, 'deleteData'])->name('merk.destroy');
 
     // Payment
     Route::get('/payment', [PaymentsAksesController::class, 'getAll'])->name('payment.index');
@@ -160,4 +167,12 @@ Route::get('/tables', function () {
 Route::get('/u', [UserAksesController::class, 'getAll']);
 Route::get('/pay', [PaymentsAksesController::class, 'getAll']);
 Route::get('/cus', [CustomersAksesController::class, 'getAll']);
+// <<<<<<< HEAD
+Route::get('/adm-prod',[ProductController::class,'productAdmin']);
+Route::get('/adm-prod-new',[ProductController::class,'productAdminNew']);
+Route::post('/adm-prod-new',[ProductController::class,'productAdminMakeNew']);
+Route::get('/adm-prod-Update/{idProduk}',[ProductController::class,'productAdminUpdate']);
+Route::put('/adm-prod-Updates/{idProduk}',[ProductController::class,'productAdminMakeUpdate']);
+// =======
+// >>>>>>> e671a8a58f372ea62cd66443fdf0e69e7dd331ac
 

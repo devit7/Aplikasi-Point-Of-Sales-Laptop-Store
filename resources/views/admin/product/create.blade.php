@@ -16,16 +16,28 @@
             <div class="w-[600px] flex flex-col gap-4">
                 <p class="rounded-md p-4 font-semibold bg-[#1C1D42] text-[#6b6eb4]">Create a Product</p>
                 <div class="rounded-md p-4 bg-[#1C1D42] text-[#6b6eb4]">
+<<<<<<< HEAD
+                    <form action="/adm-prod-new" id="formCreate" method="post" enctype="multipart/form-data">
+=======
                     <form action="{{ route('admin.product.store') }}" method="post">
+>>>>>>> e671a8a58f372ea62cd66443fdf0e69e7dd331ac
                         @csrf
                         <div class="grid gap-4 sm:grid-cols-2 sm:gap-6">
                             <div class="sm:col-span-2">
                                 <label for="name" class="block mb-2 text-sm font-medium  text-gray-400">Nama</label>
+<<<<<<< HEAD
+                                <input type="text" name="namaProduk" id="name"
+=======
                                 <input type="text" name="product_name" id="product_name"
+>>>>>>> e671a8a58f372ea62cd66443fdf0e69e7dd331ac
                                     class="bg-[#131432] border text-sm rounded-lg  block w-full p-2.5  border-gray-600 placeholder-gray-400 text-gray-400 focus:ring-primary-500 focus:border-primary-500"
                                     placeholder="Ex : Wibu Jaya Bersama" required="">
                             </div>
                             <div class="sm:col-span-2">
+<<<<<<< HEAD
+                                <label for="nama_toko" class="block mb-2 text-sm font-medium  text-gray-400">Harga Jual</label>
+                                <input type="number" name="hargaJual" id="nama_toko"
+=======
                                 <label for="stock" class="block mb-2 text-sm font-medium  text-gray-400">Stock</label>
                                 <input type="text" name="stock" id="stock"
                                     class="bg-[#131432] border text-sm rounded-lg  block w-full p-2.5  border-gray-600 placeholder-gray-400 text-gray-400 focus:ring-primary-500 focus:border-primary-500"
@@ -35,10 +47,29 @@
                                 <label for="harga_jual" class="block mb-2 text-sm font-medium  text-gray-400">Harga
                                     Jual</label>
                                 <input type="text" name="harga_jual" id="harga_jual"
+>>>>>>> e671a8a58f372ea62cd66443fdf0e69e7dd331ac
                                     class="bg-[#131432] border   text-sm rounded-lg  block w-full p-2.5  border-gray-600 placeholder-gray-400 text-gray-400 focus:ring-primary-500 focus:border-primary-500"
                                     placeholder="EX : 0821*" required="">
                             </div>
                             <div class="sm:col-span-2">
+<<<<<<< HEAD
+                                <label for="description"
+                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400">Harga Asli</label>
+                                    <input type="number" name="hargaAsli" id="hargaasli"
+                                        class="bg-[#131432] border   text-sm rounded-lg  block w-full p-2.5  border-gray-600 placeholder-gray-400 text-gray-400 focus:ring-primary-500 focus:border-primary-500"
+                                        placeholder="EX : 0821*" required="">
+                            </div>
+                            <div class="sm:col-span-2">
+                                <label for="description"
+                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400">Stock</label>
+                                    <input type="number" name="stok" id="nama_toko"
+                                        class="bg-[#131432] border   text-sm rounded-lg  block w-full p-2.5  border-gray-600 placeholder-gray-400 text-gray-400 focus:ring-primary-500 focus:border-primary-500"
+                                        placeholder="EX : 0821*" required="">
+                            </div>
+                            <div class="sm:col-span-2">
+                                <div class=" relative border border-gray-400 border-dashed rounded-lg p-6" id="dropzone">
+                                    <input type="file" name="fileUpload" type="file" accept=".jpg,.jpeg,.png" class="absolute inset-0 w-full h-full opacity-0 z-50" />
+=======
                                 <label for="harga_asli" class="block mb-2 text-sm font-medium  text-gray-400">Harga
                                     Asli</label>
                                 <input type="text" name="harga_asli" id="harga_asli"
@@ -51,6 +82,7 @@
                                     <input type="file" id="img" name="img"
                                         class="absolute inset-0 w-full h-full opacity-0 z-50" />
 
+>>>>>>> e671a8a58f372ea62cd66443fdf0e69e7dd331ac
                                     <div class="text-center">
                                         <img class="mx-auto h-12 w-12"
                                             src="https://www.svgrepo.com/show/357902/image-upload.svg" alt="">
@@ -60,7 +92,10 @@
                                                 <span>Drag and drop</span>
                                                 <span class="text-indigo-600"> or browse</span>
                                                 <span>to upload</span>
+<<<<<<< HEAD
+=======
                                                 {{-- <input id="logo_toko" name="logo_toko" type="file" class="sr-only"> --}}
+>>>>>>> e671a8a58f372ea62cd66443fdf0e69e7dd331ac
                                             </label>
                                         </h3>
                                         <p class="mt-1 text-xs text-gray-500">
@@ -71,6 +106,31 @@
                                     <img src="" class="mt-4 mx-auto max-h-40 hidden" id="preview">
                                 </div>
                             </div>
+<<<<<<< HEAD
+                            
+                            <div class="sm:col-span-2">
+                                <label for="description"
+                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400">Suplier</label>
+                                    <select name="supplier" id="" class="bg-[#131432] border   text-sm rounded-lg  block w-full p-2.5  border-gray-600 placeholder-gray-400 text-gray-400 focus:ring-primary-500 focus:border-primary-500">
+                                        @unlees(count($Supp)>0)
+                                            @foreach($Supp as $sup)
+                                                <option value="{{$sup->id}}">{{$sup->supplier_name}}</option>
+                                            @endforeach 
+                                        @endunlees
+                                    </select>
+                            </div>
+                            <div class="sm:col-span-2">
+                                <label for="description"
+                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400">Merk</label>
+                                    <select name="merk" id=""
+                                        class="bg-[#131432] border   text-sm rounded-lg  block w-full p-2.5  border-gray-600 placeholder-gray-400 text-gray-400 focus:ring-primary-500 focus:border-primary-500">
+                                        @unlees(count($merks)>0)
+                                            @foreach($merks as $merk)
+                                                <option value="{{$merk->id}}">{{$merk->merk_name}}</option>
+                                            @endforeach 
+                                        @endunlees
+                                    </select>
+=======
 
                             {{-- Input Supplier --}}
                             <div class="sm:col-span-2">
@@ -150,6 +210,7 @@
                                 <input type="text" name="merk_id" id="merk_id"
                                     class="bg-[#131432] border   text-sm rounded-lg  block w-full p-2.5  border-gray-600 placeholder-gray-400 text-gray-400 focus:ring-primary-500 focus:border-primary-500"
                                     placeholder="EX : 0821*" required="">
+>>>>>>> e671a8a58f372ea62cd66443fdf0e69e7dd331ac
                             </div>
 
                         </div>
@@ -170,7 +231,17 @@
     </div>
 @endsection
 @push('scripts')
+    <style>
+        #file-upload{
+            /* position: fixed;
+            top:-20%;
+            left: -20%; */
+        }
+    </style>
     <script>
+        function saveForm(event){
+            let form = document.getElementById();
+        }
         var dropzone = document.getElementById('dropzone');
 
         dropzone.addEventListener('dragover', e => {

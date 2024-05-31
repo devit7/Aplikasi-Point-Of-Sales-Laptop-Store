@@ -56,7 +56,7 @@
                                             </svg>
                                         </button>
                                     </a>
-                                    <x-alert id="{{ $item['id'] }}" nama="{{  $item['customer_name'] }}" />
+                                    <x-alert id="{{ $item['id'] }}" nama="{{  $item['customer_name'] }}" route="payment.destroy" />
                                 </td>
                             </tr>
                         @empty
