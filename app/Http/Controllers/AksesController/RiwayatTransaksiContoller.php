@@ -14,6 +14,7 @@ class RiwayatTransaksiContoller extends Controller
         $response = app()->handle($request);
         $data = json_decode($response->getContent(), true);
         //dd($data['data'][0]['product'][0]);
+        dd($data);
         if ($response->getStatusCode() == 200) {
             return view('kasir.RiwayatTransaksi', [
                 'data' => $data['data'],
