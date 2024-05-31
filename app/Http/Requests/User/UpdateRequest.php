@@ -27,8 +27,8 @@ class UpdateRequest extends FormRequest
         return [
             'nama' => 'required|string',
             'username' => 'required|min:5|unique:users,username,' . $userExist . ',id',  
-            'password' => 'required|min:8',
-            'role' => 'required|in:admin,kasir'
+/*             'password' => 'required|min:8',
+ */            'role' => 'required|in:admin,kasir'
         ];
     }
 
@@ -40,8 +40,8 @@ class UpdateRequest extends FormRequest
             'username.required' => 'Data Username Harus Di Isi',
             'username.unique' => 'Data Username Sudah Ada',
             'username.min' => 'Data Username Minimal 5 Karakter',
-            'password.required' => 'Data Password Harus Di Isi',
-            'password.min' => 'Data Password Minimal 8 Karakter',
+            /* 'password.required' => 'Data Password Harus Di Isi',
+            'password.min' => 'Data Password Minimal 8 Karakter', */
             'role.required' => 'Data Role Harus Di Isi',
             'role.in' => 'Data Role Harus Admin atau Kasir'
         ];

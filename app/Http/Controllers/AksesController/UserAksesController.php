@@ -32,12 +32,8 @@ class UserAksesController extends Controller
 
     public function getDetail($user)
     {
-        //tidak makek guzzle
-        //$token = 'Bearer 3|hsCLwqd8roBQ7zXXHG0WZghmrCe5RuIgGhhOl2Dxc73d7c89';
         $request = Request::create('http://127.0.0.1:8000/api/users/' . $user, 'GET');
-        //$request->headers->set('Authorization', $token);
         $response = app()->handle($request);
-        // merubah json ke array
         $data = json_decode($response->getContent(),true);
         if ($response->getStatusCode() == 200) {
             return dd($data['data']);
@@ -70,7 +66,7 @@ class UserAksesController extends Controller
             'nama' => $validator['nama'],
             'username' => $validator['username'],
             'password' => $validator['password'],
-            'email' => $validator['email'],
+            'role' => $validator['role'],
         ];
         $request = Request::create('http://127.0.0.1:8000/api/users', 'POST', $data);
         $response = app()->handle($request);
@@ -108,16 +104,14 @@ class UserAksesController extends Controller
     }
     public function deleteData($user)
     {
-        $request = Request::create('http://127.0.0.1:8000/api/users/' . $user, 'DELETE');
+        $request = Request::create('http://127.0.0.1:8000/api/user/' . $user, 'DELETE');
         $response = app()->handle($request);
-        if($response->getStatusCode() == 200){
-            //return dd($data['data']);
-            return view('user.index')->with('sucsess', 'user berhasil delete');
-        }else{
+        if ($response->getStatusCode() == 200) {
+            return redirect()->route('user.index')->with('success', 'user berhasil delete');
+        } else {
             return response()->json([
                 'message' => 'Unauthorized'
-            ], 401);
+            ]);
         }
     }
-
 }
