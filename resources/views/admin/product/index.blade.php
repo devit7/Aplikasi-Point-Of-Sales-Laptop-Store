@@ -12,7 +12,7 @@
                 </p>
             </div>
             <div class=" flex flex-row ">
-                <a href="product/create"
+                <a href="/adm-prod-new"
                     class="flex flex-row  items-center gap-2  px-4 py-2 bg-[#FF9A37] text-white rounded-md hover:bg-[#FF9A37]">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                         stroke="currentColor" class="w-6 h-6">
@@ -41,18 +41,19 @@
                             </tr>
                         </thead>
                         <tbody class="text-[#6b6eb4] text-center">
-                            @for ($i = 0; $i < 10; $i++)
+                            @if(count($produks)>0)
+                                @for($y=0;$y<count($produks);$y++)
                                 <tr class="border-b-2 border-[#33356F]">
-                                    <td class="py-2">1</td>
-                                    <td>Product 1</td>
-                                    <td>10</td>
-                                    <td>Rp. 100.000</td>
-                                    <td>Rp. 100.000</td>
+                                    <td class="py-2">{{$y+1}}</td>
+                                    <td>{{$produks[$y]->product_name}}</td>
+                                    <td>{{$produks[$y]->stock}}</td>
+                                    <td>{{$produks[$y]->harga_jual}}</td>
+                                    <td>{{$produks[$y]->harga_asli}}</td>
                                     <td>
-                                        <img src="https://via.placeholder.com/150" alt="product" class="w-10 h-10">
+                                        <img src="http://127.0.0.1:8000/storage/images/{{$produks[$y]->img}}" alt="product" class="w-10 h-10">
                                     </td>
-                                    <td>Supplier 1</td>
-                                    <td>Merk 1</td>
+                                    <td>{{$produks[$y]->supplier_name}}</td>
+                                    <td>{{$produks[$y]->merk_name}}</td>
                                     <td>
                                         <a href="">
                                             <button class="bg-[#002D4C] border p-1 border-[#2B4F69] rounded-md">
@@ -65,7 +66,7 @@
                                                 </svg>
                                             </button>
                                         </a>
-                                        <a href="product/update">
+                                        <a href="/adm-prod-Update/{{$produks[$y]->id}}">
                                             <button class="bg-[#002D4C] border p-1 border-[#2B4F69] rounded-md">
                                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                                     stroke-width="1.5" stroke="currentColor" class="w-6 h-6 text-blue-600">
@@ -86,7 +87,8 @@
                                         </a>
                                     </td>
                                 </tr>
-                            @endfor
+                                @endfor
+                            @endif
                         </tbody>
                     </table>
                 </div>

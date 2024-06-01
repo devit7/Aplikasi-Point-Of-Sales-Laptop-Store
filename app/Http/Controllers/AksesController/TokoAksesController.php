@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Toko;
 use App\Http\Requests\Toko\StoreRequest;
 use App\Http\Requests\Toko\UpdateRequest;
+use Illuminate\Support\Facades\Http;
 
 class TokoAksesController extends Controller
 {
@@ -59,38 +60,29 @@ class TokoAksesController extends Controller
 
     public function updateData(UpdateRequest $request, Toko $toko)
     {
-        // dd($request->hasFile('logo_toko'), $toko);
         $validated = $request->validated();
-        // dd("validated", $validated);
-
-        $logo_toko_name = $request->input('old_logo_toko');
-        if ($request->hasFile('logo_toko')) {
-            $logo_toko = $request->file('logo_toko');
-            $logo_toko_name = 'logo' . '.' . $logo_toko->getClientOriginalExtension();
-            $logo_toko->storePubliclyAs('logos', $logo_toko_name, 'public');
-        }
-        // $logo_toko_name = null;
-        // if ($request->hasFile('logo_toko')) {
-        //     $logo_toko = $request->file('logo_toko');
-        //     $logo_toko_name = time() . '.' . $logo_toko->getClientOriginalExtension();
-        //     $logo_toko->storePubliclyAs('logos', $logo_toko_name, 'public');
-        // }
 
         $data = [
             'nama_toko' => $validated['nama_toko'],
-            'logo_toko' => $logo_toko_name,
             'alamat' => $validated['alamat'],
             'no_hp' => $validated['no_hp'],
         ];
-        // dd("data", $data);
 
-        $api_url = 'http://127.0.0.1:8000/api/toko/' . $toko->id . '?' . http_build_query($data);
-        // dd("api_url", $api_url);
-        $request = Request::create($api_url, 'PUT');
-        // dd("request", $request);    
+        // $api_url = 'http://127.0.0.1:8000/api/toko/' . $toko->id . '?' . http_build_query($data);
+        // $temp_request = Request::create($api_url, 'PUT');
+        // dd("request", $request); //data logo_toko tidak ada?
 
-        $response = app()->handle($request);
-        // dd("response", $response);
+        $temp_request = Request::create(
+            'http://127.0.0.1:8000/api/toko/' . $toko->id,
+            'PUT',
+            $data,
+        );
+
+        if ($request->hasFile('logo_toko')) {
+            $temp_request->files->set('logo_toko', $request->file('logo_toko'));
+        }
+
+        $response = app()->handle($temp_request);
 
         if ($response->getStatusCode() == 200) {
             session()->flash('success', 'Toko berhasil di update');

@@ -10,7 +10,7 @@
                         MAIN
                     </p>
                     <a href="/admin" tabindex="0"
-                        class="flex items-center w-full px-6 py-3 rounded-lg text-start leading-tight transition-all hover:bg-[#aa5800] hover:bg-opacity-10 hover:text-[#e07946] outline-none  
+                        class="flex items-center w-full px-6 py-3 rounded-lg text-start leading-tight transition-all hover:bg-[#aa5800] hover:bg-opacity-10 hover:text-[#e07946] outline-none
                     @if (request()->is('admin')) bg-[#aa5800] bg-opacity-10 text-[#e07946] @endif
                     ">
                         <div class="grid place-items-center mr-3">
@@ -44,19 +44,19 @@
 
                                 <a href="{{ route('user.index') }}"
                                     class="flex items-center w-full px-6 py-3 rounded-lg text-start leading-tight transition-all hover:bg-[#aa5800] hover:bg-opacity-10 hover:text-[#e07946] outline-none pl-11
-                                @if (request()->is('admin/user')) bg-[#aa5800] bg-opacity-10 text-[#e07946] @endif
+                                @if (request()->is('api/users')) bg-[#aa5800] bg-opacity-10 text-[#e07946] @endif
                                 ">User</a>
                             </li>
                             <li>
                                 <a href="/admin/product"
                                     class="flex items-center w-full px-6 py-3 rounded-lg text-start leading-tight transition-all hover:bg-[#aa5800] hover:bg-opacity-10 hover:text-[#e07946] outline-none pl-11
-                                @if (request()->is('admin/product')) bg-[#aa5800] bg-opacity-10 text-[#e07946] @endif
+                                @if (request()->is('api/products')) bg-[#aa5800] bg-opacity-10 text-[#e07946] @endif
                                 ">Product</a>
                             </li>
                             <li>
                                 <a href="/admin/supplier"
                                     class="flex items-center w-full px-6 py-3 rounded-lg text-start leading-tight transition-all hover:bg-[#aa5800] hover:bg-opacity-10 hover:text-[#e07946] outline-none pl-11
-                                @if (request()->is('admin/supplier')) bg-[#aa5800] bg-opacity-10 text-[#e07946] @endif
+                                @if (request()->is('api/suppliers')) bg-[#aa5800] bg-opacity-10 text-[#e07946] @endif
                                 ">Supplier</a>
                             </li>
                             <li>
@@ -68,7 +68,7 @@
                             <li>
                                 <a href="/admin/payment"
                                     class="flex items-center w-full px-6 py-3 rounded-lg text-start leading-tight transition-all hover:bg-[#aa5800] hover:bg-opacity-10 hover:text-[#e07946] outline-none pl-11
-                                @if (request()->is('admin/payment')) bg-[#aa5800] bg-opacity-10 text-[#e07946] @endif
+                                @if (request()->is('api/payments')) bg-[#aa5800] bg-opacity-10 text-[#e07946] @endif
                                 ">Payment</a>
                             </li>
                         </ul>
@@ -79,7 +79,7 @@
                     <p class="text-gray-400 text-sm font-bold tracking-wider py-4">OTHER</p>
                     <a href="/admin/customer" tabindex="0"
                         class=" flex items-center w-full px-6 py-3 rounded-lg text-start leading-tight transition-all hover:bg-[#aa5800] hover:bg-opacity-10 hover:text-[#e07946] outline-none
-                    @if (request()->is('admin/customer')) bg-[#aa5800] bg-opacity-10 text-[#e07946] @endif
+                    @if (request()->is('api/customers')) bg-[#aa5800] bg-opacity-10 text-[#e07946] @endif
                     ">
                         <div class="grid place-items-center mr-3">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewbox="0 0 24 24"
@@ -92,7 +92,7 @@
                     </a>
                     <a href="/admin/laporan" role="button" tabindex="0"
                         class="flex items-center w-full px-6 py-3 rounded-lg text-start leading-tight transition-all hover:bg-[#aa5800] hover:bg-opacity-10 hover:text-[#e07946] outline-none
-                    @if (request()->is('admin/laporan')) bg-[#aa5800] bg-opacity-10 text-[#e07946] @endif
+                    @if (request()->is('api/transaksi')) bg-[#aa5800] bg-opacity-10 text-[#e07946] @endif
                     ">
                         <div class="grid place-items-center mr-3">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewbox="0 0 24 24"
@@ -105,7 +105,7 @@
                     </a>
                     <a href="/admin/setting" role="button" tabindex="0"
                         class="flex items-center w-full px-6 py-3 rounded-lg text-start leading-tight transition-all hover:bg-[#aa5800] hover:bg-opacity-10 hover:text-[#e07946] outline-none
-                    @if (request()->is('admin/setting')) bg-[#aa5800] bg-opacity-10 text-[#e07946] @endif
+                    @if (request()->is('api/toko')) bg-[#aa5800] bg-opacity-10 text-[#e07946] @endif
                     ">
                         <div class="grid place-items-center mr-3">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewbox="0 0 24 24"
@@ -121,7 +121,7 @@
                 </div>
             </div>
             <div tabindex="0"
-                class="flex  border-t bg-[#131542] border-[#33356F] items-center px-10 w-full font-semibold  py-3 
+                class="flex  border-t bg-[#131542] border-[#33356F] items-center px-10 w-full font-semibold  py-3
             ">
                 <div class="grid place-items-center mr-3">
                     <img src="{{ asset('foto/user.png') }}" alt="" class=" rounded-full w-12">

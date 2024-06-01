@@ -18,7 +18,7 @@
             <x-tables>
                 <div class="w-full mx-auto mt-2 bg-[#1C1D42] text-[#6b6eb4]  p-4 rounded-md">
                     <table class="w-full mt-2  " id="table">
-                        <thead class="bg-[#131432]  text-[#6b6eb4]">
+                        <thead class="bg-[#131432]  text-[#6b6eb4] w-full">
                             <tr class="border-b-2 border-[#33356F]">
                                 <th class="py-2 text-[#6b6eb4]">No</th>
                                 <th class="">Invoice</th>
@@ -32,12 +32,13 @@
                         </thead>
                         <tbody class="text-[#6b6eb4] text-center">
                             @forelse ($data as $transaction)
+                                {{-- @dd($transaction) --}}
                                 <tr class="border-b-2 border-[#33356F]">
-                                    <td class="py-2"> {{$loop->index + 1}} </td>
-                                    <td> {{$transaction['invoice']}} </td>
-                                    <td> {{$transaction['order_date']}} </td>
-                                    <td> {{$transaction['total_semua']}} </td>
-                                    <td> {{$transaction['user']['nama']}} </td>
+                                    <td class="py-2"> {{ $loop->index + 1 }} </td>
+                                    <td> {{ $transaction['invoice'] }} </td>
+                                    <td> {{ $transaction['order_date'] }} </td>
+                                    <td> {{ $transaction['total_semua'] }} </td>
+                                    <td> {{ $transaction['user']['nama'] }} </td>
                                     <td>
                                         <img src="https://via.placeholder.com/150" alt="product" class="w-10 h-10">
                                     </td>
@@ -46,7 +47,7 @@
                                 </tr>
                             @empty
                                 <tr>
-                                    <td colspan="5" class="text-center">No data available</td>
+                                    <td colspan="8" class="text-center">No data available</td>
                                 </tr>
                             @endforelse
 

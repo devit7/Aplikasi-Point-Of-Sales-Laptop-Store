@@ -24,7 +24,7 @@
                         </svg>
                     </div>
                     <div class="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
-                        <h3 class="text-xl leading-6 font-semibold text-[#aa5800]" id="modal-headline"> Delete Item </h3>
+                        <h3 class="text-xl leading-6 font-semibold text-[#aa5800]" id="modal-headline"> Delete User </h3>
                         <div class="mt-2">
                             <p class="text-sm text-white"> Are you sure you want to delete <span class="font-bold">{{ $nama }}</span>? This action cannot be undone. </p>
                         </div>
@@ -35,7 +35,7 @@
                     <button data-modal-toggle="delete-modal{{ $id }}" type="submit" class="py-2 px-4 text-sm font-medium  rounded-md border  focus:ring-4 focus:outline-none focus:ring-primary-300 focus:z-10 bg-green-700 text-green-200 border-green-500 hover:text-white hover:bg-green-600 focus:ring-green-600">
                         Cancel
                     </button>
-                    <form action="{{ route('supplier.delete', $id) }}" method="POST">
+                    <form action="{{ route('user.delete', $id) }}" method="POST">
                         @csrf
                         @method('delete')
                         <button type="submit" class="py-2 px-4 text-sm rounded-md font-medium text-center text-white bg-red-600  hover:bg-red-700 focus:ring-4 focus:outline-none focus:ring-red-300 dark:bg-red-500 dark:hover:bg-red-600 dark:focus:ring-red-900">

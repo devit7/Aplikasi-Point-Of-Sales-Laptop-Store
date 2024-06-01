@@ -68,23 +68,26 @@ class TokoController extends Controller
      */
     public function update(UpdateRequest $request, Toko $toko)
     {
-        // dd("API request logo_toko", $request->hasFile('logo_toko'), "API toko", $toko);
         $validated = $request->validated();
-        // dd("API request all", $request, "API toko", $toko, "validated", $validated['logo_toko']);
 
-        // $logo_toko_name = null;
-        // if ($request->hasFile('logo_toko')) {
-        //     $logo_toko = $request->file('logo_toko');
-        //     $logo_toko_name = 'logo' . '.' . $logo_toko->getClientOriginalExtension();
-        //     $logo_toko->storePubliclyAs('logos', $logo_toko_name, 'public');
-        // }
-        // dd("API request all", $request, "API toko", $toko, "validated", $validated['logo_toko']);
+        if ($request->hasFile('logo_toko')) {
+            $logo_toko = $request->file('logo_toko');
+            $logo_toko_name = time() . '.' . $logo_toko->getClientOriginalExtension();
+            $logo_toko->storePubliclyAs('logos', $logo_toko_name, 'public');
+
+            $toko->update([
+                'nama_toko' => $validated['nama_toko'],
+                'logo_toko' => $logo_toko_name,
+                'alamat' => $validated['alamat'],
+                'no_hp' => $validated['no_hp'],
+            ]);
+        }
 
         $toko->update([
-            'nama_toko' => $validated['nama_toko'],
-            'logo_toko' => $validated['logo_toko'],
-            'alamat' => $validated['alamat'],
-            'no_hp' => $validated['no_hp'],
+            'nama_toko' => $toko['nama_toko'],
+            'logo_toko' => $toko['logo_toko'],
+            'alamat' => $toko['alamat'],
+            'no_hp' => $toko['no_hp'],
         ]);
 
         return response()->json([
