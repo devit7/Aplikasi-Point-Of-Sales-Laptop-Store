@@ -88,7 +88,7 @@
                                 </button>
                                 <div id="dropdown-menu-supplier"
                                     class=" hidden dropdown-menu px-4 py-2 mt-2 rounded-md shadow-lg col bg-[#131432] ring-black ring-opacity-5 p-1 space-y-1">
-                                    <!-- Search input -->
+                                    {{-- Search input --}}
                                     <input
                                         class="search-input w-full px-2 bg-[#131432] text-gray-400 border rounded-md  border-gray-300 focus:outline-none"
                                         type="text" placeholder="Search Supplier" autocomplete="off">
