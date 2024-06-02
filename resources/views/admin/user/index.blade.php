@@ -1,5 +1,5 @@
 @extends('layout.admin_main')
-@section('title', 'Customer List')
+@section('title', 'User List')
 @section('content')
 <div class=" p-7 ">
     <div class="mb-6 flex items-end justify-between">
