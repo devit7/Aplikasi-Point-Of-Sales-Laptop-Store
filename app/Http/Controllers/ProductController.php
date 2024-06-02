@@ -130,7 +130,7 @@ class ProductController extends Controller
     }
     public function productAdminMakeNew(Request $req){
         // dd($req->all(),$req->file('fileUpload'));
-        
+
         $val = $req->validate([
             'namaProduk'=>'required',
             'hargaJual'=>'required',
@@ -149,7 +149,7 @@ class ProductController extends Controller
             $filename = $req->nama.$this->getDate().".".$file->extension();
             $file->storeAs('public/images',$filename);
             $val['foto']=$filename;
-            
+
         }else{
             $val['foto']='null';
         }
@@ -164,10 +164,10 @@ class ProductController extends Controller
         $p->merk_id = $val['merk'];
 
         if($req->merk=='0'){
-            
+
             //input Merk baru
             $aksesMerk = new aksesMerk();
-            
+
             $idMerk=$aksesMerk->makeMerk($req->newMerk);
             $p->merk_id=$idMerk;
         }
@@ -177,7 +177,7 @@ class ProductController extends Controller
             $p->supplier_id = $idSup;
 
         }
-        
+
         if($p->save()){
             return redirect('/admin/product');
         }
@@ -186,7 +186,7 @@ class ProductController extends Controller
         // $this->getDate();
     }
     public function productAdminUpdate($idProduk){
-        $produk = Product::findOrFail($idProduk);
+        $produk = Product::with('supplier','merk')->findOrFail($idProduk);// @evftrya vi ini $produk tak edit buat ngeget data Produk sama relasinya
         $sup = $this->getsup();
         $merk = $this->getMerk();
         // dd($produk);
@@ -194,7 +194,7 @@ class ProductController extends Controller
     }
     public function productAdminMakeUpdate($idProduk,Request $req){
         // dd($req->all(),$req->file('fileUpload'),$req->hargaAsli,$req->cbCheck);
-        
+
         $val = $req->validate([
             'namaProduk'=>'required',
             'hargaJual'=>'required',
@@ -220,7 +220,7 @@ class ProductController extends Controller
                 $filename = $req->nama.$this->getDate().".".$file->extension();
                 $file->storeAs('public/images',$filename);
                 $val['foto']=$filename;
-                
+
             }else{
                 $val['foto']='null';
             }
@@ -230,12 +230,12 @@ class ProductController extends Controller
             $p->img = $req->fotoLama;
         }
 
-        
+
         if($req->merk=='0'){
-            
+
             //input Merk baru
             $aksesMerk = new aksesMerk();
-            
+
             $idMerk=$aksesMerk->makeMerk($req->newMerk);
             $p->merk_id=$idMerk;
         }
@@ -245,7 +245,7 @@ class ProductController extends Controller
             $p->supplier_id = $idSup;
 
         }
-        
+
         if($p->save()){
             return redirect('/admin/product');
         }
