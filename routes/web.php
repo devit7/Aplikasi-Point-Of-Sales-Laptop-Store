@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AksesController\CustomersAksesController;
+use App\Http\Controllers\AksesController\KasirAksesController;
 use App\Http\Controllers\AksesController\MerkAksesController;
 use App\Http\Controllers\AksesController\PaymentsAksesController;
 use App\Http\Controllers\AksesController\RiwayatTransaksiContoller;
@@ -72,7 +73,7 @@ Route::prefix('admin')->group(function () {
     Route::get('/supplier/edit/{supplier}', [SupplierAksesController::class, 'getEdit'])->name('supplier.edit');
     // Route untuk memperbarui data supplier
     Route::put('/supplier/update/{supplier}', [SupplierAksesController::class, 'updateData'])->name('supplier.updateCoy');
-    Route::delete('/supplier/{supplier}', [SupplierAksesController::class, 'deleteData'])->name('supplier.delete');
+    Route::delete('/supplier/delete/{supplier}', [SupplierAksesController::class, 'deleteData'])->name('supplier.deleteCoy');
 
 
     // Product
@@ -122,6 +123,7 @@ Route::prefix('kasir')->group(function () {
     Route::get('/', function () {
         return view('kasir.dashboard');
     });
+    Route::get('/prod', [KasirAksesController::class, 'getAllProduct']);
     Route::get('/2', function () {
         return view('kasir.dashboard-old');
     });

@@ -26,7 +26,7 @@
                     <h2 class="mb-4 text-xl font-bold text-gray-900 dark:text-gray-400">Add a new User</h2>
                     <form action="{{ route('user.store') }}" method="POST">
                     @csrf
-                    
+
                         <div class="grid gap-4 sm:grid-cols-2 sm:gap-6">
                             <div class="sm:col-span-2">
                                 <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400">Name</label>
@@ -50,7 +50,7 @@
                             </div>
                         </div>
                         <button type="submit" class="inline-flex items-center px-5 py-2.5 mt-4 sm:mt-6 text-sm font-medium text-center text-white bg-blue-700 rounded-lg focus:ring-4 focus:ring-primary-200 dark:focus:ring-primary-900 hover:bg-primary-800">
-                            Add supplier
+                            Add User
                         </button>
                     </form>
                 </div>

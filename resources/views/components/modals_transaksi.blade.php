@@ -90,7 +90,7 @@
                     No, Cancel
                 </button>
                 <button type="submit"
-                    class="py-2 w-36 text-sm font-medium  rounded-md border  focus:ring-4 focus:outline-none focus:z-10 bg-green-700 text-green-200 border-green-500 hover:text-white hover:bg-green-600 focus:ring-green-600">
+                    class="py-2 w-36 text-sm font-medium   rounded-md border  focus:ring-4 focus:outline-none focus:z-10 bg-green-700 text-green-200 border-green-500 hover:text-white hover:bg-green-600 focus:ring-green-600">
                     Accept Transaction
                 </button>
             </div>
