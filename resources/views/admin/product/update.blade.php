@@ -17,8 +17,9 @@
             <div class="w-[100%] flex flex-col gap-4">
                 <p class="rounded-md p-4 font-semibold bg-[#1C1D42] text-[#6b6eb4]">Update a Product</p>
                 <div class="rounded-md p-4 bg-[#1C1D42] h-[auto] text-[#6b6eb4]">
-                    <form action="/admin/product/Update/{{ $pro->id }}" class="  px-[2%] h-[100%] py-[2%] flex flex-col justify-between items-cente" id="formCreate" method="post"
-                        enctype="multipart/form-data">
+                    <form action=" {{ route('products.update', $product->id) }}"
+                        class="  px-[2%] h-[100%] py-[2%] flex flex-col justify-between items-cente" id="formCreate"
+                        method="post" enctype="multipart/form-data">
                         @csrf
                         @method('put')
                         <div class="flex flex-row w-[100%] h-[auto] justify-between">
@@ -52,14 +53,14 @@
                                         placeholder="EX : 0821*" required="">
                                 </div>
 
-                                
+
                             </div>
                             <div class="w-[45%]">
                                 <div class="sm:col-span-2 mb-8" id="forChangefoto">
                                     <label for="description"
-                                            class="block mb-4 text-sm font-medium text-gray-900 dark:text-gray-400">Foto</label>
+                                        class="block mb-4 text-sm font-medium text-gray-900 dark:text-gray-400">Foto</label>
                                     <div class="forStok">
-                                    
+
                                         <input type="text" name="fotoLama" style="display:none;" id="fotoLama"
                                             value="{{ $pro->img }}"
                                             class="bg-[#131432] border border-gray-600 inline-flex items-center px-5 py-2.5 mt-4 sm:mt-6 text-sm font-medium text-center text-white bg-green-700 rounded-md focus:ring-4 focus:ring-primary-200 dark:focus:ring-primary-900 hover:bg-primary-800">
@@ -67,14 +68,17 @@
                                             value="sama"
                                             class="bg-[#131432] border border-gray-600 inline-flex items-center px-5 py-2.5 mt-4 sm:mt-6 text-sm font-medium text-center text-white bg-green-700 rounded-md focus:ring-4 focus:ring-primary-200 dark:focus:ring-primary-900 hover:bg-primary-800">
                                         <label for="description"
-                                            class="block text-sm  font-medium text-gray-900 dark:text-gray-400">centang jika ingin
+                                            class="block text-sm  font-medium text-gray-900 dark:text-gray-400">centang jika
+                                            ingin
                                             mengganti foto</label>
                                     </div>
                                 </div>
-                                
+
                                 <div class="sm:col-span-2 mb-[5px]" id="potoArea" style="display:none;">
-                                    <div class=" relative border border-gray-400 border-dashed rounded-lg mb-4 p-2" id="dropzone">
-                                        <input id="img" type="file" name="fileUpload" type="file" accept=".jpg,.jpeg,.png"
+                                    <div class=" relative border border-gray-400 border-dashed rounded-lg mb-4 p-2"
+                                        id="dropzone">
+                                        <input id="img" type="file" name="fileUpload" type="file"
+                                            accept=".jpg,.jpeg,.png"
                                             class="absolute inset-0 w-full h-full opacity-0 z-50" />
                                         <div class="text-center">
                                             <img class="mx-auto h-12 w-12"
@@ -98,11 +102,12 @@
                                 <div class="sm:col-span-2" id="newSup" style="display:none;">
                                     <hr class="border-gray-500 border-t-2 mb-4 opacity-10">
                                     <div class="forBackSup mb-4">
-                                        <input type="checkbox" onclick="newSup('showDrop')" name="cbCheck" id="cbCheck"
-                                            value="sama"
+                                        <input type="checkbox" onclick="newSup('showDrop')" name="cbCheck"
+                                            id="cbCheck" value="sama"
                                             class="bg-[#131432] border border-gray-600 inline-flex items-center px-5 py-2.5 mt-4 sm:mt-6 text-sm font-medium text-center text-white bg-green-700 rounded-md focus:ring-4 focus:ring-primary-200 dark:focus:ring-primary-900 hover:bg-primary-800">
                                         <label for="description"
-                                            class="block text-sm font-medium text-gray-900 dark:text-gray-400">checklist untuk
+                                            class="block text-sm font-medium text-gray-900 dark:text-gray-400">checklist
+                                            untuk
                                             kembali memilih Supplier</label>
                                     </div>
                                 </div>
@@ -137,7 +142,8 @@
                                         @endforelse
 
                                     </div>
-                                    <input type="hidden" name="supplier" id="supplier-input" value="{{ $pro->supplier_id }}">
+                                    <input type="hidden" name="supplier" id="supplier-input"
+                                        value="{{ $pro->supplier_id }}">
                                 </div>
 
                                 {{-- Input Merk --}}
@@ -168,12 +174,13 @@
                                         @empty
                                             <p class="text-center text-white">No Merk</p>
                                         @endforelse
-                                        <input type="hidden" name="merk" id="merk-input" value="{{ $pro->merk_id }}">
+                                        <input type="hidden" name="merk" id="merk-input"
+                                            value="{{ $pro->merk_id }}">
                                     </div>
 
                                 </div>
 
-                                
+
                             </div>
                         </div>
                         <div class="flex justify-between w-full gap-4 sm:gap-6">
@@ -186,7 +193,7 @@
                                 Update
                             </button>
                         </div>
-                        
+
                     </form>
                 </div>
             </div>
@@ -197,8 +204,8 @@
     <style>
         #file-upload {
             /* position: fixed;
-                    top:-20%;
-                    left: -20%; */
+                                top:-20%;
+                                left: -20%; */
         }
 
         #butforBack {
@@ -229,9 +236,9 @@
         }
 
         /* .checkbox-container {
-                    display: inline-block;
-                    vertical-align: middle;
-                } */
+                                display: inline-block;
+                                vertical-align: middle;
+                            } */
 
         .forBackSup>input {
             appearance: none !important;
@@ -287,9 +294,9 @@
         }
 
         /* .checkbox-container {
-                    display: inline-block;
-                    vertical-align: middle;
-                } */
+                                display: inline-block;
+                                vertical-align: middle;
+                            } */
 
         .forStok>input {
             appearance: none !important;
@@ -327,27 +334,27 @@
 
 
         /* .checkbox-text {
-                    font-size: 16px;
-                    color: #333;
-                } */
+                                font-size: 16px;
+                                color: #333;
+                            } */
 
         /* Untuk efek hover */
         .forStok .forStok>input:not(:checked) {
             background-color: #f2f2f2;
         }
 
-        main::-webkit-scrollbar{
+        main::-webkit-scrollbar {
             width: 0;
             /* background-color: white;
-            color: white;
-            border: 1px solid inherit; */
+                        color: white;
+                        border: 1px solid inherit; */
         }
-        main{
+
+        main {
             scrollbar-width: none;
         }
     </style>
     <script>
-
         function ubah(id) {
             // console.log('masuk')
             let marg = document.getElementById('forChangefoto');
@@ -357,11 +364,11 @@
             if (valu.checked) {
                 valu.value = "ubah"
                 // console.log(poto)
-                marg.style.marginBottom="5px";
+                marg.style.marginBottom = "5px";
                 poto.style.display = "";
             } else {
                 valu.value = "sama"
-                marg.style.marginBottom="36px";
+                marg.style.marginBottom = "36px";
                 // console.log(poto)
 
                 poto.style.display = "none";

@@ -105,15 +105,15 @@ Route::middleware(['WebAkses:admin'])->prefix('admin')->group(function () {
     Route::delete('/payment/{payment}', [PaymentsAksesController::class, 'deleteData'])->name('payment.destroy');
 
     //Product
-    Route::get('/products', [ProductAksesController::class, 'getAll'])->name('products.index');
-    Route::get('/products/{product}', [ProductAksesController::class, 'getDetail'])->name('products.show');
+    Route::get('/products/index', [ProductAksesController::class, 'getAll'])->name('products.index');
+    Route::get('/products/show/{product}', [ProductAksesController::class, 'getDetail'])->name('products.show');
     Route::get('/products/create', [ProductAksesController::class, 'getAllToCreate'])->name('products.create');
-    Route::post('/products', [ProductAksesController::class, 'createData'])->name('products.store');
-    Route::get('/products/update', function () {
+    Route::post('/products/store', [ProductAksesController::class, 'createData'])->name('products.store');
+    Route::get('/products/edit/{product}', function () {
         return view('admin.product.update');
     })->name('products.edit');
-    Route::put('/products/{product}', [ProductAksesController::class, 'updateData'])->name('products.update');
-    Route::delete('/products/{product}', [ProductAksesController::class, 'deleteData'])->name('products.destroy');
+    Route::put('/products/update/{product}', [ProductAksesController::class, 'updateData'])->name('products.update');
+    Route::delete('/products/destroy/{product}', [ProductAksesController::class, 'deleteData'])->name('products.destroy');
 })->middleware('UserAkses:admin');
 
 

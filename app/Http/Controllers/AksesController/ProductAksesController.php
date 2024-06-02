@@ -93,79 +93,80 @@ class ProductAksesController extends Controller
         }
     }
 
-    // public function getDetail($product)
-    // {
-    //     $request = Request::create('http://127.0.0.1:8000/api/products/' . $product, 'GET');
-    //     $response = app()->handle($request);
-    //     $data = json_decode($response->getContent(), true);
-    //     if ($response->getStatusCode() == 200) {
-    //         return dd($data['data']);
-    //     } else {
-    //         return response()->json([
-    //             'message' => 'Unauthorized',
-    //         ]);
-    //     }
-    // }
+    public function getDetail($product)
+    {
+        $request = Request::create('http://127.0.0.1:8000/api/products/' . $product, 'GET');
+        $response = app()->handle($request);
+        $data = json_decode($response->getContent(), true);
+        if ($response->getStatusCode() == 200) {
+            return dd($data['data']);
+            // return view('products.show', ['data' => $data['data']]);
+        } else {
+            return response()->json([
+                'message' => 'Unauthorized',
+            ]);
+        }
+    }
 
-    // public function getEdit($product)
-    // {
-    //     $request = Request::create('http://127.0.0.1:8000/api/products/' . $product, 'GET');
-    //     $response = app()->handle($request);
-    //     $data = json_decode($response->getContent(), true);
-    //     if ($response->getStatusCode() == 200) {
-    //         return view('admin.merk.update', ['merk' => $data['data']]);
-    //     } else {
-    //         return response()->json(['message' => 'Unauthorized'], 401);
-    //     }
-    // }
+    public function getEdit($product)
+    {
+        $request = Request::create('http://127.0.0.1:8000/api/products/' . $product, 'GET');
+        $response = app()->handle($request);
+        $data = json_decode($response->getContent(), true);
+        if ($response->getStatusCode() == 200) {
+            return view('admin.merk.update', ['merk' => $data['data']]);
+        } else {
+            return response()->json(['message' => 'Unauthorized'], 401);
+        }
+    }
 
-    // public function updateData(UpdateRequest $request, Product $product)
-    // {
-    //     $validated = $request->validated();
+    public function updateData(UpdateRequest $request, Product $product)
+    {
+        $validated = $request->validated();
 
-    //     $data = [
-    //         'product_name' => $validated['product_name'],
-    //         'stock' => $validated['stock'],
-    //         'harga_jual' => $validated['harga_jual'],
-    //         'harga_asli' => $validated['harga_asli'],
-    //         'supplier_id' => $validated['supplier_id'],
-    //         'merk_id' => $validated['merk_id'],
-    //     ];
+        $data = [
+            'product_name' => $validated['product_name'],
+            'stock' => $validated['stock'],
+            'harga_jual' => $validated['harga_jual'],
+            'harga_asli' => $validated['harga_asli'],
+            'supplier_id' => $validated['supplier_id'],
+            'merk_id' => $validated['merk_id'],
+        ];
 
-    //     $temp_request = Request::create(
-    //         'http://127.0.0.1:8000/api/products/' . $product->id,
-    //         'PUT',
-    //         $data,
-    //     );
+        $temp_request = Request::create(
+            'http://127.0.0.1:8000/api/products/' . $product->id,
+            'PUT',
+            $data,
+        );
 
-    //     if ($request->hasFile('img_product')) {
-    //         $temp_request->files->set('img_product', $request->file('img_product'));
-    //     }
+        if ($request->hasFile('img_product')) {
+            $temp_request->files->set('img_product', $request->file('img_product'));
+        }
 
-    //     $response = app()->handle($temp_request);
+        $response = app()->handle($temp_request);
 
-    //     if ($response->getStatusCode() == 200) {
-    //         session()->flash('success', 'Data Product berhasil di update');
-    //         return redirect()->route('product.index');
-    //     } else {
-    //         return response()->json([
-    //             'message' => 'Unauthorized',
-    //         ], 401);
-    //     }
-    // }
+        if ($response->getStatusCode() == 200) {
+            session()->flash('success', 'Data Product berhasil di update');
+            return redirect()->route('product.index');
+        } else {
+            return response()->json([
+                'message' => 'Unauthorized',
+            ], 401);
+        }
+    }
 
-    // public function deleteData($product)
-    // {
-    //     $request = Request::create('http://127.0.0.1:8000/api/products/' . $product, 'DELETE');
-    //     $response = app()->handle($request);
-    //     if ($response->getStatusCode() == 200) {
-    //         return redirect()->route('products.index')->with('success', 'Data Product berhasil dihapus');
-    //     } else {
-    //         return response()->json([
-    //             'message' => 'Unauthorized',
-    //         ]);
-    //     }
-    // }
+    public function deleteData($product)
+    {
+        $request = Request::create('http://127.0.0.1:8000/api/products/' . $product, 'DELETE');
+        $response = app()->handle($request);
+        if ($response->getStatusCode() == 200) {
+            return redirect()->route('products.index')->with('success', 'Data Product berhasil dihapus');
+        } else {
+            return response()->json([
+                'message' => 'Unauthorized',
+            ]);
+        }
+    }
 
 
     //tidak perlu membuat function controller lagi, cukup memakai yang sudah ada diatas
