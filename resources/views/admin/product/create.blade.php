@@ -16,7 +16,7 @@
             <div class="w-[100%] flex flex-col gap-4">
                 <p class="rounded-md p-4 font-semibold bg-[#1C1D42] text-[#6b6eb4]">Create a Product</p>
                 <div class="rounded-md p-4 bg-[#1C1D42] h-[auto] text-[#6b6eb4]">
-                    <form action="/product/Create" class="  px-[2%] h-[100%] py-[2%] flex flex-col justify-between items-cente" id="formCreate" method="post" enctype="multipart/form-data">
+                    <form action="/admin/product/Create" class="  px-[2%] h-[100%] py-[2%] flex flex-col justify-between items-cente" id="formCreate" method="post" enctype="multipart/form-data">
                         @csrf
                         <div class="flex flex-row w-[100%] h-[auto] justify-between">
                             <div class="w-[45%]">
