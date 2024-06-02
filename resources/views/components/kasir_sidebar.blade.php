@@ -56,7 +56,7 @@
             <div class=" ">
                 <div class="flex flex-col  px-5 font-semibold mb-2 ">
                     <div class="  items-center w-full  ">
-                        <a href="/kasir/transaksi" tabindex="0"
+                        <a href="{{ route('akses.logout') }}" tabindex="0"
                             class="flex items-center w-full  px-6 py-3 rounded-lg text-start leading-tight transition-all hover:bg-[#aa5800] hover:bg-opacity-10 hover:text-[#e07946] outline-none
                 ">
                             <div class="grid place-items-center mr-3">

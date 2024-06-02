@@ -7,17 +7,19 @@
     <title>Login</title>
 </head>
 <body class="bg-[#131432] flex justify-center place-items-center h-screen">
-    <div class=" flex flex-row w-full ">
-        <div class="flex flex-col bg-[#1C1D42] p-5">
+    <div class=" flex flex-row w-full  ">
+        <div class="flex flex-col bg-[#1C1D42] p-5 mx-auto">
             <div class=" pt-10">
                 <h1 class=" text-4xl text-white font-bold">POS</h1>
                 <h1 class=" text-white text-xl w-72">Transaksi Tanpa Batas <br> Bisnis Tanpa Hambatan</h1>
             </div>
-            <form action="" class=" flex flex-col  gap-y-6 bg-[#1C1D42] mt-20 w-[500px] h-full rounded-xl">
+            <form action="{{ route('akses.login') }}" method="POST" class=" flex flex-col  gap-y-6 bg-[#1C1D42] mt-20 w-[500px] h-full rounded-xl">
+                @csrf
                 <h1 class=" text-white text-3xl font-semibold">Login</h1>
                 <div class=" w-96">
                 <div class="relative h-10 w-full min-w-[200px]">
                     <input
+                    name="username"
                     class="peer h-full w-full rounded-[7px] text-[#B3B7EE] border border-[#B3B7EE] bg-transparent px-3 py-2.5 font-sans text-sm 
                     font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border 
                     placeholder-shown:border-[#B3B7EE] placeholder-shown:border-t-[#B3B7EE] focus:border-2 
@@ -42,6 +44,7 @@
 
                 <div class="relative h-10 w-full min-w-[200px] mt-5">
                     <input
+                    name="password"
                     class="peer text-[#B3B7EE] h-full w-full rounded-[7px] border border-[#B3B7EE] bg-transparent px-3 py-2.5 font-sans text-sm 
                     font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border 
                     placeholder-shown:border-[#B3B7EE] placeholder-shown:border-t-[#B3B7EE] focus:border-2 
@@ -67,8 +70,18 @@
             </div>
 
             <button
+            type="submit"
             class=" w-96 bg-indigo-900 border-2 border-indigo-500 rounded-lg shadow text-center text-white text-base font-semibold px-16 py-2 mt-1
                 hover:bg-indigo-500 hover:text-white" type="submit">Login now</button>
+                @if ($errors->any())
+                <div class="bg-red-500 text-white p-4 rounded-md mb-4 w-[385px]">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
         </form>
         </div>
         <img src="foto/computerstore.jpeg" class=" w-full h-screen" alt="">

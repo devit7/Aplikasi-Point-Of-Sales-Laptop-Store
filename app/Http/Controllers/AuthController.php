@@ -27,19 +27,21 @@ class AuthController extends Controller
                 return response()->json([
                     'message' => 'Login Berhasil Admin',
                     'data' => Auth::user(),
-                    'token' => $token
+                    'token' => $token,
+                    'role' => 'admin'
                 ]);
             } else if (Auth::user()->role == 'kasir') {
                 return response()->json([
                     'message' => 'Login Berhasil Kasir',
                     'data' => Auth::user(),
-                    'token' => $token
+                    'token' => $token,
+                    'role' => 'kasir'
                 ]);
             }
         } else {
             return response()->json([
-                'message' => 'Login Gagal'
-            ]);
+                'message' => 'Username atau Password Salah'
+            ], 401);
         }
 
         return redirect()->back();

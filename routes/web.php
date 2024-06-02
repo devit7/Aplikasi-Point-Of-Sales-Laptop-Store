@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AksesController\AuthAksesController;
 use App\Http\Controllers\AksesController\CustomersAksesController;
 use App\Http\Controllers\AksesController\KasirAksesController;
 use App\Http\Controllers\AksesController\MerkAksesController;
@@ -28,9 +29,9 @@ use Illuminate\Support\Facades\Route;
 */
 
 
-Route::prefix('admin')->group(function () {
+Route::middleware(['WebAkses:admin'])->prefix('admin')->group(function () {
     // Dashboard
-    Route::get('/', [DashboardController::class, 'index']);
+    Route::get('/', [DashboardController::class, 'index'])->name('admin.dashboard');
 
     // Setting
     Route::get('/setting', [TokoAksesController::class, 'getAll'])->name('admin.index');
@@ -84,7 +85,6 @@ Route::prefix('admin')->group(function () {
         return view('admin.product.create');
     })->name('admin.product.create');
 
-    
 
     // Merk
     Route::get('/merk', [merkAksesController::class, 'getAll'])->name('merk.index');
@@ -117,10 +117,10 @@ Route::prefix('admin')->group(function () {
     Route::get('/payment/create', function () {
         return view('admin.payment.create');
     });
-});
+})->middleware('UserAkses:admin');
 
-Route::prefix('kasir')->group(function () {
-    Route::get('/', [KasirAksesController::class, 'index']);
+Route::middleware(['WebAkses:kasir'])->prefix('kasir')->group(function () {
+    Route::get('/', [KasirAksesController::class, 'index'])->name('kasir.dashboard');
     Route::get('/2', function () {
         return view('kasir.dashboard-old');
     });
@@ -148,6 +148,8 @@ Route::prefix('kasir')->group(function () {
 Route::get('/', function () {
     return view('auth.login');
 });
+Route::post('/login', [AuthAksesController::class, 'aksesLogin'])->name('akses.login');
+Route::get('/logout', [AuthAksesController::class, 'aksesLogout'])->name('akses.logout');
 
 Route::get('/modal-tran', function () {
     return view('kasir.modal-tran');
