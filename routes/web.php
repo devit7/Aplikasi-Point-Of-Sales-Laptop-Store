@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AksesController\CustomersAksesController;
+use App\Http\Controllers\AksesController\KasirAksesController;
 use App\Http\Controllers\AksesController\MerkAksesController;
 use App\Http\Controllers\AksesController\PaymentsAksesController;
 use App\Http\Controllers\AksesController\RiwayatTransaksiContoller;
@@ -122,6 +123,7 @@ Route::prefix('kasir')->group(function () {
     Route::get('/', function () {
         return view('kasir.dashboard');
     });
+    Route::get('/prod', [KasirAksesController::class, 'getAllProduct']);
     Route::get('/2', function () {
         return view('kasir.dashboard-old');
     });
