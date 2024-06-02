@@ -13,7 +13,7 @@
         <div class="flex w-[500px]  items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
             <!-- Modal panel -->
             <div
-                class="w-full inline-block align-bottom bg-[#1C1D42] rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full">
+                class="w-full inline-block align-bottom  bg-[#1C1D42] rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full">
                 <!-- Modal content -->
                 <div class="sm:flex sm:items-start p-5">
                     <div
@@ -64,5 +64,5 @@
             </div>
         </div>
     </div>
-    <script src="{{ asset('js/flowbite.min.js') }}"></script>
+    
 </div>
