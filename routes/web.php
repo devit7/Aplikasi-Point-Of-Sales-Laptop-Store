@@ -120,10 +120,7 @@ Route::prefix('admin')->group(function () {
 });
 
 Route::prefix('kasir')->group(function () {
-    Route::get('/', function () {
-        return view('kasir.dashboard');
-    });
-    Route::get('/prod', [KasirAksesController::class, 'getAllProduct']);
+    Route::get('/', [KasirAksesController::class, 'index']);
     Route::get('/2', function () {
         return view('kasir.dashboard-old');
     });

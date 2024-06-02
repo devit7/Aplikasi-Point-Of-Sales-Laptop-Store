@@ -18,18 +18,16 @@
                     <input type="text" placeholder="Search Product" class="w-full h-12 px-4 rounded-r-lg bg-[#151e3b]   focus:outline-none">
                 </div>
                 <div class="flex flex-row py-4 mt-4 gap-4  text-lg font-semibold overflow-x-auto ">
-                    <a href="#" class="py-1 rounded-lg px-6 bg-[#aa5800] bg-opacity-10 text-[#e07946]">
+                    <a href="#" class="py-1 rounded-md px-6 bg-[#aa5800] bg-opacity-10 text-[#e07946]">
                         All
                     </a>
-                    <a href="#" class=" py-1 bg-[#151e3b] rounded-lg px-6">
-                        Lenovo
+                    @forelse ($dataMerk as $merk)
+                    <a href="#" class=" py-1 bg-[#151e3b] rounded-md px-6 hover:bg-[#aa5800] hover:bg-opacity-10 hover:text-[#e07946] transition duration-300">
+                        {{ $merk['merk_name'] }}
                     </a>
-                    <a href="#" class=" py-1 bg-[#151e3b] rounded-lg px-6">
-                        Acer
-                    </a>
-                    <a href="#" class=" py-1 bg-[#151e3b] rounded-lg px-6">
-                        Asus
-                    </a>
+                    @empty
+                        
+                    @endforelse
                 </div>
             </div>
             <div class=" flex flex-col  mt-4">
@@ -37,7 +35,7 @@
                     Products (12)
                 </div>
                 <div class="flex flex-wrap gap-6 mt-8 justify-between">
-                    @for ($i = 0; $i < 10; $i++)
+                    @forelse ($dataProduct as $product)
                         <div class="w-[230px] max-h-[305px] bg-[#151e3b] rounded-lg hover:shadow-2xl  transition duration-300 ">
                             <div class="flex flex-col p-3 text-[#93A2D2] justify-between h-full">
                                 <div class="relative  w-full h-full overflow-hidden max-h-[180px]">
@@ -51,11 +49,11 @@
                                 <div class="flex flex-col pt-3 justify-between gap-3 h-full">
                                     <div class="flex flex-col justify-between h-full ">
                                         <div class="flex flex-row justify-between text-lg font-semibold">
-                                            Lenovo Legion 7i (16'', Gen 9)
+                                            {{ $product['product_name'] }}
                                         </div>
                                         <div class="flex flex-row justify-between">
                                             <div class=" font-bold text-[#e07946]">
-                                                Rp. 1.000.000,00
+                                                Rp. {{ number_format($product['harga_jual'], 0, ',', '.') }}
                                             </div>
                                             <div class="flex items-center gap-1">
                                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
@@ -63,7 +61,9 @@
                                                     <path stroke-linecap="round" stroke-linejoin="round"
                                                         d="m20.25 7.5-.625 10.632a2.25 2.25 0 0 1-2.247 2.118H6.622a2.25 2.25 0 0 1-2.247-2.118L3.75 7.5M10 11.25h4M3.375 7.5h17.25c.621 0 1.125-.504 1.125-1.125v-1.5c0-.621-.504-1.125-1.125-1.125H3.375c-.621 0-1.125.504-1.125 1.125v1.5c0 .621.504 1.125 1.125 1.125Z" />
                                                 </svg>
-                                                <span>10</span>
+                                                <span>
+                                                    {{ $product['stock'] }}
+                                                </span>
                                             </div>
                                         </div>
                                     </div>
@@ -74,7 +74,13 @@
                                 </div>
                             </div>
                         </div>
-                    @endfor
+                        @empty
+                        <div class="flex flex-row justify-center items-center w-full h-full">
+                            <p class="text-[#93A2D2] text-[20px] font-bold text-center">
+                                No Product
+                            </p>
+                        </div>
+                        @endforelse
 
                 </div>
             </div>
