@@ -5,10 +5,10 @@
         </svg>
     </button>
     <!-- MODAL -->
-    <div id="delete-modal{{ $id }}" aria-hidden="true" class="hidden overflow-x-hidden overflow-y-auto fixed h-modal md:h-full top-4 left-0 right-0 md:inset-0 z-50 justify-center items-center">
-        <div class="flex w-[500px]  items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
+    <div id="delete-modal{{ $id }}" aria-hidden="true" class=" bg-transparent hidden overflow-x-hidden overflow-y-auto fixed h-modal md:h-full top-4 left-0 right-0 md:inset-0 z-50 justify-center items-center">
+        <div class="flex w-[500px] items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
             <!-- Modal panel -->
-            <div class="w-full inline-block align-bottom bg-[#1C1D42] rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full">
+            <div class="w-full inline-block align-bottom bg-[#1C1D42] bg-opacity-90 rounded-lg text-left overflow-hidden transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full">
                 <!-- Modal content -->
                 <div class="sm:flex sm:items-start p-5">
                     <div class="mx-auto flex-shrink-0 flex items-center justify-center w-12 h-12 rounded-full bg-red-100 sm:mx-0 sm:h-10 sm:w-10">
@@ -32,13 +32,13 @@
                 </div>
                 <!-- Modal footer -->
                 <div class="flex justify-between items-center space-x-4 p-4 rounded-b">
-                    <button data-modal-toggle="delete-modal{{ $id }}" type="submit" class="py-2 px-4 text-sm font-medium  rounded-md border  focus:ring-4 focus:outline-none focus:ring-primary-300 focus:z-10 bg-green-700 text-green-200 border-green-500 hover:text-white hover:bg-green-600 focus:ring-green-600">
+                    <button data-modal-toggle="delete-modal{{ $id }}" type="submit" class="py-2 px-4 text-sm font-medium rounded-md border focus:ring-4 focus:outline-none focus:ring-primary-300 focus:z-10 bg-green-700 text-green-200 border-green-500 hover:text-white hover:bg-green-600 focus:ring-green-600">
                         Cancel
                     </button>
                     <form action="{{ route('supplier.delete', $id) }}" method="POST">
                         @csrf
                         @method('delete')
-                        <button type="submit" class="py-2 px-4 text-sm rounded-md font-medium text-center text-white bg-red-600  hover:bg-red-700 focus:ring-4 focus:outline-none focus:ring-red-300 dark:bg-red-500 dark:hover:bg-red-600 dark:focus:ring-red-900">
+                        <button type="submit" class="py-2 px-4 text-sm rounded-md font-medium text-center text-white bg-red-600 hover:bg-red-700 focus:ring-4 focus:outline-none focus:ring-red-300 dark:bg-red-500 dark:hover:bg-red-600 dark:focus:ring-red-900">
                             Delete
                         </button>
                     </form>
