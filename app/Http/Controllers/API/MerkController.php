@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\API;
 
+use App\Http\Controllers\Controller;
 use App\Http\Requests\Merk\StoreRequest;
 use App\Http\Requests\Merk\UpdateRequest;
 use App\Models\Merk;
-use Illuminate\Http\Request;
 
 class MerkController extends Controller
 {
@@ -92,7 +92,8 @@ class MerkController extends Controller
         ], 200);
     }
 
-    public function getMerk(){
-        return Merk::all();
-    }
+    // public function getMerk()
+    // {
+    //     return Merk::all();
+    // }
 }

@@ -66,7 +66,6 @@
                             </div>
                             <div class="sm:col-span-2">
                                 <div class="relative border border-gray-400 border-dashed rounded-lg p-6" id="dropzone">
-                                    {{-- value input type hidden ini akan di ambil jika tidak menambahkan file image --}}
                                     <input type="file" id="logo_toko" name="logo_toko"
                                         class="absolute inset-0 w-full h-full opacity-0 z-50" />
 

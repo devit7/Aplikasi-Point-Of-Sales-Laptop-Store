@@ -1,15 +1,14 @@
 <?php
 
-use App\Http\Controllers\AuthController;
-use App\Http\Controllers\CustomersController;
-use App\Http\Controllers\PaymentsController;
-use App\Http\Controllers\TransaksiController;
-use App\Http\Controllers\UserController;
-use App\Http\Controllers\TokoController;
-use App\Http\Controllers\ProductController;
-use App\Http\Controllers\SupplierController;
-use App\Http\Controllers\MerkController;
-use Illuminate\Http\Request;
+use App\Http\Controllers\API\AuthController;
+use App\Http\Controllers\API\CustomerController;
+use App\Http\Controllers\API\PaymentController;
+use App\Http\Controllers\API\TransaksiController;
+use App\Http\Controllers\API\UserController;
+use App\Http\Controllers\API\TokoController;
+use App\Http\Controllers\API\ProductController;
+use App\Http\Controllers\API\SupplierController;
+use App\Http\Controllers\API\MerkController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -28,8 +27,8 @@ Route::post('/login', [AuthController::class, 'login'])->name('login');
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
 Route::apiResource('/users', UserController::class);
-Route::apiResource('/customers', CustomersController::class);
-Route::apiResource('/payments', PaymentsController::class);
+Route::apiResource('/customers', CustomerController::class);
+Route::apiResource('/payments', PaymentController::class);
 Route::apiResource('/transaksi', TransaksiController::class);
 Route::apiResource('/toko', TokoController::class);
 Route::apiResource('/suppliers', SupplierController::class);
