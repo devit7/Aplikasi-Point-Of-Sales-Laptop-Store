@@ -186,7 +186,7 @@ class ProductController extends Controller
         // $this->getDate();
     }
     public function productAdminUpdate($idProduk){
-        $produk = Product::findOrFail($idProduk);
+        $produk = Product::with('supplier','merk')->findOrFail($idProduk);// @evftrya vi ini $produk tak edit buat ngeget data Produk sama relasinya
         $sup = $this->getsup();
         $merk = $this->getMerk();
         // dd($produk);

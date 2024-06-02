@@ -26,7 +26,7 @@
         <div class="mt-10">
             <x-tables>
                 <div class="w-full mx-auto mt-2 bg-[#1C1D42] text-[#6b6eb4]  p-4 rounded-md">
-                    <table class="w-full mt-2  " id="table">
+                    <table class="w-full mt-2 text-start " id="table">
                         <thead class="bg-[#131432]  text-[#6b6eb4]">
                             <tr class="border-b-2 border-[#33356F]">
                                 <th class="py-2 text-[#6b6eb4]">No</th>
@@ -40,15 +40,15 @@
                                 <th class="">Action</th>
                             </tr>
                         </thead>
-                        <tbody class="text-[#6b6eb4] text-center">
+                        <tbody class="text-[#6b6eb4]">
                             @if(count($produks)>0)
                                 @for($y=0;$y<count($produks);$y++)
                                 <tr class="border-b-2 border-[#33356F]">
                                     <td class="py-2">{{$y+1}}</td>
                                     <td>{{$produks[$y]->product_name}}</td>
                                     <td>{{$produks[$y]->stock}}</td>
-                                    <td>{{$produks[$y]->harga_jual}}</td>
-                                    <td>{{$produks[$y]->harga_asli}}</td>
+                                    <td>{{'Rp' . number_format($produks[$y]->harga_jual, 2, ',', '.')}}</td>
+                                    <td>{{'Rp' . number_format($produks[$y]->harga_asli, 2, ',', '.')}}</td>
                                     <td>
                                         <img src="http://127.0.0.1:8000/storage/images/{{$produks[$y]->img}}" alt="product" class="w-10 h-10">
                                     </td>
@@ -73,7 +73,7 @@
                                                     <path stroke-linecap="round" stroke-linejoin="round"
                                                         d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L10.582 16.07a4.5 4.5 0 0 1-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 0 1 1.13-1.897l8.932-8.931Zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0 1 15.75 21H5.25A2.25 2.25 0 0 1 3 18.75V8.25A2.25 2.25 0 0 1 5.25 6H10" />
                                                 </svg>
-    
+
                                             </button>
                                         </a>
                                         <a href="">

@@ -49,8 +49,8 @@
                             </div>
                             <div class="sm:col-span-2">
                                 <div class=" relative border border-gray-400 border-dashed rounded-lg p-6" id="dropzone">
-                                    <input type="file" name="fileUpload" type="file" accept=".jpg,.jpeg,.png"
-                                        class="absolute inset-0 w-full h-full opacity-0 z-50" />
+                                    <input type="file" id="img" name="fileUpload" type="file"
+                                        accept=".jpg,.jpeg,.png" class="absolute inset-0 w-full h-full opacity-0 z-50" />
                                     <div class="text-center">
                                         <img class="mx-auto h-12 w-12"
                                             src="https://www.svgrepo.com/show/357902/image-upload.svg" alt="">
@@ -73,11 +73,11 @@
                             {{-- TODO: suplier dropdown add search --}}
                             {{-- * data from controller for supplier = $Supp --}}
                             {{-- Input Supplier --}}
-                            <div class="sm:col-span-2">
+                            <div class="sm:col-span-2 dropdown-div">
                                 <label for="dropdown-button-supplier"
                                     class="block mb-2 text-sm font-medium  text-gray-400">Supplier</label>
                                 <button type="button" id="dropdown-button-supplier"
-                                    class="flex dropdown-button justify-start bg-[#131432] border text-sm rounded-lg  w-full p-2.5  border-gray-600 placeholder-gray-400 text-gray-400 focus:ring-primary-500 focus:border-primary-500">
+                                    class="flex dropdown-button justify-between bg-[#131432] border text-sm rounded-lg  w-full p-2.5  border-gray-600 placeholder-gray-400 text-gray-400 focus:ring-primary-500 focus:border-primary-500">
                                     <span class="">Choose Supplier</span>
                                     <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 ml-2 -mr-1" viewBox="0 0 20 20"
                                         fill="currentColor" aria-hidden="true">
@@ -87,16 +87,16 @@
                                     </svg>
                                 </button>
                                 <div id="dropdown-menu-supplier"
-                                    class=" hidden dropdown-menu px-4 py-2 mt-2 rounded-md shadow-lg col bg-[#131432] ring-black ring-opacity-5 p-1 space-y-1">
-                                    <!-- Search input -->
+                                    class=" hidden dropdown-menu py-2 mt-2 shadow-lg col bg-[#131432] ring-black ring-opacity-5 p-1 space-y-1">
+                                    {{-- Search input Buat Dropdown --}}
                                     <input
                                         class="search-input w-full px-2 bg-[#131432] text-gray-400 border rounded-md  border-gray-300 focus:outline-none"
                                         type="text" placeholder="Search Supplier" autocomplete="off">
                                     {{-- list dropdown --}}
                                     @forelse ($Supp as $sup)
                                         <a href="#"
-                                            class="dropdown-item flex row text-white hover:bg-[#6b6eb4] active:bg-blue-100 cursor-pointer rounded-md"
-                                            data-value="{{ $sup->supplier_name }}">{{$sup->supplier_name}}</a>
+                                            class="dropdown-item pl-3 flex row text-white hover:bg-[#6b6eb4] active:bg-blue-100 cursor-pointer"
+                                            data-value="{{ $sup->id }}">{{ $sup->supplier_name }}</a>
                                     @empty
                                         <p class="text-center text-white">No Supplier</p>
                                     @endforelse
@@ -106,11 +106,11 @@
                             </div>
 
                             {{-- Input Merk --}}
-                            <div class="sm:col-span-2 dropdown-group">
+                            <div class="sm:col-span-2 dropdown-div">
                                 <label for="dropdown-button-merk"
                                     class="block mb-2 text-sm font-medium  text-gray-400">Merk</label>
                                 <button type="button" id="dropdown-button-merk"
-                                    class="flex dropdown-button justify-start bg-[#131432] border text-sm rounded-lg  w-full p-2.5  border-gray-600 placeholder-gray-400 text-gray-400 focus:ring-primary-500 focus:border-primary-500">
+                                    class="flex dropdown-button justify-between bg-[#131432] border text-sm rounded-lg  w-full p-2.5  border-gray-600 placeholder-gray-400 text-gray-400 focus:ring-primary-500 focus:border-primary-500">
                                     <span class="">Choose Merk</span>
                                     <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 ml-2 -mr-1"
                                         viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
@@ -120,37 +120,34 @@
                                     </svg>
                                 </button>
                                 <div id="dropdown-menu-merk"
-                                    class="hidden dropdown-menu px-4 py-2 mt-2 rounded-md shadow-lg col bg-[#131432] ring-black">
-                                    {{-- Input Search --}}
+                                    class="hidden dropdown-menu px-4 py-2 mt-2 shadow-lg col bg-[#131432] ring-black">
+                                    {{-- Input Search  Buat Dropdown --}}
                                     <input
                                         class="search-input w-full px-2 bg-[#131432] text-gray-400 border rounded-md  border-gray-300 focus:outline-none"
                                         type="text" placeholder="Search Merk" autocomplete="off">
                                     {{-- List Dropdown --}}
-                                    asdfasdf
-                                    <a href="#"
-                                    class="dropdown-item flex row text-white hover:bg-[#6b6eb4] active:bg-blue-100 cursor-pointer rounded-md"
-                                    data-value="asd">asd</a>
                                     @forelse ($merks as $merk)
                                         <a href="#"
-                                            class="dropdown-item flex row text-white hover:bg-[#6b6eb4] active:bg-blue-100 cursor-pointer rounded-md"
-                                            data-value="{{ $merk->supplier_name }}">{{$merk->supplier_name}}</a>
+                                            class="dropdown-item pl-3 flex row text-white hover:bg-[#6b6eb4] active:bg-blue-100 cursor-pointer"
+                                            data-value="{{ $merk->id }}">{{ $merk->merk_name }}</a>
                                     @empty
                                         <p class="text-center text-white">No Merk</p>
                                     @endforelse
-                                <input type="hidden" name="merk" id="merk-input" value="">
+                                    <input type="hidden" name="merk" id="merk-input" value="">
+                                </div>
+
                             </div>
 
-                        </div>
-                        <div class="flex justify-between w-full gap-4 sm:gap-6">
-                            <button type="submit"
-                                class="inline-flex items-center px-5 py-2.5 mt-4 sm:mt-6 text-sm font-medium text-center text-white bg-red-700 rounded-md focus:ring-4 focus:ring-primary-200 dark:focus:ring-primary-900 hover:bg-primary-800">
-                                Reset
-                            </button>
-                            <button type="submit"
-                                class="inline-flex items-center px-5 py-2.5 mt-4 sm:mt-6 text-sm font-medium text-center text-white bg-green-700 rounded-md focus:ring-4 focus:ring-primary-200 dark:focus:ring-primary-900 hover:bg-primary-800">
-                                Create
-                            </button>
-                        </div>
+                            <div class="flex justify-between w-full gap-4 sm:gap-6">
+                                <button type="button" id="button-reset"
+                                    class="inline-flex items-center px-5 py-2.5 mt-4 sm:mt-6 text-sm font-medium text-center text-white bg-red-700 rounded-md focus:ring-4 focus:ring-primary-200 dark:focus:ring-primary-900 hover:bg-primary-800">
+                                    Reset
+                                </button>
+                                <button type="submit" id="button-reset"
+                                    class="inline-flex items-center px-5 py-2.5 mt-4 sm:mt-6 text-sm font-medium text-center text-white bg-green-700 rounded-md focus:ring-4 focus:ring-primary-200 dark:focus:ring-primary-900 hover:bg-primary-800">
+                                    Create
+                                </button>
+                            </div>
                     </form>
                 </div>
             </div>
@@ -158,79 +155,6 @@
     </div>
 @endsection
 @push('scripts')
-    <style>
-        #file-upload {
-            /* position: fixed;
-                top:-20%;
-                left: -20%; */
-        }
-
-        #butforBack {
-            /* border: 1px solid white; */
-            width: 100%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .forBackSup {
-            display: flex;
-            flex-direction: row;
-            gap: 10px;
-            align-items: center;
-            justify-content: center;
-            /* border: #f2f2f2 1px solid; */
-            width: fit-content;
-        }
-
-        .forBackSup>* {
-            /* border: black 1px solid; */
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            height: 100%;
-        }
-
-        /* .checkbox-container {
-                display: inline-block;
-                vertical-align: middle;
-            } */
-
-        .forBackSup>input {
-            appearance: none !important;
-            -webkit-appearance: none;
-            -moz-appearance: none;
-            width: 20px;
-            height: 20px;
-            border: 2px solid #131432;
-            border-radius: 4px;
-            outline: none;
-            /* border: none !important; */
-            cursor: pointer !important;
-            background-color: #131432;
-            /* padding: 0 0; */
-            /* margin: 0 0; */
-            padding: 2px;
-            margin: 2px;
-            box-shadow: none !important;
-            /* margin-right: 5px; Spasi antara checkbox dan teks */
-        }
-
-        .forBackSup>input:active {
-            border: none;
-            outline: none;
-            /* background-color: ; */
-
-        }
-
-        .forBackSup>input:checked {
-            background-color: #4CAF50;
-            border: none !important;
-            outline: none !important;
-            box-shadow: none !important;
-        }
-    </style>
     <script>
         function newMerks(apa) {
             let inp = document.getElementById('inpnewMerk');
@@ -379,47 +303,88 @@
         //untuk mengkosongkan value input form
         document.getElementById('button-reset').addEventListener('click', (e) => {
             e.preventDefault();
-            document.getElementById('nama_toko').value = '';
-            document.getElementById('no_hp').value = '';
-            document.getElementById('alamat').value = '';
-            document.getElementById('preview').classList.add('hidden');
-            document.getElementById('logo_toko').value = '';
+            // Get the form element
+            const form = document.getElementById('formCreate');
+
+            // Reset all input fields within the form
+            form.querySelectorAll('input').forEach(input => {
+                input.value = '';
+            });
+
+            // Reset the labels of the dropdown buttons
+            form.querySelectorAll('.dropdown-button span').forEach(span => {
+                span.textContent = 'Choose Merk'; // Or set to default placeholder for the dropdown
+            });
+
+            // Optionally, reset the visibility and state of dropdown menus
+            form.querySelectorAll('.dropdown-menu').forEach(menu => {
+                menu.classList.add('hidden');
+            });
+
+            // Reset the preview image
+            var preview = document.getElementById('preview');
+            preview.classList.add('hidden');
         });
     </script>
     <script>
-        // Function to toggle the dropdown state
-        function toggleDropdown(dropdownMenu) {
-            // alert("toggle dropdown jalan" + dropdownMenu);
-            const isOpen = !dropdownMenu.classList.contains('hidden');
-            document.querySelectorAll('.dropdown-menu').forEach(menu => {
-                if (menu !== dropdownMenu) menu.classList.add('hidden');
+        document.addEventListener('DOMContentLoaded', function() {
+            // Function to toggle the dropdown state
+            function toggleDropdown(dropdownMenu) {
+                // alert("toggle dropdown jalan" + dropdownMenu);
+                const isOpen = !dropdownMenu.classList.contains('hidden');
+                document.querySelectorAll('.dropdown-menu').forEach(menu => {
+                    if (menu !== dropdownMenu) menu.classList.add('hidden');
+                });
+                dropdownMenu.classList.toggle('hidden', isOpen);
+
+                // dropdownMenu.style.border = '2px solid red';
+            }
+
+            // Attach event listeners to each dropdown button
+            document.querySelectorAll('.dropdown-button').forEach(button => {
+                const dropdownMenu = button.nextElementSibling;
+                button.addEventListener('click', () => {
+                    toggleDropdown(dropdownMenu);
+                });
             });
-            dropdownMenu.classList.toggle('hidden', isOpen);
 
-            // dropdownMenu.style.border = '2px solid red';
-        }
+            // Add event listener to filter items based on input
+            document.querySelectorAll('.search-input').forEach(input => {
+                input.addEventListener('input', (e) => {
+                    const searchTerm = e.target.value.toLowerCase();
+                    const items = e.target.closest('.dropdown-menu').querySelectorAll('a');
 
-        // Attach event listeners to each dropdown button
-        document.querySelectorAll('.dropdown-button').forEach(button => {
-            const dropdownMenu = button.nextElementSibling;
-            button.addEventListener('click', () => {
-                toggleDropdown(dropdownMenu);
+                    items.forEach((item) => {
+                        const text = item.textContent.toLowerCase();
+                        if (text.includes(searchTerm)) {
+                            item.style.display = 'block';
+                        } else {
+                            item.style.display = 'none';
+                        }
+                    });
+                });
             });
-        });
 
-        // Add event listener to filter items based on input
-        document.querySelectorAll('.search-input').forEach(input => {
-            input.addEventListener('input', (e) => {
-                const searchTerm = e.target.value.toLowerCase();
-                const items = e.target.closest('.dropdown-menu').querySelectorAll('a');
+            document.addEventListener('click', (e) => {
+                if (!e.target.closest('.dropdown-div')) {
+                    document.querySelectorAll('.dropdown-menu').forEach(menu => {
+                        menu.classList.add('hidden');
+                    });
+                }
+            });
 
-                items.forEach((item) => {
-                    const text = item.textContent.toLowerCase();
-                    if (text.includes(searchTerm)) {
-                        item.style.display = 'block';
-                    } else {
-                        item.style.display = 'none';
-                    }
+            document.querySelectorAll('.dropdown-item').forEach(item => {
+                item.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const selectedValue = this.getAttribute('data-value');
+                    const hiddenInput = this.closest('.dropdown-div').querySelector(
+                        'input[type="hidden"]');
+                    const dropdownLabel = this.closest('.dropdown-div').querySelector(
+                        'button span');
+                    hiddenInput.value = selectedValue;
+                    dropdownLabel.textContent = this.textContent;
+                    const dropdownMenu = this.closest('.dropdown-menu');
+                    toggleDropdown(dropdownMenu);
                 });
             });
         });
