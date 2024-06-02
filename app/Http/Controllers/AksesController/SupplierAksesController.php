@@ -54,7 +54,7 @@ class SupplierAksesController extends Controller
 
         $request = Request::create('http://127.0.0.1:8000/api/suppliers', 'POST', $data);
         $response = app()->handle($request);
-        // dd($response);
+        // dd($response->getStatusCode());
         if ($response->getStatusCode() == 201) {
             session()->flash('success', 'Supplier berhasil ditambahkan');
             return redirect()->route('supplier.index');
