@@ -92,6 +92,7 @@ class MerkController extends Controller
         ], 200);
     }
 
+    //tidak perlu membuat function controller lagi, cukup memakai yang sudah ada diatas
     // public function getMerk()
     // {
     //     return Merk::all();

@@ -98,6 +98,7 @@ class SupplierController extends Controller
         ], 200);
     }
 
+    //tidak perlu membuat function controller lagi, cukup memakai yang sudah ada diatas
     // public function getSupplier()
     // {
     //     $back = Supplier::all();

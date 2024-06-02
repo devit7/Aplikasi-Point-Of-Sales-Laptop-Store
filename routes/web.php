@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AksesController\AuthAksesController;
 use App\Http\Controllers\AksesController\CustomersAksesController;
 use App\Http\Controllers\AksesController\KasirAksesController;
 use App\Http\Controllers\AksesController\MerkAksesController;
@@ -28,9 +29,9 @@ use Illuminate\Support\Facades\Route;
 */
 
 
-Route::prefix('admin')->group(function () {
+Route::middleware(['WebAkses:admin'])->prefix('admin')->group(function () {
     // Dashboard
-    Route::get('/', [DashboardController::class, 'index']);
+    Route::get('/', [DashboardController::class, 'index'])->name('admin.dashboard');
 
     // Setting
     Route::get('/setting', [TokoAksesController::class, 'getAll'])->name('admin.index');
@@ -68,6 +69,24 @@ Route::prefix('admin')->group(function () {
     Route::put('/supplier/update/{supplier}', [SupplierAksesController::class, 'updateData'])->name('supplier.updateCoy');
     Route::delete('/supplier/delete/{supplier}', [SupplierAksesController::class, 'deleteData'])->name('supplier.deleteCoy');
 
+<<<<<<< HEAD
+=======
+
+    // Product
+    Route::get('/product', [ProductAksesController::class,'productAdmin']);
+
+    // Route::post('/product', [ProductAksesController::class, 'createData'])->name('admin.product.store');
+    Route::get('/product/create/new',[ProductAksesController::class,'productAdminNew']);
+    Route::post('/product/Create',[ProductAksesController::class,'productAdminMakeNew']);
+    Route::get('/product/Update/{idProduk}',[ProductAksesController::class,'productAdminUpdate']);
+    Route::put('/product/Update/{idProduk}',[ProductAksesController::class,'productAdminMakeUpdate']);
+
+    // Route::get('/product/create', function () {
+    //     return view('admin.product.create');
+    // })->name('admin.product.create');
+
+
+>>>>>>> 766eab1cc9116ee5b88b05b3ac457c6dee3b41bc
     // Merk
     Route::get('/merk', [merkAksesController::class, 'getAll'])->name('merk.index');
     Route::get('/merk/create', function () {
@@ -95,16 +114,21 @@ Route::prefix('admin')->group(function () {
     Route::post('/products', [ProductAksesController::class, 'createData'])->name('products.store');
     Route::get('/products/update', function () {
         return view('admin.product.update');
+<<<<<<< HEAD
     })->name('products.edit');
     Route::put('/products/{product}', [ProductAksesController::class, 'updateData'])->name('products.update');
     Route::delete('/products/{product}', [ProductAksesController::class, 'deleteData'])->name('products.destroy');
 });
-
-Route::prefix('kasir')->group(function () {
-    Route::get('/', function () {
-        return view('kasir.dashboard');
+=======
     });
-    Route::get('/prod', [KasirAksesController::class, 'getAllProduct']);
+    Route::get('/payment/create', function () {
+        return view('admin.payment.create');
+    });
+})->middleware('UserAkses:admin');
+>>>>>>> 766eab1cc9116ee5b88b05b3ac457c6dee3b41bc
+
+Route::middleware(['WebAkses:kasir'])->prefix('kasir')->group(function () {
+    Route::get('/', [KasirAksesController::class, 'index'])->name('kasir.dashboard');
     Route::get('/2', function () {
         return view('kasir.dashboard-old');
     });
@@ -132,6 +156,8 @@ Route::prefix('kasir')->group(function () {
 Route::get('/', function () {
     return view('auth.login');
 });
+Route::post('/login', [AuthAksesController::class, 'aksesLogin'])->name('akses.login');
+Route::get('/logout', [AuthAksesController::class, 'aksesLogout'])->name('akses.logout');
 
 Route::get('/modal-tran', function () {
     return view('kasir.modal-tran');
@@ -150,6 +176,7 @@ Route::get('/tables', function () {
 Route::get('/u', [UserAksesController::class, 'getAll']);
 Route::get('/pay', [PaymentsAksesController::class, 'getAll']);
 Route::get('/cus', [CustomersAksesController::class, 'getAll']);
+<<<<<<< HEAD
 
 // Route::get('/adm-prod', [ProductController::class, 'productAdmin']);
 // Route::get('/adm-prod-new', [ProductController::class, 'productAdminNew']);
@@ -157,4 +184,12 @@ Route::get('/cus', [CustomersAksesController::class, 'getAll']);
 // Route::get('/adm-prod-Update/{idProduk}', [ProductController::class, 'productAdminUpdate']);
 // Route::put('/adm-prod-Updates/{idProduk}', [ProductController::class, 'productAdminMakeUpdate']);
 
+=======
+// <<<<<<< HEAD
+// Route::get('/adm-prod',[ProductController::class,'productAdmin']);
+// Route::post('/adm-prod-new',[ProductController::class,'productAdminMakeNew']);
+
+// =======
+// >>>>>>> e671a8a58f372ea62cd66443fdf0e69e7dd331ac
+>>>>>>> 766eab1cc9116ee5b88b05b3ac457c6dee3b41bc
 

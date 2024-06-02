@@ -13,7 +13,11 @@
             </div>
 
             <div class=" flex flex-row ">
+<<<<<<< HEAD
                 <a href="{{ route('products.create') }}"
+=======
+                <a href="/admin/product/create/new"
+>>>>>>> 766eab1cc9116ee5b88b05b3ac457c6dee3b41bc
                     class="flex flex-row  items-center gap-2  px-4 py-2 bg-[#FF9A37] text-white rounded-md hover:bg-[#FF9A37]">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                         stroke="currentColor" class="w-6 h-6">
@@ -33,7 +37,7 @@
         <div class="mt-10">
             <x-tables>
                 <div class="w-full mx-auto mt-2 bg-[#1C1D42] text-[#6b6eb4]  p-4 rounded-md">
-                    <table class="w-full mt-2  " id="table">
+                    <table class="w-full mt-2 text-start " id="table">
                         <thead class="bg-[#131432]  text-[#6b6eb4]">
                             <tr class="border-b-2 border-[#33356F]">
                                 <th class="py-2 text-[#6b6eb4]">No</th>
@@ -47,6 +51,7 @@
                                 <th class="">Action</th>
                             </tr>
                         </thead>
+<<<<<<< HEAD
                         <tbody class="text-[#6b6eb4] text-center">
 
                             @forelse ($data as $index => $value)
@@ -56,6 +61,17 @@
                                     <td>{{ $value['stock'] }}</td>
                                     <td>{{ $value['harga_jual'] }}</td>
                                     <td>{{ $value['harga_asli'] }}</td>
+=======
+                        <tbody class="text-[#6b6eb4]">
+                            @if(count($produks)>0)
+                                @for($y=0;$y<count($produks);$y++)
+                                <tr class="border-b-2 border-[#33356F]">
+                                    <td class="py-2">{{$y+1}}</td>
+                                    <td>{{$produks[$y]->product_name}}</td>
+                                    <td>{{$produks[$y]->stock}}</td>
+                                    <td>{{'Rp' . number_format($produks[$y]->harga_jual, 2, ',', '.')}}</td>
+                                    <td>{{'Rp' . number_format($produks[$y]->harga_asli, 2, ',', '.')}}</td>
+>>>>>>> 766eab1cc9116ee5b88b05b3ac457c6dee3b41bc
                                     <td>
                                         <img src="{{ asset('storage/image_product/' . $value['img']) }}" alt="image product"
                                             class="w-10 h-10 mx-auto">
@@ -74,7 +90,11 @@
                                                 </svg>
                                             </button>
                                         </a>
+<<<<<<< HEAD
                                         <a href="{{ route('products.edit', $value['id']) }}">
+=======
+                                        <a href="/admin/product/Update/{{$produks[$y]->id}}">
+>>>>>>> 766eab1cc9116ee5b88b05b3ac457c6dee3b41bc
                                             <button class="bg-[#002D4C] border p-1 border-[#2B4F69] rounded-md">
                                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                                     stroke-width="1.5" stroke="currentColor" class="w-6 h-6 text-blue-600">
