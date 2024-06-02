@@ -12,7 +12,7 @@
                 </p>
             </div>
             <div class=" flex flex-row ">
-                <a href="/adm-prod-new"
+                <a href="/admin/product/create/new"
                     class="flex flex-row  items-center gap-2  px-4 py-2 bg-[#FF9A37] text-white rounded-md hover:bg-[#FF9A37]">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                         stroke="currentColor" class="w-6 h-6">
@@ -66,7 +66,7 @@
                                                 </svg>
                                             </button>
                                         </a>
-                                        <a href="/adm-prod-Update/{{$produks[$y]->id}}">
+                                        <a href="/admin/product/Update/{{$produks[$y]->id}}">
                                             <button class="bg-[#002D4C] border p-1 border-[#2B4F69] rounded-md">
                                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                                     stroke-width="1.5" stroke="currentColor" class="w-6 h-6 text-blue-600">

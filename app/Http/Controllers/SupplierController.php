@@ -98,8 +98,5 @@ class SupplierController extends Controller
         ], 200);
     }
 
-    public function getSupplier(){
-        $back = Supplier::all();
-        return $back;
-    }
+    
 }

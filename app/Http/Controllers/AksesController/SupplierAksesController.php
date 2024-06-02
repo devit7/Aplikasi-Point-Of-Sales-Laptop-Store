@@ -110,5 +110,10 @@ class SupplierAksesController extends Controller
         $sup->save();
         return($sup->id);
     }
+
+    public function getSupplier(){
+        $back = Supplier::all();
+        return $back;
+    }
 }
 

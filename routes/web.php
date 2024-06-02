@@ -78,12 +78,17 @@ Route::middleware(['WebAkses:admin'])->prefix('admin')->group(function () {
 
 
     // Product
-    Route::get('/product', [ProductController::class,'productAdmin']);
+    Route::get('/product', [ProductAksesController::class,'productAdmin']);
 
-    Route::post('/product', [ProductAksesController::class, 'createData'])->name('admin.product.store');
-    Route::get('/product/create', function () {
-        return view('admin.product.create');
-    })->name('admin.product.create');
+    // Route::post('/product', [ProductAksesController::class, 'createData'])->name('admin.product.store');
+    Route::get('/product/create/new',[ProductAksesController::class,'productAdminNew']);
+    Route::post('/product/Create',[ProductAksesController::class,'productAdminMakeNew']);
+    Route::get('/product/Update/{idProduk}',[ProductAksesController::class,'productAdminUpdate']);
+    Route::put('/product/Update/{idProduk}',[ProductAksesController::class,'productAdminMakeUpdate']);
+
+    // Route::get('/product/create', function () {
+    //     return view('admin.product.create');
+    // })->name('admin.product.create');
 
 
     // Merk
@@ -169,11 +174,9 @@ Route::get('/u', [UserAksesController::class, 'getAll']);
 Route::get('/pay', [PaymentsAksesController::class, 'getAll']);
 Route::get('/cus', [CustomersAksesController::class, 'getAll']);
 // <<<<<<< HEAD
-Route::get('/adm-prod',[ProductController::class,'productAdmin']);
-Route::get('/adm-prod-new',[ProductController::class,'productAdminNew']);
-Route::post('/adm-prod-new',[ProductController::class,'productAdminMakeNew']);
-Route::get('/adm-prod-Update/{idProduk}',[ProductController::class,'productAdminUpdate']);
-Route::put('/adm-prod-Updates/{idProduk}',[ProductController::class,'productAdminMakeUpdate']);
+// Route::get('/adm-prod',[ProductController::class,'productAdmin']);
+// Route::post('/adm-prod-new',[ProductController::class,'productAdminMakeNew']);
+
 // =======
 // >>>>>>> e671a8a58f372ea62cd66443fdf0e69e7dd331ac
 

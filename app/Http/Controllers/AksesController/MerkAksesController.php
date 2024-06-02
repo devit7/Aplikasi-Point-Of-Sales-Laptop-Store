@@ -113,4 +113,8 @@ class merkAksesController extends Controller
         $merks->save();
         return($merks->id);
     }
+
+    public function getMerk(){
+        return Merk::all();
+    }
 }

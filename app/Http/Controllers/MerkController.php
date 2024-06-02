@@ -92,7 +92,5 @@ class MerkController extends Controller
         ], 200);
     }
 
-    public function getMerk(){
-        return Merk::all();
-    }
+    
 }
