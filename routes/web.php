@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AksesController\CustomersAksesController;
+use App\Http\Controllers\AksesController\KasirAksesController;
 use App\Http\Controllers\AksesController\MerkAksesController;
 use App\Http\Controllers\AksesController\PaymentsAksesController;
 use App\Http\Controllers\AksesController\RiwayatTransaksiContoller;
@@ -50,6 +51,10 @@ Route::prefix('admin')->group(function () {
     })->name('user.create');
     //Membuat user baru
     Route::post('/user/create', [UserAksesController::class, 'createData'])->name('user.store');
+    Route::get('/user/edit/{user}', [UserAksesController::class, 'getEdit'])->name('user.edit');
+    Route::put('/user/edit{user}', [UserAksesController::class, 'updateData'])->name('user.update');
+    Route::delete('/supplier/{user}', [UserAksesController::class, 'deleteData'])->name('user.delete');
+
 
 
     // Customer
@@ -72,7 +77,7 @@ Route::prefix('admin')->group(function () {
 
 
     // Product
-    Route::get('/product', [ProductAksesController::class, 'getAll'])->name('admin.product.index');
+    Route::get('/product', [ProductController::class,'productAdmin']);
 
     Route::post('/product', [ProductAksesController::class, 'createData'])->name('admin.product.store');
     Route::get('/product/create', function () {
@@ -118,6 +123,7 @@ Route::prefix('kasir')->group(function () {
     Route::get('/', function () {
         return view('kasir.dashboard');
     });
+    Route::get('/prod', [KasirAksesController::class, 'getAllProduct']);
     Route::get('/2', function () {
         return view('kasir.dashboard-old');
     });
