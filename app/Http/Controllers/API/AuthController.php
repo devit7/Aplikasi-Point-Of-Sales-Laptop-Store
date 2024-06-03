@@ -28,12 +28,14 @@ class AuthController extends Controller
                     'message' => 'Login Berhasil Admin',
                     'data' => Auth::user(),
                     'token' => $token,
+                    'role' => 'admin',
                 ]);
             } else if (Auth::user()->role == 'kasir') {
                 return response()->json([
                     'message' => 'Login Berhasil Kasir',
                     'data' => Auth::user(),
                     'token' => $token,
+                    'role' => 'kasir',
                 ]);
             }
         } else {
