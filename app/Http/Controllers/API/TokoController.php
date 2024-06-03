@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\API;
 
+use App\Http\Controllers\Controller;
 use App\Http\Requests\Toko\StoreRequest;
 use App\Http\Requests\Toko\UpdateRequest;
 use App\Models\Toko;
-use Illuminate\Http\Request;
 
 class TokoController extends Controller
 {
@@ -28,22 +28,22 @@ class TokoController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreRequest $request)
-    {
-        $validated = $request->validated();
+    // public function store(StoreRequest $request)
+    // {
+    //     $validated = $request->validated();
 
-        $toko = Toko::create([
-            'nama_toko' => $validated['nama_toko'],
-            'logo_toko' => $validated['logo_toko']->getClientOriginalName(),
-            'alamat' => $validated['alamat'],
-            'no_hp' => $validated['no_hp'],
-        ]);
+    //     $toko = Toko::create([
+    //         'nama_toko' => $validated['nama_toko'],
+    //         'logo_toko' => $validated['logo_toko']->getClientOriginalName(),
+    //         'alamat' => $validated['alamat'],
+    //         'no_hp' => $validated['no_hp'],
+    //     ]);
 
-        return response()->json([
-            'message' => 'Toko berhasil ditambahkan',
-            'data' => $toko,
-        ], 201);
-    }
+    //     return response()->json([
+    //         'message' => 'Toko berhasil ditambahkan',
+    //         'data' => $toko,
+    //     ], 201);
+    // }
 
     /**
      * Display the specified resource.
@@ -51,13 +51,13 @@ class TokoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Toko $toko)
-    {
-        return response()->json([
-            'message' => 'Detail Toko',
-            'data' => $toko,
-        ], 200);
-    }
+    // public function show(Toko $toko)
+    // {
+    //     return response()->json([
+    //         'message' => 'Detail Toko',
+    //         'data' => $toko,
+    //     ], 200);
+    // }
 
     /**
      * Update the specified resource in storage.
@@ -102,12 +102,12 @@ class TokoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Toko $toko)
-    {
-        $toko->delete();
+    // public function destroy(Toko $toko)
+    // {
+    //     $toko->delete();
 
-        return response()->json([
-            'message' => 'Toko berhasil dihapus',
-        ], 200);
-    }
+    //     return response()->json([
+    //         'message' => 'Toko berhasil dihapus',
+    //     ], 200);
+    // }
 }

@@ -24,8 +24,8 @@
     {{-- <script src="bootstrap/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
     </script> --}}
-    @stack('scripts')
     <script src="{{ asset('js/flowbite.min.js') }}"></script>
+    @stack('scripts')
 </body>
 
 </html>

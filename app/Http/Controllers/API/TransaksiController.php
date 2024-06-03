@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\API;
 
+use App\Http\Controllers\Controller;
 use App\Http\Requests\Transaksi\StoreRequest;
 use App\Http\Requests\Transaksi\UpdateRequest;
 use App\Models\Product;
 use App\Models\Transaksi;
-use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\DB;
 
@@ -23,7 +23,7 @@ class TransaksiController extends Controller
 
         return response()->json([
             'message' => 'List Transaksi',
-            'data' => $data
+            'data' => $data,
         ], 200);
     }
 

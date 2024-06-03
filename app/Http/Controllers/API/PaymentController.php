@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\API;
 
+use App\Http\Controllers\Controller;
 use App\Http\Requests\Payments\StoreRequest;
 use App\Http\Requests\Payments\UpdateRequest;
 use App\Models\Payments;
-use Illuminate\Http\Request;
 
-class PaymentsController extends Controller
+class PaymentController extends Controller
 {
     /**
      * Display a listing of the resource.

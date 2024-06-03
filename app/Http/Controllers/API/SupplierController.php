@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\API;
 
+use App\Http\Controllers\Controller;
 use App\Http\Requests\Supplier\StoreRequest;
 use App\Http\Requests\Supplier\UpdateRequest;
 use App\Models\Supplier;
-use Illuminate\Http\Request;
 
 class SupplierController extends Controller
 {
@@ -98,8 +98,10 @@ class SupplierController extends Controller
         ], 200);
     }
 
-    public function getSupplier(){
-        $back = Supplier::all();
-        return $back;
-    }
+    //tidak perlu membuat function controller lagi, cukup memakai yang sudah ada diatas
+    // public function getSupplier()
+    // {
+    //     $back = Supplier::all();
+    //     return $back;
+    // }
 }
