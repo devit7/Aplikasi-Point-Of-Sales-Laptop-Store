@@ -122,6 +122,10 @@ Route::middleware(['WebAkses:kasir'])->prefix('kasir')->group(function () {
     Route::get('/2', function () {
         return view('kasir.dashboard-old');
     });
+    Route::get('/add-to-cart/{product}', [KasirAksesController::class, 'addToCardSession'])->name('kasir.add-to-cart');
+    Route::get('/clear-cart', [KasirAksesController::class, 'clearCart'])->name('kasir.clear-cart');
+
+
     Route::get('/transaksi', function () {
         return view('kasir.RiwayatTransaksi');
     });
