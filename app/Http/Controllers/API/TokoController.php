@@ -84,10 +84,9 @@ class TokoController extends Controller
         }
 
         $toko->update([
-            'nama_toko' => $toko['nama_toko'],
-            'logo_toko' => $toko['logo_toko'],
-            'alamat' => $toko['alamat'],
-            'no_hp' => $toko['no_hp'],
+            'nama_toko' => $validated['nama_toko'],
+            'alamat' => $validated['alamat'],
+            'no_hp' => $validated['no_hp'],
         ]);
 
         return response()->json([
