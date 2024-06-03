@@ -48,11 +48,11 @@
                                 ">User</a>
                             </li>
                             <li>
-                                <a href="/admin/product"
+                                <a href="/admin/products/index"
                                     class="flex items-center w-full px-6 py-3 rounded-lg text-start leading-tight transition-all hover:bg-[#aa5800] hover:bg-opacity-10 hover:text-[#e07946] outline-none pl-11
                                 @if (request()->is('api/products')) bg-[#aa5800] bg-opacity-10 text-[#e07946] @endif
                                 ">Product</a>
-                                
+
                             </li>
                             <li>
                                 <a href="/admin/supplier"
