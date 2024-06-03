@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Auth\LoginRequest;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class AuthController extends Controller
 {
@@ -41,7 +42,7 @@ class AuthController extends Controller
         } else {
             return response()->json([
                 'message' => 'Login Gagal',
-            ]);
+            ],401);
         }
 
         return redirect()->back();
