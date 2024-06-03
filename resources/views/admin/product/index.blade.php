@@ -50,6 +50,7 @@
                         <tbody class="text-[#6b6eb4] text-center">
 
                             @forelse ($data as $index => $value)
+                                
                                 <tr class="border-b-2 border-[#33356F]">
                                     <td class="py-2">{{ $index + 1 }}</td>
                                     <td>{{ $value['product_name'] }}</td>
@@ -57,13 +58,13 @@
                                     <td>{{ $value['harga_jual'] }}</td>
                                     <td>{{ $value['harga_asli'] }}</td>
                                     <td>
-                                        <img src="{{ asset('storage/image_product/' . $value['img']) }}" alt="image product"
+                                        <img src="{{ asset('storage/images/' . $value['img']) }}" alt="image product"
                                             class="w-10 h-10 mx-auto">
                                     </td>
                                     <td>{{ $value['supplier']['supplier_name'] }}</td>
                                     <td>{{ $value['merk']['merk_name'] }}</td>
                                     <td>
-                                        <a href="{{ route('products.show', $value['id']) }}">
+                                        <!-- <a href="{{ route('products.show', $value['id']) }}">
                                             <button class="bg-[#002D4C] border p-1 border-[#2B4F69] rounded-md">
                                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                                     stroke-width="1.5" stroke="currentColor" class="w-6 h-6 text-green-600">
@@ -73,8 +74,8 @@
                                                         d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
                                                 </svg>
                                             </button>
-                                        </a>
-                                        <a href="{{ route('products.edit', $value['id']) }}">
+                                        </a> -->
+                                        <a href="/admin/product/Update/{{$value['id']}}">
                                             <button class="bg-[#002D4C] border p-1 border-[#2B4F69] rounded-md">
                                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                                     stroke-width="1.5" stroke="currentColor" class="w-6 h-6 text-blue-600">
