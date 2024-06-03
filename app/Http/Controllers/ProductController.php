@@ -5,7 +5,14 @@ namespace App\Http\Controllers;
 use App\Http\Requests\Product\StoreRequest;
 use App\Http\Requests\Product\UpdateRequest;
 use App\Models\Product;
+use App\Http\Controllers\AksesController\SupplierController;
+use App\Http\Controllers\MerkController;
+use App\Http\Controllers\AksesController\merkAksesController as aksesMerk;
+use App\Http\Controllers\AksesController\SupplierAksesController as AksesSup;
+use App\Http\Controllers\SupplierController as supKon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
+
 
 class ProductController extends Controller
 {
@@ -38,7 +45,7 @@ class ProductController extends Controller
             'stock' => $validated['stock'],
             'harga_jual' => $validated['harga_jual'],
             'harga_asli' => $validated['harga_asli'],
-            'img' => $validated['img']->getClientOriginalName(),
+            'img' => $request['img'],
             'supplier_id' => $validated['supplier_id'],
             'merk_id' => $validated['merk_id'],
         ]);
@@ -104,4 +111,7 @@ class ProductController extends Controller
             'message' => 'Product berhasil dihapus',
         ], 200);
     }
+
+    
+    
 }

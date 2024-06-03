@@ -28,7 +28,6 @@ class UpdateRequest extends FormRequest
         return [
             'nama_toko' => 'string|unique:toko,nama_toko,' . $tokoExist . ',id',
             'logo_toko' => 'nullable|max:10048',
-            'old_logo_toko' => 'nullable|max:10048',
             'alamat' => 'string|required',
             'no_hp' => 'numeric|digits:12|unsigned|unique:toko,no_hp,' . $tokoExist . ',id',
         ];
