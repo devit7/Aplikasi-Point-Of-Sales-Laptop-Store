@@ -204,8 +204,8 @@
     <style>
         #file-upload {
             /* position: fixed;
-                                top:-20%;
-                                left: -20%; */
+            top:-20%;
+            left: -20%; */
         }
 
         #butforBack {
