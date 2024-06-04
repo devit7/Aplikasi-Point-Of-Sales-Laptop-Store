@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Toko\StoreRequest;
 use App\Http\Requests\Toko\UpdateRequest;
 use App\Models\Toko;
+use Illuminate\Support\Facades\Storage;
 
 class TokoController extends Controller
 {
@@ -69,22 +70,18 @@ class TokoController extends Controller
     public function update(UpdateRequest $request, Toko $toko)
     {
         $validated = $request->validated();
-
+        $logo_toko_name = $toko->logo_toko; //logo lama
         if ($request->hasFile('logo_toko')) {
             $logo_toko = $request->file('logo_toko');
             $logo_toko_name = time() . '.' . $logo_toko->getClientOriginalExtension();
             $logo_toko->storePubliclyAs('logos', $logo_toko_name, 'public');
 
-            $toko->update([
-                'nama_toko' => $validated['nama_toko'],
-                'logo_toko' => $logo_toko_name,
-                'alamat' => $validated['alamat'],
-                'no_hp' => $validated['no_hp'],
-            ]);
+            Storage::delete('public/logos/' . $toko->logo_toko);
         }
 
         $toko->update([
             'nama_toko' => $validated['nama_toko'],
+            'logo_toko' => $logo_toko_name,
             'alamat' => $validated['alamat'],
             'no_hp' => $validated['no_hp'],
         ]);
