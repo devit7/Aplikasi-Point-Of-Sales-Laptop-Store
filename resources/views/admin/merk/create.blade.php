@@ -30,18 +30,14 @@
                         </div>
                         <div class="sm:col-span-2">
                             <div class="flex justify-between w-full gap-4 sm:gap-6">
-                                <button type="reset"
-                                    class="inline-flex items-center px-5 py-2.5 mt-4 sm:mt-6 text-sm font-medium text-center text-white bg-blue-700 rounded-md focus:ring-4 focus:ring-primary-200 dark:focus:ring-primary-900 hover:bg-primary-800">
-                                    Reset
-                                </button>
+                            <a href="{{ route('merk.index') }}"
+                                    class="inline-flex items-center px-5 py-2.5 mt-4 sm:mt-6 text-sm font-medium text-center text-white bg-gray-600 rounded-md focus:ring-4 focus:ring-primary-200 dark:focus:ring-primary-900 hover:bg-gray-700">
+                                    Back
+                                </a>
                                 <button type="submit"
                                     class="inline-flex items-center px-5 py-2.5 mt-4 sm:mt-6 text-sm font-medium text-center text-white bg-green-700 rounded-md focus:ring-4 focus:ring-primary-200 dark:focus:ring-primary-900 hover:bg-primary-800">
                                     Create merk
                                 </button>
-                                <a href="{{ route('merk.index') }}"
-                                    class="inline-flex items-center px-5 py-2.5 mt-4 sm:mt-6 text-sm font-medium text-center text-white bg-gray-600 rounded-md focus:ring-4 focus:ring-primary-200 dark:focus:ring-primary-900 hover:bg-gray-700">
-                                    Back
-                                </a>
                             </div>
                         </div>
                     </div>
