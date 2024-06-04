@@ -85,7 +85,7 @@ class ProductAksesController extends Controller
 
         if ($response->getStatusCode() == 201) {
             session()->flash('success', 'Data Product berhasil di tambahkan');
-            return redirect()->route('product.index');
+            return redirect()->route('products.index');
         } else {
             return response()->json([
                 'message' => 'Unauthorized',
