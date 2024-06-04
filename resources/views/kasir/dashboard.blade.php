@@ -7,7 +7,7 @@
         }
     </style>
     <div class=" text-[#93A2D2] flex flex-row w-full h-full  ">
-        <div class="flex flex-col w-full py-6 px-16 min-h-screen overflow-y-auto scrollbar-hide ">
+        <div class="flex flex-col w-full py-6 px-10 min-h-screen overflow-y-auto scrollbar-hide ">
             <div class="flex flex-col ">
                 <div class="text-[#93A2D2] flex ">
                     <button class=" h-12 w-12  rounded-l-lg flex items-center justify-center bg-[#1f2949]">
@@ -21,12 +21,12 @@
                         class="w-full h-12 px-4 rounded-r-lg bg-[#151e3b]   focus:outline-none">
                 </div>
                 <div class="flex flex-row py-4 mt-4 gap-4  text-lg font-semibold overflow-x-auto ">
-                    <a href="#" class="py-1 rounded-md px-6 bg-[#aa5800] bg-opacity-10 text-[#e07946]">
+                    <a href="#" class="py-1 rounded-sm px-6 bg-[#fa9e3b] bg-opacity-10 text-[#e07946]">
                         All
                     </a>
                     @forelse ($dataMerk as $merk)
                         <a href="#"
-                            class=" py-1 bg-[#151e3b] rounded-md px-6 hover:bg-[#aa5800] hover:bg-opacity-10 hover:text-[#e07946] transition duration-300">
+                            class=" py-1 bg-[#151e3b] rounded-sm px-6 hover:bg-[#fa9e3b] hover:bg-opacity-10 hover:text-[#e07946] transition duration-300">
                             {{ $merk['merk_name'] }}
                         </a>
                     @empty
