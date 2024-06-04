@@ -32,9 +32,9 @@
             </div>
             <div class=" flex flex-col  mt-4">
                 <div class="flex flex-row justify-between text-[20px] font-bold  ">
-                    Products (12)
+                    Products ({{ count($dataProduct) }})
                 </div>
-                <div class="flex flex-wrap gap-6 mt-8 justify-between">
+                <div class="flex flex-wrap gap-6 mt-8 justify-start">
                     @forelse ($dataProduct as $product)
                         <div class="w-[230px] max-h-[305px] bg-[#151e3b] rounded-lg hover:shadow-2xl  transition duration-300 ">
                             <div class="flex flex-col p-3 text-[#93A2D2] justify-between h-full">
@@ -42,11 +42,11 @@
                                     <img id="card-img" src="{{ asset('/laptop/phf4ybjk8ttu92ftvkhjfq1zf5tb5a100535.avif') }}"
                                         alt="" class="w-full h-full bg-gray-900 object-cover rounded-lg">
                                     <div
-                                        class="absolute top-0 right-0  text-sm text-blue-800 bg-blue-300 rounded-bl-lg px-3 ">
-                                        lenovo
+                                        class="absolute font-semibold top-0 right-0  text-sm text-blue-800 bg-blue-300 rounded-bl-lg px-3 ">
+                                        {{ $product['merk']['merk_name'] }}
                                     </div>
                                 </div>
-                                <div class="flex flex-col pt-3 justify-between gap-3 h-full">
+                                <div class="flex flex-col pt-3 justify-between   gap-3 h-full">
                                     <div class="flex flex-col justify-between h-full ">
                                         <div class="flex flex-row justify-between text-lg font-semibold">
                                             {{ $product['product_name'] }}
@@ -67,7 +67,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <a href="#"
+                                    <a href="{{ route('kasir.add-to-cart',['product' => $product['id'] ]) }}"
                                         class="font-semibold rounded-md text-blue-300 bg-indigo-800 py-1 text-center hover:bg-blue-300 hover:text-indigo-800 transition duration-300">
                                         Add to Chart
                                     </a>
@@ -98,31 +98,49 @@
             </div>
             <div class="border-y border-[#33356F] h-full">
                 <div class="flex flex-col gap-2 p-2 overflow-y-auto scrollbar-hide">
-                    <div class="flex flex-row gap-2 justify-between p-2 items-center rounded-md border border-gray-600">
-                        <img src="{{ asset('/laptop/phf4ybjk8ttu92ftvkhjfq1zf5tb5a100535.avif') }}" alt=""
-                            class="w-20 h-20 rounded-md border border-gray-600">
-                        <div class="flex flex-col  w-full ">
-                            <p class="text-[#93A2D2] font-semibold">
-                                Lenovo Legion 7i (16'', Gen 9)
+                    {{-- Check jika sesion cart ada --}}
+                    @if (session()->has('cart'))
+                        @forelse (session()->get('cart') as $cart)
+                            <div class="flex flex-row gap-2 justify-between p-2 items-center rounded-md border border-gray-600">
+                                <img src="{{ asset('/laptop/phf4ybjk8ttu92ftvkhjfq1zf5tb5a100535.avif') }}" alt=""
+                                    class="w-20 h-20 rounded-md border border-gray-600">
+                                <div class="flex flex-col  w-full ">
+                                    <p class="text-[#93A2D2] font-semibold">
+                                        {{ $cart['product_name'] }}
+                                    </p>
+                                    <div class="flex flex-row justify-between">
+                                        <p class="text-[#e07946] font-semibold">
+                                            Rp. {{ number_format($cart['harga_jual'], 0, ',', '.') }}
+                                        </p>
+                                        <p class="text-[#93A2D2]">
+                                            {{ $cart['qty'] }}x
+                                        </p>
+                                    </div>
+                                    <div class="flex flex-row justify-between">
+                                        <p class="text-[#93A2D2]">
+                                            Total :
+                                        </p>
+                                        <p class="text-green-600 font-semibold">
+                                            Rp. {{ number_format($cart['harga_jual'] * $cart['qty'], 0, ',', '.') }}
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        @empty
+                            <div class="flex flex-row justify-center items-center w-full h-full">
+                                <p class="text-[#93A2D2] text-[20px] font-bold text-center">
+                                    No Order
+                                </p>
+                            </div>
+                        @endforelse
+                    @else
+                        <div class="flex flex-row justify-center items-center w-full h-full">
+                            <p class="text-[#93A2D2] text-[20px] font-bold text-center">
+                                No Order -_-
                             </p>
-                            <div class="flex flex-row justify-between">
-                                <p class="text-[#e07946] font-semibold">
-                                    Rp. 1.000.000,00
-                                </p>
-                                <p class="text-[#93A2D2]">
-                                    2x
-                                </p>
-                            </div>
-                            <div class="flex flex-row justify-between">
-                                <p class="text-[#93A2D2]">
-                                    Total :
-                                </p>
-                                <p class="text-green-600 font-semibold">
-                                    Rp. 1.000.000,00
-                                </p>
-                            </div>
                         </div>
-                    </div>
+                    @endif
+                    
                 </div>
             </div>
             <div class="flex flex-col justify-between h-[300px] px-4 py-4">
@@ -138,9 +156,9 @@
                 </div>
                 <div class="flex flex-col gap-2 justify-between">
                     <x-modals_transaksi />
-                    <div class=" text-center rounded-md px-4 py-2 bg-gray-700 text-white hover:bg-gray-800 cursor-pointer">
+                    <a href="{{ route('kasir.clear-cart') }}" class=" text-center rounded-md px-4 py-2 bg-gray-700 text-white hover:bg-gray-800 cursor-pointer">
                         Clear Order
-                    </div>
+                    </a>
                 </div>
             </div>
         </div>

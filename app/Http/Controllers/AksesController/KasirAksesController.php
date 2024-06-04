@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\AksesController;
 
 use App\Http\Controllers\Controller;
+use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 
 class KasirAksesController extends Controller
 {
@@ -12,7 +14,7 @@ class KasirAksesController extends Controller
 
         $dataProduct = $this->getAllProduct();
         $dataMerk = $this->getAllMerk();
-
+        //dd($dataProduct);
         return view('kasir.dashboard', [
             'dataProduct' => $dataProduct,
             'dataMerk' => $dataMerk
@@ -50,8 +52,34 @@ class KasirAksesController extends Controller
         }
     }
 
-    public function addToCardSession(Request $request){
-        $request->session()->put('cart', $request->all());
+    public function addToCardSession(Product $product){
+        //dd($product);
+        $cart = Session::get('cart');
+
+        //check jika id product sudah ada di session
+        if($cart && array_key_exists($product['id'], $cart)){
+            if($cart[$product['id']]['qty'] >= $product['stock']){
+                return redirect()->back()->withErrors('Stock tidak mencukupi');
+            }
+            $cart[$product['id']]['qty'] += 1;
+            session()->put('cart', $cart);
+            return redirect()->back();
+        }
+
+        $cart[$product['id']] = array(
+            'product_id' => $product['id'],
+            'product_name' => $product['product_name'],
+            'harga_jual' => $product['harga_jual'],
+            'qty' => 1
+        );
+
+        session()->put('cart', $cart);
+
+        return redirect()->back();
+    }
+
+    public function clearCart(){
+        session()->forget('cart');
         return redirect()->back();
     }
 
