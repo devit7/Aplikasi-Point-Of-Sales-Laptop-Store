@@ -53,7 +53,6 @@ class merkAksesController extends Controller
         }
     }
     
-
     public function createData(StoreRequest $request)
     {
         $validator = $request->validated();
@@ -107,10 +106,10 @@ class merkAksesController extends Controller
         }
     }
 
-    public function makeMerk($merk){
-        $merks = new Merk();
-        $merks->merk_name = $merk;
-        $merks->save();
-        return($merks->id);
-    }
+    // public function makeMerk($merk){
+    //     $merks = new Merk();
+    //     $merks->merk_name = $merk;
+    //     $merks->save();
+    //     return($merks->id);
+    // }
 }

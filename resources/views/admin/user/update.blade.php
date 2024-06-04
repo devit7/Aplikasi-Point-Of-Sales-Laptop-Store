@@ -20,7 +20,7 @@
                     @endforeach
                 </ul>
             </div>
-            @endif  
+            @endif
         <div class="mt-10 flex justify-between w-full mx-auto     rounded-md">
             <div class="w-[600px] flex flex-col gap-4">
                 <p class="rounded-md p-4 font-semibold bg-[#1C1D42] text-[#6b6eb4]">Update User</p>
@@ -41,10 +41,10 @@
                             </div>
                             <div class="sm:col-span-2">
                                 <label for="role" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400">Role</label>
-                                <select id="role" name="role" class="bg-[#131432] border   text-sm rounded-lg  block w-full p-2.5  border-gray-600 placeholder-gray-400 text-gray-400 focus:ring-primary-500 focus:border-primary-500">
-                                    <option selected class="">Select role</option>
-                                    <option value="admin">Admin</option>
-                                    <option value="kasir">Kasir</option>
+                                <select id="role" name="role" class="bg-[#131432] border text-sm rounded-lg block w-full p-2.5 border-gray-600 placeholder-gray-400 text-gray-400 focus:ring-primary-500 focus:border-primary-500">
+                                    <option value="" disabled>Select role</option>
+                                    <option value="admin" {{ $data['role'] == 'admin' ? 'selected' : '' }}>Admin</option>
+                                    <option value="kasir" {{ $data['role'] == 'kasir' ? 'selected' : '' }}>Kasir</option>
                                 </select>
                             </div>
                         </div>

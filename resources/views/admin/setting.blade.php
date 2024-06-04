@@ -66,7 +66,6 @@
                             </div>
                             <div class="sm:col-span-2">
                                 <div class="relative border border-gray-400 border-dashed rounded-lg p-6" id="dropzone">
-                                    {{-- value input type hidden ini akan di ambil jika tidak menambahkan file image --}}
                                     <input type="file" id="logo_toko" name="logo_toko"
                                         class="absolute inset-0 w-full h-full opacity-0 z-50" />
 
@@ -109,7 +108,8 @@
                 <p class="rounded-md p-4 font-semibold bg-[#1C1D42] text-[#6b6eb4]">Preview Struk</p>
                 <div class="flex flex-col rounded-md p-6 bg-white border border-gray-400">
                     <div class="text-center">
-                        <img src="{{ asset("storage/logos/" . $toko[0]['logo_toko']) }}" alt="product" class="w-10 h-10 mx-auto">
+                        <img src="{{ asset('storage/logos/' . $toko[0]['logo_toko']) }}" alt="product"
+                            class="w-10 h-10 mx-auto">
                         <p class="text-lg font-semibold">{{ $toko[0]['nama_toko'] }}</p>
                         <p class="text-sm">{{ $toko[0]['alamat'] }}</p>
                         <p class="text-sm">{{ $toko[0]['no_hp'] }}</p>

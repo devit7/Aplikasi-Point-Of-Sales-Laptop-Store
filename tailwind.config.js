@@ -6,7 +6,8 @@ export default {
     "./resources/**/*.vue",
   ],
   theme: {
-    extend: {},
+    extend: {
+    },
   },
   plugins: [
     require('tailwind-scrollbar-hide')

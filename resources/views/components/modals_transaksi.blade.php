@@ -55,7 +55,7 @@
                         <div class="w-full ">
                             <input type="text" name="total" id="total"
                                 class="w-full text-right px-4 py-2  text-gray-600 bg-[#131432] border border-gray-600 rounded "
-                                value="Rp. 100.00.000,00" disabled>
+                                value="{{ number_format($totalAll, 0, ',', '.') }}" disabled>
                         </div>
                     </div>
                     <div class="flex flex-row w-full items-center ">
@@ -90,7 +90,7 @@
                     No, Cancel
                 </button>
                 <button type="submit"
-                    class="py-2 w-36 text-sm font-medium  rounded-md border  focus:ring-4 focus:outline-none focus:z-10 bg-green-700 text-green-200 border-green-500 hover:text-white hover:bg-green-600 focus:ring-green-600">
+                    class="py-2 w-36 text-sm font-medium   rounded-md border  focus:ring-4 focus:outline-none focus:z-10 bg-green-700 text-green-200 border-green-500 hover:text-white hover:bg-green-600 focus:ring-green-600">
                     Accept Transaction
                 </button>
             </div>

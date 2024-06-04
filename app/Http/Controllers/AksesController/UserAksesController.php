@@ -58,7 +58,7 @@ class UserAksesController extends Controller
             ]);
         }
     }
-    
+
     public function createData(StoreRequest $request)
     {
         $validator = $request->validated();
@@ -104,7 +104,7 @@ class UserAksesController extends Controller
     }
     public function deleteData($user)
     {
-        $request = Request::create('http://127.0.0.1:8000/api/user/' . $user, 'DELETE');
+        $request = Request::create('http://127.0.0.1:8000/api/users/' . $user, 'DELETE');
         $response = app()->handle($request);
         if ($response->getStatusCode() == 200) {
             return redirect()->route('user.index')->with('success', 'user berhasil delete');

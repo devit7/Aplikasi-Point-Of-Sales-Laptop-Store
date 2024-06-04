@@ -48,10 +48,11 @@
                                 ">User</a>
                             </li>
                             <li>
-                                <a href="/admin/product"
+                                <a href="/admin/products/index"
                                     class="flex items-center w-full px-6 py-3 rounded-lg text-start leading-tight transition-all hover:bg-[#aa5800] hover:bg-opacity-10 hover:text-[#e07946] outline-none pl-11
                                 @if (request()->is('api/products')) bg-[#aa5800] bg-opacity-10 text-[#e07946] @endif
                                 ">Product</a>
+
                             </li>
                             <li>
                                 <a href="/admin/supplier"
@@ -62,7 +63,7 @@
                             <li>
                                 <a href="/admin/merk"
                                     class="flex items-center w-full px-6 py-3 rounded-lg text-start leading-tight transition-all hover:bg-[#aa5800] hover:bg-opacity-10 hover:text-[#e07946] outline-none pl-11
-                                @if (request()->is('admin/merk')) bg-[#aa5800] bg-opacity-10 text-[#e07946] @endif
+                                @if (request()->is('api/merk')) bg-[#aa5800] bg-opacity-10 text-[#e07946] @endif
                                 ">Merk</a>
                             </li>
                             <li>
@@ -120,19 +121,37 @@
                     </a>
                 </div>
             </div>
-            <div tabindex="0"
-                class="flex  border-t bg-[#131542] border-[#33356F] items-center px-10 w-full font-semibold  py-3
-            ">
-                <div class="grid place-items-center mr-3">
-                    <img src="{{ asset('foto/user.png') }}" alt="" class=" rounded-full w-12">
+            <div class=" ">
+                <div class="flex flex-col  px-5 font-semibold mb-2 ">
+                    <div class="  items-center w-full  ">
+                        <a href="{{ route('akses.logout') }}" tabindex="0"
+                            class="flex items-center w-full  px-6 py-3 rounded-lg text-start leading-tight transition-all hover:bg-[#aa5800] hover:bg-opacity-10 hover:text-[#e07946] outline-none
+                ">
+                            <div class="grid place-items-center mr-3">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                    stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                        d="M8.25 9V5.25A2.25 2.25 0 0 1 10.5 3h6a2.25 2.25 0 0 1 2.25 2.25v13.5A2.25 2.25 0 0 1 16.5 21h-6a2.25 2.25 0 0 1-2.25-2.25V15M12 9l3 3m0 0-3 3m3-3H2.25" />
+                                </svg>
+                            </div>
+                            Logout
+                        </a>
+                    </div>
                 </div>
-                <div class="flex flex-col items-center   ">
-                    <p class="text-gray-400  font-bold  tracking-wider mb-1 ">
-                        Devit Erlingga
-                    </p>
-                    <p class=" font-medium  text-sm uppercase px-4 bg-green-900 rounded-xl text-green-400">
-                        kasir
-                    </p>
+                <div tabindex="0"
+                    class="flex  border-t bg-[#131542] border-[#33356F] items-center px-10 w-full font-semibold  py-3 
+                    ">
+                    <div class="grid place-items-center mr-3">
+                        <img src="{{ asset('foto/user.png') }}" alt="" class=" rounded-full w-12">
+                    </div>
+                    <div class="flex flex-col items-center   ">
+                        <p class="text-gray-400  font-bold  tracking-wider mb-1 ">
+                            {{ auth()->user()->nama }}
+                        </p>
+                        <p class=" font-medium  text-sm uppercase px-4 bg-green-900 rounded-xl text-green-400">
+                            {{ auth()->user()->role }}
+                        </p>
+                    </div>
                 </div>
             </div>
         </nav>
