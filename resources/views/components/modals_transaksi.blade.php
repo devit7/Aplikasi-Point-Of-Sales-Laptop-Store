@@ -55,7 +55,7 @@
                         <div class="w-full ">
                             <input type="text" name="total" id="total"
                                 class="w-full text-right px-4 py-2  text-gray-600 bg-[#131432] border border-gray-600 rounded "
-                                value="Rp. 100.00.000,00" disabled>
+                                value="{{ number_format($totalAll, 0, ',', '.') }}" disabled>
                         </div>
                     </div>
                     <div class="flex flex-row w-full items-center ">

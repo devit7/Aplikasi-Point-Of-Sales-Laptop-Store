@@ -72,7 +72,7 @@ class KasirAksesController extends Controller
             'harga_jual' => $product['harga_jual'],
             'qty' => 1
         );
-
+        //dd($cart);
         session()->put('cart', $cart);
 
         return redirect()->back();

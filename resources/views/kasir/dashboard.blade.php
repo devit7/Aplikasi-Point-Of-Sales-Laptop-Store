@@ -1,32 +1,35 @@
 @extends('layout.kasir_main')
 @section('title', 'Dashboard')
 @section('content')
-<style>
-    #card-img:hover {
-        transform: scale(1.1);
-    }
-</style>
+    <style>
+        #card-img:hover {
+            transform: scale(1.1);
+        }
+    </style>
     <div class=" text-[#93A2D2] flex flex-row w-full h-full  ">
         <div class="flex flex-col w-full py-6 px-16 min-h-screen overflow-y-auto scrollbar-hide ">
             <div class="flex flex-col ">
                 <div class="text-[#93A2D2] flex ">
                     <button class=" h-12 w-12  rounded-l-lg flex items-center justify-center bg-[#1f2949]">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
-                          </svg>                          
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                            stroke="currentColor" class="size-6">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
+                        </svg>
                     </button>
-                    <input type="text" placeholder="Search Product" class="w-full h-12 px-4 rounded-r-lg bg-[#151e3b]   focus:outline-none">
+                    <input type="text" placeholder="Search Product"
+                        class="w-full h-12 px-4 rounded-r-lg bg-[#151e3b]   focus:outline-none">
                 </div>
                 <div class="flex flex-row py-4 mt-4 gap-4  text-lg font-semibold overflow-x-auto ">
                     <a href="#" class="py-1 rounded-md px-6 bg-[#aa5800] bg-opacity-10 text-[#e07946]">
                         All
                     </a>
                     @forelse ($dataMerk as $merk)
-                    <a href="#" class=" py-1 bg-[#151e3b] rounded-md px-6 hover:bg-[#aa5800] hover:bg-opacity-10 hover:text-[#e07946] transition duration-300">
-                        {{ $merk['merk_name'] }}
-                    </a>
+                        <a href="#"
+                            class=" py-1 bg-[#151e3b] rounded-md px-6 hover:bg-[#aa5800] hover:bg-opacity-10 hover:text-[#e07946] transition duration-300">
+                            {{ $merk['merk_name'] }}
+                        </a>
                     @empty
-                        
                     @endforelse
                 </div>
             </div>
@@ -36,10 +39,12 @@
                 </div>
                 <div class="flex flex-wrap gap-6 mt-8 justify-start">
                     @forelse ($dataProduct as $product)
-                        <div class="w-[230px] max-h-[305px] bg-[#151e3b] rounded-lg hover:shadow-2xl  transition duration-300 ">
+                        <div
+                            class="w-[230px] max-h-[305px] bg-[#151e3b] rounded-lg hover:shadow-2xl  transition duration-300 ">
                             <div class="flex flex-col p-3 text-[#93A2D2] justify-between h-full">
                                 <div class="relative  w-full h-full overflow-hidden max-h-[180px]">
-                                    <img id="card-img" src="{{ asset('/laptop/phf4ybjk8ttu92ftvkhjfq1zf5tb5a100535.avif') }}"
+                                    <img id="card-img"
+                                        src="{{ asset('/laptop/phf4ybjk8ttu92ftvkhjfq1zf5tb5a100535.avif') }}"
                                         alt="" class="w-full h-full bg-gray-900 object-cover rounded-lg">
                                     <div
                                         class="absolute font-semibold top-0 right-0  text-sm text-blue-800 bg-blue-300 rounded-bl-lg px-3 ">
@@ -67,20 +72,20 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <a href="{{ route('kasir.add-to-cart',['product' => $product['id'] ]) }}"
+                                    <a href="{{ route('kasir.add-to-cart', ['product' => $product['id']]) }}"
                                         class="font-semibold rounded-md text-blue-300 bg-indigo-800 py-1 text-center hover:bg-blue-300 hover:text-indigo-800 transition duration-300">
                                         Add to Chart
                                     </a>
                                 </div>
                             </div>
                         </div>
-                        @empty
+                    @empty
                         <div class="flex flex-row justify-center items-center w-full h-full">
                             <p class="text-[#93A2D2] text-[20px] font-bold text-center">
                                 No Product
                             </p>
                         </div>
-                        @endforelse
+                    @endforelse
 
                 </div>
             </div>
@@ -101,7 +106,8 @@
                     {{-- Check jika sesion cart ada --}}
                     @if (session()->has('cart'))
                         @forelse (session()->get('cart') as $cart)
-                            <div class="flex flex-row gap-2 justify-between p-2 items-center rounded-md border border-gray-600">
+                            <div
+                                class="flex flex-row gap-2 justify-between p-2 items-center rounded-md border border-gray-600">
                                 <img src="{{ asset('/laptop/phf4ybjk8ttu92ftvkhjfq1zf5tb5a100535.avif') }}" alt=""
                                     class="w-20 h-20 rounded-md border border-gray-600">
                                 <div class="flex flex-col  w-full ">
@@ -140,7 +146,7 @@
                             </p>
                         </div>
                     @endif
-                    
+
                 </div>
             </div>
             <div class="flex flex-col justify-between h-[300px] px-4 py-4">
@@ -150,13 +156,25 @@
                             Total Amount
                         </p>
                         <p class="  ">
-                            Rp. 1.000.000,00
+                            @php
+                                $total = 0;
+                            @endphp
+                            @if (session()->has('cart'))
+                                @foreach (session()->get('cart') as $item)
+                                    @php
+                                        $itemTotal = $item['harga_jual'] * $item['qty'];
+                                        $total += $itemTotal;
+                                    @endphp
+                                @endforeach
+                            @endif
+                            Rp. {{ number_format($total, 0, ',', '.') }}
                         </p>
                     </div>
                 </div>
                 <div class="flex flex-col gap-2 justify-between">
-                    <x-modals_transaksi />
-                    <a href="{{ route('kasir.clear-cart') }}" class=" text-center rounded-md px-4 py-2 bg-gray-700 text-white hover:bg-gray-800 cursor-pointer">
+                    <x-modals_transaksi totalAll="{{ $total }}" />
+                    <a href="{{ route('kasir.clear-cart') }}"
+                        class=" text-center rounded-md px-4 py-2 bg-gray-700 text-white hover:bg-gray-800 cursor-pointer">
                         Clear Order
                     </a>
                 </div>
