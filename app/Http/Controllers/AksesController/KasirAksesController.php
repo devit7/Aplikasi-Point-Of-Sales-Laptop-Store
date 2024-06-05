@@ -10,8 +10,9 @@ use Illuminate\Support\Facades\Session;
 
 class KasirAksesController extends Controller
 {
-    public function index(){
+    public function index(Request $request){
 
+        //jika ada parameter search
 
         $dataProduct = $this->getAllProduct();
         $dataMerk = $this->getAllMerk();

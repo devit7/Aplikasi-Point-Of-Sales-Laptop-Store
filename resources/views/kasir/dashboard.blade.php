@@ -10,17 +10,18 @@
     <div class=" text-[#93A2D2] flex flex-row w-full h-full  ">
         <div class="flex flex-col w-full py-6 px-10 min-h-screen overflow-y-auto scrollbar-hide ">
             <div class="flex flex-col ">
-                <div class="text-[#93A2D2] flex ">
-                    <button class=" h-12 w-12  rounded-l-lg flex items-center justify-center bg-[#1f2949]">
+                <form class="text-[#93A2D2] flex " action="" method="GET">
+                    @csrf
+                    <button type="submit" class=" h-12 w-12  rounded-l-lg flex items-center justify-center bg-[#1f2949]">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                             stroke="currentColor" class="size-6">
                             <path stroke-linecap="round" stroke-linejoin="round"
                                 d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
                         </svg>
                     </button>
-                    <input type="text" placeholder="Search Product"
+                    <input  type="text" placeholder="Search Product" name="search"
                         class="w-full h-12 px-4 rounded-r-lg bg-[#151e3b]   focus:outline-none">
-                </div>
+                </form>
                 <div class="flex flex-row py-4 mt-4 gap-4  text-lg font-semibold overflow-x-auto ">
                     <a href="#" class="py-1 rounded-sm px-6 bg-[#fa9e3b] bg-opacity-10 text-[#e07946]">
                         All
@@ -48,8 +49,8 @@
                             <div class="flex flex-col p-3 text-[#93A2D2] justify-between h-full">
                                 <div class="relative  w-full h-full overflow-hidden max-h-[180px]">
                                     <img id="card-img"
-                                        src="{{ asset('/laptop/phf4ybjk8ttu92ftvkhjfq1zf5tb5a100535.avif') }}"
-                                        alt="" class="w-full h-full bg-gray-900 object-cover rounded-lg">
+                                        src="{{ asset('storage/images/' . $product['img']) }}"
+                                        alt="product img" class="w-full h-full bg-gray-900 object-cover rounded-lg">
                                     <div
                                         class="absolute font-semibold top-0 right-0  text-sm text-blue-800 bg-blue-300 rounded-bl-lg px-3 ">
                                         {{ $product['merk']['merk_name'] }}
