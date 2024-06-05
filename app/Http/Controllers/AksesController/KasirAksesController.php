@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\AksesController;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Transaksi\StoreRequest;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
@@ -10,14 +11,18 @@ use Illuminate\Support\Facades\Session;
 class KasirAksesController extends Controller
 {
     public function index(){
-        
+
 
         $dataProduct = $this->getAllProduct();
         $dataMerk = $this->getAllMerk();
-        //dd($dataProduct);
+        $dataCustomer = $this->getAllCustomer();
+        $dataPayment = $this->getAllPayment();
+        // dd($dataCustomer);
         return view('kasir.dashboard', [
             'dataProduct' => $dataProduct,
-            'dataMerk' => $dataMerk
+            'dataMerk' => $dataMerk,
+            'dataCustomer' => $dataCustomer,
+            'dataPayment' => $dataPayment
         ]);
 
     }
@@ -41,6 +46,33 @@ class KasirAksesController extends Controller
 
     public function getAllMerk(){
         $request = Request::create('http://127.0.0.1:8000/api/merk', 'GET');
+        $response = app()->handle($request);
+        $data = json_decode($response->getContent(), true);
+        if ($response->getStatusCode() == 200) {
+            return$data['data'];
+        } else {
+            return response()->json([
+                'message' => 'Unauthorized'
+            ], 401);
+        }
+    }
+
+    public function getAllCustomer(){
+        $request = Request::create('http://127.0.0.1:8000/api/customers', 'GET');
+        $response = app()->handle($request);
+        $data = json_decode($response->getContent(), true);
+        if ($response->getStatusCode() == 200) {
+            return$data['data'];
+        } else {
+            return response()->json([
+                'message' => 'Unauthorized'
+            ], 401);
+        }
+    }
+
+    // get all payments
+    public function getAllPayment(){
+        $request = Request::create('http://127.0.0.1:8000/api/payments', 'GET');
         $response = app()->handle($request);
         $data = json_decode($response->getContent(), true);
         if ($response->getStatusCode() == 200) {

@@ -6,6 +6,7 @@
             transform: scale(1.1);
         }
     </style>
+    {{-- @dd($dataCustomer) --}}
     <div class=" text-[#93A2D2] flex flex-row w-full h-full  ">
         <div class="flex flex-col w-full py-6 px-16 min-h-screen overflow-y-auto scrollbar-hide ">
             <div class="flex flex-col ">
@@ -116,7 +117,7 @@
                                     </p>
                                     <div class="flex flex-row justify-between">
                                         <p class="text-[#e07946] font-semibold">
-                                            Rp. {{ number_format($cart['harga_jual'], 0, ',', '.') }}
+                                            @currency($cart['harga_jual'])
                                         </p>
                                         <p class="text-[#93A2D2]">
                                             {{ $cart['qty'] }}x
@@ -127,7 +128,7 @@
                                             Total :
                                         </p>
                                         <p class="text-green-600 font-semibold">
-                                            Rp. {{ number_format($cart['harga_jual'] * $cart['qty'], 0, ',', '.') }}
+                                            @currency($cart['harga_jual'] * $cart['qty'])
                                         </p>
                                     </div>
                                 </div>
@@ -167,12 +168,12 @@
                                     @endphp
                                 @endforeach
                             @endif
-                            Rp. {{ number_format($total, 0, ',', '.') }}
+                            @currency($total)
                         </p>
                     </div>
                 </div>
                 <div class="flex flex-col gap-2 justify-between">
-                    <x-modals_transaksi totalAll="{{ $total }}" />
+                    <x-modals_transaksi :totalAll="$total" :dataCustomer="$dataCustomer" :dataPayment="$dataPayment"/>
                     <a href="{{ route('kasir.clear-cart') }}"
                         class=" text-center rounded-md px-4 py-2 bg-gray-700 text-white hover:bg-gray-800 cursor-pointer">
                         Clear Order
