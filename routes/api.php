@@ -38,12 +38,11 @@ Route::apiResource('/products', ProductController::class);
 Route::middleware('auth:sanctum')->group(function () {
     // jika role admin
     Route::group(['middleware' => ['UserAkses:admin']], function () {
+        
     });
 
     // jika role kasir
     Route::group(['middleware' => ['UserAkses:kasir']], function () {
-        //Route::apiResource('/customers', CustomersController::class);
-        //Route::apiResource('/payments', PaymentsController::class);
-        //Route::apiResource('/transaksi', TransaksiController::class);
+        
     });
 });
