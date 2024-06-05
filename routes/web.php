@@ -71,13 +71,13 @@ Route::middleware(['WebAkses:admin'])->prefix('admin')->group(function () {
 
 
     // Product
-    // Route::get('/product', [ProductAksesController::class, 'productAdmin']);
+    Route::get('/product', [ProductAksesController::class, 'getAll']);
 
     // Route::post('/product', [ProductAksesController::class, 'createData'])->name('admin.product.store');
-    // Route::get('/product/create/new', [ProductAksesController::class, 'productAdminNew']);
-    // Route::post('/product/Create', [ProductAksesController::class, 'productAdminMakeNew']);
-    // Route::get('/product/Update/{idProduk}', [ProductAksesController::class, 'productAdminUpdate']);
-    // Route::put('/product/Update/{idProduk}', [ProductAksesController::class, 'productAdminMakeUpdate']);
+    Route::get('/product/create/new', [ProductAksesController::class, 'getAllToCreate']);
+    Route::post('/product/Create', [ProductAksesController::class, 'productAdminMakenew']);
+    Route::get('/product/Update/{idProduk}', [ProductAksesController::class, 'productAdminUpdate']);
+    Route::put('/product/Update/{idProduk}', [ProductAksesController::class, 'productAdminMakeUpdate']);
 
     // Route::get('/product/create', function () {
     //     return view('admin.product.create');
@@ -109,9 +109,9 @@ Route::middleware(['WebAkses:admin'])->prefix('admin')->group(function () {
     Route::get('/products/show/{product}', [ProductAksesController::class, 'getDetail'])->name('products.show');
     Route::get('/products/create', [ProductAksesController::class, 'getAllToCreate'])->name('products.create');
     Route::post('/products/store', [ProductAksesController::class, 'createData'])->name('products.store');
-    Route::get('/products/edit/{product}', function () {
-        return view('admin.product.update');
-    })->name('products.edit');
+    // Route::get('/products/edit/{product}', function () {
+    //     return view('admin.product.update');
+    // })->name('products.edit');
     Route::put('/products/update/{product}', [ProductAksesController::class, 'updateData'])->name('products.update');
     Route::delete('/products/destroy/{product}', [ProductAksesController::class, 'deleteData'])->name('products.destroy');
 });
