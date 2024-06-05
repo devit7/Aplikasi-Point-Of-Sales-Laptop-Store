@@ -42,13 +42,12 @@ class TokoAksesController extends Controller
         $temp_request = Request::create(
             'http://127.0.0.1:8000/api/toko/' . $toko->id,
             'PUT',
-            $data
+            $data,
         );
+        $temp_request->files->set('logo_toko', $file);
 
-        if ($request->hasFile('logo_toko')) {
-            $temp_request->files->set('logo_toko', $file);
-        }
         $response = app()->handle($temp_request);
+
         if ($response->getStatusCode() == 200) {
             session()->flash('success', 'Toko berhasil di update');
             return redirect()->route('admin.index');

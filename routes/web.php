@@ -75,9 +75,11 @@ Route::middleware(['WebAkses:admin'])->prefix('admin')->group(function () {
 
     // Route::post('/product', [ProductAksesController::class, 'createData'])->name('admin.product.store');
     Route::get('/product/create/new', [ProductAksesController::class, 'getAllToCreate']);
-    Route::post('/product/Create', [ProductAksesController::class, 'productAdminMakenew']);
-    Route::get('/product/Update/{idProduk}', [ProductAksesController::class, 'productAdminUpdate']);
-    Route::put('/product/Update/{idProduk}', [ProductAksesController::class, 'productAdminMakeUpdate']);
+    Route::post('/product/create', [ProductAksesController::class, 'productAdminMakenew']);
+    Route::get('/product/update/{idProduk}', [ProductAksesController::class, 'productAdminUpdate']);
+    Route::put('/product/update/{idProduk}', [ProductAksesController::class, 'productAdminMakeUpdate']);
+
+    Route::put('/product/destroy/{product}', [ProductAksesController::class, 'deleteData'])->name('products.destroy');
 
     // Route::get('/product/create', function () {
     //     return view('admin.product.create');

@@ -16,21 +16,24 @@
             <div class="w-[100%] flex flex-col gap-4">
                 <p class="rounded-md p-4 font-semibold bg-[#1C1D42] text-[#6b6eb4]">Create a Product</p>
                 <div class="rounded-md p-4 bg-[#1C1D42] h-[auto] text-[#6b6eb4]">
-                    <form action="/admin/product/Create" class="  px-[2%] h-[100%] py-[2%] flex flex-col justify-between items-cente" id="formCreate" method="post" enctype="multipart/form-data">
+                    <form action="/admin/product/create"
+                        class="  px-[2%] h-[100%] py-[2%] flex flex-col justify-between items-cente" id="formCreate"
+                        method="post" enctype="multipart/form-data">
                         @csrf
                         <div class="flex flex-row w-[100%] h-[auto] justify-between">
                             <div class="w-[45%]">
                                 <div class="grid gap-4 sm:grid-cols-2 sm:gap-6">
                                     <div class="sm:col-span-2">
-                                        <label for="name" class="block mb-2 text-sm font-medium  text-gray-400">Nama</label>
-                                        <input type="text" name="namaProduk" id="name"
+                                        <label for="name"
+                                            class="block mb-2 text-sm font-medium  text-gray-400">Nama</label>
+                                        <input type="text" name="product_name" id="name"
                                             class="bg-[#131432] border text-sm rounded-lg  block w-full p-2.5  border-gray-600 placeholder-gray-400 text-gray-400 focus:ring-primary-500 focus:border-primary-500"
                                             placeholder="Ex : Wibu Jaya Bersama" required="">
                                     </div>
                                     <div class="sm:col-span-2">
                                         <label for="nama_toko" class="block mb-2 text-sm font-medium  text-gray-400">Harga
                                             Jual</label>
-                                        <input type="number" name="hargaJual" id="nama_toko"
+                                        <input type="number" name="harga_jual" id="nama_toko"
                                             class="bg-[#131432] border   text-sm rounded-lg  block w-full p-2.5  border-gray-600 placeholder-gray-400 text-gray-400 focus:ring-primary-500 focus:border-primary-500"
                                             placeholder="EX : 0821*" required="">
                                     </div>
@@ -38,14 +41,14 @@
                                         <label for="description"
                                             class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400">Harga
                                             Asli</label>
-                                        <input type="number" name="hargaAsli" id="hargaasli"
+                                        <input type="number" name="harga_asli" id="hargaasli"
                                             class="bg-[#131432] border   text-sm rounded-lg  block w-full p-2.5  border-gray-600 placeholder-gray-400 text-gray-400 focus:ring-primary-500 focus:border-primary-500"
                                             placeholder="EX : 0821*" required="">
                                     </div>
                                     <div class="sm:col-span-2">
                                         <label for="description"
                                             class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400">Stock</label>
-                                        <input type="number" name="stok" id="nama_toko"
+                                        <input type="number" name="stock" id="nama_toko"
                                             class="bg-[#131432] border   text-sm rounded-lg  block w-full p-2.5  border-gray-600 placeholder-gray-400 text-gray-400 focus:ring-primary-500 focus:border-primary-500"
                                             placeholder="EX : 0821*" required="">
                                     </div>
@@ -54,9 +57,11 @@
                             <div class="w-[45%] grid gap-4 sm:grid-cols-2 sm:gap-6 sm:col-span-2">
                                 <div class="sm:col-span-2">
                                     <label for="name" class="block mb-2 text-sm font-medium  text-gray-400">Foto</label>
-                                    <div class="relative border border-gray-400 border-dashed rounded-lg p-6" id="dropzone">
-                                        <input type="file" id="img" name="fileUpload" type="file"
-                                            accept=".jpg,.jpeg,.png" class="absolute inset-0 w-full h-full opacity-0 z-50" />
+                                    <div class="relative border border-gray-400 border-dashed rounded-lg p-6"
+                                        id="dropzone">
+                                        <input type="file" id="img" name="img_product" type="file"
+                                            accept=".jpg,.jpeg,.png"
+                                            class="absolute inset-0 w-full h-full opacity-0 z-50" />
                                         <div class="text-center">
                                             <img class="mx-auto h-12 w-12"
                                                 src="https://www.svgrepo.com/show/357902/image-upload.svg" alt="">
@@ -85,8 +90,8 @@
                                     <button type="button" id="dropdown-button-supplier"
                                         class="flex dropdown-button justify-between bg-[#131432] border text-sm rounded-lg  w-full p-2.5  border-gray-600 placeholder-gray-400 text-gray-400 focus:ring-primary-500 focus:border-primary-500">
                                         <span class="">Choose Supplier</span>
-                                        <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 ml-2 -mr-1" viewBox="0 0 20 20"
-                                            fill="currentColor" aria-hidden="true">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 ml-2 -mr-1"
+                                            viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
                                             <path fill-rule="evenodd"
                                                 d="M6.293 9.293a1 1 0 011.414 0L10 11.586l2.293-2.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z"
                                                 clip-rule="evenodd" />
@@ -132,7 +137,7 @@
                                             class="search-input w-full px-2 bg-[#131432] text-gray-400 border rounded-md  border-gray-300 focus:outline-none"
                                             type="text" placeholder="Search Merk" autocomplete="off">
                                         {{-- List Dropdown --}}
-                                        
+
                                         @forelse ($dataMerk['data'] as $merk)
                                             <a href="#"
                                                 class="dropdown-item pl-3 flex row text-white hover:bg-[#6b6eb4] active:bg-blue-100 cursor-pointer"
@@ -145,21 +150,21 @@
 
                                 </div>
 
-                                
+
                             </div>
                         </div>
-                        
+
                         <div class="flex justify-between w-full gap-4 sm:gap-6">
-                                <button type="button" id="button-reset"
-                                    class="inline-flex items-center px-5 py-2.5 mt-4 sm:mt-6 text-sm font-medium text-center text-white bg-red-700 rounded-md focus:ring-4 focus:ring-primary-200 dark:focus:ring-primary-900 hover:bg-primary-800">
-                                    Reset
-                                </button>
-                                <button type="submit" id="button-reset"
-                                    class="inline-flex items-center px-5 py-2.5 mt-4 sm:mt-6 text-sm font-medium text-center text-white bg-green-700 rounded-md focus:ring-4 focus:ring-primary-200 dark:focus:ring-primary-900 hover:bg-primary-800">
-                                    Create
-                                </button>
+                            <button type="button" id="button-reset"
+                                class="inline-flex items-center px-5 py-2.5 mt-4 sm:mt-6 text-sm font-medium text-center text-white bg-red-700 rounded-md focus:ring-4 focus:ring-primary-200 dark:focus:ring-primary-900 hover:bg-primary-800">
+                                Reset
+                            </button>
+                            <button type="submit" id="button-reset"
+                                class="inline-flex items-center px-5 py-2.5 mt-4 sm:mt-6 text-sm font-medium text-center text-white bg-green-700 rounded-md focus:ring-4 focus:ring-primary-200 dark:focus:ring-primary-900 hover:bg-primary-800">
+                                Create
+                            </button>
                         </div>
-                        
+
                     </form>
                 </div>
             </div>
@@ -168,13 +173,14 @@
 @endsection
 @push('scripts')
     <style>
-        main::-webkit-scrollbar{
+        main::-webkit-scrollbar {
             width: 0;
             /* background-color: white;
-            color: white;
-            border: 1px solid inherit; */
+                            color: white;
+                            border: 1px solid inherit; */
         }
-        main{
+
+        main {
             scrollbar-width: none;
         }
     </style>
