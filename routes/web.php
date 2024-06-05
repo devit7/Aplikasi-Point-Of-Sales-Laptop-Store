@@ -124,6 +124,7 @@ Route::middleware(['WebAkses:kasir'])->prefix('kasir')->group(function () {
     });
     Route::get('/add-to-cart/{product}', [KasirAksesController::class, 'addToCardSession'])->name('kasir.add-to-cart');
     Route::get('/clear-cart', [KasirAksesController::class, 'clearCart'])->name('kasir.clear-cart');
+    Route::post('/transaction-process', [KasirAksesController::class, 'transactionProcess'])->name('kasir.transaction-process');
 
 
     Route::get('/transaksi', function () {
