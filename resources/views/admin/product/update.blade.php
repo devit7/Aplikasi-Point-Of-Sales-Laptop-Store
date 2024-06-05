@@ -51,14 +51,14 @@
                                         placeholder="EX : 0821*" required="">
                                 </div>
 
-                                
+
                             </div>
                             <div class="w-[45%]">
                                 <div class="sm:col-span-2 mb-8" id="forChangefoto">
                                     <label for="description"
                                             class="block mb-4 text-sm font-medium text-gray-900 dark:text-gray-400">Foto</label>
                                     <div class="forStok">
-                                    
+
                                         <input type="text" name="fotoLama" style="display:none;" id="fotoLama"
                                             value="{{ $pro['img'] }}"
                                             class="bg-[#131432] border border-gray-600 inline-flex items-center px-5 py-2.5 mt-4 sm:mt-6 text-sm font-medium text-center text-white bg-green-700 rounded-md focus:ring-4 focus:ring-primary-200 dark:focus:ring-primary-900 hover:bg-primary-800">
@@ -70,7 +70,7 @@
                                             mengganti foto</label>
                                     </div>
                                 </div>
-                                
+
                                 <div class="sm:col-span-2 mb-[5px]" id="potoArea" style="display:none;">
                                     <div class=" relative border border-gray-400 border-dashed rounded-lg mb-4 p-2" id="dropzone">
                                         <input id="img" type="file" name="fileUpload" type="file" accept=".jpg,.jpeg,.png"
@@ -156,12 +156,12 @@
                                         @empty
                                             <p class="text-center text-white">No Merk</p>
                                         @endforelse
-                                        <input type="hidden" name="merk" id="merk-input" value="{{ $merk['id'] }}">
+                                        <input type="hidden" name="merk" id="merk-input" value="{{ $pro->merk_id}}">
                                     </div>
 
                                 </div>
 
-                                
+
                             </div>
                         </div>
                         <div class="flex justify-between w-full gap-4 sm:gap-6">
@@ -174,7 +174,7 @@
                                 Update
                             </button>
                         </div>
-                        
+
                     </form>
                 </div>
             </div>
@@ -606,6 +606,7 @@
                     const dropdownLabel = this.closest('.dropdown-div').querySelector(
                         'button span');
                     hiddenInput.value = selectedValue;
+                    alert(selectedValue);
                     dropdownLabel.textContent = this.textContent;
                     const dropdownMenu = this.closest('.dropdown-menu');
                     toggleDropdown(dropdownMenu);
