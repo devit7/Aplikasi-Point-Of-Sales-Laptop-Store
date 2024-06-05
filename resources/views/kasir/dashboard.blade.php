@@ -40,6 +40,9 @@
                 </div>
                 <div class="flex flex-wrap gap-6 mt-8 justify-start">
                     @forelse ($dataProduct as $product)
+                        @if ($product['stock'] == 0)
+                            @continue
+                        @endif
                         <div
                             class="w-[230px] max-h-[305px] bg-[#151e3b] rounded-lg hover:shadow-2xl  transition duration-300 ">
                             <div class="flex flex-col p-3 text-[#93A2D2] justify-between h-full">
@@ -59,7 +62,7 @@
                                         </div>
                                         <div class="flex flex-row justify-between">
                                             <div class=" font-bold text-[#e07946]">
-                                                Rp. {{ number_format($product['harga_jual'], 0, ',', '.') }}
+                                                Rp. @currency($product['harga_jual'])
                                             </div>
                                             <div class="flex items-center gap-1">
                                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
@@ -117,7 +120,7 @@
                                     </p>
                                     <div class="flex flex-row justify-between">
                                         <p class="text-[#e07946] font-semibold">
-                                            @currency($cart['harga_jual'])
+                                            Rp. @currency($cart['harga_jual'])
                                         </p>
                                         <p class="text-[#93A2D2]">
                                             {{ $cart['qty'] }}x
@@ -128,7 +131,7 @@
                                             Total :
                                         </p>
                                         <p class="text-green-600 font-semibold">
-                                            @currency($cart['harga_jual'] * $cart['qty'])
+                                            Rp. @currency($cart['harga_jual'] * $cart['qty'])
                                         </p>
                                     </div>
                                 </div>
@@ -168,7 +171,7 @@
                                     @endphp
                                 @endforeach
                             @endif
-                            @currency($total)
+                            Rp. @currency($total)
                         </p>
                     </div>
                 </div>

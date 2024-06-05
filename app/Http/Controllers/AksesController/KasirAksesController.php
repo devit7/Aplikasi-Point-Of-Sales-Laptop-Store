@@ -84,6 +84,77 @@ class KasirAksesController extends Controller
         }
     }
 
+    public function getAllToko()
+    {
+        $request = Request::create('http://127.0.0.1:8000/api/toko', 'GET');
+        $response = app()->handle($request);
+        $data = json_decode($response->getContent(), true);
+        if ($response->getStatusCode() == 200) {
+            return $data['data'];
+        } else {
+            return response()->json([
+                'message' => 'Unauthorized',
+            ], 401);
+        }
+    }
+
+    public function transactionProcess(Request $request){
+        //dd($request);
+        $request->validate([
+            'payment_id' => 'required|exists:payments,id',
+            'customer_id' => 'required|exists:customer,id',
+        ]);
+
+        $toko = $this->getAllToko();
+        $toko_id = $toko[0]['id'];
+
+        $cart = session('cart');
+        $quantities = [];
+        $product_id = [];
+        $harga_jual = [];
+        $harga_asli = [];
+
+        if (is_array($cart)) {
+            foreach ($cart as $item) {
+                $quantities[] = $item['qty'];
+                $product_id[] = $item['product_id'];
+                $harga_jual[] = $item['harga_jual'];
+                $harga_asli[] = $item['harga_asli'];
+            }
+        }
+
+        $total_tiap_produk = array_map(function ($qty, $harga_jual) {
+            return $qty * $harga_jual;
+        }, $quantities, $harga_jual);
+
+        $total_semua = array_sum($total_tiap_produk);
+
+        $dataJson = [
+            "user_id" => auth()->user()->id,
+            "customer_id" => $request->customer_id,
+            "toko_id" => $toko_id,
+            "payment_id" => $request->payment_id,
+            "quantity" => $quantities,
+            "total_tiap_produk" => $total_tiap_produk,
+            "harga_jual" => $harga_jual,
+            "harga_asli" => $harga_asli,
+            "total_semua" => $total_semua,
+            "product_id" => $product_id
+        ];
+        //dd($dataJson);
+        $request = Request::create('http://127.0.0.1:8000/api/transaksi', 'POST', $dataJson);
+        $response = app()->handle($request);
+        $data = json_decode($response->getContent(), true);
+        if ($response->getStatusCode() == 201) {
+            session()->forget('cart');
+            return redirect()->route('kasir.dashboard')->with('success', 'Transaksi Berhasil');
+        } else {
+            return response()->json([
+                'message' => 'Unauthorized'
+            ], 401);
+        }
+    }
+
     public function addToCardSession(Product $product){
         //dd($product);
         $cart = Session::get('cart');
@@ -102,6 +173,7 @@ class KasirAksesController extends Controller
             'product_id' => $product['id'],
             'product_name' => $product['product_name'],
             'harga_jual' => $product['harga_jual'],
+            'harga_asli' => $product['harga_asli'],
             'qty' => 1
         );
         //dd($cart);
