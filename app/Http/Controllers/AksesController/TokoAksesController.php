@@ -27,29 +27,28 @@ class TokoAksesController extends Controller
     public function updateData(UpdateRequest $request, Toko $toko)
     {
         $validated = $request->validated();
-
         $data = [
             'nama_toko' => $validated['nama_toko'],
             'alamat' => $validated['alamat'],
             'no_hp' => $validated['no_hp'],
+
         ];
 
-        // $api_url = 'http://127.0.0.1:8000/api/toko/' . $toko->id . '?' . http_build_query($data);
-        // $temp_request = Request::create($api_url, 'PUT');
-        // dd("request", $request); //data logo_toko tidak ada?
+        if ($request->hasFile('logo_toko')) {
+            $file = $request->file('logo_toko');
+            $data['logo_toko'] = $file;
+        }
 
         $temp_request = Request::create(
             'http://127.0.0.1:8000/api/toko/' . $toko->id,
             'PUT',
-            $data,
+            $data
         );
 
         if ($request->hasFile('logo_toko')) {
-            $temp_request->files->set('logo_toko', $request->file('logo_toko'));
+            $temp_request->files->set('logo_toko', $file);
         }
-
         $response = app()->handle($temp_request);
-
         if ($response->getStatusCode() == 200) {
             session()->flash('success', 'Toko berhasil di update');
             return redirect()->route('admin.index');
