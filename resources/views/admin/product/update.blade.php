@@ -1,4 +1,3 @@
-{{-- @dd($pro, $sup, $merk) --}}
 @section('title', 'Update Product')
 @extends('layout.admin_main')
 @section('content')
@@ -17,7 +16,7 @@
             <div class="w-[100%] flex flex-col gap-4">
                 <p class="rounded-md p-4 font-semibold bg-[#1C1D42] text-[#6b6eb4]">Update a Product</p>
                 <div class="rounded-md p-4 bg-[#1C1D42] h-[auto] text-[#6b6eb4]">
-                    <form action=" {{ route('products.update', $product->id) }}"
+                    <form action="/admin/product/update/{{ $pro['id'] }}"
                         class="  px-[2%] h-[100%] py-[2%] flex flex-col justify-between items-cente" id="formCreate"
                         method="post" enctype="multipart/form-data">
                         @csrf
@@ -26,14 +25,15 @@
                             <div class="grid gap-4 w-[45%] sm:grid-cols-2 sm:gap-6">
                                 <div class="sm:col-span-2">
                                     <label for="name" class="block mb-2 text-sm font-medium  text-gray-400">Nama</label>
-                                    <input type="text" name="namaProduk" id="name" value="{{ $pro->product_name }}"
+                                    <input type="text" name="product_name" id="name"
+                                        value="{{ $pro['product_name'] }}"
                                         class="bg-[#131432] border text-sm rounded-lg  block w-full p-2.5  border-gray-600 placeholder-gray-400 text-gray-400 focus:ring-primary-500 focus:border-primary-500"
                                         placeholder="Ex : Wibu Jaya Bersama" required="">
                                 </div>
                                 <div class="sm:col-span-2">
                                     <label for="nama_toko" class="block mb-2 text-sm font-medium  text-gray-400">Harga
                                         Jual</label>
-                                    <input type="number" name="hargaJual" id="nama_toko" value="{{ $pro->harga_jual }}"
+                                    <input type="number" name="harga_jual" id="nama_toko" value="{{ $pro['harga_jual'] }}"
                                         class="bg-[#131432] border   text-sm rounded-lg  block w-full p-2.5  border-gray-600 placeholder-gray-400 text-gray-400 focus:ring-primary-500 focus:border-primary-500"
                                         placeholder="EX : 0821*" required="">
                                 </div>
@@ -41,15 +41,15 @@
                                     <label for="description"
                                         class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400">Harga
                                         Asli</label>
-                                    <input type="number" name="hargaAsli" id="hargaasli" value="{{ $pro->harga_asli }}"
+                                    <input type="number" name="harga_asli" id="hargaasli" value="{{ $pro['harga_asli'] }}"
                                         class="bg-[#131432] border   text-sm rounded-lg  block w-full p-2.5  border-gray-600 placeholder-gray-400 text-gray-400 focus:ring-primary-500 focus:border-primary-500"
                                         placeholder="EX : 0821*" required="">
                                 </div>
                                 <div class="sm:col-span-2">
                                     <label for="description"
                                         class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400">Stock</label>
-                                    <input type="number" name="stok" id="nama_toko" value="{{ $pro->stock }}"
-                                        class="bg-[#131432] border   text-sm rounded-lg  block w-full p-2.5  border-gray-600 placeholder-gray-400 text-gray-400 focus:ring-primary-500 focus:border-primary-500"
+                                    <input type="number" name="stock" id="nama_toko" value="{{ $pro['stock'] }}"
+                                        class="bg-[#131432] border text-sm rounded-lg  block w-full p-2.5  border-gray-600 placeholder-gray-400 text-gray-400 focus:ring-primary-500 focus:border-primary-500"
                                         placeholder="EX : 0821*" required="">
                                 </div>
 
@@ -62,7 +62,7 @@
                                     <div class="forStok">
 
                                         <input type="text" name="fotoLama" style="display:none;" id="fotoLama"
-                                            value="{{ $pro->img }}"
+                                            value="{{ $pro['img'] }}"
                                             class="bg-[#131432] border border-gray-600 inline-flex items-center px-5 py-2.5 mt-4 sm:mt-6 text-sm font-medium text-center text-white bg-green-700 rounded-md focus:ring-4 focus:ring-primary-200 dark:focus:ring-primary-900 hover:bg-primary-800">
                                         <input type="checkbox" onclick="ubah('cbCheck')" name="cbCheck" id="cbCheck"
                                             value="sama"
@@ -77,7 +77,7 @@
                                 <div class="sm:col-span-2 mb-[5px]" id="potoArea" style="display:none;">
                                     <div class=" relative border border-gray-400 border-dashed rounded-lg mb-4 p-2"
                                         id="dropzone">
-                                        <input id="img" type="file" name="fileUpload" type="file"
+                                        <input id="img" type="file" name="img_product" type="file"
                                             accept=".jpg,.jpeg,.png"
                                             class="absolute inset-0 w-full h-full opacity-0 z-50" />
                                         <div class="text-center">
@@ -97,18 +97,6 @@
                                         </div>
 
                                         <img src="" class="mt-2 mx-auto max-h-40 hidden" id="preview">
-                                    </div>
-                                </div>
-                                <div class="sm:col-span-2" id="newSup" style="display:none;">
-                                    <hr class="border-gray-500 border-t-2 mb-4 opacity-10">
-                                    <div class="forBackSup mb-4">
-                                        <input type="checkbox" onclick="newSup('showDrop')" name="cbCheck"
-                                            id="cbCheck" value="sama"
-                                            class="bg-[#131432] border border-gray-600 inline-flex items-center px-5 py-2.5 mt-4 sm:mt-6 text-sm font-medium text-center text-white bg-green-700 rounded-md focus:ring-4 focus:ring-primary-200 dark:focus:ring-primary-900 hover:bg-primary-800">
-                                        <label for="description"
-                                            class="block text-sm font-medium text-gray-900 dark:text-gray-400">checklist
-                                            untuk
-                                            kembali memilih Supplier</label>
                                     </div>
                                 </div>
 
@@ -133,17 +121,17 @@
                                             class="search-input w-full px-2 bg-[#131432] text-gray-400 border rounded-md  border-gray-300 focus:outline-none"
                                             type="text" placeholder="Search Supplier" autocomplete="off">
                                         {{-- list dropdown --}}
-                                        @forelse ($sup as $sup)
+                                        @forelse ($dataSupplier['data'] as $sup)
                                             <a href="#"
                                                 class="dropdown-item pl-3 flex row text-white hover:bg-[#6b6eb4] active:bg-blue-100 cursor-pointer"
-                                                data-value="{{ $sup->id }}">{{ $sup->supplier_name }}</a>
+                                                data-value="{{ $sup['id'] }}">{{ $sup['supplier_name'] }}</a>
                                         @empty
                                             <p class="text-center text-white">No Supplier</p>
                                         @endforelse
 
                                     </div>
                                     <input type="hidden" name="supplier" id="supplier-input"
-                                        value="{{ $pro->supplier_id }}">
+                                        value="{{ $pro['supplier_id'] }}">
                                 </div>
 
                                 {{-- Input Merk --}}
@@ -167,10 +155,10 @@
                                             class="search-input w-full px-2 bg-[#131432] text-gray-400 border rounded-md  border-gray-300 focus:outline-none"
                                             type="text" placeholder="Search Merk" autocomplete="off">
                                         {{-- List Dropdown --}}
-                                        @forelse ($merk as $merk)
+                                        @forelse ($dataMerk['data'] as $merk)
                                             <a href="#"
                                                 class="dropdown-item pl-3 flex row text-white hover:bg-[#6b6eb4] active:bg-blue-100 cursor-pointer"
-                                                data-value="{{ $merk->id }}">{{ $merk->merk_name }}</a>
+                                                data-value="{{ $merk['id'] }}">{{ $merk['merk_name'] }}</a>
                                         @empty
                                             <p class="text-center text-white">No Merk</p>
                                         @endforelse
@@ -204,8 +192,8 @@
     <style>
         #file-upload {
             /* position: fixed;
-            top:-20%;
-            left: -20%; */
+                            top:-20%;
+                            left: -20%; */
         }
 
         #butforBack {
@@ -236,9 +224,9 @@
         }
 
         /* .checkbox-container {
-                                display: inline-block;
-                                vertical-align: middle;
-                            } */
+                            display: inline-block;
+                            vertical-align: middle;
+                        } */
 
         .forBackSup>input {
             appearance: none !important;
@@ -294,9 +282,9 @@
         }
 
         /* .checkbox-container {
-                                display: inline-block;
-                                vertical-align: middle;
-                            } */
+                            display: inline-block;
+                            vertical-align: middle;
+                        } */
 
         .forStok>input {
             appearance: none !important;
@@ -334,9 +322,9 @@
 
 
         /* .checkbox-text {
-                                font-size: 16px;
-                                color: #333;
-                            } */
+                            font-size: 16px;
+                            color: #333;
+                        } */
 
         /* Untuk efek hover */
         .forStok .forStok>input:not(:checked) {
@@ -346,8 +334,8 @@
         main::-webkit-scrollbar {
             width: 0;
             /* background-color: white;
-                        color: white;
-                        border: 1px solid inherit; */
+                    color: white;
+                    border: 1px solid inherit; */
         }
 
         main {
@@ -374,8 +362,8 @@
                 poto.style.display = "none";
             }
         }
-        let sup = @json($pro->supplier_id);
-        let merk = @json($pro->merk_id);
+        let sup = @json($pro['supplier_id']);
+        let merk = @json($pro['merk_id']);
         console.log(sup, " and ", merk)
         let dropSup = document.getElementById('dropSup');
         console.log(dropSup.options.length)
@@ -625,6 +613,7 @@
                     const dropdownLabel = this.closest('.dropdown-div').querySelector(
                         'button span');
                     hiddenInput.value = selectedValue;
+                    alert(selectedValue);
                     dropdownLabel.textContent = this.textContent;
                     const dropdownMenu = this.closest('.dropdown-menu');
                     toggleDropdown(dropdownMenu);

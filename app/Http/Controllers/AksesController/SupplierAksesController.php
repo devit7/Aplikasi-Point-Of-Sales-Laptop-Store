@@ -99,15 +99,5 @@ class SupplierAksesController extends Controller
             ]);
         }
     }
-
-    // public function makeNewSup($nama,$nohp,$company,$alamat){
-    //     $sup = new Supplier();
-    //     $sup->supplier_name=$nama;
-    //     $sup->no_hp=$nohp;
-    //     $sup->nama_perusahaan=$company;
-    //     $sup->alamat = $alamat;
-    //     $sup->save();
-    //     return($sup->id);
-    // }
 }
 

@@ -26,15 +26,13 @@ class UpdateRequest extends FormRequest
         $tokoExist = $this->toko ? $this->toko->id : '';
 
         return [
-            'nama_toko' => 'string|unique:toko,nama_toko,' . $tokoExist . ',id',
+            'nama_toko' => 'string|required|unique:toko,nama_toko,' . $tokoExist . ',id',
             'logo_toko' => 'nullable|max:10048',
             'alamat' => 'string|required',
-            'no_hp' => 'numeric|digits:12|unsigned|unique:toko,no_hp,' . $tokoExist . ',id',
+            'no_hp' => 'numeric|required|digits:12|unsigned|unique:toko,no_hp,' . $tokoExist . ',id',
         ];
 
     }
-    // 'logo_toko.image' => 'Data Logo Toko harus berupa file gambar',
-    // 'logo_toko.mimes' => 'Data Logo Toko harus berupa file gambar',
 
     public function messages()
     {

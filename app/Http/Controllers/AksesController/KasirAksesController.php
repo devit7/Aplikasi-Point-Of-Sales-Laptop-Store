@@ -3,19 +3,27 @@
 namespace App\Http\Controllers\AksesController;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Transaksi\StoreRequest;
+use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 
 class KasirAksesController extends Controller
 {
-    public function index(){
-        
+    public function index(Request $request){
+
+        //jika ada parameter search
 
         $dataProduct = $this->getAllProduct();
         $dataMerk = $this->getAllMerk();
-
+        $dataCustomer = $this->getAllCustomer();
+        $dataPayment = $this->getAllPayment();
+        // dd($dataCustomer);
         return view('kasir.dashboard', [
             'dataProduct' => $dataProduct,
-            'dataMerk' => $dataMerk
+            'dataMerk' => $dataMerk,
+            'dataCustomer' => $dataCustomer,
+            'dataPayment' => $dataPayment
         ]);
 
     }
@@ -50,8 +58,133 @@ class KasirAksesController extends Controller
         }
     }
 
-    public function addToCardSession(Request $request){
-        $request->session()->put('cart', $request->all());
+    public function getAllCustomer(){
+        $request = Request::create('http://127.0.0.1:8000/api/customers', 'GET');
+        $response = app()->handle($request);
+        $data = json_decode($response->getContent(), true);
+        if ($response->getStatusCode() == 200) {
+            return$data['data'];
+        } else {
+            return response()->json([
+                'message' => 'Unauthorized'
+            ], 401);
+        }
+    }
+
+    // get all payments
+    public function getAllPayment(){
+        $request = Request::create('http://127.0.0.1:8000/api/payments', 'GET');
+        $response = app()->handle($request);
+        $data = json_decode($response->getContent(), true);
+        if ($response->getStatusCode() == 200) {
+            return$data['data'];
+        } else {
+            return response()->json([
+                'message' => 'Unauthorized'
+            ], 401);
+        }
+    }
+
+    public function getAllToko()
+    {
+        $request = Request::create('http://127.0.0.1:8000/api/toko', 'GET');
+        $response = app()->handle($request);
+        $data = json_decode($response->getContent(), true);
+        if ($response->getStatusCode() == 200) {
+            return $data['data'];
+        } else {
+            return response()->json([
+                'message' => 'Unauthorized',
+            ], 401);
+        }
+    }
+
+    public function transactionProcess(Request $request){
+        //dd($request);
+        $request->validate([
+            'payment_id' => 'required|exists:payments,id',
+            'customer_id' => 'required|exists:customer,id',
+        ]);
+
+        $toko = $this->getAllToko();
+        $toko_id = $toko[0]['id'];
+
+        $cart = session('cart');
+        $quantities = [];
+        $product_id = [];
+        $harga_jual = [];
+        $harga_asli = [];
+
+        if (is_array($cart)) {
+            foreach ($cart as $item) {
+                $quantities[] = $item['qty'];
+                $product_id[] = $item['product_id'];
+                $harga_jual[] = $item['harga_jual'];
+                $harga_asli[] = $item['harga_asli'];
+            }
+        }
+
+        $total_tiap_produk = array_map(function ($qty, $harga_jual) {
+            return $qty * $harga_jual;
+        }, $quantities, $harga_jual);
+
+        $total_semua = array_sum($total_tiap_produk);
+
+        $dataJson = [
+            "user_id" => auth()->user()->id,
+            "customer_id" => $request->customer_id,
+            "toko_id" => $toko_id,
+            "payment_id" => $request->payment_id,
+            "quantity" => $quantities,
+            "total_tiap_produk" => $total_tiap_produk,
+            "harga_jual" => $harga_jual,
+            "harga_asli" => $harga_asli,
+            "total_semua" => $total_semua,
+            "product_id" => $product_id
+        ];
+        //dd($dataJson);
+        $request = Request::create('http://127.0.0.1:8000/api/transaksi', 'POST', $dataJson);
+        $response = app()->handle($request);
+        $data = json_decode($response->getContent(), true);
+        if ($response->getStatusCode() == 201) {
+            session()->forget('cart');
+            return redirect()->route('kasir.dashboard')->with('success', 'Transaksi Berhasil');
+        } else {
+            return response()->json([
+                'message' => 'Unauthorized'
+            ], 401);
+        }
+    }
+
+    public function addToCardSession(Product $product){
+        //dd($product);
+        $cart = Session::get('cart');
+
+        //check jika id product sudah ada di session
+        if($cart && array_key_exists($product['id'], $cart)){
+            if($cart[$product['id']]['qty'] >= $product['stock']){
+                return redirect()->back()->withErrors('Stock tidak mencukupi');
+            }
+            $cart[$product['id']]['qty'] += 1;
+            session()->put('cart', $cart);
+            return redirect()->back();
+        }
+
+        $cart[$product['id']] = array(
+            'product_id' => $product['id'],
+            'product_name' => $product['product_name'],
+            'harga_jual' => $product['harga_jual'],
+            'harga_asli' => $product['harga_asli'],
+            'qty' => 1
+        );
+        //dd($cart);
+        session()->put('cart', $cart);
+
+        return redirect()->back();
+    }
+
+    public function clearCart(){
+        session()->forget('cart');
         return redirect()->back();
     }
 

@@ -11,7 +11,7 @@
                     </p>
                     <a href="/kasir" tabindex="0"
                         class="flex items-center w-full  px-6 py-3 rounded-lg text-start leading-tight transition-all hover:bg-[#aa5800] hover:bg-opacity-10 hover:text-[#e07946] outline-none
-                    @if (request()->is('api/merk')) bg-[#aa5800] bg-opacity-10 text-[#e07946] @endif
+                    @if (request()->is('api/payments')) bg-[#aa5800] bg-opacity-10 text-[#e07946] @endif
                     ">
                         <div class="grid place-items-center mr-3">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
