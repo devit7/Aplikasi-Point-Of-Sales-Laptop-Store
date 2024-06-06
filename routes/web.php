@@ -13,6 +13,7 @@ use App\Http\Controllers\AksesController\LaporanController;
 use App\Http\Controllers\AksesController\ProductAksesController;
 use App\Http\Controllers\AksesController\SupplierAksesController;
 use App\Http\Controllers\API\DashboardController;
+use App\Http\Controllers\API\TransaksiController;
 // use App\Http\Controllers\API\ProductController;
 // use App\Http\Controllers\API\UserController;
 use Illuminate\Support\Facades\Route;
@@ -165,6 +166,8 @@ Route::get('/form', function () {
 Route::get('/tables', function () {
     return view('tables');
 });
+
+Route::get('/mail', [TransaksiController::class, 'testEmial']);
 
 //Api
 Route::get('/u', [UserAksesController::class, 'getAll']);
