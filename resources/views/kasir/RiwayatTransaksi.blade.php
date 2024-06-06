@@ -38,8 +38,8 @@
                         <td>{{ $riwayat['payment']['payment_name']}}</td>
                         <td>{{$product['product_name']}}</td>
                         <td class="flex flex-row gap-2">
-                        <x-modal_detail>
-                            <div class="flex flex-col rounded-md p-6 bg-white border border-gray-400">
+                        <x-modal_detail id="{{$riwayat['id']}}">
+                            <div class="flex flex-col w-fit rounded-md p-6 bg-white border border-gray-400">
                                 <div class="text-center">
                                     <img src="" alt="product" class="w-10 h-10 mx-auto">
                                     <p class="text-lg font-semibold"></p>
@@ -48,12 +48,12 @@
                                 </div>
                                 <div class="flex flex-col pb-2  mt-4 border-b-2 border-dashed border-gray-400 ">
                                     <div class="flex flex-row justify-between  ">
-                                        <p class="">22-10-2020</p>
+                                        <p class="">{{ $riwayat['created_at'] }}</p>
                                         <p class="">13:00</p>
                                     </div>
                                     <div class="flex flex-row justify-between  ">
                                         <p class="">Transaksi</p>
-                                        <p class="">TRX-00</p>
+                                        <p class="">{{$riwayat['invoice']}}</p>
                                     </div>
                                     <div class="flex flex-row justify-between  ">
                                         <p class="">Status</p>
@@ -66,8 +66,8 @@
                                         <p class="">Daftar Product</p>
                                     </div>
                                     <div class="flex flex-row justify-between  ">
-                                        <p class="">Laptop ROG ( F05 )</p>
-                                        <p class="">Rp. 15.000.000.00</p>
+                                        <p class=" mr-3">{{$product['product_name']}}</p>
+                                        <p class="">Rp. {{ $product['harga_jual'] }}</p>
                                     </div>
                                     <div class="flex flex-row justify-between  ">
                                         <p class="">Tuf Gaming ( F-A05 )</p>
