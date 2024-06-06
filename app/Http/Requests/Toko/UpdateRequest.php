@@ -28,7 +28,6 @@ class UpdateRequest extends FormRequest
         return [
             'nama_toko' => 'string|required|unique:toko,nama_toko,' . $tokoExist . ',id',
             'logo_toko' => 'nullable|max:10048',
-            'old_logo_toko' => 'nullable|max:10048',
             'alamat' => 'string|required',
             'no_hp' => 'numeric|required|digits:12|unsigned|unique:toko,no_hp,' . $tokoExist . ',id',
         ];
@@ -42,7 +41,6 @@ class UpdateRequest extends FormRequest
             'nama_toko.string' => 'Data Nama Toko harus berupa string',
             'nama_toko.unique' => 'Data Nama Toko sudah ada',
             'logo_toko.max' => 'Data Logo Toko maksimal 10 MB',
-            'old_logo_toko.max' => 'Data Logo Toko maksimal 10 MB',
             'alamat.required' => 'Data Alamat harus diisi',
             'alamat.string' => 'Data Alamat harus berupa string',
             'no_hp.required' => 'Data No. HP harus diisi',
