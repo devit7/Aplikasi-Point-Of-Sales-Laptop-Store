@@ -5,10 +5,13 @@ namespace App\Http\Controllers\API;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Transaksi\StoreRequest;
 use App\Http\Requests\Transaksi\UpdateRequest;
+use App\Mail\TransaksiInvoice;
+use App\Models\Customers;
 use App\Models\Product;
 use App\Models\Transaksi;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Mail;
 
 class TransaksiController extends Controller
 {
@@ -72,6 +75,13 @@ class TransaksiController extends Controller
                 ]);
             }
 
+            //get customer email
+            $email = Customers::find($validated['customer_id'])->email;
+
+            //send email
+            $detailTransaksi = Transaksi::with(['user', 'toko', 'customer', 'payment', 'product'])->find($transaksi->id);
+            Mail::to($email)->send(new TransaksiInvoice($detailTransaksi));
+
             DB::commit();
 
             return response()->json([
@@ -87,6 +97,16 @@ class TransaksiController extends Controller
                 'message' => $e->getMessage(),
             ], 500);
         }
+    }
+
+    public function testEmial()
+    {
+        $detailTransaksi = Transaksi::with(['user', 'toko', 'customer', 'payment', 'product'])->where('id', "9c36efd8-f989-44f3-b018-9d411fc35586")->first();
+
+        //return dd($detailTransaksi);
+        return view('mail.invoice', [
+            'details' => $detailTransaksi
+        ]);
     }
 
     /**

@@ -6,20 +6,22 @@
             transform: scale(1.1);
         }
     </style>
+    {{-- @dd($dataCustomer) --}}
     <div class=" text-[#93A2D2] flex flex-row w-full h-full  ">
         <div class="flex flex-col w-full py-6 px-10 min-h-screen overflow-y-auto scrollbar-hide ">
             <div class="flex flex-col ">
-                <div class="text-[#93A2D2] flex ">
-                    <button class=" h-12 w-12  rounded-l-lg flex items-center justify-center bg-[#1f2949]">
+                <form class="text-[#93A2D2] flex " action="" method="GET">
+                    @csrf
+                    <button type="submit" class=" h-12 w-12  rounded-l-lg flex items-center justify-center bg-[#1f2949]">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                             stroke="currentColor" class="size-6">
                             <path stroke-linecap="round" stroke-linejoin="round"
                                 d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
                         </svg>
                     </button>
-                    <input type="text" placeholder="Search Product"
+                    <input  type="text" placeholder="Search Product" name="search"
                         class="w-full h-12 px-4 rounded-r-lg bg-[#151e3b]   focus:outline-none">
-                </div>
+                </form>
                 <div class="flex flex-row py-4 mt-4 gap-4  text-lg font-semibold overflow-x-auto ">
                     <a href="#" class="py-1 rounded-sm px-6 bg-[#fa9e3b] bg-opacity-10 text-[#e07946]">
                         All
@@ -39,13 +41,16 @@
                 </div>
                 <div class="flex flex-wrap gap-6 mt-8 justify-start">
                     @forelse ($dataProduct as $product)
+                        @if ($product['stock'] == 0)
+                            @continue
+                        @endif
                         <div
                             class="w-[230px] max-h-[305px] bg-[#151e3b] rounded-lg hover:shadow-2xl  transition duration-300 ">
                             <div class="flex flex-col p-3 text-[#93A2D2] justify-between h-full">
                                 <div class="relative  w-full h-full overflow-hidden max-h-[180px]">
                                     <img id="card-img"
-                                        src="{{ asset('/laptop/phf4ybjk8ttu92ftvkhjfq1zf5tb5a100535.avif') }}"
-                                        alt="" class="w-full h-full bg-gray-900 object-cover rounded-lg">
+                                        src="{{ asset('storage/images/' . $product['img']) }}"
+                                        alt="product img" class="w-full h-full bg-gray-900 object-cover rounded-lg">
                                     <div
                                         class="absolute font-semibold top-0 right-0  text-sm text-blue-800 bg-blue-300 rounded-bl-lg px-3 ">
                                         {{ $product['merk']['merk_name'] }}
@@ -58,7 +63,7 @@
                                         </div>
                                         <div class="flex flex-row justify-between">
                                             <div class=" font-bold text-[#e07946]">
-                                                Rp. {{ number_format($product['harga_jual'], 0, ',', '.') }}
+                                                Rp. @currency($product['harga_jual'])
                                             </div>
                                             <div class="flex items-center gap-1">
                                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
@@ -116,7 +121,7 @@
                                     </p>
                                     <div class="flex flex-row justify-between">
                                         <p class="text-[#e07946] font-semibold">
-                                            Rp. {{ number_format($cart['harga_jual'], 0, ',', '.') }}
+                                            Rp. @currency($cart['harga_jual'])
                                         </p>
                                         <p class="text-[#93A2D2]">
                                             {{ $cart['qty'] }}x
@@ -127,7 +132,7 @@
                                             Total :
                                         </p>
                                         <p class="text-green-600 font-semibold">
-                                            Rp. {{ number_format($cart['harga_jual'] * $cart['qty'], 0, ',', '.') }}
+                                            Rp. @currency($cart['harga_jual'] * $cart['qty'])
                                         </p>
                                     </div>
                                 </div>
@@ -167,12 +172,12 @@
                                     @endphp
                                 @endforeach
                             @endif
-                            Rp. {{ number_format($total, 0, ',', '.') }}
+                            Rp. @currency($total)
                         </p>
                     </div>
                 </div>
                 <div class="flex flex-col gap-2 justify-between">
-                    <x-modals_transaksi totalAll="{{ $total }}" />
+                    <x-modals_transaksi :totalAll="$total" :dataCustomer="$dataCustomer" :dataPayment="$dataPayment"/>
                     <a href="{{ route('kasir.clear-cart') }}"
                         class=" text-center rounded-md px-4 py-2 bg-gray-700 text-white hover:bg-gray-800 cursor-pointer">
                         Clear Order

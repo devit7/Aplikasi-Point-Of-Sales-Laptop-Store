@@ -96,7 +96,6 @@ class UserController extends Controller
         $user->update([
             'nama' => $validator['nama'],
             'username' => $validator['username'],
-            'password' => bcrypt($validator['password']),
             'role' => $validator['role'],
         ]);
 

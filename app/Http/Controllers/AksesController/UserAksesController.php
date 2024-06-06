@@ -94,9 +94,8 @@ class UserAksesController extends Controller
 
         $request = Request::create($api_url, 'PUT');
         $response = app()->handle($request);
-
         if ($response->getStatusCode() == 200) {
-            session()->flash('success', 'Data customer berhasil di update');
+            session()->flash('success', 'user berhasil di update');
             return redirect()->route('user.index');
         } else {
             return response()->json([

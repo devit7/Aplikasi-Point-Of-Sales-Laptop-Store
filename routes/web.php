@@ -13,6 +13,7 @@ use App\Http\Controllers\AksesController\LaporanController;
 use App\Http\Controllers\AksesController\ProductAksesController;
 use App\Http\Controllers\AksesController\SupplierAksesController;
 use App\Http\Controllers\API\DashboardController;
+use App\Http\Controllers\API\TransaksiController;
 // use App\Http\Controllers\API\ProductController;
 // use App\Http\Controllers\API\UserController;
 use Illuminate\Support\Facades\Route;
@@ -71,13 +72,15 @@ Route::middleware(['WebAkses:admin'])->prefix('admin')->group(function () {
 
 
     // Product
-    // Route::get('/product', [ProductAksesController::class, 'productAdmin']);
+    Route::get('/product', [ProductAksesController::class, 'getAll']);
 
     // Route::post('/product', [ProductAksesController::class, 'createData'])->name('admin.product.store');
-    // Route::get('/product/create/new', [ProductAksesController::class, 'productAdminNew']);
-    // Route::post('/product/Create', [ProductAksesController::class, 'productAdminMakeNew']);
-    // Route::get('/product/Update/{idProduk}', [ProductAksesController::class, 'productAdminUpdate']);
-    // Route::put('/product/Update/{idProduk}', [ProductAksesController::class, 'productAdminMakeUpdate']);
+    Route::get('/product/create/new', [ProductAksesController::class, 'getAllToCreate']);
+    Route::post('/product/create', [ProductAksesController::class, 'productAdminMakenew']);
+    Route::get('/product/update/{idProduk}', [ProductAksesController::class, 'productAdminUpdate']);
+    Route::put('/product/update/{idProduk}', [ProductAksesController::class, 'productAdminMakeUpdate']);
+
+    Route::put('/product/destroy/{product}', [ProductAksesController::class, 'deleteData'])->name('products.destroy');
 
     // Route::get('/product/create', function () {
     //     return view('admin.product.create');
@@ -109,9 +112,9 @@ Route::middleware(['WebAkses:admin'])->prefix('admin')->group(function () {
     Route::get('/products/show/{product}', [ProductAksesController::class, 'getDetail'])->name('products.show');
     Route::get('/products/create', [ProductAksesController::class, 'getAllToCreate'])->name('products.create');
     Route::post('/products/store', [ProductAksesController::class, 'createData'])->name('products.store');
-    Route::get('/products/edit/{product}', function () {
-        return view('admin.product.update');
-    })->name('products.edit');
+    // Route::get('/products/edit/{product}', function () {
+    //     return view('admin.product.update');
+    // })->name('products.edit');
     Route::put('/products/update/{product}', [ProductAksesController::class, 'updateData'])->name('products.update');
     Route::delete('/products/destroy/{product}', [ProductAksesController::class, 'deleteData'])->name('products.destroy');
 });
@@ -124,6 +127,7 @@ Route::middleware(['WebAkses:kasir'])->prefix('kasir')->group(function () {
     });
     Route::get('/add-to-cart/{product}', [KasirAksesController::class, 'addToCardSession'])->name('kasir.add-to-cart');
     Route::get('/clear-cart', [KasirAksesController::class, 'clearCart'])->name('kasir.clear-cart');
+    Route::post('/transaction-process', [KasirAksesController::class, 'transactionProcess'])->name('kasir.transaction-process');
 
 
     Route::get('/transaksi', function () {
@@ -164,6 +168,8 @@ Route::get('/form', function () {
 Route::get('/tables', function () {
     return view('tables');
 });
+
+Route::get('/mail', [TransaksiController::class, 'testEmial']);
 
 //Api
 Route::get('/u', [UserAksesController::class, 'getAll']);
