@@ -323,6 +323,7 @@ class ProductAksesController extends Controller
         }
 
         if ($p->save()) {
+            session()->flash('success', 'Product ' . $p->product_name . ' berhasil di update');
             return redirect('/admin/product');
         }
 
