@@ -83,9 +83,8 @@
                                                 </svg>
                                             </button>
                                         </a>
-                                        {{-- <a href="{{ route('products.destroy', $value['id']) }}">
-                                        </a> --}}
-                                        <form action="{{ route('products.destroy', $value['id']) }}" method="post">
+                                        
+                                        <form action="/admin/product/destroy/{{ $value['id'] }}" method="post">
                                             @csrf
                                             @method('DELETE')
                                             <button type="submit"

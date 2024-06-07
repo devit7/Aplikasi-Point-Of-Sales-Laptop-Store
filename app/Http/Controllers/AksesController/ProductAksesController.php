@@ -67,13 +67,14 @@ class ProductAksesController extends Controller
         // dd("Validator", $validated, "Request", $request);
 
         $data = [
-            'product_name' => $validated['namaProduk'],
-            'stock' => $validated['stok'],
-            'harga_jual' => $validated['hargaJual'],
-            'harga_asli' => $validated['hargaAsli'],
-            'supplier_id' => $validated['supplier'],
-            'merk_id' => $validated['merk'],
+            'product_name' => $validated['product_name'],
+            'harga_jual' => $validated['harga_jual'],
+            'harga_asli' => $validated['harga_asli'],
+            'stock'=>$validated['stock'],
+            'supplier_id' => $validated['supplier_id'],
+            'merk_id' => $validated['merk_id'],
         ];
+        // dd($data);
 
         $temp_request = Request::create(
             'http://127.0.0.1:8000/api/products',
@@ -153,18 +154,20 @@ class ProductAksesController extends Controller
         if ($response->getStatusCode() == 200) {
             session()->flash('success', 'Data Product berhasil di update');
             return redirect()->route('product.index');
-        } else {
+        } 
+        else {
             return response()->json([
                 'message' => 'Unauthorized',
             ], 401);
         }
     }
 
-    public function deleteData($product)
+    public function deleteData($idproduct)
     {
-        // dd("ProductAksesController->deleteData", $product);
-        $request = Request::create('http://127.0.0.1:8000/api/products/' . $product, 'DELETE');
+        
+        $request = Request::create('http://127.0.0.1:8000/api/products/' . $idproduct, 'DELETE');
         $response = app()->handle($request);
+        
         if ($response->getStatusCode() == 200) {
             return redirect('/admin/product')->with('success', 'Data Product berhasil dihapus');
         } else {
@@ -172,18 +175,11 @@ class ProductAksesController extends Controller
                 'message' => 'Unauthorized',
             ]);
         }
+
     }
 
 
-    //tidak perlu membuat function controller lagi, cukup memakai yang sudah ada diatas
-    // public function productAdmin(){
-    //     $produk = Product::select('product.id', 'product.product_name', 'product.stock', 'product.harga_jual', 'product.harga_asli', 'product.img', 'supplier.supplier_name', 'merk.merk_name')
-    //     ->join('supplier', 'product.supplier_id', '=', 'supplier.id')
-    //     ->join('merk', 'product.merk_id', '=', 'merk.id')
-    //     ->get();
-    //     // dd($produk);
-    //     return view('admin.product.index',['produks'=>$produk]);
-    // }
+   
     public function productAdminNew()
     {
         $sup = $this->getsup();
@@ -194,59 +190,10 @@ class ProductAksesController extends Controller
         return view('admin.product.create', ['Supp' => $sup, 'merks' => $merk]);
     }
 
-    public function productAdminMakeNew(Request $req)
-    {
-        // dd($req->all(),$req->file('fileUpload'));
-
-        $val = $req->validate([
-            'namaProduk' => 'required',
-            'hargaJual' => 'required',
-            'hargaAsli' => 'required',
-            'stok' => 'required',
-            'supplier' => 'required',
-            'merk' => 'required',
-        ]);
-        // dd($val);
-
-        // dd('masuk');
-        // $val['foto']='';
-        if ($req->hasFile('fileUpload')) {
-            // dd($req->file('fileUpload')->extension());
-            $file = $req->file('fileUpload');
-            $filename = $req->nama . $this->getDate() . "." . $file->extension();
-            $file->storeAs('public/images', $filename);
-            $val['foto'] = $filename;
-
-        } else {
-            $val['foto'] = 'null';
-        }
-
-        $p = new Product();
-        $p->product_name = $val['namaProduk'];
-        $p->stock = $val['stok'];
-        $p->harga_jual = $val['hargaJual'];
-        $p->harga_asli = $val['hargaAsli'];
-        $p->img = $val['foto'];
-        $p->supplier_id = $val['supplier'];
-        $p->merk_id = $val['merk'];
-
-
-
-        if ($p->save()) {
-            return redirect('/admin/product');
-        }
-        // dd($p->id);
-
-        // $this->getDate();
-    }
 
     public function productAdminUpdate($idProduk)
     {
-        // @evftrya vi ini $produk tak edit buat ngeget data Produk sama relasinya
-        // $sup = $this->getsup();
-        // $merk = $this->getMerk();
-        // dd($produk);
-        // return view('admin.product.update',['pro'=>$produk,'sup'=>$sup,'merk'=>$merk]);
+        
         $pro = Product::with('supplier', 'merk')->findOrFail($idProduk);
         $requestSupplier = Request::create('http://127.0.0.1:8000/api/suppliers', 'GET');
         $responseSupplier = app()->handle($requestSupplier);
