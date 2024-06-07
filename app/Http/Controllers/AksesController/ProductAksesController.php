@@ -60,7 +60,7 @@ class ProductAksesController extends Controller
 
     public function createData(StoreRequest $request)
     {
-        dd($request->all(),$request->file('fileUpload'));
+        // dd($request->all(), $request->file('img_product'));
 
         // dd("Request", $request);
         $validated = $request->validated();
@@ -81,8 +81,8 @@ class ProductAksesController extends Controller
             $data,
         );
 
-        if ($request->hasFile('fileUpload')) {
-            $temp_request->files->set('img_product', $request->file('fileUpload'));
+        if ($request->hasFile('img_product')) {
+            $temp_request->files->set('img_product', $request->file('img_product'));
         }
 
         $response = app()->handle($temp_request);
@@ -162,6 +162,7 @@ class ProductAksesController extends Controller
 
     public function deleteData($product)
     {
+        // dd("ProductAksesController->deleteData", $product);
         $request = Request::create('http://127.0.0.1:8000/api/products/' . $product, 'DELETE');
         $response = app()->handle($request);
         if ($response->getStatusCode() == 200) {
@@ -183,53 +184,55 @@ class ProductAksesController extends Controller
     //     // dd($produk);
     //     return view('admin.product.index',['produks'=>$produk]);
     // }
-    public function productAdminNew(){
+    public function productAdminNew()
+    {
         $sup = $this->getsup();
         $merk = $this->getMerk();
         // dd($merk);
         // dd(count($sup));
 
-        return view('admin.product.create',['Supp'=>$sup,'merks'=>$merk]);
+        return view('admin.product.create', ['Supp' => $sup, 'merks' => $merk]);
     }
 
-    public function productAdminMakeNew(Request $req){
+    public function productAdminMakeNew(Request $req)
+    {
         // dd($req->all(),$req->file('fileUpload'));
 
         $val = $req->validate([
-            'namaProduk'=>'required',
-            'hargaJual'=>'required',
-            'hargaAsli'=>'required',
-            'stok'=>'required',
-            'supplier'=>'required',
-            'merk'=>'required',
+            'namaProduk' => 'required',
+            'hargaJual' => 'required',
+            'hargaAsli' => 'required',
+            'stok' => 'required',
+            'supplier' => 'required',
+            'merk' => 'required',
         ]);
         // dd($val);
 
         // dd('masuk');
         // $val['foto']='';
-        if($req->hasFile('fileUpload')){
+        if ($req->hasFile('fileUpload')) {
             // dd($req->file('fileUpload')->extension());
             $file = $req->file('fileUpload');
-            $filename = $req->nama.$this->getDate().".".$file->extension();
-            $file->storeAs('public/images',$filename);
-            $val['foto']=$filename;
+            $filename = $req->nama . $this->getDate() . "." . $file->extension();
+            $file->storeAs('public/images', $filename);
+            $val['foto'] = $filename;
 
-        }else{
-            $val['foto']='null';
+        } else {
+            $val['foto'] = 'null';
         }
 
         $p = new Product();
         $p->product_name = $val['namaProduk'];
         $p->stock = $val['stok'];
-        $p->harga_jual	= $val['hargaJual'];
+        $p->harga_jual = $val['hargaJual'];
         $p->harga_asli = $val['hargaAsli'];
         $p->img = $val['foto'];
         $p->supplier_id = $val['supplier'];
         $p->merk_id = $val['merk'];
 
-        
 
-        if($p->save()){
+
+        if ($p->save()) {
             return redirect('/admin/product');
         }
         // dd($p->id);
@@ -237,13 +240,14 @@ class ProductAksesController extends Controller
         // $this->getDate();
     }
 
-    public function productAdminUpdate($idProduk){
+    public function productAdminUpdate($idProduk)
+    {
         // @evftrya vi ini $produk tak edit buat ngeget data Produk sama relasinya
         // $sup = $this->getsup();
         // $merk = $this->getMerk();
         // dd($produk);
         // return view('admin.product.update',['pro'=>$produk,'sup'=>$sup,'merk'=>$merk]);
-        $pro = Product::with('supplier','merk')->findOrFail($idProduk);
+        $pro = Product::with('supplier', 'merk')->findOrFail($idProduk);
         $requestSupplier = Request::create('http://127.0.0.1:8000/api/suppliers', 'GET');
         $responseSupplier = app()->handle($requestSupplier);
         $dataSupplier = json_decode($responseSupplier->getContent(), true);
@@ -254,7 +258,7 @@ class ProductAksesController extends Controller
         // dd($dataMerk);
         // dd("ProductAksesController->getAllToCreate()", compact('dataSupplier', 'dataMerk'));
         if ($responseSupplier->getStatusCode() == 200 && $responseMerk->getStatusCode() == 200) {
-            return view('admin.product.update', compact('dataSupplier', 'dataMerk','pro'));
+            return view('admin.product.update', compact('dataSupplier', 'dataMerk', 'pro'));
         } else {
             return response()->json([
                 'message' => 'Unauthorized',
@@ -262,70 +266,73 @@ class ProductAksesController extends Controller
         }
     }
 
-    public function productAdminMakeUpdate($idProduk,Request $req){
-        // dd($req->all(),$req->file('fileUpload'),$req->hargaAsli,$req->cbCheck);
+    public function productAdminMakeUpdate($idProduk, Request $req)
+    {
+        // dd("productAdminMakeUpdate", $req->all(), "id", $idProduk);
 
         $val = $req->validate([
-            'namaProduk'=>'required',
-            'hargaJual'=>'required',
-            'hargaAsli'=>'required',
-            'stok'=>'required',
-            'supplier'=>'required',
-            'merk'=>'required'
+            'product_name' => 'required',
+            'harga_jual' => 'required',
+            'harga_asli' => 'required',
+            'stock' => 'required',
+            'supplier' => 'required',
+            'merk' => 'required',
         ]);
         // dd('masuk');
         $p = Product::findOrFail($idProduk);
-        $p->product_name = $val['namaProduk'];
-        $p->stock = $val['stok'];
-        $p->harga_jual	= $val['hargaJual'];
-        $p->harga_asli = $val['hargaAsli'];
+        $p->product_name = $val['product_name'];
+        $p->stock = $val['stock'];
+        $p->harga_jual = $val['harga_jual'];
+        $p->harga_asli = $val['harga_asli'];
         $p->supplier_id = $val['supplier'];
         $p->merk_id = $val['merk'];
 
-        $val['foto']='';
-        if($req->cbCheck=="ubah"){
-            if($req->hasFile('fileUpload')){
-                // dd($req->file('fileUpload')->extension());
-                $file = $req->file('fileUpload');
-                $filename = $req->nama.$this->getDate().".".$file->extension();
-                $file->storeAs('public/images',$filename);
-                $val['foto']=$filename;
+        $val['img'] = '';
+        if ($req->cbCheck == "ubah") {
+            if ($req->hasFile('img_product')) {
+                // dd($req->file('img_product')->extension());
+                $file = $req->file('img_product');
+                $filename = $req->nama . $this->getDate() . "." . $file->extension();
+                // $file->storeAs('public/images', $filename);
+                $file->storePubliclyAs('image_product', $filename, 'public');
 
-            }else{
-                $val['foto']='null';
+                $val['img'] = $filename;
+
+            } else {
+                $val['img'] = 'null';
             }
-            $p->img = $val['foto'];
-        }
-        else{
+            $p->img = $val['img'];
+        } else {
             $p->img = $req->fotoLama;
         }
 
 
-        if($req->merk=='0'){
+        if ($req->merk == '0') {
 
             //input Merk baru
             $aksesMerk = new MerAcKon();
 
-            $idMerk=$aksesMerk->makeMerk($req->newMerk);
-            $p->merk_id=$idMerk;
+            $idMerk = $aksesMerk->makeMerk($req->newMerk);
+            $p->merk_id = $idMerk;
         }
-        if($req->supplier=='0'){
+        if ($req->supplier == '0') {
             $aksesSupp = new AksesSup();
-            $idSup=$aksesSupp->makeNewSup($req->namaSupli,$req->noSUp,$req->companySup,$req->alamatSup);
+            $idSup = $aksesSupp->makeNewSup($req->namaSupli, $req->noSUp, $req->companySup, $req->alamatSup);
             $p->supplier_id = $idSup;
 
         }
 
-        if($p->save()){
+        if ($p->save()) {
             return redirect('/admin/product');
         }
 
 
     }
-    public function getDate(){
+    public function getDate()
+    {
         $dataTime = new DateTime('now');
         // dd($dataTime);
         $format = $dataTime->format('YmdHis');
-        return($format);
+        return ($format);
     }
 }

@@ -1,7 +1,10 @@
 {{-- @dd($dataPayment) --}}
 {{-- <a href="#" data-modal-target="default-modal" data-modal-toggle="default-modal" type="button" --}}
-<a href="#" data-modal-target="default-modal" data-modal-toggle="default-modal" type="button"
-    class=" w-full text-center rounded-md px-4 py-2 bg-green-700 text-white hover:bg-green-800 cursor-pointer">
+<a href="#" @if (session()->has('cart'))
+                data-modal-target="default-modal" data-modal-toggle="default-modal"
+            @endif   
+    type="button"
+    class="  w-full text-center rounded-md px-4 py-2 bg-green-700 text-white hover:bg-green-800 cursor-pointer">
     Place Order
 </a>
 <!-- Main modal -->
