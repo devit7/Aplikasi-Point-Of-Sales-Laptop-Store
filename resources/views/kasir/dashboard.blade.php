@@ -49,7 +49,7 @@
                             <div class="flex flex-col p-3 text-[#93A2D2] justify-between h-full">
                                 <div class="relative  w-full h-full overflow-hidden max-h-[180px]">
                                     <img id="card-img"
-                                        src="{{ asset('storage/images/' . $product['img']) }}"
+                                        src="{{ asset('storage/image_product/' . $product['img']) }}"
                                         alt="product img" class="w-full h-full bg-gray-900 object-cover rounded-lg">
                                     <div
                                         class="absolute font-semibold top-0 right-0  text-sm text-blue-800 bg-blue-300 rounded-bl-lg px-3 ">
@@ -113,7 +113,7 @@
                         @forelse (session()->get('cart') as $cart)
                             <div
                                 class="flex flex-row gap-2 justify-between p-2 items-center rounded-md border border-gray-600">
-                                <img src="{{ asset('/laptop/phf4ybjk8ttu92ftvkhjfq1zf5tb5a100535.avif') }}" alt=""
+                                <img src="{{ asset('storage/image_product/' . $cart['img']) }}" alt=""
                                     class="w-20 h-20 rounded-md border border-gray-600">
                                 <div class="flex flex-col  w-full ">
                                     <p class="text-[#93A2D2] font-semibold">
