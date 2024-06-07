@@ -78,10 +78,10 @@
                     </div>
                     <div class="flex flex-col items-center   ">
                         <p class="text-gray-400  font-bold  tracking-wider mb-1 ">
-                            Devit Erlingga
+                            {{ auth()->user()->nama }}
                         </p>
                         <p class=" font-medium  text-sm uppercase px-4 bg-green-900 rounded-xl text-green-400">
-                            kasir
+                            {{ auth()->user()->role }}
                         </p>
                     </div>
                 </div>
