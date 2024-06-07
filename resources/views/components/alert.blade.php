@@ -52,7 +52,7 @@
                         class="py-2 px-4 text-sm font-medium  rounded-md border  focus:ring-4 focus:outline-none focus:ring-primary-300 focus:z-10 bg-green-700 text-green-200 border-green-500 hover:text-white hover:bg-green-600 focus:ring-green-600">
                         Cancel
                     </button>
-                    <form action="{{ route($route,$id)}}" method="POST">
+                    <form action="{{ route($route)}}" method="POST">
                         @csrf
                         @method('delete')
                         <button type="submit"
