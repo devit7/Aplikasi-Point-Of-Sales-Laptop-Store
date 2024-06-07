@@ -23,7 +23,7 @@
                             <label for="merk_name" class="block mb-2 text-sm font-medium text-gray-400">merk Name</label>
                             <input type="text" name="merk_name" id="merk_name"
                                 class="bg-[#131432] border text-sm rounded-lg block w-full p-2.5 border-gray-600 placeholder-gray-400 text-gray-400 focus:ring-primary-500 focus:border-primary-500"
-                                placeholder="Ex: Aqua" value="{{ old('merk_name') }}" required>
+                                placeholder="Ex: Aqua" value="{{ old('merk_name') }}">
                             @if ($errors->has('merk_name'))
                                 <p class="text-red-500 text-xs mt-2">{{ $errors->first('merk_name') }}</p>
                             @endif
@@ -36,7 +36,7 @@
                                 </a>
                                 <button type="submit"
                                     class="inline-flex items-center px-5 py-2.5 mt-4 sm:mt-6 text-sm font-medium text-center text-white bg-green-700 rounded-md focus:ring-4 focus:ring-primary-200 dark:focus:ring-primary-900 hover:bg-primary-800">
-                                    Create merk
+                                    Create merks
                                 </button>
                             </div>
                         </div>

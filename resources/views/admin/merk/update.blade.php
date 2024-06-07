@@ -25,7 +25,7 @@
                                     Name</label>
                                 <input type="text" name="merk_name" id="merk_name"
                                     class="bg-[#131432] border text-sm rounded-lg block w-full p-2.5 border-gray-600 placeholder-gray-400 text-gray-400 focus:ring-primary-500 focus:border-primary-500"
-                                    placeholder="Ex: BCA" value="{{ $merk['merk_name'] }}" required>
+                                    placeholder="Ex: BCA" value="{{ $merk['merk_name'] }}">
                                 @if ($errors->has('merk_name'))
                                     <p class="text-red-500 text-xs mt-2">{{ $errors->first('merk_name') }}</p>
                                 @endif
@@ -49,12 +49,3 @@
         </div>
     </div>
 @endsection
-@push('scripts')
-    <script>
-        //untuk mengkosongkan value input form
-        document.getElementById('button-reset').addEventListener('click', (e) => {
-            e.preventDefault();
-            document.getElementById('merk_name').value = '';
-        });
-    </script>
-@endpush
