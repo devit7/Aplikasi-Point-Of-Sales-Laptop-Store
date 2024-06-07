@@ -146,6 +146,7 @@ class KasirAksesController extends Controller
         $request = Request::create('http://127.0.0.1:8000/api/transaksi', 'POST', $dataJson);
         $response = app()->handle($request);
         $data = json_decode($response->getContent(), true);
+        //dd($response);
         if ($response->getStatusCode() == 201) {
             session()->forget('cart');
             return redirect()->route('kasir.dashboard')->with('success', 'Transaksi Berhasil');

@@ -30,24 +30,30 @@
                         <div class="grid gap-4 sm:grid-cols-2 sm:gap-6">
                             <div class="sm:col-span-2">
                                 <label for="name" class="block mb-2 text-sm font-medium  text-white">Supplier Name</label>
-                                <input type="text" name="supplier_name" id="name" class="bg-[#131432] border   text-sm rounded-lg  block w-full p-2.5  border-gray-600 placeholder-gray-400 text-white focus:ring-primary-500 focus:border-primary-500" placeholder="Type Supplier name" required="">
+                                <input type="text" name="supplier_name" id="name" class="bg-[#131432] border   text-sm rounded-lg  block w-full p-2.5  border-gray-600 placeholder-gray-400 text-white focus:ring-primary-500 focus:border-primary-500" placeholder="Type Supplier name" >
                             </div>
                             <div class="w-full">
                                 <label for="brand" class="block mb-2 text-sm font-medium  text-white">No. Hp</label>
-                                <input type="text" name="no_hp" id="brand" class="bg-[#131432] border   text-sm rounded-lg  block w-full p-2.5  border-gray-600 placeholder-gray-400 text-white focus:ring-primary-500 focus:border-primary-500" placeholder="Supplier number" required="">
+                                <input type="text" name="no_hp" id="brand" class="bg-[#131432] border   text-sm rounded-lg  block w-full p-2.5  border-gray-600 placeholder-gray-400 text-white focus:ring-primary-500 focus:border-primary-500" placeholder="Supplier number" >
                             </div>
                             <div class="w-full">
                                 <label for="price" class="block mb-2 text-sm font-medium  text-white">Nama Perusahaan</label>
-                                <input type="text" name="nama_perusahaan" id="price" class="bg-[#131432] border   text-sm rounded-lg  block w-full p-2.5  border-gray-600 placeholder-gray-400 text-white focus:ring-primary-500 focus:border-primary-500" placeholder="Pt. Wibu Jaya Bersama" required="">
+                                <input type="text" name="nama_perusahaan" id="price" class="bg-[#131432] border   text-sm rounded-lg  block w-full p-2.5  border-gray-600 placeholder-gray-400 text-white focus:ring-primary-500 focus:border-primary-500" placeholder="Pt. Wibu Jaya Bersama" >
                             </div>
                             <div class="sm:col-span-2">
                                 <label for="description" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Alamat</label>
                                 <textarea id="description" name="alamat" rows="8" class="block p-2.5 w-full text-sm text-gray-900  rounded-lg border border-gray-300 focus:ring-primary-500 focus:border-primary-500 bg-[#131432] dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Alamat supplier"></textarea>
                             </div>
                         </div>
-                        <button type="submit" class="inline-flex items-center px-5 py-2.5 mt-4 sm:mt-6 text-sm font-medium text-center text-white bg-blue-700 rounded-lg focus:ring-4 focus:ring-primary-200 dark:focus:ring-primary-900 hover:bg-primary-800">
-                            Add supplier
-                        </button>
+                        <div class=" flex justify-between w-full gap-4 sm:gap-6">
+                            <a href="{{ route('supplier.index') }}"
+                                class="inline-flex items-center px-5 py-2.5 mt-4 sm:mt-6 text-sm font-medium text-center text-white bg-red-700 rounded-md focus:ring-4 focus:ring-primary-200 dark:focus:ring-primary-900 hover:bg-red-800">
+                                Back
+                            </a>
+                            <button type="submit" class="inline-flex items-center px-5 py-2.5 mt-4 sm:mt-6 text-sm font-medium text-center text-white bg-blue-700 rounded-lg focus:ring-4 focus:ring-primary-200 dark:focus:ring-primary-900 hover:bg-primary-800">
+                                Add supplier
+                            </button>
+                        </div>
                     </form>
                 </div>
         </div>
