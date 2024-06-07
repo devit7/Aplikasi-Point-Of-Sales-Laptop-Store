@@ -52,7 +52,7 @@
                             <td class="text-right">{{ $item['total_semua'] }}</td>
                             <td class="text-left">
                                 {{ \Carbon\Carbon::parse($item['created_at'])->format('Y-m-d H:i') }}</td>
-                                <x-modal_detail id="{{$item['id']}}">
+                                <td><x-modal_detail id="{{$item['id']}}">
                             <div class="flex flex-col w-fit rounded-md p-5 bg-[#1C1D42]">
                                 <span class=" w-96 text-xl mb-8 text-indigo-100 font-bold">Detail Transaksi</span>
                                 <div class="flex items-center space-x-4">
@@ -85,8 +85,12 @@
                                     <hr class="flex-grow border-gray-200">
                                     <span>{{$item['total_semua']}}</span>
                                 </div>
+                                <div class="w-6/12 flex items-center mb-[-6rem]">
+                                    <a href="#" onclick="exportToPDF()"
+                                          class="flex items-center gap-2 px-4 py-2 bg-[#FF9A37] text-white rounded-md hover:bg-[#FF9A37]">Export To PDF</a>
+                                </div>
                             </div>
-                        </x-modal_detail>
+                        </x-modal_detail></td>
                         </tr>
                         @endforeach
                     </tbody>
