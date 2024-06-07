@@ -14,12 +14,14 @@ class Alert extends Component
     public $id;
     public $nama;
     public $route;
-    public function __construct($id = null, $nama = null, $route = null)
+    public $type;
+    public function __construct($id = null, $nama = null, $route = null, $type = null)
     {
         //
         $this->id = $id;
         $this->nama = $nama;
         $this->route = $route;
+        $this->type = $type;
     }
 
     /**

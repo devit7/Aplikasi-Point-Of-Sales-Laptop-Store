@@ -63,7 +63,7 @@ class merkAksesController extends Controller
         $response = app()->handle($request);
         $data = json_decode($response->getContent(), true);
         if ($response->getStatusCode() == 201) {
-            session()->flash('success', 'merk berhasil ditambahkan');
+            session()->flash('success', 'Merk berhasil ditambahkan');
             return redirect()->route('merk.index');
         } else {
             return response()->json([
@@ -84,7 +84,7 @@ class merkAksesController extends Controller
         $request = Request::create($api_url, 'PUT');
         $response = app()->handle($request);
         if ($response->getStatusCode() == 200) {
-            session()->flash('success', 'Data merk berhasil di update');
+            session()->flash('success', 'Merk berhasil di update');
             return redirect()->route('merk.index');
         } else {
             return response()->json([
@@ -98,18 +98,11 @@ class merkAksesController extends Controller
         $request = Request::create('http://127.0.0.1:8000/api/merk/' . $merk, 'DELETE');
         $response = app()->handle($request);
         if ($response->getStatusCode() == 200) {
-            return redirect()->route('merk.index')->with('success', 'Data berhasil dihapus');
+            return redirect()->route('merk.index')->with('success', 'Merk berhasil dihapus');
         } else {
             return response()->json([
                 'message' => 'Unauthorized'
             ]);
         }
     }
-
-    // public function makeMerk($merk){
-    //     $merks = new Merk();
-    //     $merks->merk_name = $merk;
-    //     $merks->save();
-    //     return($merks->id);
-    // }
 }

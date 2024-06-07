@@ -26,7 +26,7 @@ class StoreRequest extends FormRequest
         return [
             'customer_name' => 'required|string',
             'email' => 'required|email|unique:customer,email',
-            'no_hp' => 'required|string|unsigned|unique:customer,no_hp',
+            'no_hp' => 'required|string|unsigned|digits:12|unique:customer,no_hp',
             'alamat' => 'required|string',
         ];
     }
@@ -43,6 +43,7 @@ class StoreRequest extends FormRequest
             'no_hp.string' => 'Data No HP Harus Berupa String',
             'no_hp.unique' => 'Data No HP Sudah Ada',
             'no_hp.unsigned' => 'Data No HP Harus Berupa Angka',
+            'no_hp.digits' => 'Data No. HP harus 12 digit',
             'alamat.required' => 'Data Alamat Harus Di Isi',
             'alamat.string' => 'Data Alamat Harus Berupa String',
         ];
