@@ -83,8 +83,13 @@
                                                 </svg>
                                             </button>
                                         </a>
-                                        <x-alert id="$value['id']" nama="{{ $value['product_name'] }}"
-                                            route="products.destroy" />
+
+                                        <form action="/admin/product/destroy/{{ $value['id'] }}" method="post">
+                                            @csrf
+                                            @method('DELETE')
+                                        </form>
+                                        <x-alert id="{{$value['id']}}" nama="{{ $value['product_name'] }}" route="products.destroy"/>
+
                                     </td>
                                 </tr>
                             @empty

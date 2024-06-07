@@ -113,7 +113,7 @@
                         @forelse (session()->get('cart') as $cart)
                             <div
                                 class="flex flex-row gap-2 justify-between p-2 items-center rounded-md border border-gray-600">
-                                <img src="{{ asset('/laptop/phf4ybjk8ttu92ftvkhjfq1zf5tb5a100535.avif') }}" alt=""
+                                <img src="{{ asset('storage/image_product/' . $cart['img']) }}" alt=""
                                     class="w-20 h-20 rounded-md border border-gray-600">
                                 <div class="flex flex-col  w-full ">
                                     <p class="text-[#93A2D2] font-semibold">
