@@ -52,18 +52,41 @@
                             <td class="text-right">{{ $item['total_semua'] }}</td>
                             <td class="text-left">
                                 {{ \Carbon\Carbon::parse($item['created_at'])->format('Y-m-d H:i') }}</td>
-                            <td class="text-left flex">
-                                <button class="bg-[#002D4C] border p-1 border-[#2B4F69] rounded-md"
-                                    onclick="showDetails({{ json_encode($item) }})">
-                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                        stroke-width="1.5" stroke="currentColor" class="w-6 h-6 text-green-600">
-                                        <path stroke-linecap="round" stroke-linejoin="round"
-                                            d="M2.036 12.322a1.012 1.012 0 0 1 0-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178Z" />
-                                        <path stroke-linecap="round" stroke-linejoin="round"
-                                            d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
-                                    </svg>
-                                </button>
-                            </td>
+                                <x-modal_detail id="{{$item['id']}}">
+                            <div class="flex flex-col w-fit rounded-md p-5 bg-[#1C1D42]">
+                                <span class=" w-96 text-xl mb-8 text-indigo-100 font-bold">Detail Transaksi</span>
+                                <div class="flex items-center space-x-4">
+                                    <span class=" text-indigo-200 p-1 font-semibold">Customer</span>
+                                    <hr class="flex-grow border-gray-200">
+                                    <span>{{$item['customer']['customer_name']}}</span>
+                                </div>
+                                <div class="flex items-center space-x-4">
+                                    <span class=" text-indigo-200 p-1 font-semibold">Invoice</span>
+                                    <hr class="flex-grow border-gray-200">
+                                    <span>{{$item['invoice']}}</span>
+                                </div>
+                                <div class="flex items-center space-x-4">
+                                    <span class=" text-indigo-200 p-1 font-semibold">Kasir</span>
+                                    <hr class="flex-grow border-gray-200">
+                                    <span>{{$item['user']['nama']}}</span>
+                                </div>
+                                <div class="flex items-center space-x-4">
+                                    <span class=" text-indigo-200 p-1 font-semibold">Date</span>
+                                    <hr class="flex-grow border-gray-200">
+                                    <span>{{$item['order_date']}}</span>
+                                </div>
+                                <div class="flex items-center space-x-4">
+                                    <span class=" text-indigo-200 p-1 font-semibold">Payment</span>
+                                    <hr class="flex-grow border-gray-200">
+                                    <span>{{$item['payment']['payment_name']}}</span>
+                                </div>
+                                <div class="flex items-center space-x-4">
+                                    <span class=" text-indigo-200 p-1 font-semibold">Total</span>
+                                    <hr class="flex-grow border-gray-200">
+                                    <span>{{$item['total_semua']}}</span>
+                                </div>
+                            </div>
+                        </x-modal_detail>
                         </tr>
                         @endforeach
                     </tbody>
