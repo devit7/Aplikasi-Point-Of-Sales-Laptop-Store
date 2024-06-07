@@ -53,7 +53,7 @@
                                     <td class="text-left">
                                         {{ \Carbon\Carbon::parse($item['created_at'])->format('Y-m-d H:i') }}</td>
                                     <td class="text-left flex">
-                                        <a href="">
+                                        <a href="#" onclick="viewToPDF()">
                                             <button class="bg-[#002D4C] border p-1 border-[#2B4F69] rounded-md">
                                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                                     stroke-width="1.5" stroke="currentColor" class="w-6 h-6 text-green-600">
@@ -76,139 +76,145 @@
 
     @push('scripts')
         {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script> --}}
+
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.21/jspdf.plugin.autotable.min.js"></script>
     @endpush
 
     <script>
-    function getCurrentDateTime() {
-        const now = new Date();
-        const year = now.getFullYear();
-        const month = String(now.getMonth() + 1).padStart(2, '0');
-        const day = String(now.getDate()).padStart(2, '0');
-        const hours = String(now.getHours()).padStart(2, '0');
-        const minutes = String(now.getMinutes()).padStart(2, '0');
-        return `${year}-${month}-${day}_${hours}-${minutes}`;
-    }
-
-    function exportToExcel() {
-        const table = document.getElementById("table");
-        const rows = table.querySelectorAll("tr");
-
-        let kotak = '';
-        kotak += '\n\t<ss:Borders>';
-        kotak += '\n\t<ss:Border ss:Position="Top" ss:LineStyle="Continuous" ss:Weight="1"/>';
-        kotak += '\n\t<ss:Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="1"/>';
-        kotak += '\n\t<ss:Border ss:Position="Left" ss:LineStyle="Continuous" ss:Weight="1"/>';
-        kotak += '\n\t<ss:Border ss:Position="Right" ss:LineStyle="Continuous" ss:Weight="1"/>';
-        kotak += '\n\t</ss:Borders>';
-
-        let xml = '<?xml version="1.0"?>\n<ss:Workbook xmlns:ss="urn:schemas-microsoft-com:office:spreadsheet">';
-        xml += '\n<ss:Styles>';
-        xml += '\n<ss:Style ss:ID="boldKotak">';
-        xml += '\n\t<ss:Font ss:Bold="1" ss:Color="#FFFFFF"/>';
-        xml += '\n\t<ss:Interior ss:Color="#0E2841" ss:Pattern="Solid"/>';
-        xml += kotak;
-        xml += '\n</ss:Style>';
-        xml += '\n\t<ss:Style ss:ID="Kotak">';
-        xml += kotak;
-        xml += '\n\t</ss:Style>';
-        xml += '\n\t<ss:Style ss:ID="KotakRupiah">';
-        xml += '<ss:NumberFormat ss:Format="Rp #,##0"/>';
-        xml += kotak;
-        xml += '\n\t</ss:Style>';
-        xml += '\n</ss:Styles>';
-
-        xml += '\n<ss:Worksheet ss:Name="Laporan Admin">\n<ss:Table>\n';
-        xml += '<ss:Column ss:AutoFitWidth="1"/>';
-
-        for (let i = 0; i < rows.length; i++) {
-            const kolom = rows[i].querySelectorAll("td, th");
-            xml += "<ss:Row>\n";
-
-            for (let j = 0; j < kolom.length - 1; j++) {
-                let masuk = kolom[j].innerText;
-                let tipe = 'String';
-                let style = ' ss:StyleID="Kotak"';
-                if (i != 0 && (j == 6 || j == 0)) {
-                    masuk = parseInt(kolom[j].innerText.replace(/[^\d]/g, ''), 10);
-                    tipe = 'Number';
-                    if (j == 6) {
-                        style = ' ss:StyleID="KotakRupiah"';
-                    }
-                }
-                if (i == 0) {
-                    style = ' ss:StyleID="boldKotak"';
-                }
-                xml += '<ss:Cell' + style + '><ss:Data ss:Type="' + tipe + '">' + masuk + '</ss:Data></ss:Cell>\n';
-            }
-
-            xml += "</ss:Row>\n";
+        function getCurrentDateTime() {
+            const now = new Date();
+            const year = now.getFullYear();
+            const month = String(now.getMonth() + 1).padStart(2, '0');
+            const day = String(now.getDate()).padStart(2, '0');
+            const hours = String(now.getHours()).padStart(2, '0');
+            const minutes = String(now.getMinutes()).padStart(2, '0');
+            return `${year}-${month}-${day}_${hours}-${minutes}`;
         }
 
-        xml += "</ss:Table>\n</ss:Worksheet>\n</ss:Workbook>\n";
+        function exportToExcel() {
+            const table = document.getElementById("table");
+            const rows = table.querySelectorAll("tr");
 
-        const dateTime = getCurrentDateTime();
-        downloadExcel(xml, `table_${dateTime}.xls`);
-    }
+            let kotak = '';
+            kotak += '\n\t<ss:Borders>';
+            kotak += '\n\t<ss:Border ss:Position="Top" ss:LineStyle="Continuous" ss:Weight="1"/>';
+            kotak += '\n\t<ss:Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="1"/>';
+            kotak += '\n\t<ss:Border ss:Position="Left" ss:LineStyle="Continuous" ss:Weight="1"/>';
+            kotak += '\n\t<ss:Border ss:Position="Right" ss:LineStyle="Continuous" ss:Weight="1"/>';
+            kotak += '\n\t</ss:Borders>';
 
-    function downloadExcel(xml, filename) {
-        let blob = new Blob([xml], {
-            type: "application/vnd.ms-excel"
-        });
-        let link = document.createElement("a");
+            let xml = '<?xml version="1.0"?>\n<ss:Workbook xmlns:ss="urn:schemas-microsoft-com:office:spreadsheet">';
+            xml += '\n<ss:Styles>';
+            xml += '\n<ss:Style ss:ID="boldKotak">';
+            xml += '\n\t<ss:Font ss:Bold="1" ss:Color="#FFFFFF"/>';
+            xml += '\n\t<ss:Interior ss:Color="#0E2841" ss:Pattern="Solid"/>';
+            xml += kotak;
+            xml += '\n</ss:Style>';
+            xml += '\n\t<ss:Style ss:ID="Kotak">';
+            xml += kotak;
+            xml += '\n\t</ss:Style>';
+            xml += '\n\t<ss:Style ss:ID="KotakRupiah">';
+            xml += '<ss:NumberFormat ss:Format="Rp #,##0"/>';
+            xml += kotak;
+            xml += '\n\t</ss:Style>';
+            xml += '\n</ss:Styles>';
 
-        link.href = window.URL.createObjectURL(blob);
-        link.download = filename;
-        link.click();
-        window.URL.revokeObjectURL(link.href);
-    }
+            xml += '\n<ss:Worksheet ss:Name="Laporan Admin">\n<ss:Table>\n';
+            xml += '<ss:Column ss:AutoFitWidth="1"/>';
 
-    function exportToPDF() {
-        const { jsPDF } = window.jspdf;
-        const doc = new jsPDF();
+            for (let i = 0; i < rows.length; i++) {
+                const kolom = rows[i].querySelectorAll("td, th");
+                xml += "<ss:Row>\n";
 
-        const table = document.getElementById("table");
-        const headers = [];
-        table.querySelectorAll("th").forEach((header, index) => {
-            if (index !== table.querySelectorAll("th").length - 1) {
-                headers.push(header.innerText);
+                for (let j = 0; j < kolom.length - 1; j++) {
+                    let masuk = kolom[j].innerText;
+                    let tipe = 'String';
+                    let style = ' ss:StyleID="Kotak"';
+                    if (i != 0 && (j == 6 || j == 0)) {
+                        masuk = parseInt(kolom[j].innerText.replace(/[^\d]/g, ''), 10);
+                        tipe = 'Number';
+                        if (j == 6) {
+                            style = ' ss:StyleID="KotakRupiah"';
+                        }
+                    }
+                    if (i == 0) {
+                        style = ' ss:StyleID="boldKotak"';
+                    }
+                    xml += '<ss:Cell' + style + '><ss:Data ss:Type="' + tipe + '">' + masuk + '</ss:Data></ss:Cell>\n';
+                }
+
+                xml += "</ss:Row>\n";
             }
-        });
 
-        const rows = [];
-        table.querySelectorAll("tbody tr").forEach(row => {
-            const rowData = [];
-            row.querySelectorAll("td").forEach((cell, index) => {
-                if (index !== row.querySelectorAll("td").length - 1) {
-                    rowData.push(cell.innerText);
+            xml += "</ss:Table>\n</ss:Worksheet>\n</ss:Workbook>\n";
+
+            const dateTime = getCurrentDateTime();
+            downloadExcel(xml, `table_${dateTime}.xls`);
+        }
+
+        function downloadExcel(xml, filename) {
+            let blob = new Blob([xml], {
+                type: "application/vnd.ms-excel"
+            });
+            let link = document.createElement("a");
+
+            link.href = window.URL.createObjectURL(blob);
+            link.download = filename;
+            link.click();
+            window.URL.revokeObjectURL(link.href);
+        }
+
+        function viewToPDF() {
+
+        }
+
+        function exportToPDF() {
+            const {
+                jsPDF
+            } = window.jspdf;
+            const doc = new jsPDF();
+
+            const table = document.getElementById("table");
+            const headers = [];
+            table.querySelectorAll("th").forEach((header, index) => {
+                if (index !== table.querySelectorAll("th").length - 1) {
+                    headers.push(header.innerText);
                 }
             });
-            rows.push(rowData);
-        });
 
-        doc.autoTable({
-            head: [headers],
-            body: rows,
-            headStyles: {
-                fillColor: '#131432',
-                textColor: '#ffffff',
-                lineColor: '#000000',
-                lineWidth: 0.1
-            },
-            styles: {
-                fillColor: [255, 255, 255],
-                textColor: '#000000',
-                lineColor: '#000000',
-                lineWidth: 0.1
-            },
-            tableLineColor: '#33356F',
-            tableLineWidth: 0.1
-        });
+            const rows = [];
+            table.querySelectorAll("tbody tr").forEach(row => {
+                const rowData = [];
+                row.querySelectorAll("td").forEach((cell, index) => {
+                    if (index !== row.querySelectorAll("td").length - 1) {
+                        rowData.push(cell.innerText);
+                    }
+                });
+                rows.push(rowData);
+            });
 
-        const dateTime = getCurrentDateTime();
-        doc.save(`report_${dateTime}.pdf`);
-    }
-</script>
+            doc.autoTable({
+                head: [headers],
+                body: rows,
+                headStyles: {
+                    fillColor: '#131432',
+                    textColor: '#ffffff',
+                    lineColor: '#000000',
+                    lineWidth: 0.1
+                },
+                styles: {
+                    fillColor: [255, 255, 255],
+                    textColor: '#000000',
+                    lineColor: '#000000',
+                    lineWidth: 0.1
+                },
+                tableLineColor: '#33356F',
+                tableLineWidth: 0.1
+            });
 
+            const dateTime = getCurrentDateTime();
+            doc.save(`report_${dateTime}.pdf`);
+        }
+    </script>
 @endsection
