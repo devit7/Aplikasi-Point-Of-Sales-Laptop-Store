@@ -11,9 +11,11 @@ class modals_transaksi extends Component
      *
      * @return void
      */
-    public function __construct()
+    public $totalAll;
+
+    public function __construct($totalAll = null)
     {
-        //
+        $this->totalAll = $totalAll;
     }
 
     /**

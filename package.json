@@ -1,6 +1,7 @@
 {
     "private": true,
     "scripts": {
+        "build:mail": "vite build --config ./vite-email.config.js --watch",
         "dev": "vite",
         "build": "vite build"
     },
