@@ -116,7 +116,7 @@ Route::middleware(['WebAkses:admin'])->prefix('admin')->group(function () {
     //     return view('admin.product.update');
     // })->name('products.edit');
     Route::put('/products/update/{product}', [ProductAksesController::class, 'updateData'])->name('products.update');
-    Route::delete('/products/destroy/{product}', [ProductAksesController::class, 'deleteData'])->name('products.destroy');
+    Route::delete('/products/destroy/{product}', [ProductAksesController::class, 'deleteData']);
 });
 
 

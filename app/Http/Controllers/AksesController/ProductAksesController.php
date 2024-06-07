@@ -90,7 +90,7 @@ class ProductAksesController extends Controller
 
         if ($response->getStatusCode() == 201) {
             session()->flash('success', 'Data Product berhasil di tambahkan');
-            return redirect()->route('products.index');
+            return redirect('/admin/product');
         } else {
             return response()->json([
                 'message' => 'Unauthorized',
@@ -166,7 +166,7 @@ class ProductAksesController extends Controller
         $request = Request::create('http://127.0.0.1:8000/api/products/' . $product, 'DELETE');
         $response = app()->handle($request);
         if ($response->getStatusCode() == 200) {
-            return redirect()->route('products.index')->with('success', 'Data Product berhasil dihapus');
+            return redirect('/admin/product')->with('success', 'Data Product berhasil dihapus');
         } else {
             return response()->json([
                 'message' => 'Unauthorized',
