@@ -13,6 +13,7 @@ use App\Http\Controllers\AksesController\LaporanController;
 use App\Http\Controllers\AksesController\ProductAksesController;
 use App\Http\Controllers\AksesController\SupplierAksesController;
 use App\Http\Controllers\API\DashboardController;
+use App\Http\Controllers\API\TransaksiController;
 // use App\Http\Controllers\API\ProductController;
 // use App\Http\Controllers\API\UserController;
 use Illuminate\Support\Facades\Route;
@@ -75,9 +76,11 @@ Route::middleware(['WebAkses:admin'])->prefix('admin')->group(function () {
 
     // Route::post('/product', [ProductAksesController::class, 'createData'])->name('admin.product.store');
     Route::get('/product/create/new', [ProductAksesController::class, 'getAllToCreate']);
-    Route::post('/product/Create', [ProductAksesController::class, 'productAdminMakenew']);
-    Route::get('/product/Update/{idProduk}', [ProductAksesController::class, 'productAdminUpdate']);
-    Route::put('/product/Update/{idProduk}', [ProductAksesController::class, 'productAdminMakeUpdate']);
+    Route::post('/product/create', [ProductAksesController::class, 'productAdminMakenew']);
+    Route::get('/product/update/{idProduk}', [ProductAksesController::class, 'productAdminUpdate']);
+    Route::put('/product/update/{idProduk}', [ProductAksesController::class, 'productAdminMakeUpdate']);
+
+    Route::put('/product/destroy/{product}', [ProductAksesController::class, 'deleteData'])->name('products.destroy');
 
     // Route::get('/product/create', function () {
     //     return view('admin.product.create');
@@ -124,6 +127,7 @@ Route::middleware(['WebAkses:kasir'])->prefix('kasir')->group(function () {
     });
     Route::get('/add-to-cart/{product}', [KasirAksesController::class, 'addToCardSession'])->name('kasir.add-to-cart');
     Route::get('/clear-cart', [KasirAksesController::class, 'clearCart'])->name('kasir.clear-cart');
+    Route::post('/transaction-process', [KasirAksesController::class, 'transactionProcess'])->name('kasir.transaction-process');
 
 
     Route::get('/transaksi', function () {
@@ -164,6 +168,8 @@ Route::get('/form', function () {
 Route::get('/tables', function () {
     return view('tables');
 });
+
+Route::get('/mail', [TransaksiController::class, 'testEmial']);
 
 //Api
 Route::get('/u', [UserAksesController::class, 'getAll']);

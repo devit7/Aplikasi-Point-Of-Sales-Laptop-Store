@@ -1,7 +1,10 @@
 {{-- @dd($dataPayment) --}}
 {{-- <a href="#" data-modal-target="default-modal" data-modal-toggle="default-modal" type="button" --}}
-<a href="#" data-modal-target="default-modal" data-modal-toggle="default-modal" type="button"
-    class=" w-full text-center rounded-md px-4 py-2 bg-green-700 text-white hover:bg-green-800 cursor-pointer">
+<a href="#" @if (session()->has('cart'))
+                data-modal-target="default-modal" data-modal-toggle="default-modal"
+            @endif   
+    type="button"
+    class="  w-full text-center rounded-md px-4 py-2 bg-green-700 text-white hover:bg-green-800 cursor-pointer">
     Place Order
 </a>
 <!-- Main modal -->
@@ -9,61 +12,67 @@
     class="hidden overflow-x-hidden overflow-y-auto fixed h-modal md:h-full top-4 left-0 right-0 md:inset-0 z-50 justify-center items-center">
     <div class="relative w-full max-w-2xl px-4 h-full md:h-auto">
         <!-- Modal content -->
-        <div class="rounded-md shadow relative bg-[#1C1D42]">
-            <!-- Modal header -->
-            <div class="flex items-start justify-between p-5  rounded-t ">
-                <h3 class="text-gray-900 text-xl lg:text-2xl font-semibold dark:text-white">
-                    Transaction Detail
-                </h3>
-                <button type="button"
-                    class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white"
-                    data-modal-toggle="default-modal">
-                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                        <path fill-rule="evenodd"
-                            d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
-                            clip-rule="evenodd"></path>
-                    </svg>
-                </button>
-            </div>
-            <!-- Modal body -->
-            <div class="flex flex-col w-full p-6 gap-4  border-y border-[#33356F] font-semibold">
-                <form action="">
+        <form action="{{ route('kasir.transaction-process') }}" method="POST">
+            @csrf
+            <div class="rounded-md shadow relative bg-[#1C1D42]">
+                <!-- Modal header -->
+                <div class="flex items-start justify-between p-5  rounded-t ">
+                    <h3 class="text-gray-900 text-xl lg:text-2xl font-semibold dark:text-white">
+                        Transaction Detail
+                    </h3>
+                    <button type="button"
+                        class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white"
+                        data-modal-toggle="default-modal">
+                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd"
+                                d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+                                clip-rule="evenodd"></path>
+                        </svg>
+                    </button>
+                </div>
+                <!-- Modal body -->
+                <div class="flex flex-col w-full p-6 gap-4  border-y border-[#33356F] font-semibold">
 
                     <p class="text-gray-400 text-sm">
                         CUSTOMER
                     </p>
                     {{-- Dropdown Customer --}}
-                    <div class="sm:col-span-2 dropdown-div relative">
-                        <button type="button" id="dropdown-button-customer"
-                            class="flex dropdown-button justify-between bg-[#131432] border text-sm rounded-lg  w-full p-2.5  border-gray-600 placeholder-gray-400 text-gray-400 focus:ring-primary-500 focus:border-primary-500">
-                            <span class="">Choose customer</span>
-                            <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 ml-2 -mr-1" viewBox="0 0 20 20"
-                                fill="currentColor" aria-hidden="true">
-                                <path fill-rule="evenodd"
-                                    d="M6.293 9.293a1 1 0 011.414 0L10 11.586l2.293-2.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z"
-                                    clip-rule="evenodd" />
-                            </svg>
-                        </button>
-                        <div id="dropdown-menu-customer"
-                            class=" hidden absolute z-10 w-full dropdown-menu py-2 shadow-lg col bg-[#131432] ring-black ring-opacity-5 p-1 space-y-1">
-                            {{-- Search input Buat Dropdown --}}
-                            <input
-                                class="search-input w-full px-2 bg-[#131432] text-gray-400 border rounded-md  border-gray-300 focus:outline-none"
-                                type="text" placeholder="Search customer" autocomplete="off">
-                            {{-- list dropdown --}}
-                            @forelse ($dataCustomer as $customer)
-                                <a href="#"
-                                    class="dropdown-item justify-start pl-3 flex col-2 text-white hover:bg-[#6b6eb4] active:bg-blue-100 cursor-pointer"
-                                    data-value="{{ $customer['id'] }}">
-                                    <p class="w-full row">{{ $customer['customer_name'] }}</p>
-                                    <p class="w-full row">{{ $customer['email'] }}</p>
-                                </a>
-                            @empty
-                                <p class="text-center text-white">No customer</p>
-                            @endforelse
-
+                    <div class="flex flex-row w-full items-center px-4 ">
+                        <div class="w-40 text-blue-200  ">
+                            Customer
                         </div>
-                        <input type="hidden" name="customer_id" id="customer-input" value="">
+                        <div class="sm:col-span-2 dropdown-div relative w-full">
+                            <button type="button" id="dropdown-button-customer"
+                                class="flex dropdown-button justify-between bg-[#131432] border text-sm rounded  w-full p-2.5  border-gray-600 placeholder-gray-400 text-gray-400 focus:ring-primary-500 focus:border-primary-500">
+                                <span class="">Choose customer</span>
+                                <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 ml-2 -mr-1" viewBox="0 0 20 20"
+                                    fill="currentColor" aria-hidden="true">
+                                    <path fill-rule="evenodd"
+                                        d="M6.293 9.293a1 1 0 011.414 0L10 11.586l2.293-2.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z"
+                                        clip-rule="evenodd" />
+                                </svg>
+                            </button>
+                            <div id="dropdown-menu-customer"
+                                class=" hidden absolute z-10 w-full dropdown-menu py-2 shadow-lg col bg-[#131432] ring-black ring-opacity-5 p-1 space-y-1">
+                                {{-- Search input Buat Dropdown --}}
+                                <input
+                                    class="search-input w-full px-2 bg-[#131432] text-gray-400 border rounded  border-gray-300 focus:outline-none"
+                                    type="text" placeholder="Search customer" autocomplete="off">
+                                {{-- list dropdown --}}
+                                @forelse ($dataCustomer as $customer)
+                                    <a href="#"
+                                        class="dropdown-item justify-start pl-3 flex col-2 text-white hover:bg-[#6b6eb4] active:bg-blue-100 cursor-pointer"
+                                        data-value="{{ $customer['id'] }}">
+                                        <p class="w-full row">{{ $customer['customer_name'] }}</p>
+                                        <p class="w-full row">{{ $customer['email'] }}</p>
+                                    </a>
+                                @empty
+                                    <p class="text-center text-white">No customer</p>
+                                @endforelse
+
+                            </div>
+                            <input type="hidden" name="customer_id" id="customer-input" value="">
+                        </div>
                     </div>
                     <p class="text-gray-400 text-sm">
                         PAYMENT
@@ -75,20 +84,20 @@
                             </div>
                             <div class="w-full ">
                                 <input type="text" name="total" id="total"
-                                    class="w-full text-right px-4 py-2  text-gray-600 bg-[#131432] border border-gray-600 rounded "
-                                    value="{{ number_format($totalAll, 0, ',', '.') }}" disabled>
+                                    class="w-full text-right px-4 py-2  text-gray-600 bg-[#131432] border border-gray-600 rounded disabled:opacity-50"
+                                    value="@currency($totalAll)" >
                             </div>
                         </div>
                         <div class="flex flex-row w-full items-center ">
                             <div class="w-40 text-blue-200 ">
                                 Metode Pembayaran
                             </div>
-                            <div class="dropdown-div sm:col-span-2 relative">
+                            <div class="dropdown-div sm:col-span-2 relative w-full">
                                 <button type="button" id="dropdown-button-payment"
-                                    class="flex dropdown-button justify-between bg-[#131432] border text-sm rounded-lg  w-full p-2.5  border-gray-600 placeholder-gray-400 text-gray-400 focus:ring-primary-500 focus:border-primary-500">
-                                    <span class="w-full">Choose Supplier</span>
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 ml-2 -mr-1" viewBox="0 0 20 20"
-                                        fill="currentColor" aria-hidden="true">
+                                    class="flex dropdown-button justify-between bg-[#131432] border text-sm rounded  w-full p-2.5  border-gray-600 placeholder-gray-400 text-gray-400 focus:ring-primary-500 focus:border-primary-500">
+                                    <span class="w-full text-left">Choose Payment</span>
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 ml-2 -mr-1"
+                                        viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
                                         <path fill-rule="evenodd"
                                             d="M6.293 9.293a1 1 0 011.414 0L10 11.586l2.293-2.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z"
                                             clip-rule="evenodd" />
@@ -108,20 +117,21 @@
                                 <input type="hidden" name="payment_id" id="payment-input" value="">
                             </div>
                         </div>
-                </form>
-            </div>
-        </div>
-        <!-- Modal footer -->
-        <div class="flex justify-between items-center space-x-4 p-5 rounded-b">
-            <button data-modal-toggle="default-modal" type="button"
-                class="py-2 w-36 text-sm rounded-md font-medium text-center text-white focus:z-10 border  focus:ring-4 focus:outline-none border-red-400 focus:ring-red-300 bg-red-600 hover:bg-red-500 ">
-                No, Cancel
-            </button>
-            <button type="submit"
-                class="py-2 w-36 text-sm font-medium   rounded-md border  focus:ring-4 focus:outline-none focus:z-10 bg-green-700 text-green-200 border-green-500 hover:text-white hover:bg-green-600 focus:ring-green-600">
-                Accept Transaction
-            </button>
-        </div>
+
+                    </div>
+                </div>
+                <!-- Modal footer -->
+                <div class="flex justify-between items-center space-x-4 p-5 rounded-b">
+                    <button data-modal-toggle="default-modal" type="button"
+                        class="py-2 w-36 text-sm rounded-md font-medium text-center text-white focus:z-10 border  focus:ring-4 focus:outline-none border-red-400 focus:ring-red-300 bg-red-600 hover:bg-red-500 ">
+                        No, Cancel
+                    </button>
+                    <button type="submit"
+                        class="py-2 w-36 text-sm font-medium   rounded-md border  focus:ring-4 focus:outline-none focus:z-10 bg-green-700 text-green-200 border-green-500 hover:text-white hover:bg-green-600 focus:ring-green-600">
+                        Accept Transaction
+                    </button>
+                </div>
+        </form>
     </div>
 </div>
 </div>
