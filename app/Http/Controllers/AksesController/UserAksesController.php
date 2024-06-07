@@ -83,20 +83,21 @@ class UserAksesController extends Controller
 
     public function updateData(UpdateRequest $request, User $user)
     {
-        $request->validated();
+        $validator = $request->validated();
+
         $data = [
-            'nama' => $request->input('nama'),
-            'username' => $request->input('username'),
-            'password' => $request->input('password'),
-            'role' => $request->input('role'),
+            'nama' => $validator['nama'],
+            'username' => $validator['username'],
+            'role' => $validator['role'],
         ];
-        $request = Request::create('http://127.0.0.1:8000/api/users/' . $user, 'PUT', $data);
+        $api_url = 'http://127.0.0.1:8000/api/users/' . $user->id .'?' . http_build_query($data);
+
+        $request = Request::create($api_url, 'PUT');
         $response = app()->handle($request);
-        if($response->getStatusCode() == 200){
-            return view('admin.user.update', [
-                'data' => $data['data']
-                ]);
-        }else{
+        if ($response->getStatusCode() == 200) {
+            session()->flash('success', 'user berhasil di update');
+            return redirect()->route('user.index');
+        } else {
             return response()->json([
                 'message' => 'Unauthorized'
             ], 401);
