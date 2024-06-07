@@ -44,7 +44,10 @@ class TokoAksesController extends Controller
             'PUT',
             $data,
         );
-        $temp_request->files->set('logo_toko', $file);
+        if ($request->hasFile('logo_toko')) {
+            $file = $request->file('logo_toko');
+            $temp_request->files->set('logo_toko', $file);
+        }
 
         $response = app()->handle($temp_request);
 

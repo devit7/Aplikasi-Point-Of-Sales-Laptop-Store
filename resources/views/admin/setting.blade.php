@@ -21,7 +21,7 @@
             </div>
         @endif
 
-        <div class="mt-10 flex gap-[20px] lg:gap-[150px] md:gap-[50px]  w-full mx-auto     rounded-md">
+        <div class="mt-10 flex gap-[20px] lg:gap-[150px] md:gap-[50px]  w-full mx-auto rounded-md">
             <div class="w-[600px] flex flex-col gap-4">
                 <p class="rounded-md p-4 font-semibold bg-[#1C1D42] text-[#6b6eb4]">Setting</p>
                 <div class="rounded-md p-4 bg-[#1C1D42] text-[#6b6eb4]">
@@ -109,7 +109,7 @@
                 <div class="flex flex-col rounded-md p-6 bg-white border border-gray-400">
                     <div class="text-center">
                         <img src="{{ asset('storage/logos/' . $toko[0]['logo_toko']) }}" alt="product"
-                            class="w-10 h-10 mx-auto">
+                            class="w-10 h-10 mx-auto rounded-lg">
                         <p class="text-lg font-semibold">{{ $toko[0]['nama_toko'] }}</p>
                         <p class="text-sm">{{ $toko[0]['alamat'] }}</p>
                         <p class="text-sm">{{ $toko[0]['no_hp'] }}</p>

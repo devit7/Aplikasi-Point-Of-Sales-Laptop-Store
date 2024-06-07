@@ -130,147 +130,127 @@
         return `${year}-${month}-${day}_${hours}-${minutes}`;
     }
 
-    function exportToExcel() {
-        const table = document.getElementById("table");
-        const rows = table.querySelectorAll("tr");
+        function exportToExcel() {
+            const table = document.getElementById("table");
+            const rows = table.querySelectorAll("tr");
 
-        let kotak = '';
-        kotak += '\n\t<ss:Borders>';
-        kotak += '\n\t<ss:Border ss:Position="Top" ss:LineStyle="Continuous" ss:Weight="1"/>';
-        kotak += '\n\t<ss:Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="1"/>';
-        kotak += '\n\t<ss:Border ss:Position="Left" ss:LineStyle="Continuous" ss:Weight="1"/>';
-        kotak += '\n\t<ss:Border ss:Position="Right" ss:LineStyle="Continuous" ss:Weight="1"/>';
-        kotak += '\n\t</ss:Borders>';
+            let kotak = '';
+            kotak += '\n\t<ss:Borders>';
+            kotak += '\n\t<ss:Border ss:Position="Top" ss:LineStyle="Continuous" ss:Weight="1"/>';
+            kotak += '\n\t<ss:Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="1"/>';
+            kotak += '\n\t<ss:Border ss:Position="Left" ss:LineStyle="Continuous" ss:Weight="1"/>';
+            kotak += '\n\t<ss:Border ss:Position="Right" ss:LineStyle="Continuous" ss:Weight="1"/>';
+            kotak += '\n\t</ss:Borders>';
 
-        let xml = '<?xml version="1.0"?>\n<ss:Workbook xmlns:ss="urn:schemas-microsoft-com:office:spreadsheet">';
-        xml += '\n<ss:Styles>';
-        xml += '\n<ss:Style ss:ID="boldKotak">';
-        xml += '\n\t<ss:Font ss:Bold="1" ss:Color="#FFFFFF"/>';
-        xml += '\n\t<ss:Interior ss:Color="#0E2841" ss:Pattern="Solid"/>';
-        xml += kotak;
-        xml += '\n</ss:Style>';
-        xml += '\n\t<ss:Style ss:ID="Kotak">';
-        xml += kotak;
-        xml += '\n\t</ss:Style>';
-        xml += '\n\t<ss:Style ss:ID="KotakRupiah">';
-        xml += '<ss:NumberFormat ss:Format="Rp #,##0"/>';
-        xml += kotak;
-        xml += '\n\t</ss:Style>';
-        xml += '\n</ss:Styles>';
+            let xml = '<?xml version="1.0"?>\n<ss:Workbook xmlns:ss="urn:schemas-microsoft-com:office:spreadsheet">';
+            xml += '\n<ss:Styles>';
+            xml += '\n<ss:Style ss:ID="boldKotak">';
+            xml += '\n\t<ss:Font ss:Bold="1" ss:Color="#FFFFFF"/>';
+            xml += '\n\t<ss:Interior ss:Color="#0E2841" ss:Pattern="Solid"/>';
+            xml += kotak;
+            xml += '\n</ss:Style>';
+            xml += '\n\t<ss:Style ss:ID="Kotak">';
+            xml += kotak;
+            xml += '\n\t</ss:Style>';
+            xml += '\n\t<ss:Style ss:ID="KotakRupiah">';
+            xml += '<ss:NumberFormat ss:Format="Rp #,##0"/>';
+            xml += kotak;
+            xml += '\n\t</ss:Style>';
+            xml += '\n</ss:Styles>';
 
-        xml += '\n<ss:Worksheet ss:Name="Laporan Admin">\n<ss:Table>\n';
-        xml += '<ss:Column ss:AutoFitWidth="1"/>';
+            xml += '\n<ss:Worksheet ss:Name="Laporan Admin">\n<ss:Table>\n';
+            xml += '<ss:Column ss:AutoFitWidth="1"/>';
 
-        for (let i = 0; i < rows.length; i++) {
-            const kolom = rows[i].querySelectorAll("td, th");
-            xml += "<ss:Row>\n";
+            for (let i = 0; i < rows.length; i++) {
+                const kolom = rows[i].querySelectorAll("td, th");
+                xml += "<ss:Row>\n";
 
-            for (let j = 0; j < kolom.length - 1; j++) {
-                let masuk = kolom[j].innerText;
-                let tipe = 'String';
-                let style = ' ss:StyleID="Kotak"';
-                if (i != 0 && (j == 6 || j == 0)) {
-                    masuk = parseInt(kolom[j].innerText.replace(/[^\d]/g, ''), 10);
-                    tipe = 'Number';
-                    if (j == 6) {
-                        style = ' ss:StyleID="KotakRupiah"';
+                for (let j = 0; j < kolom.length - 1; j++) {
+                    let masuk = kolom[j].innerText;
+                    let tipe = 'String';
+                    let style = ' ss:StyleID="Kotak"';
+                    if (i != 0 && (j == 6 || j == 0)) {
+                        masuk = parseInt(kolom[j].innerText.replace(/[^\d]/g, ''), 10);
+                        tipe = 'Number';
+                        if (j == 6) {
+                            style = ' ss:StyleID="KotakRupiah"';
+                        }
                     }
+                    if (i == 0) {
+                        style = ' ss:StyleID="boldKotak"';
+                    }
+                    xml += '<ss:Cell' + style + '><ss:Data ss:Type="' + tipe + '">' + masuk + '</ss:Data></ss:Cell>\n';
                 }
-                if (i == 0) {
-                    style = ' ss:StyleID="boldKotak"';
-                }
-                xml += '<ss:Cell' + style + '><ss:Data ss:Type="' + tipe + '">' + masuk + '</ss:Data></ss:Cell>\n';
+
+                xml += "</ss:Row>\n";
             }
 
-            xml += "</ss:Row>\n";
+            xml += "</ss:Table>\n</ss:Worksheet>\n</ss:Workbook>\n";
+
+            const dateTime = getCurrentDateTime();
+            downloadExcel(xml, `table_${dateTime}.xls`);
         }
 
-        xml += "</ss:Table>\n</ss:Worksheet>\n</ss:Workbook>\n";
+        function downloadExcel(xml, filename) {
+            let blob = new Blob([xml], {
+                type: "application/vnd.ms-excel"
+            });
+            let link = document.createElement("a");
 
-        const dateTime = getCurrentDateTime();
-        downloadExcel(xml, `table_${dateTime}.xls`);
-    }
+            link.href = window.URL.createObjectURL(blob);
+            link.download = filename;
+            link.click();
+            window.URL.revokeObjectURL(link.href);
+        }
 
-    function downloadExcel(xml, filename) {
-        let blob = new Blob([xml], {
-            type: "application/vnd.ms-excel"
-        });
-        let link = document.createElement("a");
+        function viewToPDF() {
 
-        link.href = window.URL.createObjectURL(blob);
-        link.download = filename;
-        link.click();
-        window.URL.revokeObjectURL(link.href);
-    }
+        }
 
-    function exportToPDF(containerId = "table") {
+    function exportToPDF() {
         const { jsPDF } = window.jspdf;
         const doc = new jsPDF();
 
-        const container = document.getElementById(containerId);
+        const table = document.getElementById("table");
         const headers = [];
-        container.querySelectorAll("th").forEach((header, index) => {
-            if (index !== container.querySelectorAll("th").length - 1) {
+        table.querySelectorAll("th").forEach((header, index) => {
+            if (index !== table.querySelectorAll("th").length - 1) {
                 headers.push(header.innerText);
             }
         });
 
         const rows = [];
-        container.querySelectorAll("tbody tr, div").forEach(row => {
+        table.querySelectorAll("tbody tr").forEach(row => {
             const rowData = [];
-            row.querySelectorAll("td, p").forEach((cell, index) => {
-                if (index !== row.querySelectorAll("td, p").length - 1) {
+            row.querySelectorAll("td").forEach((cell, index) => {
+                if (index !== row.querySelectorAll("td").length - 1) {
                     rowData.push(cell.innerText);
                 }
             });
             rows.push(rowData);
         });
 
-        doc.autoTable({
-            head: [headers],
-            body: rows,
-            headStyles: {
-                fillColor: '#131432',
-                textColor: '#ffffff',
-                lineColor: '#000000',
-                lineWidth: 0.1
-            },
-            styles: {
-                fillColor: [255, 255, 255],
-                textColor: '#000000',
-                lineColor: '#000000',
-                lineWidth: 0.1
-            },
-            tableLineColor: '#33356F',
-            tableLineWidth: 0.1
-        });
+            doc.autoTable({
+                head: [headers],
+                body: rows,
+                headStyles: {
+                    fillColor: '#131432',
+                    textColor: '#ffffff',
+                    lineColor: '#000000',
+                    lineWidth: 0.1
+                },
+                styles: {
+                    fillColor: [255, 255, 255],
+                    textColor: '#000000',
+                    lineColor: '#000000',
+                    lineWidth: 0.1
+                },
+                tableLineColor: '#33356F',
+                tableLineWidth: 0.1
+            });
 
         const dateTime = getCurrentDateTime();
         doc.save(`report_${dateTime}.pdf`);
-    }
-
-    function showDetails(item) {
-        const modal = document.getElementById('detailsModal');
-        const modalContent = document.getElementById('modalContent');
-
-        const detailsHTML = `
-        
-            <p><strong>Nama Customer:</strong> ${item.customer.customer_name}</p>
-            <p><strong>Invoice:</strong> ${item.invoice}</p>
-            <p><strong>Kasir:</strong> ${item.user.nama}</p>
-            <p><strong>Order Date:</strong> ${item.order_date}</p>
-            <p><strong>Payment Metode:</strong> ${item.payment.payment_name}</p>
-            <p><strong>Total Harga:</strong> ${item.total_semua}</p>
-            <p><strong>Created At:</strong> ${new Date(item.created_at).toLocaleString()}</p>
-        `;
-
-        modalContent.innerHTML = detailsHTML;
-        modal.classList.remove('hidden');
-    }
-
-    function closeModal() {
-        const modal = document.getElementById('detailsModal');
-        modal.classList.add('hidden');
     }
 </script>
 
