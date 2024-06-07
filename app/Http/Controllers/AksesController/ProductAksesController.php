@@ -164,7 +164,7 @@ class ProductAksesController extends Controller
 
     public function deleteData($idproduct)
     {
-        
+        // dd($idproduct);
         $request = Request::create('http://127.0.0.1:8000/api/products/' . $idproduct, 'DELETE');
         $response = app()->handle($request);
         

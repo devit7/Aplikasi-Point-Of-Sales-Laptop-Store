@@ -84,7 +84,7 @@
                                 {{-- TODO: suplier dropdown add search --}}
                                 {{-- * data from controller for supplier = $Supp --}}
                                 {{-- Input Supplier --}}
-                                <div class="sm:col-span-2 dropdown-div">
+                                <div class="relative sm:col-span-2 dropdown-div">
                                     <label for="dropdown-button-supplier"
                                         class="block mb-2 text-sm font-medium  text-gray-400">Supplier</label>
                                     <button type="button" id="dropdown-button-supplier"
@@ -98,7 +98,7 @@
                                         </svg>
                                     </button>
                                     <div id="dropdown-menu-supplier"
-                                        class=" hidden dropdown-menu py-2 mt-2 shadow-lg col bg-[#131432] ring-black ring-opacity-5 p-1 space-y-1">
+                                        class=" hidden dropdown-menu absolute z-10 right-0 top-full shadow-lg bg-[#131432] ring-black ring-opacity-5 p-1 space-y-1 flex-col w-full">
                                         {{-- Search input Buat Dropdown --}}
                                         <input
                                             class="search-input w-full px-2 bg-[#131432] text-gray-400 border rounded-md  border-gray-300 focus:outline-none"
@@ -117,7 +117,7 @@
                                 </div>
 
                                 {{-- Input Merk --}}
-                                <div class="sm:col-span-2 dropdown-div">
+                                <div class="relative sm:col-span-2 dropdown-div">
                                     <label for="dropdown-button-merk"
                                         class="block mb-2 text-sm font-medium  text-gray-400">Merk</label>
                                     <button type="button" id="dropdown-button-merk"
@@ -131,7 +131,7 @@
                                         </svg>
                                     </button>
                                     <div id="dropdown-menu-merk"
-                                        class="hidden dropdown-menu px-4 py-2 mt-2 shadow-lg col bg-[#131432] ring-black">
+                                        class="hidden dropdown-menu absolute z-10 right-0 top-full shadow-lg bg-[#131432] ring-black ring-opacity-5 p-1 space-y-1 flex-col w-full">
                                         {{-- Input Search  Buat Dropdown --}}
                                         <input
                                             class="search-input w-full px-2 bg-[#131432] text-gray-400 border rounded-md  border-gray-300 focus:outline-none"

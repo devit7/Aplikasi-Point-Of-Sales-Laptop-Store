@@ -80,7 +80,7 @@ Route::middleware(['WebAkses:admin'])->prefix('admin')->group(function () {
     Route::get('/product/update/{idProduk}', [ProductAksesController::class, 'productAdminUpdate']);
     Route::put('/product/update/{idProduk}', [ProductAksesController::class, 'productAdminMakeUpdate']);
 
-    Route::delete('/product/destroy/{product}', [ProductAksesController::class, 'deleteData']);
+    Route::delete('/product/destroy/{product}', [ProductAksesController::class, 'deleteData'])->name('products.destroy');
 
     // Route::get('/product/create', function () {
     //     return view('admin.product.create');
