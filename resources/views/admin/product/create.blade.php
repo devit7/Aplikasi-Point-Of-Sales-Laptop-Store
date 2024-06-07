@@ -59,7 +59,7 @@
                                     <label for="name" class="block mb-2 text-sm font-medium  text-gray-400">Foto</label>
                                     <div class="relative border border-gray-400 border-dashed rounded-lg p-6"
                                         id="dropzone">
-                                        <input type="file" id="img" name="img_product" type="file"
+                                        <input id="img" name="img_product" type="file"
                                             accept=".jpg,.jpeg,.png"
                                             class="absolute inset-0 w-full h-full opacity-0 z-50" />
                                         <div class="text-center">
@@ -113,7 +113,7 @@
                                         @endforelse
 
                                     </div>
-                                    <input type="hidden" name="supplier" id="supplier-input" value="">
+                                    <input type="hidden" name="supplier_id" id="supplier-input" value="">
                                 </div>
 
                                 {{-- Input Merk --}}
@@ -145,7 +145,7 @@
                                         @empty
                                             <p class="text-center text-white">No Merk</p>
                                         @endforelse
-                                        <input type="hidden" name="merk" id="merk-input" value="">
+                                        <input type="hidden" name="merk_id" id="merk-input" value="">
                                     </div>
 
                                 </div>
@@ -159,7 +159,7 @@
                                 class="inline-flex items-center px-5 py-2.5 mt-4 sm:mt-6 text-sm font-medium text-center text-white bg-red-700 rounded-md focus:ring-4 focus:ring-primary-200 dark:focus:ring-primary-900 hover:bg-primary-800">
                                 Reset
                             </button>
-                            <button type="submit" id="button-reset"
+                            <button type="submit"
                                 class="inline-flex items-center px-5 py-2.5 mt-4 sm:mt-6 text-sm font-medium text-center text-white bg-green-700 rounded-md focus:ring-4 focus:ring-primary-200 dark:focus:ring-primary-900 hover:bg-primary-800">
                                 Create
                             </button>
