@@ -17,7 +17,7 @@
                 <p class="rounded-md p-4 font-semibold bg-[#1C1D42] text-[#6b6eb4]">Update a Product</p>
                 <div class="rounded-md p-4 bg-[#1C1D42] h-[auto] text-[#6b6eb4]">
                     <form action="/admin/product/update/{{ $pro['id'] }}"
-                        class="  px-[2%] h-[100%] py-[2%] flex flex-col justify-between items-cente" id="formCreate"
+                        class="px-[2%] h-[100%] py-[2%] flex flex-col justify-between items-cente" id="formCreate"
                         method="post" enctype="multipart/form-data">
                         @csrf
                         @method('put')
@@ -25,25 +25,25 @@
                             <div class="w-[45%]">
                                 <div class="grid gap-4 sm:grid-cols-2 sm:gap-6">
                                     <div class="sm:col-span-2">
-                                        <label for="name" class="block mb-2 text-sm font-medium  text-gray-400">Nama
+                                        <label for="product_name" class="block mb-2 text-sm font-medium  text-gray-400">Nama
                                             Produk</label>
-                                        <input type="text" name="product_name" id="name"
+                                        <input type="text" name="product_name" id="product_name"
                                             class="bg-[#131432] border text-sm rounded-lg  block w-full p-2.5  border-gray-600 placeholder-gray-400 text-gray-400 focus:ring-primary-500 focus:border-primary-500"
                                             placeholder="Nama Produk" value="{{ $pro['product_name'] }}">
                                         @error('product_name')
-                                            <p id="outlined_error_help" class="mt-2 text-xs text-red-600">
+                                            <p id="outlined_error_help" class="mt-2 text-xs text-red-700">
                                                 {{ $message }}
                                             </p>
                                         @enderror
                                     </div>
                                     <div class="sm:col-span-2">
-                                        <label for="nama_toko" class="block mb-2 text-sm font-medium  text-gray-400">Harga
+                                        <label for="harga_jual" class="block mb-2 text-sm font-medium  text-gray-400">Harga
                                             Jual</label>
                                         <input type="text" name="harga_jual" id="harga_jual"
                                             class="bg-[#131432] border   text-sm rounded-lg  block w-full p-2.5  border-gray-600 placeholder-gray-400 text-gray-400 focus:ring-primary-500 focus:border-primary-500"
                                             placeholder="Harga Jual" value="{{ $pro['harga_jual'] }}">
                                         @error('harga_jual')
-                                            <p id="outlined_error_help" class="mt-2 text-xs text-red-600">
+                                            <p id="outlined_error_help" class="mt-2 text-xs text-red-700">
                                                 {{ $message }}
                                             </p>
                                         @enderror
@@ -56,19 +56,19 @@
                                             class="bg-[#131432] border text-sm rounded-lg  block w-full p-2.5  border-gray-600 placeholder-gray-400 text-gray-400 focus:ring-primary-500 focus:border-primary-500"
                                             placeholder="Harga Asli" value="{{ $pro['harga_asli'] }}">
                                         @error('harga_asli')
-                                            <p id="outlined_error_help" class="mt-2 text-xs text-red-600">
+                                            <p id="outlined_error_help" class="mt-2 text-xs text-red-700">
                                                 {{ $message }}
                                             </p>
                                         @enderror
                                     </div>
                                     <div class="sm:col-span-2">
-                                        <label for="description"
-                                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400">Stok</label>
-                                        <input type="number" name="stock" id="nama_toko"
+                                        <label for="stock"
+                                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400">Stock</label>
+                                        <input type="number" name="stock" id="stock"
                                             class="bg-[#131432] border   text-sm rounded-lg  block w-full p-2.5  border-gray-600 placeholder-gray-400 text-gray-400 focus:ring-primary-500 focus:border-primary-500"
                                             placeholder="Stok" value="{{ $pro['stock'] }}">
                                         @error('stock')
-                                            <p id="outlined_error_help" class="mt-2 text-xs text-red-600">
+                                            <p id="outlined_error_help" class="mt-2 text-xs text-red-700">
                                                 {{ $message }}
                                             </p>
                                         @enderror
@@ -80,7 +80,6 @@
                                     <label for="description"
                                         class="block mb-4 text-sm font-medium text-gray-900 dark:text-gray-400">Foto</label>
                                     <div class="forStok">
-
                                         <input type="text" name="fotoLama" style="display:none;" id="fotoLama"
                                             value="{{ $pro['img'] }}"
                                             class="bg-[#131432] border border-gray-600 inline-flex items-center px-5 py-2.5 mt-4 sm:mt-6 text-sm font-medium text-center text-white bg-green-700 rounded-md focus:ring-4 focus:ring-primary-200 dark:focus:ring-primary-900 hover:bg-primary-800">
@@ -150,10 +149,10 @@
                                         @endforelse
 
                                     </div>
-                                    <input type="hidden" name="supplier" id="supplier-input"
+                                    <input type="hidden" name="supplier" id="supplier_id"
                                         value="{{ $pro['supplier_id'] }}">
                                     @error('supplier_id')
-                                        <p id="outlined_error_help" class="mt-2 text-xs text-red-600">
+                                        <p id="outlined_error_help" class="mt-2 text-xs text-red-700">
                                             {{ $message }}
                                         </p>
                                     @enderror
@@ -188,19 +187,17 @@
                                             <p class="text-center text-white">No Merk</p>
                                         @endforelse
                                     </div>
-                                    <input type="hidden" name="merk" id="merk-input" value="{{ $pro->merk_id }}">
+                                    <input type="hidden" name="merk" id="merk_id" value="{{ $pro->merk_id }}">
                                     @error('supplier_id')
-                                        <p id="outlined_error_help" class="mt-2 text-xs text-red-600">
+                                        <p id="outlined_error_help" class="mt-2 text-xs text-red-700">
                                             {{ $message }}
                                         </p>
                                     @enderror
                                 </div>
-
-
                             </div>
                         </div>
                         <div class="flex justify-between w-full gap-4 sm:gap-6">
-                            <button type="submit"
+                            <button type="button" id="button-reset"
                                 class="inline-flex items-center px-5 py-2.5 mt-4 sm:mt-6 text-sm font-medium text-center text-white bg-red-700 rounded-md focus:ring-4 focus:ring-primary-200 dark:focus:ring-primary-900 hover:bg-primary-800">
                                 Reset
                             </button>
@@ -220,8 +217,8 @@
     <style>
         #file-upload {
             /* position: fixed;
-                                        top:-20%;
-                                        left: -20%; */
+                            top:-20%;
+                            left: -20%; */
         }
 
         #butforBack {
@@ -252,9 +249,9 @@
         }
 
         /* .checkbox-container {
-                                        display: inline-block;
-                                        vertical-align: middle;
-                                    } */
+                                                                                                                        display: inline-block;
+                                                                                                                        vertical-align: middle;
+                                                                                                                    } */
 
         .forBackSup>input {
             appearance: none !important;
@@ -310,9 +307,9 @@
         }
 
         /* .checkbox-container {
-                                        display: inline-block;
-                                        vertical-align: middle;
-                                    } */
+                                                                                                                        display: inline-block;
+                                                                                                                        vertical-align: middle;
+                                                                                                                    } */
 
         .forStok>input {
             appearance: none !important;
@@ -350,9 +347,9 @@
 
 
         /* .checkbox-text {
-                                        font-size: 16px;
-                                        color: #333;
-                                    } */
+                                                                                                                        font-size: 16px;
+                                                                                                                        color: #333;
+                                                                                                                    } */
 
         /* Untuk efek hover */
         .forStok .forStok>input:not(:checked) {
@@ -362,14 +359,15 @@
         main::-webkit-scrollbar {
             width: 0;
             /* background-color: white;
-                                color: white;
-                                border: 1px solid inherit; */
+                                                                                                                color: white;
+                                                                                                                border: 1px solid inherit; */
         }
 
         main {
             scrollbar-width: none;
         }
     </style>
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/autonumeric@4.1.0"></script>
     <script>
@@ -580,11 +578,13 @@
         //untuk mengkosongkan value input form
         document.getElementById('button-reset').addEventListener('click', (e) => {
             e.preventDefault();
-            document.getElementById('nama_toko').value = '';
-            document.getElementById('no_hp').value = '';
-            document.getElementById('alamat').value = '';
+            document.getElementById('product_name').value = '';
+            document.getElementById('harga_jual').value = '';
+            document.getElementById('harga_asli').value = '';
+            document.getElementById('stock').value = '';
             document.getElementById('preview').classList.add('hidden');
-            document.getElementById('logo_toko').value = '';
+            document.getElementById('supplier_').value = '';
+            document.getElementById('merk_id').value = '';
         });
     </script>
     <script>

@@ -13,7 +13,7 @@
             </div>
 
             <div class=" flex flex-row ">
-                <a href="{{ route('products.create') }}"
+                <a href="{{ url('/admin/product/create/new') }}"
                     class="flex flex-row  items-center gap-2  px-4 py-2 bg-[#FF9A37] text-white rounded-md hover:bg-[#FF9A37]">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                         stroke="currentColor" class="w-6 h-6">
@@ -24,8 +24,14 @@
                 </a>
             </div>
         </div>
+        @if (session()->has('nonaktif'))
+            <div class="p-4 mb-4 text-sm text-red-800 bg-red-100 rounded-lg dark:bg-red-200 dark:text-red-800"
+                role="alert">
+                <span class="font-medium">{{ session('nonaktif') }}</span>
+            </div>
+        @endif
         @if (session()->has('success'))
-            <div class="p-4 mb-4 text-sm text-green-700 bg-green-100 rounded-lg dark:bg-green-200 dark:text-green-800"
+            <div class="p-4 mb-4 text-sm text-green-800 bg-green-100 rounded-lg dark:bg-green-200 dark:text-green-800"
                 role="alert">
                 <span class="font-medium">{{ session('success') }}</span>
             </div>
@@ -48,7 +54,6 @@
                             </tr>
                         </thead>
                         <tbody class="text-[#6b6eb4] text-center">
-
                             @forelse ($data as $index => $value)
                                 <tr class="border-b-2 border-[#33356F]">
                                     <td class="py-2">{{ $index + 1 }}</td>
@@ -63,7 +68,53 @@
                                     <td>{{ $value['supplier']['supplier_name'] }}</td>
                                     <td>{{ $value['merk']['merk_name'] }}</td>
                                     <td class="flex flex-row gap-2">
-
+                                        <x-modal_detail id="{{ $value['id'] }}">
+                                            <div class="flex flex-col w-fit rounded-md p-5 bg-[#1C1D42]">
+                                                <span class=" w-96 text-xl mb-8 text-indigo-100 font-bold">Detail
+                                                    Product</span>
+                                                <div class="flex items-center space-x-4">
+                                                    <span class=" text-indigo-200 p-1 font-semibold">No</span>
+                                                    <hr class="flex-grow border-gray-200">
+                                                    <span>{{ $index + 1 }}</span>
+                                                </div>
+                                                <div class="flex items-center space-x-4">
+                                                    <span class=" text-indigo-200 p-1 font-semibold">Nama</span>
+                                                    <hr class="flex-grow border-gray-200">
+                                                    <span>{{ $value['product_name'] }}</span>
+                                                </div>
+                                                <div class="flex items-center space-x-4">
+                                                    <span class=" text-indigo-200 p-1 font-semibold">Stock</span>
+                                                    <hr class="flex-grow border-gray-200">
+                                                    <span>{{ $value['stock'] }}</span>
+                                                </div>
+                                                <div class="flex items-center space-x-4">
+                                                    <span class=" text-indigo-200 p-1 font-semibold">Harga Jual</span>
+                                                    <hr class="flex-grow border-gray-200">
+                                                    <span>{{ $value['harga_jual'] }}</span>
+                                                </div>
+                                                <div class="flex items-center space-x-4">
+                                                    <span class=" text-indigo-200 p-1 font-semibold">Harga Asli</span>
+                                                    <hr class="flex-grow border-gray-200">
+                                                    <span>{{ $value['harga_asli'] }}</span>
+                                                </div>
+                                                <div class="flex items-center space-x-4">
+                                                    <span class=" text-indigo-200 p-1 font-semibold">Image</span>
+                                                    <hr class="flex-grow border-gray-200">
+                                                    <img src="{{ asset('storage/image_product/' . $value['img']) }}"
+                                                        alt="image product" class="w-10 h-10 mx-auto">
+                                                </div>
+                                                <div class="flex items-center space-x-4">
+                                                    <span class=" text-indigo-200 p-1 font-semibold">Supplier</span>
+                                                    <hr class="flex-grow border-gray-200">
+                                                    <span>{{ $value['supplier']['supplier_name'] }}</span>
+                                                </div>
+                                                <div class="flex items-center space-x-4">
+                                                    <span class=" text-indigo-200 p-1 font-semibold">Merk</span>
+                                                    <hr class="flex-grow border-gray-200">
+                                                    <span>{{ $value['merk']['merk_name'] }}</span>
+                                                </div>
+                                            </div>
+                                        </x-modal_detail>
                                         <a href="/admin/product/update/{{ $value['id'] }}">
                                             <button class="bg-[#002D4C] border p-1 border-[#2B4F69] rounded-md">
                                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
@@ -73,7 +124,8 @@
                                                 </svg>
                                             </button>
                                         </a>
-                                        <x-alert id="{{$value['id']}}" nama="{{ $value['product_name'] }}" route="products.destroy" type="xButton"/>
+                                        <x-alert id="{{ $value['id'] }}" nama="{{ $value['product_name'] }}"
+                                            route="products.destroy" type="xButton" />
                                     </td>
                                 </tr>
                             @empty

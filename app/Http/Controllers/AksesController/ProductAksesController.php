@@ -100,20 +100,20 @@ class ProductAksesController extends Controller
         }
     }
 
-    public function getDetail($product)
-    {
-        $request = Request::create('http://127.0.0.1:8000/api/products/' . $product, 'GET');
-        $response = app()->handle($request);
-        $data = json_decode($response->getContent(), true);
-        if ($response->getStatusCode() == 200) {
-            return dd($data['data']);
-            // return view('products.show', ['data' => $data['data']]);
-        } else {
-            return response()->json([
-                'message' => 'Unauthorized',
-            ]);
-        }
-    }
+    // public function getDetail($product)
+    // {
+    //     $request = Request::create('http://127.0.0.1:8000/api/products/' . $product, 'GET');
+    //     $response = app()->handle($request);
+    //     $data = json_decode($response->getContent(), true);
+    //     if ($response->getStatusCode() == 200) {
+    //         return dd($data['data']);
+    //         // return view('products.show', ['data' => $data['data']]);
+    //     } else {
+    //         return response()->json([
+    //             'message' => 'Unauthorized',
+    //         ]);
+    //     }
+    // }
 
     public function getEdit($product)
     {
@@ -168,6 +168,10 @@ class ProductAksesController extends Controller
         $request = Request::create('http://127.0.0.1:8000/api/products/' . $product->id, 'DELETE');
         $response = app()->handle($request);
 
+        if ($response->getStatusCode() == 200 && $product->stock == 0) {
+            return redirect('/admin/product')->with('nonaktif', 'Stock Product ' . $product->product_name . ' Sudah Habis');
+        }
+
         if ($response->getStatusCode() == 200) {
             return redirect('/admin/product')->with('success', 'Product ' . $product->product_name . ' berhasil dinonaktifkan');
         } else {
@@ -175,10 +179,7 @@ class ProductAksesController extends Controller
                 'message' => 'Unauthorized',
             ]);
         }
-
     }
-
-
 
     public function productAdminNew()
     {
@@ -270,7 +271,7 @@ class ProductAksesController extends Controller
         }
 
         if ($p->save()) {
-            session()->flash('success', 'Product "' . $p->product_name . '" berhasil di update');
+            session()->flash('success', 'Product ' . $p->product_name . ' berhasil di update');
             return redirect('/admin/product');
         }
 
