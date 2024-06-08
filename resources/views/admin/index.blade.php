@@ -15,7 +15,7 @@
                             {{ 'Rp' . number_format($totalProfit, 2, ',', '.') }}
                         </p>
                         <p class=" text-xs font-light">
-                            Total Keuntungan
+                            Total Pendapatan Bersih
                         </p>
                     </div>
                 </div>
@@ -32,7 +32,7 @@
                             {{ 'Rp' . number_format($totalOriginalPrice, 2, ',', '.') }}
                         </p>
                         <p class=" text-xs font-light">
-                            Total Harga Asli Terjual
+                            Total Pendapatan Kotor
                         </p>
                     </div>
                 </div>
