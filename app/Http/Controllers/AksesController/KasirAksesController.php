@@ -12,9 +12,19 @@ class KasirAksesController extends Controller
 {
     public function index(Request $request){
 
-        //jika ada parameter search
-
         $dataProduct = $this->getAllProduct();
+        //jika ada parameter search
+        if($request->search){
+            $dataProduct = array_filter($dataProduct, function($product) use ($request){
+                return strpos($product['product_name'], $request->search) !== false;
+            });
+        }else if($request->merk){
+            $dataProduct = array_filter($dataProduct, function($product) use ($request){
+                return $product['merk_id'] == $request->merk;
+            });
+        }
+        //dd($dataProduct);
+        
         $dataMerk = $this->getAllMerk();
         $dataCustomer = $this->getAllCustomer();
         $dataPayment = $this->getAllPayment();

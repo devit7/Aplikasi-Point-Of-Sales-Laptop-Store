@@ -34,18 +34,18 @@
                                 d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
                         </svg>
                     </button>
-                    <input type="text" placeholder="Search Product" name="search"
+                    <input type="text" placeholder="Search Product" name="search" 
                         class="w-full h-12 px-4 rounded-r-lg bg-[#151e3b]   focus:outline-none">
                 </form>
                 <div class="flex flex-row py-4 mt-4 gap-4  text-lg font-semibold overflow-x-auto ">
-                    <a href="#" class="py-1 rounded-sm px-6 bg-[#fa9e3b] bg-opacity-10 text-[#e07946]">
+                    <a href="/kasir" class="py-1 rounded-sm px-6 bg-[#fa9e3b] bg-opacity-10 text-[#e07946]">
                         All
                     </a>
                     @forelse ($dataMerk as $merk)
-                        <form href="#"
+                        <a href="/kasir?merk={{ $merk['id'] }}"
                             class=" py-1 bg-[#151e3b] rounded-sm  px-6 hover:bg-[#fa9e3b] hover:bg-opacity-10 hover:text-[#e07946] transition duration-300">
                             {{ $merk['merk_name'] }}
-                        </form>
+                        </a>
                     @empty
                     @endforelse
                 </div>
