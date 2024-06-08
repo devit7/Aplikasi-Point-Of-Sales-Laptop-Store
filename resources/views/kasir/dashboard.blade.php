@@ -19,7 +19,7 @@
                                 d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
                         </svg>
                     </button>
-                    <input  type="text" placeholder="Search Product" name="search"
+                    <input type="text" placeholder="Search Product" name="search"
                         class="w-full h-12 px-4 rounded-r-lg bg-[#151e3b]   focus:outline-none">
                 </form>
                 <div class="flex flex-row py-4 mt-4 gap-4  text-lg font-semibold overflow-x-auto ">
@@ -48,8 +48,7 @@
                             class="w-[230px] max-h-[305px] bg-[#151e3b] rounded-lg hover:shadow-2xl  transition duration-300 ">
                             <div class="flex flex-col p-3 text-[#93A2D2] justify-between h-full">
                                 <div class="relative  w-full h-full overflow-hidden max-h-[180px]">
-                                    <img id="card-img"
-                                        src="{{ asset('storage/image_product/' . $product['img']) }}"
+                                    <img id="card-img" src="{{ asset('storage/image_product/' . $product['img']) }}"
                                         alt="product img" class="w-full h-full bg-gray-900 object-cover rounded-lg">
                                     <div
                                         class="absolute font-semibold top-0 right-0  text-sm text-blue-800 bg-blue-300 rounded-bl-lg px-3 ">
@@ -63,7 +62,7 @@
                                         </div>
                                         <div class="flex flex-row justify-between">
                                             <div class=" font-bold text-[#e07946]">
-                                                Rp. @currency($product['harga_jual'])
+                                                @currency($product['harga_jual'])
                                             </div>
                                             <div class="flex items-center gap-1">
                                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
@@ -121,7 +120,7 @@
                                     </p>
                                     <div class="flex flex-row justify-between">
                                         <p class="text-[#e07946] font-semibold">
-                                            Rp. @currency($cart['harga_jual'])
+                                            @currency($cart['harga_jual'])
                                         </p>
                                         <p class="text-[#93A2D2]">
                                             {{ $cart['qty'] }}x
@@ -132,7 +131,7 @@
                                             Total :
                                         </p>
                                         <p class="text-green-600 font-semibold">
-                                            Rp. @currency($cart['harga_jual'] * $cart['qty'])
+                                            @currency($cart['harga_jual'] * $cart['qty'])
                                         </p>
                                     </div>
                                 </div>
@@ -172,12 +171,12 @@
                                     @endphp
                                 @endforeach
                             @endif
-                            Rp. @currency($total)
+                            @currency($total)
                         </p>
                     </div>
                 </div>
                 <div class="flex flex-col gap-2 justify-between">
-                    <x-modals_transaksi :totalAll="$total" :dataCustomer="$dataCustomer" :dataPayment="$dataPayment"/>
+                    <x-modals_transaksi :totalAll="$total" :dataCustomer="$dataCustomer" :dataPayment="$dataPayment" />
                     <a href="{{ route('kasir.clear-cart') }}"
                         class=" text-center rounded-md px-4 py-2 bg-gray-700 text-white hover:bg-gray-800 cursor-pointer">
                         Clear Order
