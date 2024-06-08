@@ -34,7 +34,7 @@ class AppServiceProvider extends ServiceProvider
             return str_replace(':attribute', $attribute, ':attribute must be an unsigned number.');
         });
         Blade::directive('currency', function ($expression) {
-            return "<?php echo number_format($expression, 2, ',', '.'); ?>";
+            return "<?php echo 'Rp' . number_format($expression, 2, ',', '.'); ?>";
         });
     }
 }
