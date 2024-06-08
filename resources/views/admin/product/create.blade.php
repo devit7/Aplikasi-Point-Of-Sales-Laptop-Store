@@ -28,7 +28,7 @@
                                             class="block mb-2 text-sm font-medium  text-gray-400">Nama Produk</label>
                                         <input type="text" name="product_name" id="name"
                                             class="bg-[#131432] border text-sm rounded-lg  block w-full p-2.5  border-gray-600 placeholder-gray-400 text-gray-400 focus:ring-primary-500 focus:border-primary-500"
-                                            placeholder="Nama Produk" value="{{ old('product_name') }}">
+                                            placeholder="Nama Produk">
                                         @error('product_name')
                                             <p id="outlined_error_help" class="mt-2 text-xs text-red-600">
                                                 {{ $message }}
@@ -40,7 +40,7 @@
                                             Jual</label>
                                         <input type="text" name="harga_jual" id="harga_jual"
                                             class="bg-[#131432] border   text-sm rounded-lg  block w-full p-2.5  border-gray-600 placeholder-gray-400 text-gray-400 focus:ring-primary-500 focus:border-primary-500"
-                                            placeholder="Harga Jual" value="{{ old('harga_jual') }}">
+                                            placeholder="Harga Jual">
                                         @error('harga_jual')
                                             <p id="outlined_error_help" class="mt-2 text-xs text-red-600">
                                                 {{ $message }}
@@ -53,7 +53,7 @@
                                             Asli</label>
                                         <input type="text" name="harga_asli" id="harga_asli"
                                             class="bg-[#131432] border text-sm rounded-lg  block w-full p-2.5  border-gray-600 placeholder-gray-400 text-gray-400 focus:ring-primary-500 focus:border-primary-500"
-                                            placeholder="Harga Asli" value="{{ old('harga_asli') }}">
+                                            placeholder="Harga Asli">
                                         @error('harga_asli')
                                             <p id="outlined_error_help" class="mt-2 text-xs text-red-600">
                                                 {{ $message }}
@@ -65,7 +65,7 @@
                                             class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400">Stok</label>
                                         <input type="number" name="stock" id="nama_toko"
                                             class="bg-[#131432] border   text-sm rounded-lg  block w-full p-2.5  border-gray-600 placeholder-gray-400 text-gray-400 focus:ring-primary-500 focus:border-primary-500"
-                                            placeholder="Stok" value="{{ old('stock') }}">
+                                            placeholder="Stok">
                                         @error('stock')
                                             <p id="outlined_error_help" class="mt-2 text-xs text-red-600">
                                                 {{ $message }}
