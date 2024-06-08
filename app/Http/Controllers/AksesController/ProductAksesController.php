@@ -163,14 +163,14 @@ class ProductAksesController extends Controller
         }
     }
 
-    public function deleteData($idproduct)
+    public function deleteData($product)
     {
-        // dd($idproduct);
-        $request = Request::create('http://127.0.0.1:8000/api/products/' . $idproduct, 'DELETE');
+        // dd($product);
+        $request = Request::create('http://127.0.0.1:8000/api/products/' . $product, 'DELETE');
         $response = app()->handle($request);
 
         if ($response->getStatusCode() == 200) {
-            return redirect('/admin/product')->with('success', 'Data Product berhasil dihapus');
+            return redirect('/admin/product')->with('success', 'Product berhasil dinonaktifkan');
         } else {
             return response()->json([
                 'message' => 'Unauthorized',
