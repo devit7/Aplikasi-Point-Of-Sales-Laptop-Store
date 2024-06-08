@@ -1,18 +1,22 @@
 {{-- @dd($dataPayment) --}}
 {{-- <a href="#" data-modal-target="default-modal" data-modal-toggle="default-modal" type="button" --}}
-<a href="#" @if (session()->has('cart'))
-                data-modal-target="default-modal" data-modal-toggle="default-modal"
-            @endif   
-    type="button"
-    class="  w-full text-center rounded-md px-4 py-2 bg-green-700 text-white hover:bg-green-800 cursor-pointer">
-    Place Order
-</a>
+@if (session()->has('cart'))
+    <a href="#" data-modal-target="default-modal" data-modal-toggle="default-modal" type="button"
+        class="  w-full text-center rounded-md px-4 py-2 bg-green-700 text-white hover:bg-green-800 cursor-pointer">
+        Place Order
+    </a>
+@else
+    <a href="#" type="button"
+        class="  w-full text-center rounded-md px-4 py-2 bg-red-700 text-white hover:bg-red-800 cursor-pointer">
+        Please Add Item to Cart
+    </a>
+@endif
 <!-- Main modal -->
 <div id="default-modal" aria-hidden="true"
     class="hidden overflow-x-hidden overflow-y-auto fixed h-modal md:h-full top-4 left-0 right-0 md:inset-0 z-50 justify-center items-center">
     <div class="relative w-full max-w-2xl px-4 h-full md:h-auto">
         <!-- Modal content -->
-        <form action="{{ route('kasir.transaction-process') }}" method="POST">
+        <form id="transaction-form" action="{{ route('kasir.transaction-process') }}" method="POST">
             @csrf
             <div class="rounded-md shadow relative bg-[#1C1D42]">
                 <!-- Modal header -->
@@ -72,6 +76,7 @@
 
                             </div>
                             <input type="hidden" name="customer_id" id="customer-input" value="">
+                            <span id="customer-error" class="text-red-500 text-sm"></span>
                         </div>
                     </div>
                     <p class="text-gray-400 text-sm">
@@ -84,8 +89,9 @@
                             </div>
                             <div class="w-full ">
                                 <input type="text" name="total" id="total"
-                                    class="w-full text-right px-4 py-2  text-gray-600 bg-[#131432] border border-gray-600 rounded disabled:opacity-50"
-                                    value="@currency($totalAll)" >
+                                    class="w-full text-right px-4 py-2  text-green-600 bg-[#131432] border border-gray-600 rounded disabled:opacity-50"
+                                    value="Rp. @currency($totalAll)">
+                                    <span id="total-error" class="text-red-500 text-sm"></span>
                             </div>
                         </div>
                         <div class="flex flex-row w-full items-center ">
@@ -115,6 +121,7 @@
                                     @endforelse
                                 </div>
                                 <input type="hidden" name="payment_id" id="payment-input" value="">
+                                <span id="payment-error" class="text-red-500 text-sm"></span>
                             </div>
                         </div>
 
@@ -199,5 +206,42 @@
                 });
             });
         });
+
+
+
+    </script>
+
+<script>
+    document.getElementById('transaction-form').addEventListener('submit', function(event) {
+        let isValid = true;
+    
+        // Clear previous error messages
+        document.getElementById('customer-error').textContent = '';
+        document.getElementById('payment-error').textContent = '';
+        document.getElementById('total-error').textContent = '';
+    
+        let customerInput = document.getElementById('customer-input').value;
+        let paymentInput = document.getElementById('payment-input').value;
+        let totalInput = document.getElementById('total').value.trim();
+    
+        if (!customerInput) {
+            document.getElementById('customer-error').textContent = 'Please select a customer.';
+            isValid = false;
+        }
+    
+        if (!paymentInput) {
+            document.getElementById('payment-error').textContent = 'Please select a payment method.';
+            isValid = false;
+        }
+    
+        if (!totalInput) {
+            document.getElementById('total-error').textContent = 'Total Belanja cannot be empty.';
+            isValid = false;
+        }
+    
+        if (!isValid) {
+            event.preventDefault();
+        }
+    });
     </script>
 @endpush

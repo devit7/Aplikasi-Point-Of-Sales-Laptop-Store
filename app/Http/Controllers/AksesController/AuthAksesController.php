@@ -40,7 +40,8 @@ class AuthAksesController extends Controller
         if($response->getStatusCode() == 200){
             session()->forget('token');
             session()->forget('cart');
-            return redirect('/');
+            auth()->logout();
+            return redirect()->route('login');
         }
 
         return redirect()->back();

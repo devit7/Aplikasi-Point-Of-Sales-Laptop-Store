@@ -10,6 +10,21 @@
     <div class=" text-[#93A2D2] flex flex-row w-full h-full  ">
         <div class="flex flex-col w-full py-6 px-10 min-h-screen overflow-y-auto scrollbar-hide ">
             <div class="flex flex-col ">
+                @if ($errors->any())
+                    <div class="bg-red-500 text-white italic font-semibold py-2 px-4  rounded-md mb-4 w-full">
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
+                @if (session()->has('success'))
+                    <div class="py-2 px-4 italic font-semibold text-green-700 bg-green-100 rounded-md mb-4 dark:bg-green-200 dark:text-green-800"
+                        >
+                        <span class="font-medium">{{ session('success') }}</span>
+                    </div>
+                @endif
                 <form class="text-[#93A2D2] flex " action="" method="GET">
                     @csrf
                     <button type="submit" class=" h-12 w-12  rounded-l-lg flex items-center justify-center bg-[#1f2949]">
@@ -27,17 +42,17 @@
                         All
                     </a>
                     @forelse ($dataMerk as $merk)
-                        <a href="#"
-                            class=" py-1 bg-[#151e3b] rounded-sm px-6 hover:bg-[#fa9e3b] hover:bg-opacity-10 hover:text-[#e07946] transition duration-300">
+                        <form href="#"
+                            class=" py-1 bg-[#151e3b] rounded-sm  px-6 hover:bg-[#fa9e3b] hover:bg-opacity-10 hover:text-[#e07946] transition duration-300">
                             {{ $merk['merk_name'] }}
-                        </a>
+                        </form>
                     @empty
                     @endforelse
                 </div>
             </div>
             <div class=" flex flex-col  mt-4">
                 <div class="flex flex-row justify-between text-[20px] font-bold  ">
-                    Products ({{ count($dataProduct) }})
+                    Products List
                 </div>
                 <div class="flex flex-wrap gap-6 mt-8 justify-start">
                     @forelse ($dataProduct as $product)
