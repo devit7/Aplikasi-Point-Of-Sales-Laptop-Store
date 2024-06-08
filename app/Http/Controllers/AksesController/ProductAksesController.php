@@ -70,7 +70,7 @@ class ProductAksesController extends Controller
             'product_name' => $validated['product_name'],
             'harga_jual' => $validated['harga_jual'],
             'harga_asli' => $validated['harga_asli'],
-            'stock'=>$validated['stock'],
+            'stock' => $validated['stock'],
             'supplier_id' => $validated['supplier_id'],
             'merk_id' => $validated['merk_id'],
         ];
@@ -93,7 +93,7 @@ class ProductAksesController extends Controller
             session()->flash('success', 'Product "' . $validated['product_name'] . '" berhasil di tambahkan');
             return redirect('/admin/product');
         } else {
-            return redirect()->back()->withInput()->withErrors([ 'messages' => 'Data Product gagal di tambahkan' ]);
+            return redirect()->back()->withInput()->withErrors(['messages' => 'Data Product gagal di tambahkan']);
             // return response()->json([
             //     'message' => 'Unauthorized',
             // ], 401);
@@ -155,22 +155,21 @@ class ProductAksesController extends Controller
         if ($response->getStatusCode() == 200) {
             session()->flash('success', 'Data Product berhasil di update');
             return redirect()->route('product.index');
-        }
-        else {
+        } else {
             return response()->json([
                 'message' => 'Unauthorized',
             ], 401);
         }
     }
 
-    public function deleteData($product)
+    public function deleteData(Product $product)
     {
-        // dd($product);
-        $request = Request::create('http://127.0.0.1:8000/api/products/' . $product, 'DELETE');
+        // dd("ProductAksesController > deleteData", $product->id);
+        $request = Request::create('http://127.0.0.1:8000/api/products/' . $product->id, 'DELETE');
         $response = app()->handle($request);
 
         if ($response->getStatusCode() == 200) {
-            return redirect('/admin/product')->with('success', 'Product berhasil dinonaktifkan');
+            return redirect('/admin/product')->with('success', 'Product ' . $product->product_name . ' berhasil dinonaktifkan');
         } else {
             return response()->json([
                 'message' => 'Unauthorized',
