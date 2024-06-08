@@ -176,6 +176,7 @@ class KasirAksesController extends Controller
             'product_name' => $product['product_name'],
             'harga_jual' => $product['harga_jual'],
             'harga_asli' => $product['harga_asli'],
+            'img' => $product['img'],
             'qty' => 1
         );
         //dd($cart);

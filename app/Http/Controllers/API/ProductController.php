@@ -41,7 +41,7 @@ class ProductController extends Controller
         $validated = $request->validated();
 
         $img_product_name = null;
-        if ($request->hasFile('img_product')) {
+        if ($request->hasFile('img_product')) { 
             $img_product = $request->file('img_product');
             $img_product_name = time() . '.' . $img_product->getClientOriginalExtension();
             $img_product->storePubliclyAs('image_product', $img_product_name, 'public');
@@ -132,9 +132,7 @@ class ProductController extends Controller
      */
     public function destroy(Product $product)
     {
-        // dd("API ProductController destroy", $product);
-
-        // $product->delete();
+        
         $product->update([
             'stock' => 0,
         ]);

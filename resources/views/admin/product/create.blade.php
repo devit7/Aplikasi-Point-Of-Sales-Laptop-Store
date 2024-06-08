@@ -59,7 +59,7 @@
                                     <label for="name" class="block mb-2 text-sm font-medium  text-gray-400">Foto</label>
                                     <div class="relative border border-gray-400 border-dashed rounded-lg p-6"
                                         id="dropzone">
-                                        <input type="file" id="img" name="img_product" type="file"
+                                        <input id="img" name="img_product" type="file"
                                             accept=".jpg,.jpeg,.png"
                                             class="absolute inset-0 w-full h-full opacity-0 z-50" />
                                         <div class="text-center">
@@ -84,7 +84,7 @@
                                 {{-- TODO: suplier dropdown add search --}}
                                 {{-- * data from controller for supplier = $Supp --}}
                                 {{-- Input Supplier --}}
-                                <div class="sm:col-span-2 dropdown-div">
+                                <div class="relative sm:col-span-2 dropdown-div">
                                     <label for="dropdown-button-supplier"
                                         class="block mb-2 text-sm font-medium  text-gray-400">Supplier</label>
                                     <button type="button" id="dropdown-button-supplier"
@@ -98,7 +98,7 @@
                                         </svg>
                                     </button>
                                     <div id="dropdown-menu-supplier"
-                                        class=" hidden dropdown-menu py-2 mt-2 shadow-lg col bg-[#131432] ring-black ring-opacity-5 p-1 space-y-1">
+                                        class=" hidden dropdown-menu absolute z-10 right-0 top-full shadow-lg bg-[#131432] ring-black ring-opacity-5 p-1 space-y-1 flex-col w-full">
                                         {{-- Search input Buat Dropdown --}}
                                         <input
                                             class="search-input w-full px-2 bg-[#131432] text-gray-400 border rounded-md  border-gray-300 focus:outline-none"
@@ -113,11 +113,11 @@
                                         @endforelse
 
                                     </div>
-                                    <input type="hidden" name="supplier" id="supplier-input" value="">
+                                    <input type="hidden" name="supplier_id" id="supplier-input" value="">
                                 </div>
 
                                 {{-- Input Merk --}}
-                                <div class="sm:col-span-2 dropdown-div">
+                                <div class="relative sm:col-span-2 dropdown-div">
                                     <label for="dropdown-button-merk"
                                         class="block mb-2 text-sm font-medium  text-gray-400">Merk</label>
                                     <button type="button" id="dropdown-button-merk"
@@ -131,7 +131,7 @@
                                         </svg>
                                     </button>
                                     <div id="dropdown-menu-merk"
-                                        class="hidden dropdown-menu px-4 py-2 mt-2 shadow-lg col bg-[#131432] ring-black">
+                                        class="hidden dropdown-menu absolute z-10 right-0 top-full shadow-lg bg-[#131432] ring-black ring-opacity-5 p-1 space-y-1 flex-col w-full">
                                         {{-- Input Search  Buat Dropdown --}}
                                         <input
                                             class="search-input w-full px-2 bg-[#131432] text-gray-400 border rounded-md  border-gray-300 focus:outline-none"
@@ -145,7 +145,7 @@
                                         @empty
                                             <p class="text-center text-white">No Merk</p>
                                         @endforelse
-                                        <input type="hidden" name="merk" id="merk-input" value="">
+                                        <input type="hidden" name="merk_id" id="merk-input" value="">
                                     </div>
 
                                 </div>
@@ -159,7 +159,7 @@
                                 class="inline-flex items-center px-5 py-2.5 mt-4 sm:mt-6 text-sm font-medium text-center text-white bg-red-700 rounded-md focus:ring-4 focus:ring-primary-200 dark:focus:ring-primary-900 hover:bg-primary-800">
                                 Reset
                             </button>
-                            <button type="submit" id="button-reset"
+                            <button type="submit"
                                 class="inline-flex items-center px-5 py-2.5 mt-4 sm:mt-6 text-sm font-medium text-center text-white bg-green-700 rounded-md focus:ring-4 focus:ring-primary-200 dark:focus:ring-primary-900 hover:bg-primary-800">
                                 Create
                             </button>
