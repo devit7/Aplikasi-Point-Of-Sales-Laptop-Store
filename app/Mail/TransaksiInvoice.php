@@ -23,12 +23,12 @@ class TransaksiInvoice extends Mailable
     {
         $this->details = $details;
     }
+    
     public function build()
     {
         return $this->subject('Transaction Invoice')->view('mail/invoice');
     }
 
-    
     /**
      * Get the attachments for the message.
      *
@@ -38,4 +38,5 @@ class TransaksiInvoice extends Mailable
     {
         return [];
     }
+    
 }

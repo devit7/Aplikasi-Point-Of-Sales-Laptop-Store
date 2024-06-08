@@ -21,7 +21,7 @@ class WebAkses
             return $next($request);
         }
         
-        return redirect('/')->withErrors('Anda tidak memiliki akses.');
+        return redirect()->back( );
 
     }
 }
