@@ -153,7 +153,7 @@ Route::middleware(['WebAkses:kasir'])->prefix('kasir')->group(function () {
 
 Route::get('/', function () {
     return view('auth.login');
-});
+})->name('login');
 Route::post('/login', [AuthAksesController::class, 'aksesLogin'])->name('akses.login');
 Route::get('/logout', [AuthAksesController::class, 'aksesLogout'])->name('akses.logout');
 

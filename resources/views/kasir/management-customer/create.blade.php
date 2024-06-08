@@ -31,25 +31,25 @@
                                 <label for="name" class="block mb-2 text-sm font-medium  text-gray-400">Customer name</label>
                                 <input type="text" name="customer_name" id="customer_name" "
                                     class="bg-[#131432] border text-sm rounded-lg  block w-full p-2.5  border-gray-600 placeholder-gray-400 text-gray-400 focus:ring-primary-500 focus:border-primary-500"
-                                    placeholder="Enter data customer" required="">
+                                    placeholder="Enter data customer">
                             </div>
                             <div class="sm:col-span-2">
                                 <label for="nama_toko" class="block mb-2 text-sm font-medium  text-gray-400">Email</label>
                                 <input type="text" name="email" id="email"
                                     class="bg-[#131432] border   text-sm rounded-lg  block w-full p-2.5  border-gray-600 placeholder-gray-400 text-gray-400 focus:ring-primary-500 focus:border-primary-500"
-                                    placeholder="Enter email customer" required="">
+                                    placeholder="Enter email customer">
                             </div>
                             <div class="sm:col-span-2">
                                 <label for="nama_toko" class="block mb-2 text-sm font-medium  text-gray-400">Phone Number</label>
                                 <input type="text" name="no_hp" id="no_hp"
                                     class="bg-[#131432] border   text-sm rounded-lg  block w-full p-2.5  border-gray-600 placeholder-gray-400 text-gray-400 focus:ring-primary-500 focus:border-primary-500"
-                                    placeholder="Enter phone number customer" required="">
+                                    placeholder="Enter phone number customer">
                             </div>
                             <div class="sm:col-span-2">
                                 <label for="nama_toko" class="block mb-2 text-sm font-medium  text-gray-400">Address</label>
                                 <input type="text" id="alamat" name="alamat"
                                     class="bg-[#131432] border   text-sm rounded-lg  block w-full p-2.5  border-gray-600 placeholder-gray-400 text-gray-400 focus:ring-primary-500 focus:border-primary-500"
-                                    placeholder="Enter a address customer" required="">
+                                    placeholder="Enter a address customer">
                             </div>
                         </div>
                         <div class="flex justify-between w-full gap-4 sm:gap-6">

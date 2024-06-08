@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
+    
 </head>
 
 <body style="background-color: #1C1D42; width: 100%; font-family: 'Poppins', sans-serif; padding: 2rem;">

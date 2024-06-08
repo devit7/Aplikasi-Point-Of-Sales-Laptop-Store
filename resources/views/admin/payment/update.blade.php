@@ -25,7 +25,7 @@
                                     Name</label>
                                 <input type="text" name="payment_name" id="payment_name"
                                     class="bg-[#131432] border text-sm rounded-lg block w-full p-2.5 border-gray-600 placeholder-gray-400 text-gray-400 focus:ring-primary-500 focus:border-primary-500"
-                                    placeholder="Ex: BCA" value="{{ $payment['payment_name'] }}" required>
+                                    placeholder="Ex: BCA" value="{{ $payment['payment_name'] }}">
                                 @if ($errors->has('payment_name'))
                                     <p class="text-red-500 text-xs mt-2">{{ $errors->first('payment_name') }}</p>
                                 @endif
@@ -48,12 +48,3 @@
         </div>
     </div>
 @endsection
-@push('scripts')
-    <script>
-        //untuk mengkosongkan value input form
-        document.getElementById('button-reset').addEventListener('click', (e) => {
-            e.preventDefault();
-            document.getElementById('payment_name').value = '';
-        });
-    </script>
-@endpush

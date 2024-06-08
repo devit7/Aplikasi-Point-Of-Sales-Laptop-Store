@@ -41,7 +41,7 @@ class AuthController extends Controller
             }
         } else {
             return response()->json([
-                'message' => 'Login Gagal',
+                'message' => 'Username atau Password Salah',
             ],401);
         }
 
@@ -51,6 +51,8 @@ class AuthController extends Controller
     public function logout()
     {
         Auth::logout();
-        return redirect('/');
+        return response()->json([
+            'message' => 'Logout Berhasil',
+        ]);
     }
 }
