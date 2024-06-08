@@ -22,38 +22,58 @@
                         @csrf
                         @method('put')
                         <div class="flex flex-row w-[100%] h-[auto] justify-between">
-                            <div class="grid gap-4 w-[45%] sm:grid-cols-2 sm:gap-6">
-                                <div class="sm:col-span-2">
-                                    <label for="name" class="block mb-2 text-sm font-medium  text-gray-400">Nama</label>
-                                    <input type="text" name="product_name" id="name"
-                                        value="{{ $pro['product_name'] }}"
-                                        class="bg-[#131432] border text-sm rounded-lg  block w-full p-2.5  border-gray-600 placeholder-gray-400 text-gray-400 focus:ring-primary-500 focus:border-primary-500"
-                                        placeholder="Ex : Wibu Jaya Bersama" required="">
+                            <div class="w-[45%]">
+                                <div class="grid gap-4 sm:grid-cols-2 sm:gap-6">
+                                    <div class="sm:col-span-2">
+                                        <label for="name" class="block mb-2 text-sm font-medium  text-gray-400">Nama
+                                            Produk</label>
+                                        <input type="text" name="product_name" id="name"
+                                            class="bg-[#131432] border text-sm rounded-lg  block w-full p-2.5  border-gray-600 placeholder-gray-400 text-gray-400 focus:ring-primary-500 focus:border-primary-500"
+                                            placeholder="Nama Produk" value="{{ $pro['product_name'] }}">
+                                        @error('product_name')
+                                            <p id="outlined_error_help" class="mt-2 text-xs text-red-600">
+                                                {{ $message }}
+                                            </p>
+                                        @enderror
+                                    </div>
+                                    <div class="sm:col-span-2">
+                                        <label for="nama_toko" class="block mb-2 text-sm font-medium  text-gray-400">Harga
+                                            Jual</label>
+                                        <input type="text" name="harga_jual" id="harga_jual"
+                                            class="bg-[#131432] border   text-sm rounded-lg  block w-full p-2.5  border-gray-600 placeholder-gray-400 text-gray-400 focus:ring-primary-500 focus:border-primary-500"
+                                            placeholder="Harga Jual" value="{{ $pro['harga_jual'] }}">
+                                        @error('harga_jual')
+                                            <p id="outlined_error_help" class="mt-2 text-xs text-red-600">
+                                                {{ $message }}
+                                            </p>
+                                        @enderror
+                                    </div>
+                                    <div class="sm:col-span-2">
+                                        <label for="harga_asli"
+                                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400">Harga
+                                            Asli</label>
+                                        <input type="text" name="harga_asli" id="harga_asli"
+                                            class="bg-[#131432] border text-sm rounded-lg  block w-full p-2.5  border-gray-600 placeholder-gray-400 text-gray-400 focus:ring-primary-500 focus:border-primary-500"
+                                            placeholder="Harga Asli" value="{{ $pro['harga_asli'] }}">
+                                        @error('harga_asli')
+                                            <p id="outlined_error_help" class="mt-2 text-xs text-red-600">
+                                                {{ $message }}
+                                            </p>
+                                        @enderror
+                                    </div>
+                                    <div class="sm:col-span-2">
+                                        <label for="description"
+                                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400">Stok</label>
+                                        <input type="number" name="stock" id="nama_toko"
+                                            class="bg-[#131432] border   text-sm rounded-lg  block w-full p-2.5  border-gray-600 placeholder-gray-400 text-gray-400 focus:ring-primary-500 focus:border-primary-500"
+                                            placeholder="Stok" value="{{ $pro['stock'] }}">
+                                        @error('stock')
+                                            <p id="outlined_error_help" class="mt-2 text-xs text-red-600">
+                                                {{ $message }}
+                                            </p>
+                                        @enderror
+                                    </div>
                                 </div>
-                                <div class="sm:col-span-2">
-                                    <label for="nama_toko" class="block mb-2 text-sm font-medium  text-gray-400">Harga
-                                        Jual</label>
-                                    <input type="number" name="harga_jual" id="nama_toko" value="{{ $pro['harga_jual'] }}"
-                                        class="bg-[#131432] border   text-sm rounded-lg  block w-full p-2.5  border-gray-600 placeholder-gray-400 text-gray-400 focus:ring-primary-500 focus:border-primary-500"
-                                        placeholder="EX : 0821*" required="">
-                                </div>
-                                <div class="sm:col-span-2">
-                                    <label for="description"
-                                        class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400">Harga
-                                        Asli</label>
-                                    <input type="number" name="harga_asli" id="hargaasli" value="{{ $pro['harga_asli'] }}"
-                                        class="bg-[#131432] border   text-sm rounded-lg  block w-full p-2.5  border-gray-600 placeholder-gray-400 text-gray-400 focus:ring-primary-500 focus:border-primary-500"
-                                        placeholder="EX : 0821*" required="">
-                                </div>
-                                <div class="sm:col-span-2">
-                                    <label for="description"
-                                        class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400">Stock</label>
-                                    <input type="number" name="stock" id="nama_toko" value="{{ $pro['stock'] }}"
-                                        class="bg-[#131432] border text-sm rounded-lg  block w-full p-2.5  border-gray-600 placeholder-gray-400 text-gray-400 focus:ring-primary-500 focus:border-primary-500"
-                                        placeholder="EX : 0821*" required="">
-                                </div>
-
-
                             </div>
                             <div class="w-[45%]">
                                 <div class="sm:col-span-2 mb-8" id="forChangefoto">
@@ -132,6 +152,11 @@
                                     </div>
                                     <input type="hidden" name="supplier" id="supplier-input"
                                         value="{{ $pro['supplier_id'] }}">
+                                    @error('supplier_id')
+                                        <p id="outlined_error_help" class="mt-2 text-xs text-red-600">
+                                            {{ $message }}
+                                        </p>
+                                    @enderror
                                 </div>
 
                                 {{-- Input Merk --}}
@@ -162,10 +187,13 @@
                                         @empty
                                             <p class="text-center text-white">No Merk</p>
                                         @endforelse
-                                        <input type="hidden" name="merk" id="merk-input"
-                                            value="{{ $pro->merk_id }}">
                                     </div>
-
+                                    <input type="hidden" name="merk" id="merk-input" value="{{ $pro->merk_id }}">
+                                    @error('supplier_id')
+                                        <p id="outlined_error_help" class="mt-2 text-xs text-red-600">
+                                            {{ $message }}
+                                        </p>
+                                    @enderror
                                 </div>
 
 
@@ -192,8 +220,8 @@
     <style>
         #file-upload {
             /* position: fixed;
-                            top:-20%;
-                            left: -20%; */
+                                        top:-20%;
+                                        left: -20%; */
         }
 
         #butforBack {
@@ -224,9 +252,9 @@
         }
 
         /* .checkbox-container {
-                            display: inline-block;
-                            vertical-align: middle;
-                        } */
+                                        display: inline-block;
+                                        vertical-align: middle;
+                                    } */
 
         .forBackSup>input {
             appearance: none !important;
@@ -282,9 +310,9 @@
         }
 
         /* .checkbox-container {
-                            display: inline-block;
-                            vertical-align: middle;
-                        } */
+                                        display: inline-block;
+                                        vertical-align: middle;
+                                    } */
 
         .forStok>input {
             appearance: none !important;
@@ -322,9 +350,9 @@
 
 
         /* .checkbox-text {
-                            font-size: 16px;
-                            color: #333;
-                        } */
+                                        font-size: 16px;
+                                        color: #333;
+                                    } */
 
         /* Untuk efek hover */
         .forStok .forStok>input:not(:checked) {
@@ -334,14 +362,16 @@
         main::-webkit-scrollbar {
             width: 0;
             /* background-color: white;
-                    color: white;
-                    border: 1px solid inherit; */
+                                color: white;
+                                border: 1px solid inherit; */
         }
 
         main {
             scrollbar-width: none;
         }
     </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/autonumeric@4.1.0"></script>
     <script>
         function ubah(id) {
             // console.log('masuk')
@@ -559,6 +589,16 @@
     </script>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
+            new AutoNumeric('#harga_asli', {
+                currencySymbol: 'Rp',
+                decimalCharacter: '.',
+                unformatOnSubmit: true
+            });
+            new AutoNumeric('#harga_jual', {
+                currencySymbol: 'Rp',
+                decimalCharacter: '.',
+                unformatOnSubmit: true
+            })
             // Function to toggle the dropdown state
             function toggleDropdown(dropdownMenu) {
                 // alert("toggle dropdown jalan" + dropdownMenu);
@@ -613,7 +653,6 @@
                     const dropdownLabel = this.closest('.dropdown-div').querySelector(
                         'button span');
                     hiddenInput.value = selectedValue;
-                    alert(selectedValue);
                     dropdownLabel.textContent = this.textContent;
                     const dropdownMenu = this.closest('.dropdown-menu');
                     toggleDropdown(dropdownMenu);

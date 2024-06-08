@@ -90,12 +90,13 @@ class ProductAksesController extends Controller
         // dd("Response from ProductAksesController -> createData", $response);
 
         if ($response->getStatusCode() == 201) {
-            session()->flash('success', 'Data Product berhasil di tambahkan');
+            session()->flash('success', 'Product "' . $validated['product_name'] . '" berhasil di tambahkan');
             return redirect('/admin/product');
         } else {
-            return response()->json([
-                'message' => 'Unauthorized',
-            ], 401);
+            return redirect()->back()->withInput()->withErrors([ 'messages' => 'Data Product gagal di tambahkan' ]);
+            // return response()->json([
+            //     'message' => 'Unauthorized',
+            // ], 401);
         }
     }
 
@@ -154,7 +155,7 @@ class ProductAksesController extends Controller
         if ($response->getStatusCode() == 200) {
             session()->flash('success', 'Data Product berhasil di update');
             return redirect()->route('product.index');
-        } 
+        }
         else {
             return response()->json([
                 'message' => 'Unauthorized',
@@ -167,7 +168,7 @@ class ProductAksesController extends Controller
         // dd($idproduct);
         $request = Request::create('http://127.0.0.1:8000/api/products/' . $idproduct, 'DELETE');
         $response = app()->handle($request);
-        
+
         if ($response->getStatusCode() == 200) {
             return redirect('/admin/product')->with('success', 'Data Product berhasil dihapus');
         } else {
@@ -179,7 +180,7 @@ class ProductAksesController extends Controller
     }
 
 
-   
+
     public function productAdminNew()
     {
         $sup = $this->getsup();
@@ -193,7 +194,7 @@ class ProductAksesController extends Controller
 
     public function productAdminUpdate($idProduk)
     {
-        
+
         $pro = Product::with('supplier', 'merk')->findOrFail($idProduk);
         $requestSupplier = Request::create('http://127.0.0.1:8000/api/suppliers', 'GET');
         $responseSupplier = app()->handle($requestSupplier);
@@ -270,7 +271,7 @@ class ProductAksesController extends Controller
         }
 
         if ($p->save()) {
-            session()->flash('success', 'Product ' . $p->product_name . ' berhasil di update');
+            session()->flash('success', 'Product "' . $p->product_name . '" berhasil di update');
             return redirect('/admin/product');
         }
 
