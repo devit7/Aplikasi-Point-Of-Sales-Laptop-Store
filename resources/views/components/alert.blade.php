@@ -56,7 +56,7 @@
                         <h3 class="text-xl leading-6 font-semibold text-[#aa5800]" id="modal-headline"> Delete Item
                         </h3>
                         <div class="mt-2">
-                            <p class="text-sm text-white"> Are you sure you want to delete <span
+                            <p class="text-sm text-white"> Are you sure you want to delete / deactivate <span
                                     class="font-bold">{{ $nama }}</span>? This action cannot be undone. </p>
                         </div>
                     </div>
