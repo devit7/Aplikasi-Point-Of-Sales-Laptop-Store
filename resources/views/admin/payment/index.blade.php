@@ -23,6 +23,11 @@
                 </a>
             </div>
         </div>
+        @if (session()->has('success'))
+    <div class="p-4 mb-4 text-sm text-green-700 bg-green-100 rounded-lg dark:bg-green-200 dark:text-green-800" role="alert">
+        <span class="font-medium">{{ session('success') }}</span>
+    </div>
+    @endif
         <x-tables>
             <div class="w-full mx-auto bg-[#1C1D42] text-[#6b6eb4] p-4 rounded-md">
                 <table class="w-full mt-2" id="table">
@@ -54,6 +59,4 @@
             </x-tables>
         </div>
     </div>
-
-
 @endsection

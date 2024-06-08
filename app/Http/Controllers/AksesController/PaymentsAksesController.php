@@ -53,7 +53,6 @@ class PaymentsAksesController extends Controller
         }
     }
     
-
     public function createData(StoreRequest $request)
     {
         $validator = $request->validated();
@@ -85,7 +84,7 @@ class PaymentsAksesController extends Controller
         $request = Request::create($api_url, 'PUT');
         $response = app()->handle($request);
         if ($response->getStatusCode() == 200) {
-            session()->flash('success', 'Data Payment berhasil di update');
+            session()->flash('success', 'Payment berhasil di update');
             return redirect()->route('payment.index');
         } else {
             return response()->json([
@@ -99,7 +98,7 @@ class PaymentsAksesController extends Controller
         $request = Request::create('http://127.0.0.1:8000/api/payments/' . $payment, 'DELETE');
         $response = app()->handle($request);
         if ($response->getStatusCode() == 200) {
-            return redirect()->route('payment.index')->with('success', 'Data berhasil dihapus');
+            return redirect()->route('payment.index')->with('success', 'Payment berhasil dihapus');
         } else {
             return response()->json([
                 'message' => 'Unauthorized'
