@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 use App\Models\Merk;
 use Illuminate\Support\Facades\Http;
 
-class merkAksesController extends Controller
+class MerkAksesController extends Controller
 {
     public function getAll()
     {
