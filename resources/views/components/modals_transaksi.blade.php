@@ -90,7 +90,7 @@
                             <div class="w-full ">
                                 <input type="text" name="total" id="total"
                                     class="w-full text-right px-4 py-2  text-green-600 bg-[#131432] border border-gray-600 rounded disabled:opacity-50"
-                                    value="Rp. @currency($totalAll)">
+                                    value="@currency($totalAll)">
                                     <span id="total-error" class="text-red-500 text-sm"></span>
                             </div>
                         </div>
@@ -214,31 +214,31 @@
 <script>
     document.getElementById('transaction-form').addEventListener('submit', function(event) {
         let isValid = true;
-    
+
         // Clear previous error messages
         document.getElementById('customer-error').textContent = '';
         document.getElementById('payment-error').textContent = '';
         document.getElementById('total-error').textContent = '';
-    
+
         let customerInput = document.getElementById('customer-input').value;
         let paymentInput = document.getElementById('payment-input').value;
         let totalInput = document.getElementById('total').value.trim();
-    
+
         if (!customerInput) {
             document.getElementById('customer-error').textContent = 'Please select a customer.';
             isValid = false;
         }
-    
+
         if (!paymentInput) {
             document.getElementById('payment-error').textContent = 'Please select a payment method.';
             isValid = false;
         }
-    
+
         if (!totalInput) {
             document.getElementById('total-error').textContent = 'Total Belanja cannot be empty.';
             isValid = false;
         }
-    
+
         if (!isValid) {
             event.preventDefault();
         }

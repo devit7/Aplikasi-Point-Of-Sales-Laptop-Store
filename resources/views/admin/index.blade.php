@@ -15,7 +15,7 @@
                             {{ 'Rp' . number_format($totalProfit, 2, ',', '.') }}
                         </p>
                         <p class=" text-xs font-light">
-                            Total Keuntungan
+                            Total Pendapatan Bersih
                         </p>
                     </div>
                 </div>
@@ -32,7 +32,7 @@
                             {{ 'Rp' . number_format($totalOriginalPrice, 2, ',', '.') }}
                         </p>
                         <p class=" text-xs font-light">
-                            Total Harga Asli Terjual
+                            Total Pendapatan Kotor
                         </p>
                     </div>
                 </div>
@@ -247,7 +247,7 @@
                     <div class="flex px-2 py-2 items-center justify-between ">
                         <div class="w-5/12 flex items-center">
                             <img class="w-6 sm:w-10 mr-2 self-center" alt="away-logo"
-                                src="{{ asset('/storage/images/' . $product->img) }}">
+                                src="{{ asset('/storage/image_product/' . $product->img) }}">
                             <div class="flex flex-col">
                                 <p class="text-sm font-bold"> {{ $product->product_name }} </p>
                                 <p class="hidden sm:block font-medium text-[#4E6196]"> {{ $product->merk_name }} </p>

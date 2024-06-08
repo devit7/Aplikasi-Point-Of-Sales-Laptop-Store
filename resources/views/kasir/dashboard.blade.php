@@ -77,7 +77,7 @@
                                         </div>
                                         <div class="flex flex-row justify-between">
                                             <div class=" font-bold text-[#e07946]">
-                                                Rp. @currency($product['harga_jual'])
+                                                @currency($product['harga_jual'])
                                             </div>
                                             <div class="flex items-center gap-1">
                                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
@@ -135,7 +135,7 @@
                                     </p>
                                     <div class="flex flex-row justify-between">
                                         <p class="text-[#e07946] font-semibold">
-                                            Rp. @currency($cart['harga_jual'])
+                                            @currency($cart['harga_jual'])
                                         </p>
                                         <p class="text-[#93A2D2]">
                                             {{ $cart['qty'] }}x
@@ -146,7 +146,7 @@
                                             Total :
                                         </p>
                                         <p class="text-green-600 font-semibold">
-                                            Rp. @currency($cart['harga_jual'] * $cart['qty'])
+                                            @currency($cart['harga_jual'] * $cart['qty'])
                                         </p>
                                     </div>
                                 </div>
@@ -186,7 +186,7 @@
                                     @endphp
                                 @endforeach
                             @endif
-                            Rp. @currency($total)
+                            @currency($total)
                         </p>
                     </div>
                 </div>
