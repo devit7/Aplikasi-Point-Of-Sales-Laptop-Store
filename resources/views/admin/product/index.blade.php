@@ -54,11 +54,11 @@
                                 <th class="">Action</th>
                             </tr>
                         </thead>
-                        <tbody class="text-[#6b6eb4] text-center">
+                        <tbody class="text-[#6b6eb4] text-center alig">
                             @forelse ($data as $index => $value)
                                 <tr class="border-b-2 border-[#33356F]">
                                     <td class="py-2">{{ $index + 1 }}</td>
-                                    <td>{{ $value['product_name'] }}</td>
+                                    <td class="flex-wrap">{{ $value['product_name'] }}</td>
                                     <td>{{ $value['stock'] }}</td>
                                     <td> @currency($value['harga_jual']) </td>
                                     <td> @currency($value['harga_asli']) </td>
@@ -70,7 +70,7 @@
                                     <td>{{ $value['merk']['merk_name'] }}</td>
                                     <td>
                                         <p class=" text-center  border rounded-full {{ $value['status'] == 'aktif' ? ' border-green-400 bg-green-900 text-green-400' : ' border-red-400 bg-red-900 text-red-300' }}">
-                                            {{ $value['status'] }}
+                                            {{ $value['status'] == 'aktif' ? 'Aktif' : 'Nonaktif' }}
                                         </p>
                                     </td>
                                     <td class="flex flex-row gap-2">
