@@ -14,7 +14,7 @@
     
         <!-- Main modal -->
         <div id="default-modal{{$id}}" aria-hidden="true" class="hidden overflow-x-hidden overflow-y-auto fixed h-modal md:h-full top-4 left-0 right-0 md:inset-0 z-50 justify-center items-center">
-            <div class="relative bg-[#1C1D42] rounded-lg shadow ">
+            <div class="relative  bg-[#1C1D42] rounded-lg shadow ">
                 <!-- Modal content -->
                 <div class="p-3 text-center">
                     {{ $slot }}
