@@ -79,7 +79,7 @@
                                     <label for="name" class="block mb-2 text-sm font-medium  text-gray-400">Foto</label>
                                     <div class="relative border border-gray-400 border-dashed rounded-lg p-6"
                                         id="dropzone">
-                                        <input id="img" name="img_product" type="file" accept=".jpg,.jpeg,.png"
+                                        <input id="img" name="img" type="file" accept=".jpg,.jpeg,.png"
                                             class="absolute inset-0 w-full h-full opacity-0 z-50" />
                                         <div class="text-center">
                                             <img class="mx-auto h-12 w-12"
@@ -99,7 +99,7 @@
 
                                         <img src="" class="mt-4 mx-auto max-h-40 hidden" id="preview">
                                     </div>
-                                    @error('img_product')
+                                    @error('img')
                                         <p id="outlined_error_help" class="mt-2 text-xs text-red-700">
                                             {{ $message }}
                                         </p>
