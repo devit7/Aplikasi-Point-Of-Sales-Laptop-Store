@@ -2,9 +2,9 @@
 @extends('layout.admin_main')
 
 @section('content')
-    <div class=" p-7 ">
-        <div class="mb-6 flex items-end justify-between">
-            <div class="flex flex-col ">
+    <div class=" p-7">
+        <div class="mt-[-15px] mb-4 flex items-end justify-between">
+            <div class="flex flex-col">
                 <p class="text-[#6b6eb4] text-lg font-semibold">
                     Manage Product
                 </p>
@@ -21,7 +21,7 @@
             </div>
         @endif
 
-        <div class="mt-10 flex gap-[20px] lg:gap-[150px] md:gap-[50px]  w-full mx-auto rounded-md">
+        <div class="mt-2 mb-[-10px] flex gap-[20px] lg:gap-[150px] md:gap-[50px]  w-full mx-auto rounded-md">
             <div class="w-[600px] flex flex-col gap-4">
                 <p class="rounded-md p-4 font-semibold bg-[#1C1D42] text-[#6b6eb4]">Setting</p>
                 <div class="rounded-md p-4 bg-[#1C1D42] text-[#6b6eb4]">
