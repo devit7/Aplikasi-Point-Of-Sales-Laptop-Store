@@ -49,7 +49,7 @@
                             <div class="flex flex-col p-3 text-[#93A2D2] justify-between h-full">
                                 <div class="relative  w-full h-full overflow-hidden max-h-[180px]">
                                     <img id="card-img"
-                                        src="{{ asset('storage/images/' . $product['img']) }}"
+                                        src="{{ asset('storage/image_product/' . $product['img']) }}"
                                         alt="product img" class="w-full h-full bg-gray-900 object-cover rounded-lg">
                                     <div
                                         class="absolute font-semibold top-0 right-0  text-sm text-blue-800 bg-blue-300 rounded-bl-lg px-3 ">
