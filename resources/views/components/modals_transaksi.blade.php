@@ -90,7 +90,7 @@
                             <div class="w-full ">
                                 <input type="text" name="total" id="total"
                                     class="w-full text-right px-4 py-2  text-green-600 bg-[#131432] border border-gray-600 rounded disabled:opacity-50"
-                                    value="{{ $totalAll }}">
+                                    value="@currency($totalAll)">
                                     <span id="total-error" class="text-red-500 text-sm"></span>
                             </div>
                         </div>
