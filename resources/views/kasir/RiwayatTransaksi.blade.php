@@ -39,11 +39,11 @@
                         <td>{{$product['product_name']}}</td>
                         <td class="flex flex-row gap-2">
                         <x-modal_detail id="{{$riwayat['id']}}">
-                            <div class="flex flex-col w-fit rounded-md p-5 bg-[#1C1D42]">
+                            <div class="flex flex-col w-fit rounded-md p-5 text-indigo-700">
                                 <span class=" w-96 text-xl mb-8 text-indigo-100 font-bold">Detail Transaksi</span>
                                 <div class="flex items-center space-x-4">
-                                    <span class=" text-indigo-200 p-1 font-semibold">User</span>
-                                    <hr class="flex-grow border-gray-200">
+                                    <span class=" p-1 font-semibold">User</span>
+                                    <hr class="flex-grow border-indigo-500">
                                     <span>{{$riwayat['user']['nama']}}</span>
                                 </div>
                                 <div class="flex items-center space-x-4">
