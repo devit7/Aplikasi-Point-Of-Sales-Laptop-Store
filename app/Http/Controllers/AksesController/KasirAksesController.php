@@ -23,7 +23,10 @@ class KasirAksesController extends Controller
                 return $product['merk_id'] == $request->merk;
             });
         }
-        //dd($dataProduct);
+        //filter hanya status aktif
+        $dataProduct = array_filter($dataProduct, function($product){
+            return $product['status'] == 'aktif';
+        });
         
         $dataMerk = $this->getAllMerk();
         $dataCustomer = $this->getAllCustomer();
