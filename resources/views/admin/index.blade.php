@@ -22,7 +22,7 @@
             </div>
 
             <div
-                class="flex flex-col bg-[#1C1D42] w-full max-w-sm rounded overflow-hidden shadow-lg border border-[#33356F]">
+                class="flex flex-col bg-[#1c1d42fc] w-full rounded overflow-hidden shadow-lg border border-[#33356F]">
                 <div class=" flex flex-row min-w-60 gap-5 place-items-center p-4 ">
                     <div class="flex flex-shrink-0 font-bold text-xl bg-[#ffff0036] rounded-full p-1">
                         <img class="  size-10" src=" {{ asset('foto/dollar-logo-yellow.png') }} ">
@@ -39,7 +39,7 @@
             </div>
 
             <div
-                class="flex flex-col bg-[#1C1D42] w-full max-w-sm rounded overflow-hidden shadow-lg border border-[#33356F]">
+                class="flex flex-col bg-[#1c1d42fc] w-full rounded overflow-hidden shadow-lg border border-[#33356F]">
                 <div class=" flex flex-row min-w-60 gap-5 items-center p-4 ">
                     <div class="flex flex-shrink-0 font-bold text-xl bg-[#1dae224c] rounded-full p-1">
                         <img class="  size-10" src=" {{ asset('foto/sold-product.png') }} ">
@@ -56,7 +56,7 @@
             </div>
 
             <div
-                class="flex flex-col bg-[#1C1D42] w-full max-w-sm rounded overflow-hidden shadow-lg border border-[#33356F]">
+                class="flex flex-col bg-[#1c1d42fc] w-full rounded overflow-hidden shadow-lg border border-[#33356F]">
                 <div class=" flex flex-row min-w-60 gap-5 items-center p-4">
                     <div class="flex flex-shrink-0 font-bold text-xl bg-[#2b23bc3c] rounded-full p-1">
                         <img class="  size-10" src=" {{ asset('foto/transaction.png') }} ">
@@ -95,7 +95,7 @@
             </div>
 
             <div
-                class="flex flex-col bg-[#1C1D42] w-full max-w-sm rounded overflow-hidden shadow-lg border border-[#33356F]">
+                class="flex flex-col bg-[#1c1d42fc] w-full rounded overflow-hidden shadow-lg border border-[#33356F]">
                 <div class=" flex flex-row min-w-60 gap-5 items-center p-4">
                     <div class="flex flex-shrink-0 font-bold text-xl bg-[#d5462d41] rounded-full p-1 overflow-clip">
                         <img class=" size-10" src=" {{ asset('foto/people.png') }} ">
@@ -112,7 +112,7 @@
             </div>
 
             <div
-                class="flex flex-col bg-[#1C1D42] w-full max-w-sm rounded overflow-hidden shadow-lg border border-[#33356F]">
+                class="flex flex-col bg-[#1c1d42fc] w-full rounded overflow-hidden shadow-lg border border-[#33356F]">
                 <div class=" flex flex-row min-w-60 gap-5 items-center p-4">
                     <div class="flex flex-shrink-0 font-bold text-xl bg-[#db6e264e] rounded-full p-1 overflow-clip">
                         <img class="  size-10" src=" {{ asset('foto/cashier.png') }} ">
@@ -149,7 +149,7 @@
 
         <div class=" gap-9 flex flex-row w-full px-5">
 
-            <div class="flex flex-col bg-[#1C1D42] w-full rounded overflow-hidden shadow-lg border border-[#33356F]">
+            <div class="flex flex-col bg-[#1c1d42fc] w-full rounded overflow-hidden shadow-lg border border-[#33356F]">
                 <div class=" flex flex-row min-w-72 min-h-60 gap-5 items-center p-4">
                     <div id="container" class=" w-full font-bold bg-[#1C1D42] text-xl text-center p-1">
                         <script src="https://code.highcharts.com/highcharts.js"></script>
