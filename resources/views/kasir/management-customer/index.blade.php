@@ -59,7 +59,7 @@
                                     </a> -->
                                     <x-modal_detail id="{{$item['id']}}">
                                             <div class="flex flex-col w-fit rounded-md p-5 bg-[#1C1D42]">
-                                                <span class=" w-96 text-xl mb-8 text-indigo-100 font-bold">Detail Customer/span>
+                                                <span class=" text-indigo-200 p-1 font-semibold">Detail Customer</span>
                                                 <div class="flex items-center space-x-4">
                                                     <span class=" text-indigo-200 p-1 font-semibold">Customer Name</span>
                                                     <hr class="flex-grow border-gray-200">
