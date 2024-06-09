@@ -31,7 +31,7 @@ class StoreRequest extends FormRequest
             'img' => 'nullable|max:10048',
             'supplier_id' => 'required',
             'merk_id' => 'required',
-            'status' => 'required|in:aktif,tidak aktif',
+            // 'status' => 'required|in:aktif,tidak aktif',
         ];
     }
 
