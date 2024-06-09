@@ -21,7 +21,7 @@
             </div>
         @endif
 
-        <div class="mt-10 flex gap-[20px] lg:gap-[150px] md:gap-[50px]  w-full mx-auto     rounded-md">
+        <div class="mt-10 flex gap-[20px] lg:gap-[150px] md:gap-[50px]  w-full mx-auto rounded-md">
             <div class="w-[600px] flex flex-col gap-4">
                 <p class="rounded-md p-4 font-semibold bg-[#1C1D42] text-[#6b6eb4]">Setting</p>
                 <div class="rounded-md p-4 bg-[#1C1D42] text-[#6b6eb4]">
@@ -35,9 +35,9 @@
                                     Toko</label>
                                 <input type="text" name="nama_toko" id="nama_toko"
                                     class="bg-[#131432] border text-sm rounded-lg block w-full p-2.5  border-gray-600 placeholder-gray-400 text-gray-400 focus:ring-primary-500 focus:border-primary-500"
-                                    placeholder="Ex : Wibu Jaya Bersama" value="{{ $toko[0]['nama_toko'] }}" required>
+                                    placeholder="Ex : Wibu Jaya Bersama" value="{{ $toko[0]['nama_toko'] }}">
                                 @error('nama_toko')
-                                    <p id="outlined_error_help" class="mt-2 text-xs text-red-600">
+                                    <p id="outlined_error_help" class="mt-2 text-xs text-red-700">
                                         {{ $message }}</p>
                                 @enderror
                             </div>
@@ -46,9 +46,9 @@
                                     HP</label>
                                 <input type="tel" name="no_hp" id="no_hp"
                                     class="bg-[#131432] border text-sm rounded-lg block w-full p-2.5 border-gray-600 placeholder-gray-400 text-gray-400 focus:ring-primary-500 focus:border-primary-500"
-                                    placeholder="EX : 0821*" value="{{ $toko[0]['no_hp'] }}" required>
+                                    placeholder="EX : 0821*" value="{{ $toko[0]['no_hp'] }}">
                                 @error('no_hp')
-                                    <p id="outlined_error_help" class="mt-2 text-xs text-red-600">
+                                    <p id="outlined_error_help" class="mt-2 text-xs text-red-700">
                                         {{ $message }}</p>
                                 @enderror
                             </div>
@@ -58,9 +58,9 @@
                                     class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400">Alamat</label>
                                 <textarea id="alamat" rows="1" name="alamat"
                                     class="block p-2.5 w-full text-sm text-gray-900 rounded-lg border border-gray-300 focus:ring-primary-500 focus:border-primary-500 bg-[#131432] dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-400 dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                                    placeholder="EX : Jalan Jalan" required>{{ $toko[0]['alamat'] }}</textarea>
+                                    placeholder="EX : Jalan Jalan">{{ $toko[0]['alamat'] }}</textarea>
                                 @error('alamat')
-                                    <p id="outlined_error_help" class="mt-2 text-xs text-red-600">
+                                    <p id="outlined_error_help" class="mt-2 text-xs text-red-700">
                                         {{ $message }}</p>
                                 @enderror
                             </div>
@@ -109,7 +109,7 @@
                 <div class="flex flex-col rounded-md p-6 bg-white border border-gray-400">
                     <div class="text-center">
                         <img src="{{ asset('storage/logos/' . $toko[0]['logo_toko']) }}" alt="product"
-                            class="w-10 h-10 mx-auto">
+                            class="w-10 h-10 mx-auto rounded-lg">
                         <p class="text-lg font-semibold">{{ $toko[0]['nama_toko'] }}</p>
                         <p class="text-sm">{{ $toko[0]['alamat'] }}</p>
                         <p class="text-sm">{{ $toko[0]['no_hp'] }}</p>

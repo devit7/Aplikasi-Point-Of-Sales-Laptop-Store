@@ -132,9 +132,6 @@ class ProductController extends Controller
      */
     public function destroy(Product $product)
     {
-        // dd("API ProductController destroy", $product);
-
-        // $product->delete();
         $product->update([
             'stock' => 0,
         ]);

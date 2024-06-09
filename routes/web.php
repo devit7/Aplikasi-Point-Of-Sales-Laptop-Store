@@ -36,7 +36,6 @@ Route::middleware(['WebAkses:admin'])->prefix('admin')->group(function () {
 
     // Setting
     Route::get('/setting', [TokoAksesController::class, 'getAll'])->name('admin.index');
-    // Route::post('/setting', [TokoAksesController::class, 'createData'])->name('admin.store');
     Route::put('/setting/{toko}', [TokoAksesController::class, 'updateData'])->name('admin.update');
 
     // Laporan
@@ -73,29 +72,22 @@ Route::middleware(['WebAkses:admin'])->prefix('admin')->group(function () {
 
     // Product
     Route::get('/product', [ProductAksesController::class, 'getAll']);
-
-    // Route::post('/product', [ProductAksesController::class, 'createData'])->name('admin.product.store');
     Route::get('/product/create/new', [ProductAksesController::class, 'getAllToCreate']);
-    Route::post('/product/create', [ProductAksesController::class, 'productAdminMakenew']);
+    Route::post('/product/create', [ProductAksesController::class, 'createData']);
     Route::get('/product/update/{idProduk}', [ProductAksesController::class, 'productAdminUpdate']);
     Route::put('/product/update/{idProduk}', [ProductAksesController::class, 'productAdminMakeUpdate']);
 
-    Route::put('/product/destroy/{product}', [ProductAksesController::class, 'deleteData'])->name('products.destroy');
-
-    // Route::get('/product/create', function () {
-    //     return view('admin.product.create');
-    // })->name('admin.product.create');
-
+    Route::delete('/product/destroy/{product}', [ProductAksesController::class, 'deleteData'])->name('products.destroy');
 
     // Merk
-    Route::get('/merk', [merkAksesController::class, 'getAll'])->name('merk.index');
+    Route::get('/merk', [MerkAksesController::class, 'getAll'])->name('merk.index');
     Route::get('/merk/create', function () {
         return view('admin.merk.create');
     })->name('merk.create');
-    Route::get('/merk/edit/{merk}', [merkAksesController::class, 'getEdit'])->name('merk.edit');
-    Route::put('/merk/update/{merk}', [merkAksesController::class, 'updateData'])->name('merk.update');
-    Route::post('/merk', [merkAksesController::class, 'createData'])->name('merk.store');
-    Route::delete('/merk/{merk}', [merkAksesController::class, 'deleteData'])->name('merk.destroy');
+    Route::post('/merk', [MerkAksesController::class, 'createData'])->name('merk.store');
+    Route::get('/merk/edit/{merk}', [MerkAksesController::class, 'getEdit'])->name('merk.edit');
+    Route::put('/merk/update/{merk}', [MerkAksesController::class, 'updateData'])->name('merk.update');
+    Route::delete('/merk/{merk}', [MerkAksesController::class, 'deleteData'])->name('merk.destroy');
 
     // Payment
     Route::get('/payment', [PaymentsAksesController::class, 'getAll'])->name('payment.index');
@@ -108,15 +100,15 @@ Route::middleware(['WebAkses:admin'])->prefix('admin')->group(function () {
     Route::delete('/payment/{payment}', [PaymentsAksesController::class, 'deleteData'])->name('payment.destroy');
 
     //Product
-    Route::get('/products/index', [ProductAksesController::class, 'getAll'])->name('products.index');
-    Route::get('/products/show/{product}', [ProductAksesController::class, 'getDetail'])->name('products.show');
-    Route::get('/products/create', [ProductAksesController::class, 'getAllToCreate'])->name('products.create');
-    Route::post('/products/store', [ProductAksesController::class, 'createData'])->name('products.store');
+    // Route::get('/products/index', [ProductAksesController::class, 'getAll'])->name('products.index');
+    // Route::get('/products/show/{product}', [ProductAksesController::class, 'getDetail'])->name('products.show');
+    // Route::get('/products/create', [ProductAksesController::class, 'getAllToCreate'])->name('products.create');
+    // Route::post('/products/store', [ProductAksesController::class, 'createData'])->name('products.store');
     // Route::get('/products/edit/{product}', function () {
     //     return view('admin.product.update');
     // })->name('products.edit');
-    Route::put('/products/update/{product}', [ProductAksesController::class, 'updateData'])->name('products.update');
-    Route::delete('/products/destroy/{product}', [ProductAksesController::class, 'deleteData'])->name('products.destroy');
+    // Route::put('/products/update/{product}', [ProductAksesController::class, 'updateData'])->name('products.update');
+    // Route::delete('/products/destroy/{product}', [ProductAksesController::class, 'deleteData']);
 });
 
 
@@ -133,6 +125,7 @@ Route::middleware(['WebAkses:kasir'])->prefix('kasir')->group(function () {
     Route::get('/transaksi', function () {
         return view('kasir.RiwayatTransaksi');
     });
+
     Route::get('/riwayat', [RiwayatTransaksiContoller::class, 'getAll'])->name('Riwayat.index');
     Route::get('/riwayat/{transaksi}', [RiwayatTransaksiContoller::class, 'getDetail'])->name('Riwayat.detail');
 
@@ -153,7 +146,7 @@ Route::middleware(['WebAkses:kasir'])->prefix('kasir')->group(function () {
 
 Route::get('/', function () {
     return view('auth.login');
-});
+})->name('login');
 Route::post('/login', [AuthAksesController::class, 'aksesLogin'])->name('akses.login');
 Route::get('/logout', [AuthAksesController::class, 'aksesLogout'])->name('akses.logout');
 

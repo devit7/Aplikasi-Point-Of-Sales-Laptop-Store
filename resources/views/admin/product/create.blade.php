@@ -24,33 +24,53 @@
                             <div class="w-[45%]">
                                 <div class="grid gap-4 sm:grid-cols-2 sm:gap-6">
                                     <div class="sm:col-span-2">
-                                        <label for="name"
-                                            class="block mb-2 text-sm font-medium  text-gray-400">Nama</label>
-                                        <input type="text" name="product_name" id="name"
+                                        <label for="product_name" class="block mb-2 text-sm font-medium text-gray-400">Nama
+                                            Produk</label>
+                                        <input type="text" name="product_name" id="product_name"
                                             class="bg-[#131432] border text-sm rounded-lg  block w-full p-2.5  border-gray-600 placeholder-gray-400 text-gray-400 focus:ring-primary-500 focus:border-primary-500"
-                                            placeholder="Ex : Wibu Jaya Bersama" required="">
+                                            placeholder="Nama Produk">
+                                        @error('product_name')
+                                            <p id="outlined_error_help" class="mt-2 text-xs text-red-700">
+                                                {{ $message }}
+                                            </p>
+                                        @enderror
                                     </div>
                                     <div class="sm:col-span-2">
-                                        <label for="nama_toko" class="block mb-2 text-sm font-medium  text-gray-400">Harga
+                                        <label for="harga_jual" class="block mb-2 text-sm font-medium  text-gray-400">Harga
                                             Jual</label>
-                                        <input type="number" name="harga_jual" id="nama_toko"
+                                        <input type="text" name="harga_jual" id="harga_jual"
                                             class="bg-[#131432] border   text-sm rounded-lg  block w-full p-2.5  border-gray-600 placeholder-gray-400 text-gray-400 focus:ring-primary-500 focus:border-primary-500"
-                                            placeholder="EX : 0821*" required="">
+                                            placeholder="Harga Jual">
+                                        @error('harga_jual')
+                                            <p id="outlined_error_help" class="mt-2 text-xs text-red-700">
+                                                {{ $message }}
+                                            </p>
+                                        @enderror
                                     </div>
                                     <div class="sm:col-span-2">
-                                        <label for="description"
+                                        <label for="harga_asli"
                                             class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400">Harga
                                             Asli</label>
-                                        <input type="number" name="harga_asli" id="hargaasli"
-                                            class="bg-[#131432] border   text-sm rounded-lg  block w-full p-2.5  border-gray-600 placeholder-gray-400 text-gray-400 focus:ring-primary-500 focus:border-primary-500"
-                                            placeholder="EX : 0821*" required="">
+                                        <input type="text" name="harga_asli" id="harga_asli"
+                                            class="bg-[#131432] border text-sm rounded-lg  block w-full p-2.5  border-gray-600 placeholder-gray-400 text-gray-400 focus:ring-primary-500 focus:border-primary-500"
+                                            placeholder="Harga Asli">
+                                        @error('harga_asli')
+                                            <p id="outlined_error_help" class="mt-2 text-xs text-red-700">
+                                                {{ $message }}
+                                            </p>
+                                        @enderror
                                     </div>
                                     <div class="sm:col-span-2">
-                                        <label for="description"
-                                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400">Stock</label>
-                                        <input type="number" name="stock" id="nama_toko"
+                                        <label for="stock"
+                                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400">Stok</label>
+                                        <input type="number" name="stock" id="stock"
                                             class="bg-[#131432] border   text-sm rounded-lg  block w-full p-2.5  border-gray-600 placeholder-gray-400 text-gray-400 focus:ring-primary-500 focus:border-primary-500"
-                                            placeholder="EX : 0821*" required="">
+                                            placeholder="Stock">
+                                        @error('stock')
+                                            <p id="outlined_error_help" class="mt-2 text-xs text-red-700">
+                                                {{ $message }}
+                                            </p>
+                                        @enderror
                                     </div>
                                 </div>
                             </div>
@@ -59,8 +79,7 @@
                                     <label for="name" class="block mb-2 text-sm font-medium  text-gray-400">Foto</label>
                                     <div class="relative border border-gray-400 border-dashed rounded-lg p-6"
                                         id="dropzone">
-                                        <input type="file" id="img" name="img_product" type="file"
-                                            accept=".jpg,.jpeg,.png"
+                                        <input id="img" name="img_product" type="file" accept=".jpg,.jpeg,.png"
                                             class="absolute inset-0 w-full h-full opacity-0 z-50" />
                                         <div class="text-center">
                                             <img class="mx-auto h-12 w-12"
@@ -80,11 +99,15 @@
 
                                         <img src="" class="mt-4 mx-auto max-h-40 hidden" id="preview">
                                     </div>
+                                    @error('img_product')
+                                        <p id="outlined_error_help" class="mt-2 text-xs text-red-700">
+                                            {{ $message }}
+                                        </p>
+                                    @enderror
                                 </div>
-                                {{-- TODO: suplier dropdown add search --}}
-                                {{-- * data from controller for supplier = $Supp --}}
+
                                 {{-- Input Supplier --}}
-                                <div class="sm:col-span-2 dropdown-div">
+                                <div class="relative sm:col-span-2 dropdown-div">
                                     <label for="dropdown-button-supplier"
                                         class="block mb-2 text-sm font-medium  text-gray-400">Supplier</label>
                                     <button type="button" id="dropdown-button-supplier"
@@ -98,7 +121,7 @@
                                         </svg>
                                     </button>
                                     <div id="dropdown-menu-supplier"
-                                        class=" hidden dropdown-menu py-2 mt-2 shadow-lg col bg-[#131432] ring-black ring-opacity-5 p-1 space-y-1">
+                                        class=" hidden dropdown-menu absolute z-10 right-0 top-full shadow-lg bg-[#131432] ring-black ring-opacity-5 p-1 space-y-1 flex-col w-full">
                                         {{-- Search input Buat Dropdown --}}
                                         <input
                                             class="search-input w-full px-2 bg-[#131432] text-gray-400 border rounded-md  border-gray-300 focus:outline-none"
@@ -113,11 +136,16 @@
                                         @endforelse
 
                                     </div>
-                                    <input type="hidden" name="supplier" id="supplier-input" value="">
+                                    <input type="hidden" name="supplier_id" id="supplier_id" value="">
+                                    @error('supplier_id')
+                                        <p id="outlined_error_help" class="mt-2 text-xs text-red-700">
+                                            {{ $message }}
+                                        </p>
+                                    @enderror
                                 </div>
 
                                 {{-- Input Merk --}}
-                                <div class="sm:col-span-2 dropdown-div">
+                                <div class="relative sm:col-span-2 dropdown-div">
                                     <label for="dropdown-button-merk"
                                         class="block mb-2 text-sm font-medium  text-gray-400">Merk</label>
                                     <button type="button" id="dropdown-button-merk"
@@ -131,7 +159,7 @@
                                         </svg>
                                     </button>
                                     <div id="dropdown-menu-merk"
-                                        class="hidden dropdown-menu px-4 py-2 mt-2 shadow-lg col bg-[#131432] ring-black">
+                                        class="hidden dropdown-menu absolute z-10 right-0 top-full shadow-lg bg-[#131432] ring-black ring-opacity-5 p-1 space-y-1 flex-col w-full">
                                         {{-- Input Search  Buat Dropdown --}}
                                         <input
                                             class="search-input w-full px-2 bg-[#131432] text-gray-400 border rounded-md  border-gray-300 focus:outline-none"
@@ -145,12 +173,14 @@
                                         @empty
                                             <p class="text-center text-white">No Merk</p>
                                         @endforelse
-                                        <input type="hidden" name="merk" id="merk-input" value="">
                                     </div>
-
+                                    <input type="hidden" name="merk_id" id="merk_id" value="">
+                                    @error('merk_id')
+                                        <p id="outlined_error_help" class="mt-2 text-xs text-red-700">
+                                            {{ $message }}
+                                        </p>
+                                    @enderror
                                 </div>
-
-
                             </div>
                         </div>
 
@@ -159,7 +189,7 @@
                                 class="inline-flex items-center px-5 py-2.5 mt-4 sm:mt-6 text-sm font-medium text-center text-white bg-red-700 rounded-md focus:ring-4 focus:ring-primary-200 dark:focus:ring-primary-900 hover:bg-primary-800">
                                 Reset
                             </button>
-                            <button type="submit" id="button-reset"
+                            <button type="submit"
                                 class="inline-flex items-center px-5 py-2.5 mt-4 sm:mt-6 text-sm font-medium text-center text-white bg-green-700 rounded-md focus:ring-4 focus:ring-primary-200 dark:focus:ring-primary-900 hover:bg-primary-800">
                                 Create
                             </button>
@@ -175,15 +205,15 @@
     <style>
         main::-webkit-scrollbar {
             width: 0;
-            /* background-color: white;
-                            color: white;
-                            border: 1px solid inherit; */
         }
 
         main {
             scrollbar-width: none;
         }
     </style>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/autonumeric@4.1.0"></script>
     <script>
         function newMerks(apa) {
             let inp = document.getElementById('inpnewMerk');
@@ -203,7 +233,7 @@
                 cb.checked = false;
 
             } else if (dropMerk.options[(dropMerk.options.length) - 1].selected == true && apa == 'none') {
-                console.log('masuk');
+                // console.log('masuk');
                 dropMerk.options[0].selected = true;
                 divmerk.style.display = "none";
                 inp.value = "";
@@ -226,7 +256,7 @@
             // console.log(dropMerk.options.length)
 
             if (apa == "showDrop") {
-                console.log('masuk')
+                // console.log('masuk')
                 divmerk.style.display = "";
                 newMerk.style.display = "none";
                 dropMerk.options[0].selected = true;
@@ -357,6 +387,16 @@
     </script>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
+            new AutoNumeric('#harga_asli', {
+                currencySymbol: 'Rp',
+                decimalCharacter: '.',
+                unformatOnSubmit: true
+            });
+            new AutoNumeric('#harga_jual', {
+                currencySymbol: 'Rp',
+                decimalCharacter: '.',
+                unformatOnSubmit: true
+            })
             // Function to toggle the dropdown state
             function toggleDropdown(dropdownMenu) {
                 // alert("toggle dropdown jalan" + dropdownMenu);

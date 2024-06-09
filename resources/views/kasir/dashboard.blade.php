@@ -10,6 +10,21 @@
     <div class=" text-[#93A2D2] flex flex-row w-full h-full  ">
         <div class="flex flex-col w-full py-6 px-10 min-h-screen overflow-y-auto scrollbar-hide ">
             <div class="flex flex-col ">
+                @if ($errors->any())
+                    <div class="bg-red-500 text-white italic font-semibold py-2 px-4  rounded-md mb-4 w-full">
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
+                @if (session()->has('success'))
+                    <div class="py-2 px-4 italic font-semibold text-green-700 bg-green-100 rounded-md mb-4 dark:bg-green-200 dark:text-green-800"
+                        >
+                        <span class="font-medium">{{ session('success') }}</span>
+                    </div>
+                @endif
                 <form class="text-[#93A2D2] flex " action="" method="GET">
                     @csrf
                     <button type="submit" class=" h-12 w-12  rounded-l-lg flex items-center justify-center bg-[#1f2949]">
@@ -19,16 +34,16 @@
                                 d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
                         </svg>
                     </button>
-                    <input  type="text" placeholder="Search Product" name="search"
+                    <input type="text" placeholder="Search Product" name="search"
                         class="w-full h-12 px-4 rounded-r-lg bg-[#151e3b]   focus:outline-none">
                 </form>
                 <div class="flex flex-row py-4 mt-4 gap-4  text-lg font-semibold overflow-x-auto ">
-                    <a href="#" class="py-1 rounded-sm px-6 bg-[#fa9e3b] bg-opacity-10 text-[#e07946]">
+                    <a href="/kasir" class="py-1 rounded-sm px-6 bg-[#fa9e3b] bg-opacity-10 text-[#e07946]">
                         All
                     </a>
                     @forelse ($dataMerk as $merk)
-                        <a href="#"
-                            class=" py-1 bg-[#151e3b] rounded-sm px-6 hover:bg-[#fa9e3b] hover:bg-opacity-10 hover:text-[#e07946] transition duration-300">
+                        <a href="/kasir?merk={{ $merk['id'] }}"
+                            class=" py-1 bg-[#151e3b] rounded-sm  px-6 hover:bg-[#fa9e3b] hover:bg-opacity-10 hover:text-[#e07946] transition duration-300">
                             {{ $merk['merk_name'] }}
                         </a>
                     @empty
@@ -37,7 +52,7 @@
             </div>
             <div class=" flex flex-col  mt-4">
                 <div class="flex flex-row justify-between text-[20px] font-bold  ">
-                    Products ({{ count($dataProduct) }})
+                    Products List
                 </div>
                 <div class="flex flex-wrap gap-6 mt-8 justify-start">
                     @forelse ($dataProduct as $product)
@@ -48,8 +63,8 @@
                             class="w-[230px] max-h-[305px] bg-[#151e3b] rounded-lg hover:shadow-2xl  transition duration-300 ">
                             <div class="flex flex-col p-3 text-[#93A2D2] justify-between h-full">
                                 <div class="relative  w-full h-full overflow-hidden max-h-[180px]">
-                                    <img id="card-img"
-                                        src="{{ asset('storage/image_product/' . $product['img']) }}"
+                                    <img id="card-img" src="{{ asset('storage/image_product/' . $product['img']) }}"
+                                    <img id="card-img" src="{{ asset('storage/image_product/' . $product['img']) }}"
                                         alt="product img" class="w-full h-full bg-gray-900 object-cover rounded-lg">
                                     <div
                                         class="absolute font-semibold top-0 right-0  text-sm text-blue-800 bg-blue-300 rounded-bl-lg px-3 ">
@@ -63,7 +78,7 @@
                                         </div>
                                         <div class="flex flex-row justify-between">
                                             <div class=" font-bold text-[#e07946]">
-                                                Rp. @currency($product['harga_jual'])
+                                                @currency($product['harga_jual'])
                                             </div>
                                             <div class="flex items-center gap-1">
                                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
@@ -113,7 +128,7 @@
                         @forelse (session()->get('cart') as $cart)
                             <div
                                 class="flex flex-row gap-2 justify-between p-2 items-center rounded-md border border-gray-600">
-                                <img src="{{ asset('/laptop/phf4ybjk8ttu92ftvkhjfq1zf5tb5a100535.avif') }}" alt=""
+                                <img src="{{ asset('storage/image_product/' . $cart['img']) }}" alt=""
                                     class="w-20 h-20 rounded-md border border-gray-600">
                                 <div class="flex flex-col  w-full ">
                                     <p class="text-[#93A2D2] font-semibold">
@@ -121,7 +136,7 @@
                                     </p>
                                     <div class="flex flex-row justify-between">
                                         <p class="text-[#e07946] font-semibold">
-                                            Rp. @currency($cart['harga_jual'])
+                                            @currency($cart['harga_jual'])
                                         </p>
                                         <p class="text-[#93A2D2]">
                                             {{ $cart['qty'] }}x
@@ -132,7 +147,7 @@
                                             Total :
                                         </p>
                                         <p class="text-green-600 font-semibold">
-                                            Rp. @currency($cart['harga_jual'] * $cart['qty'])
+                                            @currency($cart['harga_jual'] * $cart['qty'])
                                         </p>
                                     </div>
                                 </div>
@@ -172,12 +187,12 @@
                                     @endphp
                                 @endforeach
                             @endif
-                            Rp. @currency($total)
+                            @currency($total)
                         </p>
                     </div>
                 </div>
                 <div class="flex flex-col gap-2 justify-between">
-                    <x-modals_transaksi :totalAll="$total" :dataCustomer="$dataCustomer" :dataPayment="$dataPayment"/>
+                    <x-modals_transaksi :totalAll="$total" :dataCustomer="$dataCustomer" :dataPayment="$dataPayment" />
                     <a href="{{ route('kasir.clear-cart') }}"
                         class=" text-center rounded-md px-4 py-2 bg-gray-700 text-white hover:bg-gray-800 cursor-pointer">
                         Clear Order

@@ -67,13 +67,14 @@ class ProductAksesController extends Controller
         // dd("Validator", $validated, "Request", $request);
 
         $data = [
-            'product_name' => $validated['namaProduk'],
-            'stock' => $validated['stok'],
-            'harga_jual' => $validated['hargaJual'],
-            'harga_asli' => $validated['hargaAsli'],
-            'supplier_id' => $validated['supplier'],
-            'merk_id' => $validated['merk'],
+            'product_name' => $validated['product_name'],
+            'harga_jual' => $validated['harga_jual'],
+            'harga_asli' => $validated['harga_asli'],
+            'stock' => $validated['stock'],
+            'supplier_id' => $validated['supplier_id'],
+            'merk_id' => $validated['merk_id'],
         ];
+        // dd($data);
 
         $temp_request = Request::create(
             'http://127.0.0.1:8000/api/products',
@@ -89,29 +90,30 @@ class ProductAksesController extends Controller
         // dd("Response from ProductAksesController -> createData", $response);
 
         if ($response->getStatusCode() == 201) {
-            session()->flash('success', 'Data Product berhasil di tambahkan');
-            return redirect()->route('products.index');
+            session()->flash('success', 'Product "' . $validated['product_name'] . '" berhasil di tambahkan');
+            return redirect('/admin/product');
         } else {
-            return response()->json([
-                'message' => 'Unauthorized',
-            ], 401);
+            return redirect()->back()->withInput()->withErrors(['messages' => 'Data Product gagal di tambahkan']);
+            // return response()->json([
+            //     'message' => 'Unauthorized',
+            // ], 401);
         }
     }
 
-    public function getDetail($product)
-    {
-        $request = Request::create('http://127.0.0.1:8000/api/products/' . $product, 'GET');
-        $response = app()->handle($request);
-        $data = json_decode($response->getContent(), true);
-        if ($response->getStatusCode() == 200) {
-            return dd($data['data']);
-            // return view('products.show', ['data' => $data['data']]);
-        } else {
-            return response()->json([
-                'message' => 'Unauthorized',
-            ]);
-        }
-    }
+    // public function getDetail($product)
+    // {
+    //     $request = Request::create('http://127.0.0.1:8000/api/products/' . $product, 'GET');
+    //     $response = app()->handle($request);
+    //     $data = json_decode($response->getContent(), true);
+    //     if ($response->getStatusCode() == 200) {
+    //         return dd($data['data']);
+    //         // return view('products.show', ['data' => $data['data']]);
+    //     } else {
+    //         return response()->json([
+    //             'message' => 'Unauthorized',
+    //         ]);
+    //     }
+    // }
 
     public function getEdit($product)
     {
@@ -160,13 +162,18 @@ class ProductAksesController extends Controller
         }
     }
 
-    public function deleteData($product)
+    public function deleteData(Product $product)
     {
-        // dd("ProductAksesController->deleteData", $product);
-        $request = Request::create('http://127.0.0.1:8000/api/products/' . $product, 'DELETE');
+        // dd("ProductAksesController > deleteData", $product->id);
+        $request = Request::create('http://127.0.0.1:8000/api/products/' . $product->id, 'DELETE');
         $response = app()->handle($request);
+
+        if ($response->getStatusCode() == 200 && $product->stock == 0) {
+            return redirect('/admin/product')->with('nonaktif', 'Stock Product ' . $product->product_name . ' Sudah Habis');
+        }
+
         if ($response->getStatusCode() == 200) {
-            return redirect()->route('products.index')->with('success', 'Data Product berhasil dihapus');
+            return redirect('/admin/product')->with('success', 'Product ' . $product->product_name . ' berhasil dinonaktifkan');
         } else {
             return response()->json([
                 'message' => 'Unauthorized',
@@ -174,16 +181,6 @@ class ProductAksesController extends Controller
         }
     }
 
-
-    //tidak perlu membuat function controller lagi, cukup memakai yang sudah ada diatas
-    // public function productAdmin(){
-    //     $produk = Product::select('product.id', 'product.product_name', 'product.stock', 'product.harga_jual', 'product.harga_asli', 'product.img', 'supplier.supplier_name', 'merk.merk_name')
-    //     ->join('supplier', 'product.supplier_id', '=', 'supplier.id')
-    //     ->join('merk', 'product.merk_id', '=', 'merk.id')
-    //     ->get();
-    //     // dd($produk);
-    //     return view('admin.product.index',['produks'=>$produk]);
-    // }
     public function productAdminNew()
     {
         $sup = $this->getsup();
@@ -194,59 +191,10 @@ class ProductAksesController extends Controller
         return view('admin.product.create', ['Supp' => $sup, 'merks' => $merk]);
     }
 
-    public function productAdminMakeNew(Request $req)
-    {
-        // dd($req->all(),$req->file('fileUpload'));
-
-        $val = $req->validate([
-            'namaProduk' => 'required',
-            'hargaJual' => 'required',
-            'hargaAsli' => 'required',
-            'stok' => 'required',
-            'supplier' => 'required',
-            'merk' => 'required',
-        ]);
-        // dd($val);
-
-        // dd('masuk');
-        // $val['foto']='';
-        if ($req->hasFile('fileUpload')) {
-            // dd($req->file('fileUpload')->extension());
-            $file = $req->file('fileUpload');
-            $filename = $req->nama . $this->getDate() . "." . $file->extension();
-            $file->storeAs('public/images', $filename);
-            $val['foto'] = $filename;
-
-        } else {
-            $val['foto'] = 'null';
-        }
-
-        $p = new Product();
-        $p->product_name = $val['namaProduk'];
-        $p->stock = $val['stok'];
-        $p->harga_jual = $val['hargaJual'];
-        $p->harga_asli = $val['hargaAsli'];
-        $p->img = $val['foto'];
-        $p->supplier_id = $val['supplier'];
-        $p->merk_id = $val['merk'];
-
-
-
-        if ($p->save()) {
-            return redirect('/admin/product');
-        }
-        // dd($p->id);
-
-        // $this->getDate();
-    }
 
     public function productAdminUpdate($idProduk)
     {
-        // @evftrya vi ini $produk tak edit buat ngeget data Produk sama relasinya
-        // $sup = $this->getsup();
-        // $merk = $this->getMerk();
-        // dd($produk);
-        // return view('admin.product.update',['pro'=>$produk,'sup'=>$sup,'merk'=>$merk]);
+
         $pro = Product::with('supplier', 'merk')->findOrFail($idProduk);
         $requestSupplier = Request::create('http://127.0.0.1:8000/api/suppliers', 'GET');
         $responseSupplier = app()->handle($requestSupplier);
@@ -323,6 +271,7 @@ class ProductAksesController extends Controller
         }
 
         if ($p->save()) {
+            session()->flash('success', 'Product ' . $p->product_name . ' berhasil di update');
             return redirect('/admin/product');
         }
 

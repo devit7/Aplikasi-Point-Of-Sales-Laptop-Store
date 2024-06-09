@@ -24,6 +24,12 @@
                 </a>
             </div>
         </div>
+        @if (session()->has('success'))
+            <div class="p-4 mb-4 text-sm text-green-800 bg-green-100 rounded-lg dark:bg-green-200 dark:text-green-800"
+                role="alert">
+                <span class="font-medium">{{ session('success') }}</span>
+            </div>
+        @endif
         <x-tables>
             <div class="w-full mx-auto mt-2 bg-[#1C1D42] text-[#6b6eb4] p-4 rounded-md">
                 <table class="w-full mt-2" id="table">
@@ -46,6 +52,32 @@
                                 <td>{{ $supplier['nama_perusahaan'] }}</td>
                                 <td>{{ $supplier['alamat'] }}</td>
                                 <td class="flex flex-row gap-3 justify-center">
+                                    <x-modal_detail id="{{ $supplier['id'] }}">
+                                        <div class="flex flex-col w-fit rounded-md p-5 bg-[#1C1D42]">
+                                            <span class=" w-96 text-xl mb-8 text-indigo-100 font-bold">Detail
+                                                Supplier</span>
+                                            <div class="flex items-center space-x-4">
+                                                <span class=" text-indigo-200 p-1 font-semibold">Nama Supplier</span>
+                                                <hr class="flex-grow border-gray-200">
+                                                <span>{{ $supplier['supplier_name'] }}</span>
+                                            </div>
+                                            <div class="flex items-center space-x-4">
+                                                <span class=" text-indigo-200 p-1 font-semibold">no. HP</span>
+                                                <hr class="flex-grow border-gray-200">
+                                                <span>{{ $supplier['no_hp'] }}</span>
+                                            </div>
+                                            <div class="flex items-center space-x-4">
+                                                <span class=" text-indigo-200 p-1 font-semibold">Nama Perusahaan</span>
+                                                <hr class="flex-grow border-gray-200">
+                                                <span>{{ $supplier['nama_perusahaan'] }}</span>
+                                            </div>
+                                            <div class="flex items-center space-x-4">
+                                                <span class=" text-indigo-200 p-1 font-semibold">Alamat</span>
+                                                <hr class="flex-grow border-gray-200">
+                                                <span>{{ $supplier['alamat'] }}</span>
+                                            </div>
+                                        </div>
+                                    </x-modal_detail>
                                     <a href="{{ route('supplier.edit', ['supplier' => $supplier['id']]) }}"
                                         class="bg-[#002D4C] border p-1 border-[#2B4F69] rounded-md">
                                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
