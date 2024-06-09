@@ -21,6 +21,7 @@ return new class extends Migration {
             $table->string('img')->nullable();
             $table->uuid('supplier_id');
             $table->uuid('merk_id');
+            $table->enum('status', ['aktif', 'tidak aktif']);
             $table->timestamps();
 
             // Foreign Key
