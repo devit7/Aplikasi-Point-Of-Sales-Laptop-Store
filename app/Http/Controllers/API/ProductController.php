@@ -41,8 +41,8 @@ class ProductController extends Controller
         $validated = $request->validated();
 
         $img_product_name = null;
-        if ($request->hasFile('img_product')) {
-            $img_product = $request->file('img_product');
+        if ($request->hasFile('img')) {
+            $img_product = $request->file('img');
             $img_product_name = time() . '.' . $img_product->getClientOriginalExtension();
             $img_product->storePubliclyAs('image_product', $img_product_name, 'public');
         }

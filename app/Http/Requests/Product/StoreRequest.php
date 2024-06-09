@@ -28,7 +28,7 @@ class StoreRequest extends FormRequest
             'stock' => 'required|numeric|unsigned|min:1',
             'harga_jual' => 'required|numeric|unsigned|not_in:0',
             'harga_asli' => 'required|numeric|unsigned|not_in:0',
-            'img' => 'nullable|max:10048',
+            'img' => 'image|max:10048',
             'supplier_id' => 'required',
             'merk_id' => 'required',
             // 'status' => 'required|in:aktif,tidak aktif',

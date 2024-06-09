@@ -38,6 +38,7 @@ class ProductAksesController extends Controller
 
         // dd("Request", $request);
         $validated = $request->validated();
+
         // dd("Validator", $validated, "Request", $request);
 
         $data = [
@@ -57,8 +58,8 @@ class ProductAksesController extends Controller
             $data,
         );
 
-        if ($request->hasFile('img_product')) {
-            $temp_request->files->set('img_product', $request->file('img_product'));
+        if ($request->hasFile('img')) {
+            $temp_request->files->set('img', $request->file('img'));
         }
 
         $response = app()->handle($temp_request);
@@ -195,7 +196,7 @@ class ProductAksesController extends Controller
         return ($format);
     }
 
-    /*
+
         //fungsi dibawah ini untuk mengirimkan data Merk & Supplier ke halaman create
         public function getAllToCreate()
         {
@@ -216,7 +217,7 @@ class ProductAksesController extends Controller
                 ], 401);
             }
         }
-    */
+
     /*
         public function getEdit($product)
         {
