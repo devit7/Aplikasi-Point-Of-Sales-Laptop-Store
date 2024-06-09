@@ -24,49 +24,52 @@
                 </a>
             </div>
         </div>
+        @if (session()->has('success'))
+            <div class="p-4 mb-4 text-sm text-green-800 bg-green-100 rounded-lg dark:bg-green-200 dark:text-green-800"
+                role="alert">
+                <span class="font-medium">{{ session('success') }}</span>
+            </div>
+        @endif
         <x-tables>
             <div class="w-full mx-auto mt-2 bg-[#1C1D42] text-[#6b6eb4] p-4 rounded-md">
                 <table class="w-full mt-2" id="table">
                     <thead class="bg-[#131432] text-[#6b6eb4]">
                         <tr class="border-b-2 border-[#33356F]">
-                            <th class="py-2 text-[#6b6eb4]">No</th>
-                            <th class="text-[#6b6eb4]">Nama Supplier</th>
-                            <th class="text-[#6b6eb4]">No. HP</th>
-                            <th class="text-[#6b6eb4]">Nama Perusahaan</th>
-                            <th class="text-[#6b6eb4]">Alamat</th>
-                            <th class="text-[#6b6eb4]">Action</th>
+                            <th class="py-2">No</th>
+                            <th>Nama Supplier</th>
+                            <th>No. HP</th>
+                            <th>Nama Perusahaan</th>
+                            <th>Alamat</th>
+                            <th>Action</th>
                         </tr>
                     </thead>
-                    <tbody class="text-[#6b6eb4] text-center">
-                        @forelse ($data as $supplier)
+                    <tbody>
+                        @forelse ($data as $supplier => $sp)
                             <tr class="border-b-2 border-[#33356F]">
-                                <td class="py-2">{{ $loop->index + 1 }}</td>
-                                <td>{{ $supplier['supplier_name'] }}</td>
-                                <td>{{ $supplier['no_hp'] }}</td>
-                                <td>{{ $supplier['nama_perusahaan'] }}</td>
-                                <td>{{ $supplier['alamat'] }}</td>
+                                <td class="py-2">{{ $loop->index +  1 }}</td>
+                                <td>{{ $sp['supplier_name'] }}</td>
+                                <td>{{ $sp['no_hp'] }}</td>
+                                <td>{{ $sp['nama_perusahaan'] }}</td>
+                                <td>{{ $sp['alamat'] }}</td>
                                 <td class="flex flex-row gap-3 justify-center">
-                                    <a href="{{ route('supplier.edit', ['supplier' => $supplier['id']]) }}"
-                                        class="bg-[#002D4C] border p-1 border-[#2B4F69] rounded-md">
+                                    <a href="{{ route('supplier.edit', ['supplier' => $sp['id']]) }}"
+                                    class="bg-[#002D4C] border p-1 border-[#2B4F69] rounded-md">
                                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                             stroke-width="1.5" stroke="currentColor" class="w-6 h-6 text-blue-600">
                                             <path stroke-linecap="round" stroke-linejoin="round"
-                                                d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L10.582 16.07a4.5 4.5 0 0 1-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 0 1 1.13-1.897l8.932-8.931Zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0 1 15.75 21H5.25A2.25 2.25 0 0 1 3 18.75V8.25A2.25 2.25 0 0 1 5.25 6H10" />
+                                                d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zM16.862 4.487L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10" />
                                         </svg>
                                     </a>
-                                    <x-alert id="{{ $supplier['id'] }}" nama="{{ $supplier['supplier_name'] }}"
-                                        route="supplier.deleteCoy" />
+                                    <x-alert id="{{ $sp['id'] }}" nama="{{ $sp['supplier_name'] }}"
+                                            route="supplier.deleteCoy"/>
                                 </td>
                             </tr>
                         @empty
-                            <tr>
-                                <td colspan="6" class="text-center">No data available</td>
-                            </tr>
                         @endforelse
                     </tbody>
                 </table>
             </div>
         </x-tables>
     </div>
-    </div>
+</div>
 @endsection

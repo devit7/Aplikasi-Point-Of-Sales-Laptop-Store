@@ -13,8 +13,8 @@ class SupplierAksesController extends Controller
     public function getAll()
     {
         $request = Request::create('http://127.0.0.1:8000/api/suppliers', 'GET');
-        $response = app()->handle($request);
-        $data = json_decode($response->getContent(), true);
+        $response = app()->handle($request);//mengexecute query
+        $data = json_decode($response->getContent(), true); //json_decode merubah json ke array assosiative
         if ($response->getStatusCode() == 200) {
             return view('admin.supplier.index', [
                 'data' => $data['data'],
@@ -55,7 +55,7 @@ class SupplierAksesController extends Controller
         $response = app()->handle($request);
         // dd($response->getStatusCode());
         if ($response->getStatusCode() == 201) {
-            session()->flash('success', 'Supplier berhasil ditambahkan');
+            session()->flash('success', 'Supplier Berhasil ditambahkan');
             return redirect()->route('supplier.index');
         } else {
             return response()->json([
@@ -78,7 +78,7 @@ class SupplierAksesController extends Controller
         //dd($request);
         $response = app()->handle($request);
         if ($response->getStatusCode() == 200) {
-            session()->flash('success', 'Data supplier berhasil di update');
+            session()->flash('success', 'Data Supplier Berhasil di update');
             return redirect()->route('supplier.index');
         } else {
             return response()->json([

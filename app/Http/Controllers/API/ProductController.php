@@ -41,7 +41,7 @@ class ProductController extends Controller
         $validated = $request->validated();
 
         $img_product_name = null;
-        if ($request->hasFile('img_product')) { 
+        if ($request->hasFile('img_product')) {
             $img_product = $request->file('img_product');
             $img_product_name = time() . '.' . $img_product->getClientOriginalExtension();
             $img_product->storePubliclyAs('image_product', $img_product_name, 'public');
@@ -55,6 +55,7 @@ class ProductController extends Controller
             'img' => $img_product_name,
             'supplier_id' => $validated['supplier_id'],
             'merk_id' => $validated['merk_id'],
+            'status' => 'aktif',
         ]);
 
         return response()->json([
@@ -86,12 +87,13 @@ class ProductController extends Controller
      */
     public function update(UpdateRequest $request, Product $product)
     {
+        // dd($request, $product);
         $validated = $request->validated();
-        dd("validated API", $validated, "productAPI", $product);
+        // dd("validated API", $validated, "productAPI", $product);
 
         $img_product_name = $product->img;
-        if ($request->hasFile('img')) {
-            $img = $request->file('img');
+        if ($request->hasFile('img_product')) {
+            $img = $request->file('img_product');
             $img_product_name = time() . '.' . $img->getClientOriginalExtension();
             $img->storePubliclyAs('image_product', $img_product_name, 'public');
 
@@ -106,6 +108,7 @@ class ProductController extends Controller
             'img' => $img_product_name,
             'supplier_id' => $validated['supplier_id'],
             'merk_id' => $validated['merk_id'],
+            'status' => $validated['status'],
         ]);
 
         // $product->update([
@@ -132,9 +135,8 @@ class ProductController extends Controller
      */
     public function destroy(Product $product)
     {
-        
         $product->update([
-            'stock' => 0,
+            'status' => 'tidak aktif',
         ]);
 
         return response()->json([

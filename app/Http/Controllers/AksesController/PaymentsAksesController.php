@@ -52,7 +52,7 @@ class PaymentsAksesController extends Controller
             return response()->json(['message' => 'Unauthorized'], 401);
         }
     }
-    
+
     public function createData(StoreRequest $request)
     {
         $validator = $request->validated();

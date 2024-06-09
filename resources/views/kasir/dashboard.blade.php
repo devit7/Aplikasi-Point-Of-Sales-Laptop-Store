@@ -34,7 +34,7 @@
                                 d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
                         </svg>
                     </button>
-                    <input type="text" placeholder="Search Product" name="search" 
+                    <input type="text" placeholder="Search Product" name="search"
                         class="w-full h-12 px-4 rounded-r-lg bg-[#151e3b]   focus:outline-none">
                 </form>
                 <div class="flex flex-row py-4 mt-4 gap-4  text-lg font-semibold overflow-x-auto ">
@@ -63,6 +63,7 @@
                             class="w-[230px] max-h-[305px] bg-[#151e3b] rounded-lg hover:shadow-2xl  transition duration-300 ">
                             <div class="flex flex-col p-3 text-[#93A2D2] justify-between h-full">
                                 <div class="relative  w-full h-full overflow-hidden max-h-[180px]">
+                                    <img id="card-img" src="{{ asset('storage/image_product/' . $product['img']) }}"
                                     <img id="card-img" src="{{ asset('storage/image_product/' . $product['img']) }}"
                                         alt="product img" class="w-full h-full bg-gray-900 object-cover rounded-lg">
                                     <div

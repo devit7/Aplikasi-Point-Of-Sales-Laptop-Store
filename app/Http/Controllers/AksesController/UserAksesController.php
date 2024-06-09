@@ -11,38 +11,39 @@ use Illuminate\Http\Request;
 class UserAksesController extends Controller
 {
 
-    public function getAll(){
+    public function getAll()
+    {
         //$token= 'Bearer 3|hsCLwqd8roBQ7zXXHG0WZghmrCe5RuIgGhhOl2Dxc73d7c89';
         $request = Request::create('http://127.0.0.1:8000/api/users', 'GET');
         //$request->headers->set('Authorization', $token);
         $response = app()->handle($request);
         // merubah json ke array
-        $data = json_decode($response->getContent(),true);
-        if($response->getStatusCode() == 200){
+        $data = json_decode($response->getContent(), true);
+        if ($response->getStatusCode() == 200) {
             //return dd($data['data']);
             return view('admin.user.index', [
-                'data' => $data['data']
-                ]);
-        }else{
+                'data' => $data['data'],
+            ]);
+        } else {
             return response()->json([
-                'message' => 'Unauthorized'
+                'message' => 'Unauthorized',
             ], 401);
         }
     }
 
-    public function getDetail($user)
-    {
-        $request = Request::create('http://127.0.0.1:8000/api/users/' . $user, 'GET');
-        $response = app()->handle($request);
-        $data = json_decode($response->getContent(),true);
-        if ($response->getStatusCode() == 200) {
-            return dd($data['data']);
-        } else {
-            return response()->json([
-                'message' => 'Unauthorized'
-            ], 401);
-        }
-    }
+    // public function getDetail($user)
+    // {
+    //     $request = Request::create('http://127.0.0.1:8000/api/users/' . $user, 'GET');
+    //     $response = app()->handle($request);
+    //     $data = json_decode($response->getContent(), true);
+    //     if ($response->getStatusCode() == 200) {
+    //         return dd($data['data']);
+    //     } else {
+    //         return response()->json([
+    //             'message' => 'Unauthorized',
+    //         ], 401);
+    //     }
+    // }
     public function getEdit($user)
     {
         $request = Request::create('http://127.0.0.1:8000/api/users/' . $user, 'GET');
@@ -50,11 +51,11 @@ class UserAksesController extends Controller
         $data = json_decode($response->getContent(), true);
         if ($response->getStatusCode() == 200) {
             return view('admin.user.update', [
-                'data' => $data['data']
+                'data' => $data['data'],
             ]);
         } else {
             return response()->json([
-                'message' => 'Unauthorized'
+                'message' => 'Unauthorized',
             ]);
         }
     }
@@ -74,9 +75,9 @@ class UserAksesController extends Controller
         if ($response->getStatusCode() == 201) {
             session()->flash('success', 'User berhasil ditambahkan');
             return redirect()->route('user.index');
-        }else{
+        } else {
             return response()->json([
-                'message' => 'Unauthorized'
+                'message' => 'Unauthorized',
             ], 401);
         }
     }
@@ -90,16 +91,16 @@ class UserAksesController extends Controller
             'username' => $validator['username'],
             'role' => $validator['role'],
         ];
-        $api_url = 'http://127.0.0.1:8000/api/users/' . $user->id .'?' . http_build_query($data);
+        $api_url = 'http://127.0.0.1:8000/api/users/' . $user->id . '?' . http_build_query($data);
 
         $request = Request::create($api_url, 'PUT');
         $response = app()->handle($request);
         if ($response->getStatusCode() == 200) {
-            session()->flash('success', 'user berhasil di update');
+            session()->flash('success', 'User Berhasil di Update');
             return redirect()->route('user.index');
         } else {
             return response()->json([
-                'message' => 'Unauthorized'
+                'message' => 'Unauthorized',
             ], 401);
         }
     }
@@ -108,10 +109,10 @@ class UserAksesController extends Controller
         $request = Request::create('http://127.0.0.1:8000/api/users/' . $user, 'DELETE');
         $response = app()->handle($request);
         if ($response->getStatusCode() == 200) {
-            return redirect()->route('user.index')->with('success', 'user berhasil delete');
+            return redirect()->route('user.index')->with('success', 'User Berhasil dihapus');
         } else {
             return response()->json([
-                'message' => 'Unauthorized'
+                'message' => 'Unauthorized',
             ]);
         }
     }
