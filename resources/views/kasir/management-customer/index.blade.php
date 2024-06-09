@@ -51,12 +51,37 @@
                                 <td>{{ $item['no_hp'] }}</td>
                                 <td>{{ $item['alamat'] }}</td>
                                 <td class="flex flex-row gap-2">
-                                    <a href="{{ route('management-customer.detail', [ 'customer' => $item['id'] ]) }}" type="button" class="bg-[#002D4C] border p-1 border-[#2B4F69] rounded-md">
+                                    <!-- <a href="{{ route('management-customer.detail', [ 'customer' => $item['id'] ]) }}" type="button" class="bg-[#002D4C] border p-1 border-[#2B4F69] rounded-md">
                                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 text-green-600">
                                             <path stroke-linecap="round" stroke-linejoin="round" d="M2.036 12.322a1.012 1.012 0 0 1 0-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178Z" />
                                             <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
                                         </svg>
-                                    </a>
+                                    </a> -->
+                                    <x-modal_detail id="{{$item['id']}}">
+                                            <div class="flex flex-col w-fit rounded-md p-5 bg-[#1C1D42]">
+                                                <span class=" w-96 text-xl mb-8 text-indigo-100 font-bold">Detail Customer/span>
+                                                <div class="flex items-center space-x-4">
+                                                    <span class=" text-indigo-200 p-1 font-semibold">Customer Name</span>
+                                                    <hr class="flex-grow border-gray-200">
+                                                    <span>{{$item['customer_name']}}</span>
+                                                </div>
+                                                <div class="flex items-center space-x-4">
+                                                    <span class=" text-indigo-200 p-1 font-semibold">Email</span>
+                                                    <hr class="flex-grow border-gray-200">
+                                                    <span>{{ $item['email'] }}</span>
+                                                </div>
+                                                <div class="flex items-center space-x-4">
+                                                    <span class=" text-indigo-200 p-1 font-semibold">Phone Number</span>
+                                                    <hr class="flex-grow border-gray-200">
+                                                    <span class=" ">{{ $item['no_hp']}}</span>
+                                                </div>
+                                                <div class="flex items-center space-x-4">
+                                                    <span class=" text-indigo-200 p-1 font-semibold">Alamat</span>
+                                                    <hr class="flex-grow border-gray-200">
+                                                    <span class=" ">{{ $item['alamat']}}</span>
+                                                </div>
+                                            </div>
+                                    </x-modal_detail>
                                     <a href="{{ route('management-customer.edit', ['customer' => $item['id'] ]) }}" type="button">
                                         <button class=" bg-[#002D4C] border p-1 border-[#2B4F69] rounded-md">
                                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 text-blue-600">
