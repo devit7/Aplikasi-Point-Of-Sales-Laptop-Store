@@ -29,8 +29,9 @@ class StoreRequest extends FormRequest
             'harga_jual' => 'required|numeric|unsigned|not_in:0',
             'harga_asli' => 'required|numeric|unsigned|not_in:0',
             'img' => 'nullable|max:10048',
-            'supplier_id' => 'required|exists:supplier,id',
-            'merk_id' => 'required|exists:merk,id',
+            'supplier_id' => 'required',
+            'merk_id' => 'required',
+            'status' => 'required|in:aktif,tidak aktif',
         ];
     }
 
@@ -59,6 +60,8 @@ class StoreRequest extends FormRequest
             'supplier_id.exists' => 'Data Supplier tidak ada',
             'merk_id.required' => 'Data Merk harus diisi',
             'merk_id.exists' => 'Data Merk tidak ada',
+            'status.required' => 'Data Status harus diisi',
+            'status.in' => 'Data Status harus aktif/tidak aktif',
         ];
     }
 }

@@ -73,6 +73,7 @@ class ProductAksesController extends Controller
             'stock' => $validated['stock'],
             'supplier_id' => $validated['supplier_id'],
             'merk_id' => $validated['merk_id'],
+            'status' => 'aktif',
         ];
         // dd($data);
 
@@ -138,6 +139,7 @@ class ProductAksesController extends Controller
             'harga_asli' => $validated['harga_asli'],
             'supplier_id' => $validated['supplier_id'],
             'merk_id' => $validated['merk_id'],
+            'status' => $validated['status'],
         ];
 
         $temp_request = Request::create(
@@ -168,12 +170,12 @@ class ProductAksesController extends Controller
         $request = Request::create('http://127.0.0.1:8000/api/products/' . $product->id, 'DELETE');
         $response = app()->handle($request);
 
-        if ($response->getStatusCode() == 200 && $product->stock == 0) {
-            return redirect('/admin/product')->with('nonaktif', 'Stock Product ' . $product->product_name . ' Sudah Habis');
+        if ($response->getStatusCode() == 200 && $product->status == 'tidak aktif') {
+            return redirect()->route('products.admin.index')->with('nonaktif', 'Product ' . $product->product_name . ' Sudah Tidak Aktif');
         }
 
         if ($response->getStatusCode() == 200) {
-            return redirect('/admin/product')->with('success', 'Product ' . $product->product_name . ' berhasil dinonaktifkan');
+            return redirect()->route('products.admin.index')->with('success', 'Product ' . $product->product_name . ' berhasil dinonaktifkan');
         } else {
             return response()->json([
                 'message' => 'Unauthorized',
@@ -192,10 +194,9 @@ class ProductAksesController extends Controller
     }
 
 
-    public function productAdminUpdate($idProduk)
+    public function productAdminUpdate($produk)
     {
 
-        $pro = Product::with('supplier', 'merk')->findOrFail($idProduk);
         $requestSupplier = Request::create('http://127.0.0.1:8000/api/suppliers', 'GET');
         $responseSupplier = app()->handle($requestSupplier);
         $dataSupplier = json_decode($responseSupplier->getContent(), true);
@@ -203,10 +204,19 @@ class ProductAksesController extends Controller
         $requestMerk = Request::create('http://127.0.0.1:8000/api/merk', 'GET');
         $responseMerk = app()->handle($requestMerk);
         $dataMerk = json_decode($responseMerk->getContent(), true);
+        // make request api to get data for product
+        $request = Request::create('http://127.0.0.1:8000/api/products/' . $produk, 'GET');
+        $responsePro = app()->handle($request);
+        $pro = json_decode($responsePro->getContent(), true);
+        // dd($pro);
         // dd($dataMerk);
         // dd("ProductAksesController->getAllToCreate()", compact('dataSupplier', 'dataMerk'));
         if ($responseSupplier->getStatusCode() == 200 && $responseMerk->getStatusCode() == 200) {
-            return view('admin.product.update', compact('dataSupplier', 'dataMerk', 'pro'));
+            return view('admin.product.update', [
+                'dataSupplier' => $dataSupplier['data'],
+                'dataMerk' => $dataMerk['data'],
+                'pro' => $pro['data'],
+            ]);
         } else {
             return response()->json([
                 'message' => 'Unauthorized',
@@ -214,65 +224,40 @@ class ProductAksesController extends Controller
         }
     }
 
-    public function productAdminMakeUpdate($idProduk, Request $req)
+    public function productAdminMakeUpdate(UpdateRequest $request, Product $product)
     {
-        // dd("productAdminMakeUpdate", $req->all(), "id", $idProduk);
+        $validated = $request->validated();
 
-        $val = $req->validate([
-            'product_name' => 'required',
-            'harga_jual' => 'required',
-            'harga_asli' => 'required',
-            'stock' => 'required',
-            'supplier' => 'required',
-            'merk' => 'required',
-        ]);
-        // dd('masuk');
-        $p = Product::findOrFail($idProduk);
-        $p->product_name = $val['product_name'];
-        $p->stock = $val['stock'];
-        $p->harga_jual = $val['harga_jual'];
-        $p->harga_asli = $val['harga_asli'];
-        $p->supplier_id = $val['supplier'];
-        $p->merk_id = $val['merk'];
+        $data = [
+            'product_name' => $validated['product_name'],
+            'stock' => $validated['stock'],
+            'harga_jual' => $validated['harga_jual'],
+            'harga_asli' => $validated['harga_asli'],
+            'supplier_id' => $validated['supplier_id'],
+            'merk_id' => $validated['merk_id'],
+            'status' => $validated['status'],
+        ];
 
-        $val['img'] = '';
-        if ($req->cbCheck == "ubah") {
-            if ($req->hasFile('img_product')) {
-                // dd($req->file('img_product')->extension());
-                $file = $req->file('img_product');
-                $filename = $req->nama . $this->getDate() . "." . $file->extension();
-                // $file->storeAs('public/images', $filename);
-                $file->storePubliclyAs('image_product', $filename, 'public');
+        $temp_request = Request::create(
+            'http://127.0.0.1:8000/api/products/' . $product->id,
+            'PUT',
+            $data,
+        );
 
-                $val['img'] = $filename;
-
-            } else {
-                $val['img'] = 'null';
-            }
-            $p->img = $val['img'];
-        } else {
-            $p->img = $req->fotoLama;
+        if ($request->hasFile('img_product')) {
+            $temp_request->files->set('img_product', $request->file('img_product'));
         }
 
+        $response = app()->handle($temp_request);
 
-        if ($req->merk == '0') {
-
-            //input Merk baru
-            $aksesMerk = new MerAcKon();
-
-            $idMerk = $aksesMerk->makeMerk($req->newMerk);
-            $p->merk_id = $idMerk;
-        }
-        if ($req->supplier == '0') {
-            $aksesSupp = new AksesSup();
-            $idSup = $aksesSupp->makeNewSup($req->namaSupli, $req->noSUp, $req->companySup, $req->alamatSup);
-            $p->supplier_id = $idSup;
-
-        }
-
-        if ($p->save()) {
-            session()->flash('success', 'Product ' . $p->product_name . ' berhasil di update');
+        if ($response->getStatusCode() == 200) {
+            session()->flash('success', 'Product ' . $product->product_name . ' berhasil di update');
             return redirect('/admin/product');
+        } else {
+            dd($response);
+            return response()->json([
+                'message' => 'Unauthorized',
+            ], 401);
         }
 
 

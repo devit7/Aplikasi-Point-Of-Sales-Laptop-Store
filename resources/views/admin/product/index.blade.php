@@ -50,6 +50,7 @@
                                 <th class="">Img</th>
                                 <th class="">Suplier</th>
                                 <th class="">Merk</th>
+                                <th class="">Status</th>
                                 <th class="">Action</th>
                             </tr>
                         </thead>
@@ -67,6 +68,11 @@
                                     </td>
                                     <td>{{ $value['supplier']['supplier_name'] }}</td>
                                     <td>{{ $value['merk']['merk_name'] }}</td>
+                                    <td>
+                                        <p class=" text-center  border rounded-full {{ $value['status'] == 'aktif' ? ' border-green-400 bg-green-900 text-green-400' : ' border-red-400 bg-red-900 text-red-300' }}">
+                                            {{ $value['status'] }}
+                                        </p>
+                                    </td>
                                     <td class="flex flex-row gap-2">
                                         <x-modal_detail id="{{ $value['id'] }}">
                                             <div class="flex flex-col w-fit rounded-md p-5 bg-[#1C1D42]">
@@ -113,6 +119,11 @@
                                                     <hr class="flex-grow border-gray-200">
                                                     <span>{{ $value['merk']['merk_name'] }}</span>
                                                 </div>
+                                                <div class="flex items-center space-x-4">
+                                                    <span class=" text-indigo-200 p-1 font-semibold">Status</span>
+                                                    <hr class="flex-grow border-gray-200">
+                                                    <span>{{ $value['status'] }}</span>
+                                                </div>
                                             </div>
                                         </x-modal_detail>
                                         <a href="/admin/product/update/{{ $value['id'] }}">
@@ -125,7 +136,7 @@
                                             </button>
                                         </a>
                                         <x-alert id="{{ $value['id'] }}" nama="{{ $value['product_name'] }}"
-                                            route="products.destroy" type="xButton" />
+                                            route="products.admin.destroy" type="xButton" />
                                     </td>
                                 </tr>
                             @empty
