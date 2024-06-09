@@ -78,7 +78,7 @@
         <div class=" gap-9 flex flex-row w-full px-5 ">
 
             <div
-                class="flex flex-col bg-[#1C1D42] w-full max-w-sm rounded overflow-hidden shadow-lg border border-[#33356F]">
+                class="flex flex-col bg-[#1c1d42fc] w-full rounded overflow-hidden shadow-lg border border-[#33356F]">
                 <div class=" flex flex-row min-w-60 gap-5 items-center p-4">
                     <div class="flex flex-shrink-0 font-bold text-xl bg-[#b326ae48] rounded-full p-1">
                         <img class=" size-10" src=" {{ asset('foto/product.png') }} ">
