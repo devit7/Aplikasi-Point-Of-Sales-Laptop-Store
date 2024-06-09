@@ -16,7 +16,7 @@ class RiwayatTransaksiContoller extends Controller
         //dd($data['data'][0]['product'][0]);
         //  dd($data);
         if ($response->getStatusCode() == 200) {
-            return view('kasir.RiwayatTransaksi', [
+            return view('kasir.riwayat-transaksi', [
                 'data' => $data['data'],
             ]);
         } else {
@@ -34,7 +34,7 @@ class RiwayatTransaksiContoller extends Controller
             return dd($data['data']);
         } else {
             return response()->json([
-                'message' => 'Unauthorized'
+                'message' => 'Unauthorized',
             ]);
         }
     }

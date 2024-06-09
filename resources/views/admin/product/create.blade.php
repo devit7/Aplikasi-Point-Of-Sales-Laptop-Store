@@ -24,25 +24,25 @@
                             <div class="w-[45%]">
                                 <div class="grid gap-4 sm:grid-cols-2 sm:gap-6">
                                     <div class="sm:col-span-2">
-                                        <label for="name"
-                                            class="block mb-2 text-sm font-medium  text-gray-400">Nama Produk</label>
-                                        <input type="text" name="product_name" id="name"
+                                        <label for="product_name" class="block mb-2 text-sm font-medium text-gray-400">Nama
+                                            Produk</label>
+                                        <input type="text" name="product_name" id="product_name"
                                             class="bg-[#131432] border text-sm rounded-lg  block w-full p-2.5  border-gray-600 placeholder-gray-400 text-gray-400 focus:ring-primary-500 focus:border-primary-500"
                                             placeholder="Nama Produk">
                                         @error('product_name')
-                                            <p id="outlined_error_help" class="mt-2 text-xs text-red-600">
+                                            <p id="outlined_error_help" class="mt-2 text-xs text-red-700">
                                                 {{ $message }}
                                             </p>
                                         @enderror
                                     </div>
                                     <div class="sm:col-span-2">
-                                        <label for="nama_toko" class="block mb-2 text-sm font-medium  text-gray-400">Harga
+                                        <label for="harga_jual" class="block mb-2 text-sm font-medium  text-gray-400">Harga
                                             Jual</label>
                                         <input type="text" name="harga_jual" id="harga_jual"
                                             class="bg-[#131432] border   text-sm rounded-lg  block w-full p-2.5  border-gray-600 placeholder-gray-400 text-gray-400 focus:ring-primary-500 focus:border-primary-500"
                                             placeholder="Harga Jual">
                                         @error('harga_jual')
-                                            <p id="outlined_error_help" class="mt-2 text-xs text-red-600">
+                                            <p id="outlined_error_help" class="mt-2 text-xs text-red-700">
                                                 {{ $message }}
                                             </p>
                                         @enderror
@@ -55,19 +55,19 @@
                                             class="bg-[#131432] border text-sm rounded-lg  block w-full p-2.5  border-gray-600 placeholder-gray-400 text-gray-400 focus:ring-primary-500 focus:border-primary-500"
                                             placeholder="Harga Asli">
                                         @error('harga_asli')
-                                            <p id="outlined_error_help" class="mt-2 text-xs text-red-600">
+                                            <p id="outlined_error_help" class="mt-2 text-xs text-red-700">
                                                 {{ $message }}
                                             </p>
                                         @enderror
                                     </div>
                                     <div class="sm:col-span-2">
-                                        <label for="description"
+                                        <label for="stock"
                                             class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400">Stok</label>
-                                        <input type="number" name="stock" id="nama_toko"
+                                        <input type="number" name="stock" id="stock"
                                             class="bg-[#131432] border   text-sm rounded-lg  block w-full p-2.5  border-gray-600 placeholder-gray-400 text-gray-400 focus:ring-primary-500 focus:border-primary-500"
-                                            placeholder="Stok">
+                                            placeholder="Stock">
                                         @error('stock')
-                                            <p id="outlined_error_help" class="mt-2 text-xs text-red-600">
+                                            <p id="outlined_error_help" class="mt-2 text-xs text-red-700">
                                                 {{ $message }}
                                             </p>
                                         @enderror
@@ -100,7 +100,7 @@
                                         <img src="" class="mt-4 mx-auto max-h-40 hidden" id="preview">
                                     </div>
                                     @error('img_product')
-                                        <p id="outlined_error_help" class="mt-2 text-xs text-red-600">
+                                        <p id="outlined_error_help" class="mt-2 text-xs text-red-700">
                                             {{ $message }}
                                         </p>
                                     @enderror
@@ -136,9 +136,9 @@
                                         @endforelse
 
                                     </div>
-                                    <input type="hidden" name="supplier_id" id="supplier-input" value="">
+                                    <input type="hidden" name="supplier_id" id="supplier_id" value="">
                                     @error('supplier_id')
-                                        <p id="outlined_error_help" class="mt-2 text-xs text-red-600">
+                                        <p id="outlined_error_help" class="mt-2 text-xs text-red-700">
                                             {{ $message }}
                                         </p>
                                     @enderror
@@ -174,15 +174,13 @@
                                             <p class="text-center text-white">No Merk</p>
                                         @endforelse
                                     </div>
-                                    <input type="hidden" name="merk_id" id="merk-input" value="">
+                                    <input type="hidden" name="merk_id" id="merk_id" value="">
                                     @error('merk_id')
-                                        <p id="outlined_error_help" class="mt-2 text-xs text-red-600">
+                                        <p id="outlined_error_help" class="mt-2 text-xs text-red-700">
                                             {{ $message }}
                                         </p>
                                     @enderror
                                 </div>
-
-
                             </div>
                         </div>
 
@@ -207,9 +205,6 @@
     <style>
         main::-webkit-scrollbar {
             width: 0;
-            /* background-color: white;
-                                    color: white;
-                                    border: 1px solid inherit; */
         }
 
         main {
@@ -238,7 +233,7 @@
                 cb.checked = false;
 
             } else if (dropMerk.options[(dropMerk.options.length) - 1].selected == true && apa == 'none') {
-                console.log('masuk');
+                // console.log('masuk');
                 dropMerk.options[0].selected = true;
                 divmerk.style.display = "none";
                 inp.value = "";
@@ -261,7 +256,7 @@
             // console.log(dropMerk.options.length)
 
             if (apa == "showDrop") {
-                console.log('masuk')
+                // console.log('masuk')
                 divmerk.style.display = "";
                 newMerk.style.display = "none";
                 dropMerk.options[0].selected = true;
@@ -395,12 +390,12 @@
             new AutoNumeric('#harga_asli', {
                 currencySymbol: 'Rp',
                 decimalCharacter: '.',
-                unformatOnSubmit : true
+                unformatOnSubmit: true
             });
             new AutoNumeric('#harga_jual', {
                 currencySymbol: 'Rp',
                 decimalCharacter: '.',
-                unformatOnSubmit : true
+                unformatOnSubmit: true
             })
             // Function to toggle the dropdown state
             function toggleDropdown(dropdownMenu) {
