@@ -71,13 +71,13 @@ Route::middleware(['WebAkses:admin'])->prefix('admin')->group(function () {
 
 
     // Product
-    Route::get('/product', [ProductAksesController::class, 'getAll']);
-    Route::get('/product/create/new', [ProductAksesController::class, 'getAllToCreate']);
-    Route::post('/product/create', [ProductAksesController::class, 'createData']);
-    Route::get('/product/update/{idProduk}', [ProductAksesController::class, 'productAdminUpdate']);
-    Route::put('/product/update/{idProduk}', [ProductAksesController::class, 'productAdminMakeUpdate']);
+    Route::get('/product', [ProductAksesController::class, 'getAll'])->name('products.admin.index');
+    Route::get('/product/create/new', [ProductAksesController::class, 'getAllToCreate'])->name('products.admin.create');
+    Route::post('/product/create', [ProductAksesController::class, 'createData'])->name('products.admin.store');
+    Route::get('/product/update/{product}', [ProductAksesController::class, 'productAdminUpdate'])->name('products.admin.edit');
+    Route::put('/product/update/{product}', [ProductAksesController::class, 'productAdminMakeUpdate'])->name('products.admin.update');
 
-    Route::delete('/product/destroy/{product}', [ProductAksesController::class, 'deleteData'])->name('products.destroy');
+    Route::delete('/product/destroy/{product}', [ProductAksesController::class, 'deleteData'])->name('products.admin.destroy');
 
     // Merk
     Route::get('/merk', [MerkAksesController::class, 'getAll'])->name('merk.index');

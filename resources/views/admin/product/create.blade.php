@@ -16,7 +16,7 @@
             <div class="w-[100%] flex flex-col gap-4">
                 <p class="rounded-md p-4 font-semibold bg-[#1C1D42] text-[#6b6eb4]">Create a Product</p>
                 <div class="rounded-md p-4 bg-[#1C1D42] h-[auto] text-[#6b6eb4]">
-                    <form action="/admin/product/create"
+                    <form action="{{ route('products.admin.store') }}"
                         class="  px-[2%] h-[100%] py-[2%] flex flex-col justify-between items-cente" id="formCreate"
                         method="post" enctype="multipart/form-data">
                         @csrf
@@ -79,7 +79,7 @@
                                     <label for="name" class="block mb-2 text-sm font-medium  text-gray-400">Foto</label>
                                     <div class="relative border border-gray-400 border-dashed rounded-lg p-6"
                                         id="dropzone">
-                                        <input id="img" name="img_product" type="file" accept=".jpg,.jpeg,.png"
+                                        <input id="img" name="img" type="file" accept=".jpg,.jpeg,.png"
                                             class="absolute inset-0 w-full h-full opacity-0 z-50" />
                                         <div class="text-center">
                                             <img class="mx-auto h-12 w-12"
@@ -99,7 +99,7 @@
 
                                         <img src="" class="mt-4 mx-auto max-h-40 hidden" id="preview">
                                     </div>
-                                    @error('img_product')
+                                    @error('img')
                                         <p id="outlined_error_help" class="mt-2 text-xs text-red-700">
                                             {{ $message }}
                                         </p>
@@ -185,10 +185,10 @@
                         </div>
 
                         <div class="flex justify-between w-full gap-4 sm:gap-6">
-                            <button type="button" id="button-reset"
-                                class="inline-flex items-center px-5 py-2.5 mt-4 sm:mt-6 text-sm font-medium text-center text-white bg-red-700 rounded-md focus:ring-4 focus:ring-primary-200 dark:focus:ring-primary-900 hover:bg-primary-800">
-                                Reset
-                            </button>
+                            <a href="{{ route('products.admin.index') }}"
+                            class="inline-flex items-center px-5 py-2.5 mt-4 sm:mt-6 text-sm font-medium text-center text-white bg-gray-600 rounded-md focus:ring-4 focus:ring-primary-200 dark:focus:ring-primary-900 hover:bg-gray-700">
+                                Back
+                            </a>
                             <button type="submit"
                                 class="inline-flex items-center px-5 py-2.5 mt-4 sm:mt-6 text-sm font-medium text-center text-white bg-green-700 rounded-md focus:ring-4 focus:ring-primary-200 dark:focus:ring-primary-900 hover:bg-primary-800">
                                 Create
