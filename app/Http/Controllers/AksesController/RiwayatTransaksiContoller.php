@@ -29,7 +29,9 @@ class RiwayatTransaksiContoller extends Controller
     }
     public function getDetail($transaksi)
     {
+        $token = session()->get('token');
         $request = Request::create('http://127.0.0.1:8000/api/transiksi/' . $transaksi, 'GET');
+        $request -> headers->set('Authorization',$token);
         $response = app()->handle($request);
         $data = json_decode($response->getContent(), true);
         if ($response->getStatusCode() == 200) {

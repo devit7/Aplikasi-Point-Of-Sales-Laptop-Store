@@ -36,12 +36,7 @@ class ProductAksesController extends Controller
 
     public function createData(StoreRequest $request)
     {
-        // dd($request->all(), $request->file('img_product'));
-
-        // dd("Request", $request);
         $validated = $request->validated();
-
-        // dd("Validator", $validated, "Request", $request);
 
         $data = [
             'product_name' => $validated['product_name'],
@@ -78,9 +73,11 @@ class ProductAksesController extends Controller
         }
     }
 
-    public function getDetail($product)
+    public function getDetail($token)
     {
-        $request = Request::create('http://127.0.0.1:8000/api/products/' . $product, 'GET');
+        $token = session()->get('token');
+        $request = Request::create('http://127.0.0.1:8000/api/products', 'GET');
+        $request -> headers->set('Authorization',$token);
         $response = app()->handle($request);
         $data = json_decode($response->getContent(), true);
         if ($response->getStatusCode() == 200) {
