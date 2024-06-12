@@ -13,7 +13,8 @@ class SupplierAksesController extends Controller
     public function getAll()
     {
         $token = session()->get('token');
-        $request = Request::create('http://127.0.0.1:8000/api/suppliers', 'GET', [], [], [], ['HTTP_Authorization' => 'Bearer ' . $token]);
+        $request = Request::create('http://127.0.0.1:8000/api/suppliers', 'GET');
+        $request -> headers->set('Authozrization',$token);
         $response = app()->handle($request);//mengexecute query
         $data = json_decode($response->getContent(), true); //json_decode merubah json ke array assosiative
         if ($response->getStatusCode() == 200) {

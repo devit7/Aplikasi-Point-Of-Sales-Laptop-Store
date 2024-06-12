@@ -13,7 +13,8 @@ class TokoAksesController extends Controller
     public function getAll()
     {
         $token = session()->get('token');
-        $request = Request::create('http://127.0.0.1:8000/api/toko', 'GET', [], [], [], ['HTTP_Authorization' => 'Bearer ' . $token]);
+        $request = Request::create('http://127.0.0.1:8000/api/toko', 'GET');
+        $request -> headers->set('Authozrization',$token);
         $response = app()->handle($request);
         $data = json_decode($response->getContent(), true);
         if ($response->getStatusCode() == 200) {
