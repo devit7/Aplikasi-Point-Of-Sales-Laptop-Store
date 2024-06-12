@@ -26,13 +26,15 @@ class UpdateRequest extends FormRequest
         $productExist = $this->product ? $this->product->id : '';
 
         return [
-            'product_name' => 'required|string|unique:product,product_name,' . $productExist . ',id',
+            // 'product_name' => 'required|string|unique:product,product_name,' . $productExist . ',id',
+            'product_name' => 'required|string',
             'stock' => 'required|numeric|unsigned|min:1',
             'harga_jual' => 'required|numeric|unsigned|min:1|not_in:0',
             'harga_asli' => 'required|numeric|unsigned|min:1|not_in:0',
             'img' => 'image|mimes:jpeg,png,jpg,gif,svg|max:10048|nullable|sometimes',
-            'supplier_id' => 'required|exists:supplier,id',
-            'merk_id' => 'required|exists:merk,id',
+            'supplier_id' => 'required',
+            'merk_id' => 'required',
+            'status' => 'required|in:aktif,tidak aktif',
         ];
     }
 
@@ -61,6 +63,8 @@ class UpdateRequest extends FormRequest
             'supplier_id.exists' => 'Data Supplier tidak ada',
             'merk_id.required' => 'Data Merk harus diisi',
             'merk_id.exists' => 'Data Merk tidak ada',
+            'status.required' => 'Data Status harus diisi',
+            'status.in' => 'Data Status harus aktif/tidak aktif',
         ];
     }
 }

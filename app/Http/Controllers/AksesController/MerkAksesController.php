@@ -13,7 +13,8 @@ class MerkAksesController extends Controller
 {
     public function getAll()
     {
-        $request = Request::create('http://127.0.0.1:8000/api/merk', 'GET');
+        $token = session()->get('token');
+        $request = Request::create('http://127.0.0.1:8000/api/merk', 'GET', [], [], [], ['HTTP_Authorization' => 'Bearer ' . $token]);
         $response = app()->handle($request);
         $data = json_decode($response->getContent(), true);
         if ($response->getStatusCode() == 200) {
@@ -52,7 +53,7 @@ class MerkAksesController extends Controller
             return response()->json(['message' => 'Unauthorized'], 401);
         }
     }
-    
+
     public function createData(StoreRequest $request)
     {
         $validator = $request->validated();

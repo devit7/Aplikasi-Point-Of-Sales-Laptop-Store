@@ -129,7 +129,7 @@
                                 <label for="name" class="block mb-2 text-sm font-medium  text-gray-400">Name</label>
                                 <input type="text" name="name" id="name"
                                     class="bg-[#131432] border text-sm rounded-lg  block w-full p-2.5  border-gray-600 placeholder-gray-400 text-gray-400 focus:ring-primary-500 focus:border-primary-500"
-                                    placeholder="Ex : Wibu Jaya Bersama" required="">
+                                    placeholder="Ex : Wibu Jaya Bersama" >
                             </div>
                             <div class="sm:col-span-2">
                                 <label for="nama_toko" class="block mb-2 text-sm font-medium  text-gray-400">Username</label>

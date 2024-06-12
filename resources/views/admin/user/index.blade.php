@@ -45,6 +45,9 @@
                         </thead>
                         <tbody class="text-[#6b6eb4]">
                             @forelse ($data as $item)
+                            @if ($item['username'] == auth()->user()->username)
+                            @continue
+                            @endif
                                 <tr class="border-b-2 border-[#33356F] text-left">
                                     <td class="py-2">{{ $loop->index + 1 }}</td>
                                     <td>{{ $item['nama'] }}</td>
@@ -91,9 +94,6 @@
                                     </td>
                                 </tr>
                             @empty
-                                <tr>
-                                    <td colspan="5" class="  text-center">No data available</td>
-                                </tr>
                             @endforelse
                         </tbody>
                     </table>

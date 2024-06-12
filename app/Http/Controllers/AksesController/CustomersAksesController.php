@@ -13,10 +13,11 @@ class CustomersAksesController extends Controller
 {
     public function getAll($viewType = 'kasir')
     {
-        $request = Request::create('http://127.0.0.1:8000/api/customers', 'GET');
+        $token = session()->get('token');
+        $request = Request::create('http://127.0.0.1:8000/api/customers', 'GET', [], [], [], ['HTTP_Authorization' => 'Bearer ' . $token]);
         $response = app()->handle($request);
         $data = json_decode($response->getContent(), true);
-        
+
         if ($response->getStatusCode() == 200) {
             $view = ($viewType == 'admin') ? 'admin.customer.index' : 'kasir.management-customer.index';
             return view($view, [
@@ -34,7 +35,7 @@ class CustomersAksesController extends Controller
         $request = Request::create('http://127.0.0.1:8000/api/customers/' . $customer, 'GET');
         $response = app()->handle($request);
         $data = json_decode($response->getContent(), true);
-        
+
         if ($response->getStatusCode() == 200) {
             // return dd($data['data']);
             return view('kasir.management-customer.view', ['customer' => $data['data']]);
@@ -50,7 +51,7 @@ class CustomersAksesController extends Controller
         $request = Request::create('http://127.0.0.1:8000/api/customers/' . $customer, 'GET');
         $response = app()->handle($request);
         $data = json_decode($response->getContent(), true);
-        
+
         if ($response->getStatusCode() == 200) {
             return view('kasir.management-customer.update', ['customer' => $data['data']]);
         } else {
@@ -96,7 +97,7 @@ class CustomersAksesController extends Controller
 
         $request = Request::create($api_url, 'PUT');
         $response = app()->handle($request);
-        
+
         if ($response->getStatusCode() == 200) {
             session()->flash('success', 'Data customer berhasil di update');
             return redirect()->route('management-customer.index');
@@ -111,7 +112,7 @@ class CustomersAksesController extends Controller
     {
         $request = Request::create('http://127.0.0.1:8000/api/customers/' . $customer, 'DELETE');
         $response = app()->handle($request);
-        
+
         if ($response->getStatusCode() == 200) {
             return redirect()->route('management-customer.index')->with('success', 'Data berhasil delete');
         } else {
