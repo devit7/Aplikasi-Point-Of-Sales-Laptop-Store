@@ -44,7 +44,7 @@ class KasirAksesController extends Controller
     public function getAllProduct(){
         $token = session()->get('token');
         $request = Request::create('http://127.0.0.1:8000/api/products', 'GET');
-        $request->headers->set('Authorization',$token);
+        $request->headers->set('Authorization', 'Bearer ' . $token);
         $response = app()->handle($request);
         // merubah json ke array
         $dataProduct = json_decode($response->getContent(),true);
@@ -63,7 +63,7 @@ class KasirAksesController extends Controller
     public function getAllMerk(){
         $token = session()->get('token');
         $request = Request::create('http://127.0.0.1:8000/api/merk', 'GET');
-        $request->headers->set('Authorization',$token);
+        $request->headers->set('Authorization', 'Bearer ' . $token);
         $response = app()->handle($request);
         $data = json_decode($response->getContent(), true);
         if ($response->getStatusCode() == 200) {
@@ -78,7 +78,7 @@ class KasirAksesController extends Controller
     public function getAllCustomer(){
         $token = session()->get('token');
         $request = Request::create('http://127.0.0.1:8000/api/customers', 'GET');
-        $request->headers->set('Authorization',$token);
+        $request->headers->set('Authorization', 'Bearer ' . $token);
         $response = app()->handle($request);
         $data = json_decode($response->getContent(), true);
         if ($response->getStatusCode() == 200) {
@@ -94,7 +94,7 @@ class KasirAksesController extends Controller
     public function getAllPayment(){
         $token = session()->get('token');
         $request = Request::create('http://127.0.0.1:8000/api/payments', 'GET');
-        $request->headers->set('Authorization',$token);
+        $request->headers->set('Authorization', 'Bearer ' . $token);
         $response = app()->handle($request);
         $data = json_decode($response->getContent(), true);
         if ($response->getStatusCode() == 200) {
@@ -110,7 +110,7 @@ class KasirAksesController extends Controller
     {
         $token = session()->get('token');
         $request = Request::create('http://127.0.0.1:8000/api/toko', 'GET');
-        $request->headers->set('Authorization',$token);
+        $request->headers->set('Authorization', 'Bearer ' . $token);
         $response = app()->handle($request);
         $data = json_decode($response->getContent(), true);
         if ($response->getStatusCode() == 200) {
@@ -168,7 +168,7 @@ class KasirAksesController extends Controller
         ];
         //dd($dataJson);
         $request = Request::create('http://127.0.0.1:8000/api/transaksi', 'POST', $dataJson);
-        $request->headers->set('Authorization',$token);
+        $request->headers->set('Authorization', 'Bearer ' . $token);
         $response = app()->handle($request);
         $data = json_decode($response->getContent(), true);
         //dd($response);

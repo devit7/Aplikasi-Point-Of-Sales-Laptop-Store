@@ -15,7 +15,7 @@ class UserAksesController extends Controller
     {
         $token = session()->get('token');
         $request = Request::create('http://127.0.0.1:8000/api/users', 'GET');
-        $request -> headers->set('Authorization','Bearer '.$token);
+        $request->headers->set('Authorization', 'Bearer ' . $token);
         $response = app()->handle($request);
         $data = json_decode($response->getContent(), true);
         if ($response->getStatusCode() == 200) {
@@ -45,9 +45,9 @@ class UserAksesController extends Controller
     // }
     public function getEdit($user)
     {
-        //$token = session()->get('token');
+        $token = session()->get('token');
         $request = Request::create('http://127.0.0.1:8000/api/users/'. $user , 'GET');
-        //$request -> headers->set('Authorization',$token);
+        $request->headers->set('Authorization', 'Bearer ' . $token);
         $response = app()->handle($request);
         $data = json_decode($response->getContent(), true);
         if ($response->getStatusCode() == 200) {
@@ -72,7 +72,7 @@ class UserAksesController extends Controller
             'role' => $validator['role'],
         ];
         $request = Request::create('http://127.0.0.1:8000/api/users', 'POST', $data);
-        $request -> headers->set('Authorization',$token);
+        $request->headers->set('Authorization', 'Bearer ' . $token);
         $response = app()->handle($request);
         $data = json_decode($response->getContent(), true); // Fixed typo here
         if ($response->getStatusCode() == 201) {
@@ -97,7 +97,7 @@ class UserAksesController extends Controller
         ];
         $api_url = 'http://127.0.0.1:8000/api/users/' . $user->id . '?' . http_build_query($data);
         $request = Request::create($api_url, 'PUT');
-        $request -> headers->set('Authorization',$token);
+        $request->headers->set('Authorization', 'Bearer ' . $token);
         $response = app()->handle($request);
         if ($response->getStatusCode() == 200) {
             session()->flash('success', 'User Berhasil di Update');
@@ -111,9 +111,8 @@ class UserAksesController extends Controller
     public function deleteData($user)
     {
         $token = session()->get('token');
-        $token = session()->get('token');
         $request = Request::create('http://127.0.0.1:8000/api/users/' . $user, 'DELETE');
-        $request -> headers->set('Authorization',$token);
+        $request->headers->set('Authorization', 'Bearer ' . $token);
         $response = app()->handle($request);
         if ($response->getStatusCode() == 200) {
             return redirect()->route('user.index')->with('success', 'User Berhasil dihapus');

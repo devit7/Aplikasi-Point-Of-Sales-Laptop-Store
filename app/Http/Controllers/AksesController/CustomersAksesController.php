@@ -15,7 +15,7 @@ class CustomersAksesController extends Controller
     {
         $token = session()->get('token');
         $request = Request::create('http://127.0.0.1:8000/api/customers', 'GET');
-        $request->headers->set('Authorization',$token);
+        $request->headers->set('Authorization', 'Bearer ' . $token); // pastikan format token benar
         $response = app()->handle($request);
         $data = json_decode($response->getContent(), true);
 
@@ -31,11 +31,12 @@ class CustomersAksesController extends Controller
         }
     }
 
+
     public function getDetail($customer)
     {
         $token = session()->get('token');
         $request = Request::create('http://127.0.0.1:8000/api/customers/' . $customer, 'GET');
-        $request->headers->set('Authorization',$token);
+        $request->headers->set('Authorization', 'Bearer ' . $token);
         $response = app()->handle($request);
         $data = json_decode($response->getContent(), true);
 
@@ -53,7 +54,7 @@ class CustomersAksesController extends Controller
     {
         $token = session()->get('token');
         $request = Request::create('http://127.0.0.1:8000/api/customers/' . $customer, 'GET');
-        $request->headers->set('Authorization',$token);
+        $request->headers->set('Authorization', 'Bearer ' . $token);
         $response = app()->handle($request);
         $data = json_decode($response->getContent(), true);
 
@@ -77,7 +78,7 @@ class CustomersAksesController extends Controller
             'alamat' => $validator['alamat'],
         ];
         $request = Request::create('http://127.0.0.1:8000/api/customers/', 'POST', $data);
-        $request->headers->set('Authorization',$token);
+        $request->headers->set('Authorization', 'Bearer ' . $token);
         $response = app()->handle($request);
         $data = json_decode($response->getContent(), true);
         if ($response->getStatusCode() == 201) {
@@ -102,7 +103,7 @@ class CustomersAksesController extends Controller
             'alamat' => $validator['alamat'],
         ];
         $api_url = 'http://127.0.0.1:8000/api/customers/' . $customer->id .'?' . http_build_query($data);
-        $request->headers->set('Authorization',$token);
+        $request->headers->set('Authorization', 'Bearer ' . $token);
         $request = Request::create($api_url, 'PUT');
         $response = app()->handle($request);
 
@@ -120,7 +121,7 @@ class CustomersAksesController extends Controller
     {
         $token = session()->get('token');
         $request = Request::create('http://127.0.0.1:8000/api/customers/' . $customer, 'DELETE');
-        $request->headers->set('Authorization',$token);
+        $request->headers->set('Authorization', 'Bearer ' . $token);
         $response = app()->handle($request);
 
         if ($response->getStatusCode() == 200) {
