@@ -64,6 +64,7 @@ class UserAksesController extends Controller
     public function createData(StoreRequest $request)
     {
         $token = session()->get('token');
+        $token = session()->get('token');
         $validator = $request->validated();
         $data = [
             'nama' => $validator['nama'],
@@ -88,6 +89,7 @@ class UserAksesController extends Controller
     public function updateData(UpdateRequest $request, User $user)
     {
         $token = session()->get('token');
+        $token = session()->get('token');
         $validator = $request->validated();
 
         $data = [
@@ -110,6 +112,7 @@ class UserAksesController extends Controller
     }
     public function deleteData($user)
     {
+        $token = session()->get('token');
         $token = session()->get('token');
         $request = Request::create('http://127.0.0.1:8000/api/users/' . $user, 'DELETE');
         $request -> headers->set('Authorization',$token);
