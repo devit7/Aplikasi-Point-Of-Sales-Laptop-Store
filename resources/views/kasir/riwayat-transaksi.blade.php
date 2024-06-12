@@ -18,7 +18,7 @@
                 <thead class="bg-[#131432]  text-[#6b6eb4]">
                     <tr class="border-b-2 border-[#33356F]">
                         <th class="py-2 ">No</th>
-                        <th class="">User</th>
+                        <th class="">Kasir</th>
                         <th class="">Toko</th>
                         <th class="">Customer</th>
                         <th class="">Payment</th>
@@ -39,7 +39,7 @@
                         <td>{{$riwayat['created_at']}}</td>
                         <td class="flex flex-row gap-2">
                         <x-modal_detail id="{{$riwayat['id']}}">
-                        <div class="flex flex-col w-fit rounded-md p-5 text-indigo-700">
+                        <div class="flex flex-col w-fit rounded-md p-5">
                             <div class=" w-96 pb-5">
 
                                 <span class="  w-96 text-xl mb-8 text-indigo-100 font-bold">Detail Transaksi</span>
@@ -49,7 +49,7 @@
                                     <span class=" text-indigo-200">{{$riwayat['invoice']}}</span>
                                 </div>
                                 <div class="flex items-center space-x-4">
-                                    <span class=" p-1 font-semibold text-indigo-200">User</span>
+                                    <span class=" p-1 font-semibold text-indigo-200">Kasir</span>
                                     <hr class="flex-grow border-indigo-200 opacity-0">
                                     <span class=" text-indigo-200">{{$riwayat['user']['nama']}}</span>
                                 </div>
