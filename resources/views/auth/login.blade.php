@@ -73,7 +73,7 @@
                     peer-disabled:peer-placeholder-shown:text-blue-gray-500">
                     Password
                     </label>
-                    @error('username')
+                    @error('password')
                         <p id="outlined_error_help" class="mt-2 text-xs text-red-700">
                             {{ $message }}
                         </p>

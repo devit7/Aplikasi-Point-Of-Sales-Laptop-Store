@@ -14,7 +14,7 @@ class SupplierAksesController extends Controller
     {
         $token = session()->get('token');
         $request = Request::create('http://127.0.0.1:8000/api/suppliers', 'GET');
-        $request -> headers->set('Authorization',$token);
+        $request->headers->set('Authorization', 'Bearer ' . $token);
         $response = app()->handle($request);//mengexecute query
         $data = json_decode($response->getContent(), true); //json_decode merubah json ke array assosiative
         if ($response->getStatusCode() == 200) {
@@ -31,7 +31,7 @@ class SupplierAksesController extends Controller
     {
         $token = session()->get('token');
         $request = Request::create('http://127.0.0.1:8000/api/suppliers/' . $supplier, 'GET');
-        $request -> headers->set('Authorization',$token);
+        $request->headers->set('Authorization', 'Bearer ' . $token);
         $response = app()->handle($request);
         $data = json_decode($response->getContent(), true);
         if ($response->getStatusCode() == 200) {
@@ -57,7 +57,7 @@ class SupplierAksesController extends Controller
         ];
 
         $request = Request::create('http://127.0.0.1:8000/api/suppliers', 'POST', $data);
-        $request -> headers->set('Authorization',$token);
+        $request->headers->set('Authorization', 'Bearer ' . $token);
         $response = app()->handle($request);
         // dd($response->getStatusCode());
         if ($response->getStatusCode() == 201) {
@@ -82,7 +82,7 @@ class SupplierAksesController extends Controller
         ];
         $api_url = 'http://127.0.0.1:8000/api/suppliers/' . $supplier->id . '?' . http_build_query($data);
         $request = Request::create($api_url, 'PUT');
-        $request -> headers->set('Authorization',$token);
+        $request->headers->set('Authorization', 'Bearer ' . $token);
         //dd($request);
         $response = app()->handle($request);
         if ($response->getStatusCode() == 200) {
@@ -99,7 +99,7 @@ class SupplierAksesController extends Controller
     {
         $token = session()->get('token');
         $request = Request::create('http://127.0.0.1:8000/api/suppliers/' . $supplier, 'DELETE');
-        $request -> headers->set('Authorization',$token);
+        $request->headers->set('Authorization', 'Bearer ' . $token);
         $response = app()->handle($request);
         if ($response->getStatusCode() == 200) {
             return redirect()->route('supplier.index')->with('success', 'Data berhasil delete');
