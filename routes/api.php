@@ -26,16 +26,17 @@ use Illuminate\Support\Facades\Route;
 Route::post('/login', [AuthController::class, 'login'])->name('login');
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
-Route::apiResource('/users', UserController::class);
-Route::apiResource('/customers', CustomerController::class);
-Route::apiResource('/payments', PaymentController::class);
-Route::apiResource('/transaksi', TransaksiController::class);
-Route::apiResource('/toko', TokoController::class);
-Route::apiResource('/suppliers', SupplierController::class);
-Route::apiResource('/merk', MerkController::class);
-Route::apiResource('/products', ProductController::class);
+
 
 Route::middleware('auth:sanctum')->group(function () {
+    Route::apiResource('/users', UserController::class);
+    Route::apiResource('/customers', CustomerController::class);
+    Route::apiResource('/payments', PaymentController::class);
+    Route::apiResource('/transaksi', TransaksiController::class);
+    Route::apiResource('/toko', TokoController::class);
+    Route::apiResource('/suppliers', SupplierController::class);
+    Route::apiResource('/merk', MerkController::class);
+    Route::apiResource('/products', ProductController::class);
     // jika role admin
     Route::group(['middleware' => ['UserAkses:admin']], function () {
         

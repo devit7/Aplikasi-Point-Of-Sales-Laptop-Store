@@ -12,7 +12,9 @@ class KasirAksesController extends Controller
 {
     public function index(Request $request){
 
+        $token = session()->get('token');
         $dataProduct = $this->getAllProduct();
+        $request->headers->set('Authorization',$token);
         //jika ada parameter search
         if($request->search){
             $dataProduct = array_filter($dataProduct, function($product) use ($request){
@@ -42,7 +44,9 @@ class KasirAksesController extends Controller
     }
 
     public function getAllProduct(){
+        $token = session()->get('token');
         $request = Request::create('http://127.0.0.1:8000/api/products', 'GET');
+        $request->headers->set('Authorization',$token);
         $response = app()->handle($request);
         // merubah json ke array
         $dataProduct = json_decode($response->getContent(),true);
@@ -59,7 +63,9 @@ class KasirAksesController extends Controller
     }
 
     public function getAllMerk(){
+        $token = session()->get('token');
         $request = Request::create('http://127.0.0.1:8000/api/merk', 'GET');
+        $request->headers->set('Authorization',$token);
         $response = app()->handle($request);
         $data = json_decode($response->getContent(), true);
         if ($response->getStatusCode() == 200) {
@@ -72,7 +78,9 @@ class KasirAksesController extends Controller
     }
 
     public function getAllCustomer(){
+        $token = session()->get('token');
         $request = Request::create('http://127.0.0.1:8000/api/customers', 'GET');
+        $request->headers->set('Authorization',$token);
         $response = app()->handle($request);
         $data = json_decode($response->getContent(), true);
         if ($response->getStatusCode() == 200) {
@@ -86,7 +94,9 @@ class KasirAksesController extends Controller
 
     // get all payments
     public function getAllPayment(){
+        $token = session()->get('token');
         $request = Request::create('http://127.0.0.1:8000/api/payments', 'GET');
+        $request->headers->set('Authorization',$token);
         $response = app()->handle($request);
         $data = json_decode($response->getContent(), true);
         if ($response->getStatusCode() == 200) {
@@ -100,7 +110,9 @@ class KasirAksesController extends Controller
 
     public function getAllToko()
     {
+        $token = session()->get('token');
         $request = Request::create('http://127.0.0.1:8000/api/toko', 'GET');
+        $request->headers->set('Authorization',$token);
         $response = app()->handle($request);
         $data = json_decode($response->getContent(), true);
         if ($response->getStatusCode() == 200) {
@@ -113,6 +125,7 @@ class KasirAksesController extends Controller
     }
 
     public function transactionProcess(Request $request){
+        $token = session()->get('token');
         //dd($request);
         $request->validate([
             'payment_id' => 'required|exists:payments,id',
@@ -157,6 +170,7 @@ class KasirAksesController extends Controller
         ];
         //dd($dataJson);
         $request = Request::create('http://127.0.0.1:8000/api/transaksi', 'POST', $dataJson);
+        $request->headers->set('Authorization',$token);
         $response = app()->handle($request);
         $data = json_decode($response->getContent(), true);
         //dd($response);

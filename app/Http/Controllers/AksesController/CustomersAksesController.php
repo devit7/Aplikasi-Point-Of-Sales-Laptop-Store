@@ -14,7 +14,8 @@ class CustomersAksesController extends Controller
     public function getAll($viewType = 'kasir')
     {
         $token = session()->get('token');
-        $request = Request::create('http://127.0.0.1:8000/api/customers', 'GET', [], [], [], ['HTTP_Authorization' => 'Bearer ' . $token]);
+        $request = Request::create('http://127.0.0.1:8000/api/customers', 'GET');
+        $request->headers->set('Authorization',$token);
         $response = app()->handle($request);
         $data = json_decode($response->getContent(), true);
 
@@ -32,7 +33,9 @@ class CustomersAksesController extends Controller
 
     public function getDetail($customer)
     {
+        $token = session()->get('token');
         $request = Request::create('http://127.0.0.1:8000/api/customers/' . $customer, 'GET');
+        $request->headers->set('Authorization',$token);
         $response = app()->handle($request);
         $data = json_decode($response->getContent(), true);
 
@@ -48,7 +51,9 @@ class CustomersAksesController extends Controller
 
     public function getEdit($customer)
     {
+        $token = session()->get('token');
         $request = Request::create('http://127.0.0.1:8000/api/customers/' . $customer, 'GET');
+        $request->headers->set('Authorization',$token);
         $response = app()->handle($request);
         $data = json_decode($response->getContent(), true);
 
@@ -63,6 +68,7 @@ class CustomersAksesController extends Controller
 
     public function createData(StoreRequest $request)
     {
+        $token = session()->get('token');
         $validator = $request->validated();
         $data = [
             'customer_name' => $validator['customer_name'],
@@ -71,6 +77,7 @@ class CustomersAksesController extends Controller
             'alamat' => $validator['alamat'],
         ];
         $request = Request::create('http://127.0.0.1:8000/api/customers/', 'POST', $data);
+        $request->headers->set('Authorization',$token);
         $response = app()->handle($request);
         $data = json_decode($response->getContent(), true);
         if ($response->getStatusCode() == 201) {
@@ -85,6 +92,7 @@ class CustomersAksesController extends Controller
 
     public function updateData(UpdateRequest $request, Customers $customer)
     {
+        $token = session()->get('token');
         $validator = $request->validated();
 
         $data = [
@@ -94,7 +102,7 @@ class CustomersAksesController extends Controller
             'alamat' => $validator['alamat'],
         ];
         $api_url = 'http://127.0.0.1:8000/api/customers/' . $customer->id .'?' . http_build_query($data);
-
+        $request->headers->set('Authorization',$token);
         $request = Request::create($api_url, 'PUT');
         $response = app()->handle($request);
 
@@ -110,7 +118,9 @@ class CustomersAksesController extends Controller
 
     public function deleteData($customer)
     {
+        $token = session()->get('token');
         $request = Request::create('http://127.0.0.1:8000/api/customers/' . $customer, 'DELETE');
+        $request->headers->set('Authorization',$token);
         $response = app()->handle($request);
 
         if ($response->getStatusCode() == 200) {
