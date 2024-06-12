@@ -28,6 +28,7 @@ class TokoAksesController extends Controller
 
     public function updateData(UpdateRequest $request, Toko $toko)
     {
+        $token = session()->get('token');
         $validated = $request->validated();
         $data = [
             'nama_toko' => $validated['nama_toko'],
@@ -50,7 +51,7 @@ class TokoAksesController extends Controller
             $file = $request->file('logo_toko');
             $temp_request->files->set('logo_toko', $file);
         }
-
+        $request -> headers->set('Authorization',$token);
         $response = app()->handle($temp_request);
 
         if ($response->getStatusCode() == 200) {
