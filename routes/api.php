@@ -37,13 +37,4 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::apiResource('/suppliers', SupplierController::class);
     Route::apiResource('/merk', MerkController::class);
     Route::apiResource('/products', ProductController::class);
-    // jika role admin
-    Route::group(['middleware' => ['UserAkses:admin']], function () {
-        
-    });
-
-    // jika role kasir
-    Route::group(['middleware' => ['UserAkses:kasir']], function () {
-        
-    });
 });

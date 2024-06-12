@@ -12,9 +12,7 @@ class KasirAksesController extends Controller
 {
     public function index(Request $request){
 
-        $token = session()->get('token');
         $dataProduct = $this->getAllProduct();
-        $request->headers->set('Authorization',$token);
         //jika ada parameter search
         if($request->search){
             $dataProduct = array_filter($dataProduct, function($product) use ($request){
