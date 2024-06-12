@@ -47,7 +47,7 @@
                             @forelse ($data as $item)
                             @if ($item['username'] == auth()->user()->username)
                             @continue
-                            @endif
+                            @endif                                                                                                                                                                                                                                                                                                                                                                                                                               
                                 <tr class="border-b-2 border-[#33356F] text-left">
                                     <td class="py-2">{{ $loop->index + 1 }}</td>
                                     <td>{{ $item['nama'] }}</td>
