@@ -1,5 +1,5 @@
 @extends('layout.kasir_main')
-@section('title', 'Testing')
+@section('title', 'Riwayat Transaksi')
 @section('content')
     <div class="p-8 ">
         <div class="mb-6">
