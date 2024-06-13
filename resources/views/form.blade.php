@@ -12,7 +12,7 @@
                 </div>
             </div>
         </div>
-        <div class="bg-[#1C1D42] rounded-md  border border-[#33356F] min-h-[500px]">
+        <div class="bg-[#1C1D42]  rounded-md  border border-[#33356F] min-h-[500px]">
                 <div class="py-8 px-4 mx-auto max-w-2xl lg:py-16">
                     <h2 class="mb-4 text-xl font-bold text-gray-900 dark:text-white">Add a new product</h2>
                     <form action="#">

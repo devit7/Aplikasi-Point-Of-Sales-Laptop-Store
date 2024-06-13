@@ -29,10 +29,10 @@ class PaymentsAksesController extends Controller
         }
     }
 
-    public function getDetail($token)
+    public function getDetail($payment)
     {
         $token = session()->get('token');
-        $request = Request::create('http://127.0.0.1:8000/api/payments', 'GET');
+        $request = Request::create('http://127.0.0.1:8000/api/payments/'.$payment, 'GET');
         $request->headers->set('Authorization', 'Bearer ' . $token);
         $response = app()->handle($request);
         $data = json_decode($response->getContent(), true);
@@ -45,10 +45,10 @@ class PaymentsAksesController extends Controller
         }
     }
 
-    public function getEdit($token)
+    public function getEdit($payment)
     {
         $token = session()->get('token');
-        $request = Request::create('http://127.0.0.1:8000/api/payments', 'GET');
+        $request = Request::create('http://127.0.0.1:8000/api/payments/'.$payment, 'GET');
         $request->headers->set('Authorization', 'Bearer ' . $token);
         $response = app()->handle($request);
         $data = json_decode($response->getContent(), true);
@@ -102,10 +102,10 @@ class PaymentsAksesController extends Controller
         }
     }
 
-    public function deleteData($token)
+    public function deleteData($payment)
     {
         $token = session()->get('token');
-        $request = Request::create('http://127.0.0.1:8000/api/payments', 'GET');
+        $request = Request::create('http://127.0.0.1:8000/api/payments/'.$payment, 'DELETE');
         $request->headers->set('Authorization', 'Bearer ' . $token);
         $response = app()->handle($request);
         if ($response->getStatusCode() == 200) {
