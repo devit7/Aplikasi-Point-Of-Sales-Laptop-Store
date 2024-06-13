@@ -73,7 +73,7 @@
                     peer-disabled:peer-placeholder-shown:text-blue-gray-500">
                     Password
                     </label>
-                    @error('username')
+                    @error('password')
                         <p id="outlined_error_help" class="mt-2 text-xs text-red-700">
                             {{ $message }}
                         </p>
@@ -86,14 +86,19 @@
             class=" w-96 bg-indigo-900 border-2 border-indigo-500 rounded-lg shadow text-center text-white text-base font-semibold px-16 py-2 mt-1
                 hover:bg-indigo-500 hover:text-white" type="submit">Login now</button>
                 @if ($errors->any())
-                <div class="bg-red-500 text-white p-4 rounded-md mb-4 w-[385px]">
-                    <ul>
-                        @foreach ($errors->all() as $error)
-                        <li>{{ $error }}</li>
-                        @endforeach
-                    </ul>
-                </div>
-            @endif
+                    <div class=>
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                                {{-- Jangan tampilkan kesalahan yang sudah ditampilkan di atas --}}
+                                @if ($error !== $errors->first('username') && $error !== $errors->first('password'))
+                                <div class="bg-red-500 text-white p-4 rounded-md mb-4 mt-4 w-[385px] error-below-button">
+                                    <li>{{ $error }}</li>
+                                </div>
+                                @endif
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
         </form>
         </div>
         <img src="foto/computerstore.jpeg" class=" w-full h-screen" alt="">

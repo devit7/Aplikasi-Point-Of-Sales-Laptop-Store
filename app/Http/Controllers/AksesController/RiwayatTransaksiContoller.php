@@ -12,7 +12,7 @@ class RiwayatTransaksiContoller extends Controller
     {
         $token = session()->get('token');
         $request = Request::create('http://127.0.0.1:8000/api/transaksi', 'GET');
-        $request -> headers->set('Authorization',$token);
+        $request->headers->set('Authorization', 'Bearer ' . $token);
         $response = app()->handle($request);
         $data = json_decode($response->getContent(), true);
         //dd($data['data'][0]['product'][0]);
@@ -31,7 +31,7 @@ class RiwayatTransaksiContoller extends Controller
     {
         $token = session()->get('token');
         $request = Request::create('http://127.0.0.1:8000/api/transiksi/' . $transaksi, 'GET');
-        $request -> headers->set('Authorization',$token);
+        $request->headers->set('Authorization', 'Bearer ' . $token);
         $response = app()->handle($request);
         $data = json_decode($response->getContent(), true);
         if ($response->getStatusCode() == 200) {

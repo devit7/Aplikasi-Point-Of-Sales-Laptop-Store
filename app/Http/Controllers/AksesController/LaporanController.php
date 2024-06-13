@@ -10,10 +10,10 @@ class LaporanController extends Controller
 {
     public function index()
     {
-        // $token = session()->get('token');
+        $token = session()->get('token');
         $request = Request::create('http://127.0.0.1:8000/api/transaksi', 'GET');
         // dd("request", $request);
-        // $request->headers->set('Authorization',$token);
+        $request->headers->set('Authorization', 'Bearer ' . $token);
         $response = app()->handle($request);
         // dd("response", $response);
 

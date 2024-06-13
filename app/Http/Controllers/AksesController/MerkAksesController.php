@@ -15,7 +15,7 @@ class MerkAksesController extends Controller
     {
         $token = session()->get('token');
         $request = Request::create('http://127.0.0.1:8000/api/merk', 'GET');
-        $request->headers->set('Authorization',$token);
+        $request->headers->set('Authorization', 'Bearer ' . $token);
         $response = app()->handle($request);
         $data = json_decode($response->getContent(), true);
         if ($response->getStatusCode() == 200) {
@@ -33,7 +33,7 @@ class MerkAksesController extends Controller
     {
         $token = session()->get('token');
         $request = Request::create('http://127.0.0.1:8000/api/merk/' . $merk, 'GET');
-        $request->headers->set('Authorization',$token);
+        $request->headers->set('Authorization', 'Bearer ' . $token);
         $response = app()->handle($request);
         $data = json_decode($response->getContent(), true);
         if ($response->getStatusCode() == 200) {
@@ -49,7 +49,7 @@ class MerkAksesController extends Controller
     {
         $token = session()->get('token');
         $request = Request::create('http://127.0.0.1:8000/api/merk/' . $merk, 'GET');
-        $request->headers->set('Authorization',$token);
+        $request->headers->set('Authorization', 'Bearer ' . $token);
         $response = app()->handle($request);
         $data = json_decode($response->getContent(), true);
         if ($response->getStatusCode() == 200) {
@@ -67,7 +67,7 @@ class MerkAksesController extends Controller
             'merk_name' => $validator['merk_name'],
         ];
         $request = Request::create('http://127.0.0.1:8000/api/merk', 'POST', $data);
-        $request->headers->set('Authorization',$token);
+        $request->headers->set('Authorization', 'Bearer ' . $token);
         $response = app()->handle($request);
         $data = json_decode($response->getContent(), true);
         if ($response->getStatusCode() == 201) {
@@ -89,7 +89,7 @@ class MerkAksesController extends Controller
             'merk_name' => $validator['merk_name'],
         ];
         $api_url = 'http://127.0.0.1:8000/api/merk/' . $merk->id .'?' . http_build_query($data);
-        $request->headers->set('Authorization',$token);
+        $request->headers->set('Authorization', 'Bearer ' . $token);
         $request = Request::create($api_url, 'PUT');
         $response = app()->handle($request);
         if ($response->getStatusCode() == 200) {
@@ -106,7 +106,7 @@ class MerkAksesController extends Controller
     {
         $token = session()->get('token');
         $request = Request::create('http://127.0.0.1:8000/api/merk/' . $merk, 'DELETE');
-        $request->headers->set('Authorization',$token);
+        $request->headers->set('Authorization', 'Bearer ' . $token);
         $response = app()->handle($request);
         if ($response->getStatusCode() == 200) {
             return redirect()->route('merk.index')->with('success', 'Merk berhasil dihapus');

@@ -20,7 +20,7 @@ class AuthAksesController extends Controller
         $response->getContent();
         if($response->getStatusCode() == 200){
             $response = json_decode($response->getContent());
-            session(['token' => $response->token]);
+            //session(['token' => $response->token]);
             if($response->role == 'admin'){
                 return redirect()->route('admin.dashboard');
             }else if($response->role == 'kasir'){

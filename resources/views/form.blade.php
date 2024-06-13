@@ -7,7 +7,7 @@
                 <p class="text-[#6b6eb4] text-lg font-semibold">
                     Add Product
                 </p>
-                <div class="text-[#6b6eb4] flex flex-row ">
+                <div class="text-[#6b6eb4] bg-[#fa9e3b1e] flex flex-row ">
                     Manage your prduct
                 </div>
             </div>

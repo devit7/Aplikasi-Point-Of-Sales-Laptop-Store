@@ -20,8 +20,8 @@
                     </div>
                 @endif
                 @if (session()->has('success'))
-                    <div class="py-2 px-4 italic font-semibold text-green-700 bg-green-100 rounded-md mb-4 dark:bg-green-200 dark:text-green-800"
-                        >
+                    <div
+                        class="py-2 px-4 italic font-semibold text-green-700 bg-green-100 rounded-md mb-4 dark:bg-green-200 dark:text-green-800">
                         <span class="font-medium">{{ session('success') }}</span>
                     </div>
                 @endif
@@ -38,12 +38,12 @@
                         class="w-full h-12 px-4 rounded-r-lg bg-[#151e3b]   focus:outline-none">
                 </form>
                 <div class="flex flex-row py-4 mt-4 gap-4  text-lg font-semibold overflow-x-auto ">
-                    <a href="/kasir" class="py-1 rounded-sm px-6 bg-[#fa9e3b] bg-opacity-10 text-[#e07946]">
+                    <a id="All" href="/kasir" class="py-1 bg-[#151e3b] rounded-sm  px-6 hover:bg-[#fa9e3b] hover:bg-opacity-10 hover:text-[#e07946] transition duration-300  ">
                         All
                     </a>
                     @forelse ($dataMerk as $merk)
                         <a href="/kasir?merk={{ $merk['id'] }}"
-                            class=" py-1 bg-[#151e3b] rounded-sm  px-6 hover:bg-[#fa9e3b] hover:bg-opacity-10 hover:text-[#e07946] transition duration-300">
+                            class=" py-1 bg-[#151e3b] rounded-sm  px-6 hover:bg-[#fa9e3b] hover:bg-opacity-10 hover:text-[#e07946] transition duration-300 ">
                             {{ $merk['merk_name'] }}
                         </a>
                     @empty
@@ -63,7 +63,6 @@
                             class="w-[230px] max-h-[305px] bg-[#151e3b] rounded-lg hover:shadow-2xl  transition duration-300 ">
                             <div class="flex flex-col p-3 text-[#93A2D2] justify-between h-full">
                                 <div class="relative  w-full h-full overflow-hidden max-h-[180px]">
-                                    <img id="card-img" src="{{ asset('storage/image_product/' . $product['img']) }}"
                                     <img id="card-img" src="{{ asset('storage/image_product/' . $product['img']) }}"
                                         alt="product img" class="w-full h-full bg-gray-900 object-cover rounded-lg">
                                     <div
@@ -201,4 +200,10 @@
             </div>
         </div>
     </div>
+
 @endsection
+
+@push('scripts')
+<script src="{{ asset('js/colorkasir.js') }}"></script>
+    </script>
+@endpush

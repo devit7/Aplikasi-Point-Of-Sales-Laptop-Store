@@ -14,7 +14,7 @@ class TokoAksesController extends Controller
     {
         $token = session()->get('token');
         $request = Request::create('http://127.0.0.1:8000/api/toko', 'GET');
-        $request -> headers->set('Authorization',$token);
+        $request->headers->set('Authorization', 'Bearer ' . $token);
         $response = app()->handle($request);
         $data = json_decode($response->getContent(), true);
         if ($response->getStatusCode() == 200) {
@@ -51,7 +51,7 @@ class TokoAksesController extends Controller
             $file = $request->file('logo_toko');
             $temp_request->files->set('logo_toko', $file);
         }
-        $request -> headers->set('Authorization',$token);
+        $request->headers->set('Authorization', 'Bearer ' . $token);
         $response = app()->handle($temp_request);
 
         if ($response->getStatusCode() == 200) {
