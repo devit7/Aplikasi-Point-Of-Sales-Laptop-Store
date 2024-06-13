@@ -20,11 +20,11 @@ class UserAksesController extends Controller
         $data = json_decode($response->getContent(), true);
         if ($response->getStatusCode() == 200) {
             return view('admin.user.index', [
-                'data' => $data['data']
+                'data' => $data['data'],
             ]);
         } else {
             return response()->json([
-                'message' => 'Unauthorized'
+                'message' => 'Unauthorized',
             ], 401);
         }
     }
