@@ -33,7 +33,7 @@ class KasirAksesController extends Controller
         $dataPayment = $this->getAllPayment();
         // dd($dataCustomer);
         return view('kasir.dashboard', [
-            'dataProduct' => $dataProduct,
+            'dataProduct' => array_values($dataProduct),
             'dataMerk' => $dataMerk,
             'dataCustomer' => $dataCustomer,
             'dataPayment' => $dataPayment

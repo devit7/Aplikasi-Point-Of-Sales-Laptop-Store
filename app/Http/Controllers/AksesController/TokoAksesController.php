@@ -17,6 +17,7 @@ class TokoAksesController extends Controller
         $request->headers->set('Authorization', 'Bearer ' . $token);
         $response = app()->handle($request);
         $data = json_decode($response->getContent(), true);
+        // dd($data['data']);
         if ($response->getStatusCode() == 200) {
             return view('admin.setting', ['toko' => $data['data']]);
         } else {
