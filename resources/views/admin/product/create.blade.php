@@ -87,8 +87,8 @@
 
                                             <h3 class="mt-[1px] text-sm font-medium text-gray-900">
                                                 <label for="file-upload" class="relative cursor-pointer text-gray-400">
-                                                    <span>Drag and drop</span>
-                                                    <span class="text-indigo-600"> or browse</span>
+                                                    <span>Choose</span>
+                                                    <span class="text-indigo-600"> a Photo</span>
                                                     <span>to upload</span>
                                                 </label>
                                             </h3>

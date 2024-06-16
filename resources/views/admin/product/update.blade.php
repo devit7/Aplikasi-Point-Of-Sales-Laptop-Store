@@ -36,6 +36,7 @@
                                                 {{ $message }}
                                             </p>
                                         @enderror
+                                        <p id="warningproduct_name" class="text-[#c30010]"></p>
                                     </div>
                                     <div class="sm:col-span-2">
                                         <label for="harga_jual" class="block mb-2 text-sm font-medium  text-gray-400">Harga
@@ -48,6 +49,8 @@
                                                 {{ $message }}
                                             </p>
                                         @enderror
+                                        <p id="warningharga_jual" class="text-[#c30010]"></p>
+
                                     </div>
                                     <div class="sm:col-span-2">
                                         <label for="harga_asli"
@@ -61,6 +64,8 @@
                                                 {{ $message }}
                                             </p>
                                         @enderror
+                                        <p id="warningharga_asli" class="text-[#c30010]"></p>
+
                                     </div>
                                     <div class="sm:col-span-2">
                                         <label for="stock"
@@ -73,6 +78,8 @@
                                                 {{ $message }}
                                             </p>
                                         @enderror
+                                        <p id="warningstock" class="text-[#c30010]"></p>
+
                                     </div>
                                 </div>
                             </div>
@@ -118,6 +125,7 @@
 
                                         <img src="" class="mt-2 mx-auto max-h-40 hidden" id="preview">
                                     </div>
+                                    <p id="warningimg_product" class="text-[#c30010]"></p>
                                 </div>
 
                                 {{-- Input Supplier --}}
@@ -141,23 +149,27 @@
                                             class="search-input w-full px-2 bg-[#131432] text-gray-400 border rounded-md  border-gray-300 focus:outline-none"
                                             type="text" placeholder="Search Supplier" autocomplete="off">
                                         {{-- list dropdown --}}
-                                        @forelse ($dataSupplier as $sup)
+                                        @forelse ($dataSupplier as $sup)14,000,000.00
                                             <a href="#"
                                                 class="dropdown-item pl-3 flex row text-white hover:bg-[#6b6eb4] active:bg-blue-100 cursor-pointer"
                                                 data-value="{{ $sup['id'] }}">{{ $sup['supplier_name'] }}</a>
                                         @empty
                                             <p class="text-center text-white">No Supplier</p>
                                         @endforelse
-
                                     </div>
+
                                     <input type="hidden" name="supplier_id" id="supplier_id"
                                         value="{{ $pro['supplier_id'] }}">
+                                    <p id="warningsupplier_id" class="text-[#c30010]"></p>
+
                                     @error('supplier_id')
                                         <p id="outlined_error_help" class="mt-2 text-xs text-red-700">
                                             {{ $message }}
                                         </p>
                                     @enderror
+
                                 </div>
+
 
                                 {{-- Input Merk --}}
                                 <div class="sm:col-span-2 dropdown-div">
@@ -195,6 +207,8 @@
                                         </p>
                                     @enderror
                                 </div>
+                                <p id="warningmerk_id" class="text-[#c30010]"></p>
+
 
                                 {{-- Input Status --}}
                                 <div class="sm:col-span-2 dropdown-div">
@@ -227,6 +241,8 @@
                                         </p>
                                     @enderror
                                 </div>
+                                <p id="warningstatus" class="text-[#c30010]"></p>
+
 
                             </div>
                         </div>
@@ -235,7 +251,7 @@
                             class="inline-flex items-center px-5 py-2.5 mt-4 sm:mt-6 text-sm font-medium text-center text-white bg-gray-600 rounded-md focus:ring-4 focus:ring-primary-200 dark:focus:ring-primary-900 hover:bg-gray-700">
                                 Back
                             </a>
-                            <button type="submit"
+                            <button type="submit" onclick="submitForm(event)" 
                                 class="inline-flex items-center px-5 py-2.5 mt-4 sm:mt-6 text-sm font-medium text-center text-white bg-green-700 rounded-md focus:ring-4 focus:ring-primary-200 dark:focus:ring-primary-900 hover:bg-primary-800">
                                 Update
                             </button>
@@ -248,6 +264,52 @@
     </div>
 @endsection
 @push('scripts')
+    <script>
+
+        function submitForm(event){
+            event.preventDefault();
+            let inp = document.querySelectorAll('input');
+            let cekubah = null;
+            console.log("panjang : "+inp.length)
+            inp.forEach(e=>{
+                console.log(e.name)
+                if(e.name=='product_name'&&e.value==""){
+                    infos(e.name)
+                }
+                if(e.name=='harga_jual'&&e.value==""){
+                    infos(e.name)
+                }
+                if(e.name=='harga_asli'&&e.value==""){
+                    infos(e.name)
+                }
+                if(e.name=='stock' && e.value==""){
+                    infos(e.name)
+                }
+                if(e.name=='cbCheck' && e.value=="ubah" ){
+                    cekubah=e.value
+                }
+                if(e.name=='img_product' && e.value=='' && cekubah=='ubah'){
+                    infos(e.name)
+                }
+                if(e.name=='supplier_id' && e.value==""){
+                    infos(e.name)
+                }
+                if(e.name=='merk_id' && e.value==""){
+                    infos(e.name)
+                }
+                if(e.name=='status' && e.value==''){
+                    infos(e.name)
+                }
+            })
+        }
+        function infos(nameInp){
+            let infos = document.getElementById("warning"+nameInp);
+            infos.textContent = "Tidak Boleh kosong";
+            setTimeout(function() {
+                infos.textContent = "";
+            }, 2000);
+        }
+    </script>
     <style>
         #file-upload {
             /* position: fixed;
