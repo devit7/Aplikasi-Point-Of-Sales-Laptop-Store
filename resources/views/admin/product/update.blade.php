@@ -267,37 +267,54 @@
     <script>
 
         function submitForm(event){
-            event.preventDefault();
             let inp = document.querySelectorAll('input');
             let cekubah = null;
             console.log("panjang : "+inp.length)
             inp.forEach(e=>{
                 console.log(e.name)
                 if(e.name=='product_name'&&e.value==""){
+                    event.preventDefault();
+                    console.log('masuk'+e.name)
                     infos(e.name)
                 }
+                    // event.preventDefault();
                 if(e.name=='harga_jual'&&e.value==""){
+                    event.preventDefault();
+                    console.log('masuk'+e.name)
                     infos(e.name)
                 }
                 if(e.name=='harga_asli'&&e.value==""){
+                    event.preventDefault();
+                    console.log('masuk'+e.name)
                     infos(e.name)
                 }
                 if(e.name=='stock' && e.value==""){
+                    event.preventDefault();
+                    console.log('masuk'+e.name)
                     infos(e.name)
                 }
                 if(e.name=='cbCheck' && e.value=="ubah" ){
+                    console.log('masuk'+e.name)
                     cekubah=e.value
                 }
                 if(e.name=='img_product' && e.value=='' && cekubah=='ubah'){
+                    event.preventDefault();
+                    console.log('masuk'+e.name)
                     infos(e.name)
                 }
                 if(e.name=='supplier_id' && e.value==""){
+                    event.preventDefault();
+                    console.log('masuk'+e.name)
                     infos(e.name)
                 }
                 if(e.name=='merk_id' && e.value==""){
+                    event.preventDefault();
+                    console.log('masuk'+e.name)
                     infos(e.name)
                 }
                 if(e.name=='status' && e.value==''){
+                    event.preventDefault();
+                    console.log('masuk'+e.name)
                     infos(e.name)
                 }
             })
